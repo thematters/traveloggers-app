@@ -1,0 +1,44 @@
+{
+  "name": "matters-nft",
+  "private": true,
+  "description": "Matters NFT site",
+  "version": "0.1.0",
+  "author": "the matters <dev@matters.news>",
+  "dependencies": {
+    "gatsby": "^4.0.0-zz-next.1",
+    "gatsby-plugin-image": "^2.0.0-zz-next.1",
+    "gatsby-plugin-manifest": "^4.0.0-zz-next.1",
+    "gatsby-plugin-offline": "^5.0.0-zz-next.1",
+    "gatsby-plugin-react-helmet": "^5.0.0-zz-next.1",
+    "gatsby-plugin-sharp": "^4.0.0-zz-next.1",
+    "gatsby-plugin-typescript": "^4.0.0-zz-next.2",
+    "gatsby-source-filesystem": "^4.0.0-zz-next.1",
+    "gatsby-transformer-sharp": "^4.0.0-zz-next.1",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0"
+  },
+  "devDependencies": {
+    "prettier": "2.3.2"
+  },
+  "keywords": [
+    "gatsby",
+    "matters",
+    "nft"
+  ],
+  "license": "Apache License",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "start": "gatsby develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thematters/matters-nft"
+  }
+}

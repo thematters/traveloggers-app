@@ -77,28 +77,29 @@ typings/
 
 # Next.js build output
 .next
-
-# Nuxt.js build / generate output
-.nuxt
-dist
+# dotenv environment variable files
+.env*
 
 # Gatsby files
 .cache/
-# Comment in the public line in if your project uses Gatsby and *not* Next.js
-# https://nextjs.org/blog/next-9-1#public-directory-support
-# public
-
-# vuepress build output
-.vuepress/dist
 
 # Serverless directories
 .serverless/
+public
 
 # FuseBox cache
 .fusebox/
 
 # DynamoDB Local files
 .dynamodb/
+# Mac files
+.DS_Store
 
 # TernJS port file
 .tern-port
+# Yarn
+yarn-error.log
+.pnp/
+.pnp.js
+# Yarn Integrity file
+.yarn-integrity
