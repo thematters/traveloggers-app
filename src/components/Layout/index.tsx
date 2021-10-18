@@ -1,15 +1,10 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
- */
+// import "./style.css"
 
+import { graphql, useStaticQuery } from "gatsby"
+import { ClientContext, GraphQLClient } from "graphql-hooks"
 import * as React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
 
-import { GraphQLClient, ClientContext } from "graphql-hooks"
+import Header from "../Header"
 
 const client = new GraphQLClient({
   url: "https://server-develop.matters.news/graphql",
@@ -20,10 +15,7 @@ const client = new GraphQLClient({
   },
 })
 
-import Header from "./header"
-import "./layout.css"
-
-const Layout = ({ children }) => {
+const Layout: React.FC = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -57,10 +49,6 @@ const Layout = ({ children }) => {
       </div>
     </ClientContext.Provider>
   )
-}
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
 }
 
 export default Layout
