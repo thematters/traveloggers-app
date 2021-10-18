@@ -9,6 +9,17 @@ import * as React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
+import { GraphQLClient, ClientContext } from "graphql-hooks"
+
+const client = new GraphQLClient({
+  url: "https://server-develop.matters.news/graphql",
+  useGETForQueries: false,
+  ssrMode: false,
+  fetchOptions: {
+    credentials: "include",
+  },
+})
+
 import Header from "./header"
 import "./layout.css"
 
@@ -24,7 +35,7 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
+    <ClientContext.Provider value={client}>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <div
         style={{
@@ -44,7 +55,7 @@ const Layout = ({ children }) => {
           <a href="https://www.gatsbyjs.com">Gatsby</a>
         </footer>
       </div>
-    </>
+    </ClientContext.Provider>
   )
 }
 
