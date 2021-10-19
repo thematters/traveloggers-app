@@ -1,9 +1,8 @@
 import { graphql, PageProps } from "gatsby"
-import * as React from "react"
+import React from "react"
 
-import Layout from "../components/Layout"
 import SEO from "../components/SEO"
-import { Viewer } from "../components/Viewer"
+import Hero from "../views/Homepage/Hero"
 
 type DataProps = {
   site: {
@@ -11,22 +10,17 @@ type DataProps = {
   }
 }
 
-const UsingTypescript: React.FC<PageProps<DataProps>> = ({ data, path }) => {
+const Homepage: React.FC<PageProps<DataProps>> = ({ data, path }) => {
   return (
-    <Layout>
-      <SEO title="Matters NFT" />
-      <h1>Matters NFT</h1>
-      <p>Matters NFT</p>
-      <p>
-        You&apos;re currently on the page &quot;{path}&quot; which was built on{" "}
-        {data.site.buildTime}.
-      </p>
-      <Viewer />
-    </Layout>
+    <>
+      <SEO title="CryptoMatties" />
+
+      <Hero />
+    </>
   )
 }
 
-export default UsingTypescript
+export default Homepage
 
 export const query = graphql`
   {

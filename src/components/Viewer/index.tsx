@@ -1,6 +1,6 @@
 import { useFormik } from "formik"
 import { useMutation, useQuery } from "graphql-hooks"
-import * as React from "react"
+import React from "react"
 
 interface FormValues {
   email: string

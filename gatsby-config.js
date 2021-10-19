@@ -7,7 +7,9 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+
     `gatsby-plugin-image`,
+
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -15,23 +17,47 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+
     `gatsby-transformer-sharp`,
+
     `gatsby-plugin-sharp`,
+
+    // {
+    //   resolve: `gatsby-plugin-typescript`,
+    //   options: {
+    //     isTSX: true, // defaults to false
+    //     jsxPragma: `jsx`, // defaults to "React"
+    //     allExtensions: true, // defaults to false
+    //   },
+    // },
+
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: `gatsby-plugin-layout`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
-        start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        component: require.resolve(`./src/components/Layout/index.tsx`),
       },
     },
 
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-postcss`,
+      options: {
+        postCssPlugins: [
+          require(`postcss-mixins`)({
+            mixinsFiles: "./src/styles/mixins.css",
+          }),
+          require(`postcss-preset-env`)({
+            stage: 0,
+            preserve: false,
+            importFrom: [
+              "./src/styles/variables/breakpoints.css",
+              "./src/styles/variables/colors.css",
+              "./src/styles/variables/sizing.css",
+              "./src/styles/variables/spacing.css",
+              "./src/styles/variables/typography.css",
+            ],
+          }),
+        ],
+      },
+    },
   ],
 }

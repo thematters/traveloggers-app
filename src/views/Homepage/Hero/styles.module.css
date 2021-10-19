@@ -1,0 +1,6 @@
+.hero {
+  @mixin flex-center-all;
+  background: var(--color-black);
+  color: var(--color-white);
+  height: 100vh;
+}

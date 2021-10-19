@@ -1,0 +1,18 @@
+/* Container
+   ========================================================================== */
+.button {
+  @mixin inline-flex-center-all;
+  border-radius: 10rem;
+}
+
+.primary {
+  background: var(--color-matters-green);
+  color: var(--color-white);
+  font-weight: var(--font-weight-medium);
+}
+
+.black {
+  background: var(--color-black);
+  color: var(--color-white);
+  font-weight: var(--font-weight-normal);
+}
