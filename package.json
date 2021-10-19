@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "author": "the matters <dev@matters.news>",
   "dependencies": {
+    "formik": "^2.2.9",
     "gatsby": "^3.14.3",
     "gatsby-plugin-image": "^1.14.1",
     "gatsby-plugin-manifest": "^3.14.0",
