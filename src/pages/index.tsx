@@ -1,7 +1,7 @@
 import { graphql, PageProps } from "gatsby"
 import React from "react"
 
-import SEO from "../components/SEO"
+import { SEO } from "../components"
 import Hero from "../views/Homepage/Hero"
 
 type DataProps = {
