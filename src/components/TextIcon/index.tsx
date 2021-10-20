@@ -20,7 +20,7 @@ export interface TextIconProps {
   color?: TextIconColor
   size?: "xs" | "sm" | "smS" | "mdS" | "md" | "xm" | "lg"
   spacing?: 0 | "xxxTight" | "xxTight" | "xTight" | "tight" | "base"
-  weight?: "light" | "normal" | "md" | "semibold" | "bold"
+  weight?: "light" | "normal" | "medium" | "semibold" | "bold"
 
   textPlacement?: "bottom" | "left" | "right"
   underline?: boolean
@@ -45,8 +45,8 @@ export const TextIcon: React.FC<TextIconProps> = ({
   icon,
 
   color,
-  size = "sm",
-  spacing = "xxtight",
+  size,
+  spacing,
   weight,
 
   textPlacement = "right",
@@ -61,8 +61,8 @@ export const TextIcon: React.FC<TextIconProps> = ({
     [styles.placement]: true,
     [styles[textPlacement]]: true,
     [styles.underline]: !!underline,
-    [styles.size]: true,
-    [styles[size]]: true,
+    [styles.size]: !!size,
+    [styles[size]]: !!size,
     [styles.spacing]: !!spacing,
     [styles[spacing]]: !!spacing,
     [styles.weight]: !!weight,

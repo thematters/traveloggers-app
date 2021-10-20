@@ -1,6 +1,7 @@
 export * from "./Button"
 export * from "./Dialog"
 export * from "./Icon"
+export * from "./LanguageSwitch"
 export * from "./Layout"
 export * from "./SEO"
 export * from "./TextIcon"

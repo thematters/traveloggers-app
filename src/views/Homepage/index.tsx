@@ -13,7 +13,7 @@ type DataProps = {
 const Homepage: React.FC<PageProps<DataProps>> = ({ data, path }) => {
   return (
     <>
-      <SEO title="CryptoMatties" />
+      <SEO title="Travelogers" />
 
       <Hero />
     </>

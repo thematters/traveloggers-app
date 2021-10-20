@@ -185,7 +185,7 @@
     font-weight: var(--font-weight-normal);
   }
 
-  &.md {
+  &.medium {
     font-weight: var(--font-weight-medium);
   }
 

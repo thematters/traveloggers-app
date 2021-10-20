@@ -3,14 +3,14 @@ import React from "react"
 import { Helmet } from "react-helmet"
 
 type SEOProps = {
-  title: string
+  title?: string
   description?: string
   lang?: string
   meta?: any[]
 }
 
 export const SEO: React.FC<SEOProps> = ({
-  title,
+  title = "",
   description = "",
   lang = "en",
   meta = [],

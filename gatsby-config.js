@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Matters NFT site`,
+    title: `Travelogers`,
     description: `matters nft site`,
     author: `@thematters`,
     siteUrl: `https://nft.matters.news/`,
