@@ -1,0 +1,19 @@
+.spinner {
+  padding: var(--spacing-x-loose) 0;
+  line-height: 1;
+  text-align: center;
+
+  & > svg {
+    animation: spinning 1s infinite linear;
+  }
+}
+
+@keyframes spinning {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

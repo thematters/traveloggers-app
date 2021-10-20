@@ -3,7 +3,7 @@
 
   position: relative;
   flex-shrink: 0;
-  padding: var(--spacing-x-loose) var(--spacing-base) var(--spacing-tight);
+  padding: var(--spacing-tight) var(--spacing-base);
 
   & h1 {
     @mixin flex-center-all;
@@ -19,10 +19,10 @@
     line-height: 1.5rem;
   }
 
-  & .left,
-  & .right {
+  & .left {
     display: inline-flex;
     min-height: 1rem;
+    z-index: 2;
 
     & :global(> *) {
       line-height: 1.5rem;
@@ -30,23 +30,12 @@
   }
 
   @media (--sm-up) {
-    padding: var(--spacing-tight) var(--spacing-base);
-
     & h1 {
       padding: 0;
     }
 
-    & .left,
-    & .right {
+    & .left {
       min-height: 2rem;
     }
-  }
-}
-
-.inner {
-  box-shadow: none;
-
-  & :global(> :not(h1)) {
-    visibility: hidden;
   }
 }

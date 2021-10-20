@@ -1,7 +1,7 @@
 import { Link } from "gatsby"
 import React from "react"
 
-import { Button, IconLogo, TextIcon } from "~/components"
+import { Button, IconLogo, PreOrderDialog, TextIcon } from "~/components"
 
 import Socials from "./Socials"
 import * as styles from "./styles.module.css"
@@ -19,9 +19,18 @@ const Header = () => {
         <Socials />
 
         <div>
-          <Button color="primary" spacingX="1.25rem" spacingY=".5rem">
-            參與預購
-          </Button>
+          <PreOrderDialog>
+            {({ openDialog }) => (
+              <Button
+                color="primary"
+                spacingX="1.25rem"
+                spacingY=".5rem"
+                onClick={openDialog}
+              >
+                參與預購
+              </Button>
+            )}
+          </PreOrderDialog>
         </div>
 
         <div>

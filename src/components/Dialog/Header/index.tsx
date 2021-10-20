@@ -1,28 +1,18 @@
-import VisuallyHidden from "@reach/visually-hidden"
 import classNames from "classnames"
 import React from "react"
 
-import { CloseButton } from "./Button"
+import { IconCircleClose } from "~/components"
+
 import * as styles from "./styles.module.css"
 
 export interface HeaderProps {
   title: React.ReactNode
-  closeDialog?: () => void
-  mode?: "hidden" | "inner"
-  leftButton?: React.ReactNode
-  rightButton?: React.ReactNode | string
+  closeDialog: () => void
 }
 
-const BaseHeader = ({
-  title,
-  closeDialog,
-  mode,
-  leftButton,
-  rightButton,
-}: HeaderProps) => {
+const Header = ({ title, closeDialog }: HeaderProps) => {
   const headerClasses = classNames({
     [styles.header]: true,
-    [styles.inner]: mode === "inner",
   })
 
   return (
@@ -31,38 +21,13 @@ const BaseHeader = ({
         <span id="dialog-title">{title}</span>
       </h1>
 
-      {(leftButton || closeDialog) && (
-        <section className={styles.left}>
-          {leftButton ||
-            (closeDialog ? <CloseButton closeDialog={closeDialog} /> : null)}
-        </section>
-      )}
-
-      {rightButton && <section className={styles.right}>{rightButton}</section>}
+      <section className={styles.left}>
+        <button onClick={closeDialog} type="button">
+          <IconCircleClose size="lg" />
+        </button>
+      </section>
     </header>
   )
 }
-
-const Header: React.FC<HeaderProps> & {
-  CloseButton: typeof CloseButton
-} = props => {
-  if (props.mode !== "hidden") {
-    return <BaseHeader {...props} />
-  }
-
-  return (
-    <>
-      {/* <div className="u-sm-up-hide">
-        <Spacer size="xloose" />
-      </div> */}
-
-      <VisuallyHidden>
-        <BaseHeader {...props} />
-      </VisuallyHidden>
-    </>
-  )
-}
-
-Header.CloseButton = CloseButton
 
 export default Header
