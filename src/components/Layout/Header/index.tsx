@@ -1,9 +1,9 @@
 import { graphql, Link, useStaticQuery } from "gatsby"
 import React from "react"
 
-import { Dialog, withIcon } from "../../../components"
-import { useDialogSwitch } from "../../../hooks"
-import { ReactComponent as UserIcon } from "../../Icon/user.svg"
+import { Dialog, IconUser } from "~/components"
+import { useDialogSwitch } from "~/hooks"
+
 import * as styles from "./styles.module.css"
 
 const Header = () => {
@@ -25,7 +25,7 @@ const Header = () => {
 
       <section>
         <button type="button" onClick={openDialog}>
-          {withIcon(UserIcon)({ size: "md" })}
+          <IconUser size="md" />
           Login
         </button>
 

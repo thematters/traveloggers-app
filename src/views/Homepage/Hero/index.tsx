@@ -1,6 +1,7 @@
 import * as React from "react"
 
-import { Button } from "../../../components"
+import { Button } from "~/components"
+
 import * as styles from "./styles.module.css"
 
 const Hero = () => {

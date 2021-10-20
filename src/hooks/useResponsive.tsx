@@ -1,4 +1,5 @@
-import { BREAKPOINTS } from "../enums"
+import { BREAKPOINTS } from "~/enums"
+
 import { useWindowResize } from "./useWindowResize"
 
 type Type = "sm-down" | "sm-up" | "md-up" | "lg-up" | "sm" | "xs" | "md" | "lg"

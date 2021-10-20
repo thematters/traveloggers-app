@@ -1,7 +1,7 @@
 .overlay {
   @mixin expand-to-container;
 
-  content: '';
+  content: "";
   background: rgba(0, 0, 0, 0.25);
   will-change: opacity;
 }
@@ -22,11 +22,11 @@
     right: 0;
     left: 0;
     height: 300vh;
-    content: '';
+    content: "";
     background: var(--color-white);
   }
 
-  &.fixed-height {
+  &.fixedHeight {
     height: 80vh;
     height: calc(var(--vh) * 90);
   }
@@ -39,11 +39,11 @@
       display: none;
     }
 
-    &.no-header {
+    &.noHeader {
       padding-top: 0;
     }
 
-    &.fixed-height {
+    &.fixedHeight {
       height: auto;
     }
   }

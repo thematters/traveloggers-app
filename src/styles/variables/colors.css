@@ -12,4 +12,9 @@
   --color-red-lighter: #fae7e3;
   --color-green-lighter: #f2faf7;
   --color-yellow-lighter: #faf7f0;
+
+  --color-gradient-green-start: #1cb0ab;
+  --color-gradient-green-end: #33a5c9;
+  --color-gradient-green-start-hover: #219792;
+  --color-gradient-green-end-hover: #4a91a7;
 }

@@ -7,9 +7,10 @@ import React from "react"
 import { useEffect, useRef, useState } from "react"
 import { animated, useSpring } from "react-spring"
 
-import { KEYCODES } from "../../enums"
-import { useOutsideClick, useResponsive } from "../../hooks"
-import { dom } from "../../utils"
+import { KEYCODES } from "~/enums"
+import { useOutsideClick, useResponsive } from "~/hooks"
+import { dom } from "~/utils"
+
 import Overlay from "./Overlay"
 import * as styles from "./styles.module.css"
 
@@ -31,12 +32,11 @@ const Container: React.FC<
     setDragGoal: (val: any) => void
   } & DialogProps
 > = ({ size = "lg", fixedHeight, onDismiss, children, style, setDragGoal }) => {
-  const isSmallUp = useResponsive("sm-up")
   const node: React.RefObject<any> | null = useRef(null)
 
   const containerClasses = classNames({
     [styles.container]: true,
-    [styles["fixed-height"]]: !!fixedHeight,
+    [styles.fixedHeight]: !!fixedHeight,
     [styles[size]]: true,
   })
 
@@ -123,7 +123,7 @@ const Dialog: React.FC<DialogProps> = props => {
   }
 
   return (
-    <AnimatedDialogOverlay className={styles.dialog}>
+    <AnimatedDialogOverlay>
       <AnimatedOverlay style={{ opacity: opacity as any }} />
 
       <DialogContent

@@ -30,6 +30,15 @@ module.exports = {
     //     allExtensions: true, // defaults to false
     //   },
     // },
+    {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: {
+          "~": "./src",
+        },
+        extensions: ["ts", "tsx", "css"],
+      },
+    },
 
     {
       resolve: `gatsby-plugin-layout`,

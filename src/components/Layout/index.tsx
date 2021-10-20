@@ -1,6 +1,6 @@
-import "../../styles/defaults.css"
-import "../../styles/reset.css"
-import "../../styles/layouts.css"
+import "~/styles/defaults.css"
+import "~/styles/reset.css"
+import "~/styles/layouts.css"
 
 import { ClientContext, GraphQLClient } from "graphql-hooks"
 import React from "react"
