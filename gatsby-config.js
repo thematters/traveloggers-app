@@ -8,28 +8,6 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
 
-    `gatsby-plugin-image`,
-
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
-
-    `gatsby-transformer-sharp`,
-
-    `gatsby-plugin-sharp`,
-
-    // {
-    //   resolve: `gatsby-plugin-typescript`,
-    //   options: {
-    //     isTSX: true, // defaults to false
-    //     jsxPragma: `jsx`, // defaults to "React"
-    //     allExtensions: true, // defaults to false
-    //   },
-    // },
     {
       resolve: `gatsby-plugin-alias-imports`,
       options: {
@@ -40,6 +18,24 @@ module.exports = {
       },
     },
 
+    /**
+     * Assets
+     */
+    // image
+    `gatsby-plugin-image`,
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `images`,
+    //     path: `${__dirname}/src/images`,
+    //   },
+    // },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+
+    /**
+     * Layout
+     */
     {
       resolve: `gatsby-plugin-layout`,
       options: {
@@ -47,6 +43,10 @@ module.exports = {
       },
     },
 
+    /**
+     * Components
+     */
+    // icon
     {
       resolve: "gatsby-plugin-svgr",
       options: {
@@ -63,6 +63,18 @@ module.exports = {
       },
     },
 
+    /**
+     * Styles
+     */
+    // typography
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [`Press Start 2P`],
+        display: "swap",
+      },
+    },
+    // css
     {
       resolve: `gatsby-plugin-postcss`,
       options: {

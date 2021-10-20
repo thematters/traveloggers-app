@@ -1,27 +1,27 @@
-import "./styles.css"
-
 import classNames from "classnames"
 import React from "react"
+
+import * as styles from "./styles.module.css"
 
 export type IconSize =
   | "xxs"
   | "xs"
-  | "sm-s"
+  | "smS"
   | "sm"
-  | "md-s"
+  | "mdS"
   | "md"
   | "lg"
-  | "xl-m"
+  | "xlM"
   | "xl"
   | "xxl"
 
 export type IconColor =
   | "white"
   | "black"
-  | "grey-dark"
+  | "greyDark"
   | "grey"
-  | "grey-light"
-  | "grey-lighter"
+  | "greyLight"
+  | "greyLighter"
   | "green"
   | "gold"
   | "red"
@@ -39,9 +39,9 @@ export const withIcon =
   (props: IconProps) => {
     const { size = "", color = "", className, ...restProps } = props
     const iconClasses = classNames({
-      icon: true,
-      [size]: !!size,
-      [color]: !!color,
+      [styles.icon]: true,
+      [styles[size]]: !!size,
+      [styles[color]]: !!color,
       [className]: !!className,
     })
 

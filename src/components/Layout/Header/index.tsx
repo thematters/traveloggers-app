@@ -1,43 +1,34 @@
-import { graphql, Link, useStaticQuery } from "gatsby"
+import { Link } from "gatsby"
 import React from "react"
 
-import { Dialog, IconUser } from "~/components"
-import { useDialogSwitch } from "~/hooks"
+import { Button, IconLogo, TextIcon } from "~/components"
 
+import Socials from "./Socials"
 import * as styles from "./styles.module.css"
 
 const Header = () => {
-  const { show, openDialog, closeDialog } = useDialogSwitch(false)
-
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
   return (
     <header className={styles.header}>
-      <Link to="/">Logo</Link>
+      <Link to="/">
+        <TextIcon icon={<IconLogo size="xlM" />} spacing="base">
+          <span className={styles.name}>Travelogers</span>
+        </TextIcon>
+      </Link>
 
-      <section>
-        <button type="button" onClick={openDialog}>
-          <IconUser size="md" />
-          Login
-        </button>
+      <section className={styles.buttons}>
+        <Socials />
 
-        <Dialog isOpen={show} onDismiss={closeDialog} size="sm">
-          <Dialog.Header
-            title={<span>hide</span>}
-            closeDialog={closeDialog}
-            mode="inner"
-          />
+        <div>
+          <Button color="primary" spacingX="1.25rem" spacingY=".5rem">
+            參與預購
+          </Button>
+        </div>
 
-          <Dialog.Content>Content</Dialog.Content>
-        </Dialog>
+        <div>
+          <Button color="primary" spacingX="1.25rem" spacingY=".5rem">
+            參與空投
+          </Button>
+        </div>
       </section>
     </header>
   )
