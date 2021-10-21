@@ -1,14 +1,14 @@
 .hero {
   @mixin flex-center-all;
-  color: var(--color-white);
+
   height: 100vh;
+  color: var(--color-white);
   text-align: center;
 }
 
 .content {
-  margin: 0 auto;
-
   max-width: 40.5rem;
+  margin: 0 auto;
 }
 
 .title {
@@ -43,8 +43,8 @@
 }
 
 .cta {
-  margin: var(--spacing-xx-loose) auto 0;
   width: 100%;
+  margin: var(--spacing-xx-loose) auto 0;
 
   @media (--sm-up) {
     width: 22.5rem;

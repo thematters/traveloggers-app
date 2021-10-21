@@ -1,6 +1,7 @@
 :root {
   --sizing-root: 16px;
   --global-header-height: 4rem;
+  --sizing-logbook-header-height: 2rem; /* 36px */
   --global-header-height-mobile: 3rem;
   --global-nav-height: 4rem;
   --sizing-menu-md: 17rem;
