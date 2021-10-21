@@ -1,0 +1,23 @@
+[
+  {
+    "code": "zh-hant",
+    "hrefLang": "zh-Hant",
+    "name": "Chinese",
+    "localName": "中文繁體",
+    "dateFormat": "YYYY/MM/DD"
+  },
+  {
+    "code": "zh-hans",
+    "hrefLang": "zh-Hans",
+    "name": "Chinese",
+    "localName": "中文简体",
+    "dateFormat": "YYYY/MM/DD"
+  },
+  {
+    "code": "en",
+    "hrefLang": "en",
+    "name": "English",
+    "localName": "English",
+    "dateFormat": "MM/DD/YYYY"
+  }
+]

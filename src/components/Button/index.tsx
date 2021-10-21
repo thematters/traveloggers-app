@@ -1,5 +1,5 @@
 import classNames from "classnames"
-import { Link } from "gatsby"
+import { LocalizedLink as Link } from "gatsby-theme-i18n"
 import React, { forwardRef, RefObject, useRef } from "react"
 
 import * as styles from "./styles.module.css"

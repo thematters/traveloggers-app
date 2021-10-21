@@ -7,6 +7,14 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-theme-i18n`,
+      options: {
+        defaultLang: `zh-hant`,
+        locales: process.env.LOCALES || `zh-hant zh-hans en`,
+        configPath: require.resolve(`./i18n/config.json`),
+      },
+    },
 
     {
       resolve: `gatsby-plugin-alias-imports`,
