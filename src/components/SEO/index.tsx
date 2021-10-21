@@ -1,5 +1,5 @@
 import { graphql, useStaticQuery } from "gatsby"
-import * as React from "react"
+import React from "react"
 import { Helmet } from "react-helmet"
 
 type SEOProps = {
@@ -9,7 +9,7 @@ type SEOProps = {
   meta?: any[]
 }
 
-const SEO: React.FC<SEOProps> = ({
+export const SEO: React.FC<SEOProps> = ({
   title,
   description = "",
   lang = "en",
@@ -76,5 +76,3 @@ const SEO: React.FC<SEOProps> = ({
     />
   )
 }
-
-export default SEO

@@ -1,0 +1,45 @@
+.header {
+  @mixin flex-center-space-between;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: var(--spacing-loose) var(--spacing-base);
+  color: var(--color-white);
+  z-index: 1;
+
+  @media (--md-up) {
+    padding: var(--spacing-loose) var(--spacing-xxx-loose);
+  }
+}
+
+.name {
+  display: none;
+
+  @media (--md-up) {
+    display: initial;
+    font-family: var(--font-bitmap);
+    color: var(--color-matters-green);
+    background: -webkit-linear-gradient(
+      var(--color-gradient-green-start),
+      var(--color-gradient-green-end)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.buttons {
+  @mixin inline-flex-center-all;
+
+  & > * + * {
+    padding-left: var(--spacing-tight);
+  }
+
+  @media (--md-up) {
+    & > * + * {
+      padding-left: var(--spacing-base);
+    }
+  }
+}

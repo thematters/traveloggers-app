@@ -7,31 +7,94 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-image`,
+
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `gatsby-plugin-alias-imports`,
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
-        start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        alias: {
+          "~": "./src",
+        },
+        extensions: ["ts", "tsx", "css"],
       },
     },
 
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    /**
+     * Assets
+     */
+    // image
+    `gatsby-plugin-image`,
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `images`,
+    //     path: `${__dirname}/src/images`,
+    //   },
+    // },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+
+    /**
+     * Layout
+     */
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/components/Layout/index.tsx`),
+      },
+    },
+
+    /**
+     * Components
+     */
+    // icon
+    {
+      resolve: "gatsby-plugin-svgr",
+      options: {
+        prettier: true, // use prettier to format JS code output (default)
+        svgo: true, // use svgo to optimize SVGs (default)
+        memo: true,
+        dimensions: false,
+        svgoConfig: {
+          plugins: [
+            { removeViewBox: false }, // remove viewBox when possible (default)
+            { cleanupIDs: true }, // remove unused IDs and minify remaining IDs (default)
+          ],
+        },
+      },
+    },
+
+    /**
+     * Styles
+     */
+    // typography
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [`Press Start 2P`],
+        display: "swap",
+      },
+    },
+    // css
+    {
+      resolve: `gatsby-plugin-postcss`,
+      options: {
+        postCssPlugins: [
+          require(`postcss-mixins`)({
+            mixinsFiles: "./src/styles/mixins.css",
+          }),
+          require(`postcss-preset-env`)({
+            stage: 0,
+            preserve: false,
+            importFrom: [
+              "./src/styles/variables/breakpoints.css",
+              "./src/styles/variables/colors.css",
+              "./src/styles/variables/sizing.css",
+              "./src/styles/variables/spacing.css",
+              "./src/styles/variables/typography.css",
+            ],
+          }),
+        ],
+      },
+    },
   ],
 }

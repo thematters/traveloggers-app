@@ -1,0 +1,52 @@
+.hero {
+  @mixin flex-center-all;
+  color: var(--color-white);
+  height: 100vh;
+  text-align: center;
+}
+
+.content {
+  margin: 0 auto;
+
+  max-width: 40.5rem;
+}
+
+.title {
+  font-family: var(--font-bitmap);
+  font-size: var(--font-size-xl);
+  line-height: 1;
+
+  @media (--sm-up) {
+    font-size: 3rem;
+  }
+}
+
+.subtitle {
+  margin-top: var(--spacing-xx-loose);
+  font-size: var(--font-size-xm);
+  font-size: var(--font-weight-semibold);
+  line-height: 1.5rem;
+
+  @media (--sm-up) {
+    font-size: var(--font-size-xl);
+  }
+}
+
+.intro {
+  margin-top: var(--spacing-base);
+  font-size: var(--font-size-sm-s);
+  line-height: 1.5rem;
+
+  @media (--sm-up) {
+    font-size: var(--font-size-md);
+  }
+}
+
+.cta {
+  margin: var(--spacing-xx-loose) auto 0;
+  width: 100%;
+
+  @media (--sm-up) {
+    width: 22.5rem;
+  }
+}

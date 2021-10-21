@@ -1,0 +1,17 @@
+.socials {
+  @mixin inline-flex-center-all;
+  font-size: 0;
+  display: none;
+
+  & > * + * {
+    padding-left: var(--spacing-tight);
+  }
+
+  @media (--md-up) {
+    display: initial;
+
+    & > * + * {
+      padding-left: var(--spacing-loose);
+    }
+  }
+}

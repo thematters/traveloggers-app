@@ -1,0 +1,16 @@
+.content {
+  flex-shrink: 1;
+  padding: var(--spacing-base);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  &.hasGrow {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  &.hasFixed {
+    flex-shrink: 0;
+  }
+}

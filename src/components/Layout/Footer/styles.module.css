@@ -1,0 +1,4 @@
+.footer {
+  @mixin flex-center-space-between;
+  padding: var(--spacing-xxx-loose);
+}
