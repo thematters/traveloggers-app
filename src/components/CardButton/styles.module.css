@@ -1,0 +1,43 @@
+.cardButton {
+  display: block;
+  border-radius: 1.5rem;
+  background: var(--color-black-semi);
+  padding: var(--spacing-base);
+  line-height: 1;
+  width: 100%;
+}
+
+.content {
+  @mixin flex-center-space-between;
+}
+
+.left {
+  @mixin inline-flex-center-all;
+
+  & .icon {
+    margin-right: var(--spacing-base);
+  }
+
+  & .title {
+    display: inline-flex;
+    align-items: flex-start;
+    flex-direction: column;
+
+    & h5 {
+      font-size: var(--font-size-xm);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5rem;
+    }
+  }
+
+  & .subtitle {
+    margin-top: var(--spacing-xx-tight);
+    font-size: var(--font-size-xs);
+    line-height: 1rem;
+    color: var(--color-grey);
+  }
+}
+
+.right {
+  display: inline-flex;
+}

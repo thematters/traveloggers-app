@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Dialog, Spinner } from "~/components"
+import { Dialog, SignInWithMatters } from "~/components"
 
 export interface PreOrderDialogContentProps {
   closeDialog: () => void
@@ -19,7 +19,7 @@ const PreOrderDialogContent: React.FC<PreOrderDialogContentProps> = ({
         後可以享有福利，也歡迎尚未註冊帳號的朋友成為馬特市一員。
       </p>
 
-      <Spinner />
+      <SignInWithMatters />
     </Dialog.Content>
   </>
 )

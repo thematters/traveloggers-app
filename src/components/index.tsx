@@ -1,4 +1,7 @@
+export * from "./Avatar"
 export * from "./Button"
+export * from "./Buttons"
+export * from "./CardButton"
 export * from "./Dialog"
 export * from "./Dialogs"
 export * from "./Icon"

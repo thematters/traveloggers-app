@@ -16,7 +16,7 @@ export const PreOrderDialog: React.FC<PreOrderDialogProps> = ({ children }) => {
     <>
       {children({ openDialog })}
 
-      <Dialog size="sm" isOpen={show} onDismiss={closeDialog}>
+      <Dialog isOpen={show} onDismiss={closeDialog}>
         <Content closeDialog={closeDialog} />
       </Dialog>
     </>
