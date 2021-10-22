@@ -2,6 +2,7 @@ import { PageProps } from "gatsby"
 import React from "react"
 
 import { SEO } from "~/components"
+import Benefits from "~/views/Homepage/Benefits"
 import Hero from "~/views/Homepage/Hero"
 
 type DataProps = {
@@ -16,6 +17,8 @@ const Homepage: React.FC<PageProps<DataProps>> = ({ data, path }) => {
       <SEO title="CryptoMatties" />
 
       <Hero />
+
+      <Benefits />
     </>
   )
 }
