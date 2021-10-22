@@ -15,8 +15,7 @@ const Subitle = ({ children, customStyles }: SubitleProps) => {
 
   const classes = classNames({
     [styles.text]: true,
-    [styles.text_lg]: isMediumUp,
-    [styles.text_md_s]: !isMediumUp,
+    [styles.text_md_up]: isMediumUp,
   })
 
   return (

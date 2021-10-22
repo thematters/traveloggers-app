@@ -1,13 +1,10 @@
 .text {
   font-weight: var(--font-weight-semibold);
-}
-
-.text_xxxl {
-	font-size: var(--font-size-xxxl);
-}
-
-.text_lg {
   font-size: var(--font-size-lg);
+}
+
+.text_md_up {
+	font-size: var(--font-size-xxxl);
 }
 
 .center {

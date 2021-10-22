@@ -1,11 +1,8 @@
 .text {
   font-weight: var(--font-weight-semibold);
-}
-
-.text_lg {
-	font-size: var(--font-size-lg);
-}
-
-.text_md_s {
   font-size: var(--font-size-md-s);
+}
+
+.text_md_up {
+	font-size: var(--font-size-lg);
 }

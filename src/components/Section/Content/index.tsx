@@ -14,8 +14,8 @@ const Content = ({ children, customStyles }: ContentProps) => {
   const isMediumUp = useResponsive("md-up")
 
   const classes = classNames({
-    [styles.text_md]: isMediumUp,
-    [styles.text_sm_s]: !isMediumUp,
+    [styles.text]: true,
+    [styles.text_md_up]: isMediumUp,
   })
 
   return (

@@ -1,16 +1,24 @@
+import classNames from "classnames"
 import React from "react"
 
 import { Container, Section } from "~/components"
+import { useResponsive } from "~/hooks"
 
 import * as styles from "./styles.module.css"
 
 const Benefits = () => {
+  const isMediumUp = useResponsive("md-up")
   const subtitleStyles = { customStyles: { paddingTop: "1.5rem" } }
   const contentStyles = { customStyles: { paddingTop: "0.5rem" } }
 
+  const containerClasses = classNames({
+    [styles.benefits]: true,
+    [styles.spacing_md_up]: isMediumUp,
+  })
+
   return (
     <section
-      className={styles.benefits}
+      className={containerClasses}
       style={{ backgroundImage: `url(/images/benefits.png)` }}
     >
       <Container>

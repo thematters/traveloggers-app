@@ -1,6 +1,7 @@
 export * from "./Button"
 export * from "./Container"
 export * from "./Dialog"
+export * from "./Expandable"
 export * from "./Icon"
 export * from "./Layout"
 export * from "./Section"
