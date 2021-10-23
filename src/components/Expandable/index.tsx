@@ -37,11 +37,9 @@ export const Expandable = ({
 
   return (
     <section className={styles.container} style={customStyles}>
-      <section className={itemClasses}>
+      <section className={itemClasses} onClick={() => setOpened(!opened)}>
         <section className={titleClasses}>{title}</section>
-        <section className={styles.button} onClick={() => setOpened(!opened)}>
-          {opened ? <IconMinus /> : <IconPlus />}
-        </section>
+        <section>{opened ? <IconMinus /> : <IconPlus />}</section>
       </section>
       {opened && <section className={contentClasses}>{content}</section>}
     </section>

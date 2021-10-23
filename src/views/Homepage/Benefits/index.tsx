@@ -19,7 +19,7 @@ const Benefits = () => {
   return (
     <section
       className={containerClasses}
-      style={{ backgroundImage: `url(/images/benefits.png)` }}
+      style={{ backgroundImage: "url(/images/benefits.png)" }}
     >
       <Container>
         <Section.Title>Avatar 獨特性</Section.Title>

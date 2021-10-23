@@ -11,6 +11,7 @@
 
   background-color: var(--color-expandable-item-bg);
   border-radius: var(--spacing-x-tight); 
+  cursor: pointer;
   padding: var(--spacing-tight) var(--spacing-base);
 }
 
@@ -26,10 +27,6 @@
 
 .title_md_up {
   font-size: var(--font-size-xm);
-}
-
-.button {
-  cursor: pointer;
 }
 
 .content {
