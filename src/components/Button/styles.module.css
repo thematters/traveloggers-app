@@ -27,8 +27,8 @@
   } */
 }
 
-.black {
-  background: var(--color-black);
+.blackSemi {
+  background: var(--color-black-semi);
   color: var(--color-white);
   font-weight: var(--font-weight-normal);
 }

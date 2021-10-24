@@ -13,7 +13,7 @@ import { chainName } from "~/utils"
 
 import * as styles from "./styles.module.css"
 
-const ConnectedAccount: React.FC = () => {
+export const ConnectedAccountButton: React.FC = () => {
   const { deactivate, account, error } =
     useWeb3React<ethers.providers.Web3Provider>()
 
@@ -47,5 +47,3 @@ const ConnectedAccount: React.FC = () => {
     />
   )
 }
-
-export default ConnectedAccount

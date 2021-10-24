@@ -1,7 +1,9 @@
 import React from "react"
 
 import Content from "./Content"
+import CTAButton from "./CTAButton"
 import BaseDialog from "./Dialog"
+import ErrorMessage from "./ErrorMessage"
 import Header from "./Header"
 
 /**
@@ -33,9 +35,13 @@ export type BaseDialogProps = import("./Dialog").DialogProps
 type DialogProps = React.ComponentType<BaseDialogProps> & {
   Header: typeof Header
   Content: typeof Content
+  ErrorMessage: typeof ErrorMessage
+  CTAButton: typeof CTAButton
 }
 
 export const Dialog = BaseDialog as DialogProps
 
 Dialog.Header = Header
 Dialog.Content = Content
+Dialog.ErrorMessage = ErrorMessage
+Dialog.CTAButton = CTAButton

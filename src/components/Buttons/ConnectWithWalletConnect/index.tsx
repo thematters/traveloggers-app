@@ -13,7 +13,7 @@ type WalletConnectButtonProps = {
   onClick: () => void
 }
 
-const WalletConnectButton: React.FC<WalletConnectButtonProps> = ({
+export const WalletConnectButton: React.FC<WalletConnectButtonProps> = ({
   loading,
   disabled,
   onClick,
@@ -26,5 +26,3 @@ const WalletConnectButton: React.FC<WalletConnectButtonProps> = ({
     disabled={disabled || loading}
   />
 )
-
-export default WalletConnectButton

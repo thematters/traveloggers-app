@@ -8,6 +8,7 @@ import {
   UserRejectedRequestError as UserRejectedRequestErrorWalletConnect,
   WalletConnectConnector,
 } from "@web3-react/walletconnect-connector"
+import { ethers } from "ethers"
 
 import { infuraId, supportedChainId } from "@/.env.json"
 import { WalletConnector } from "~/enums"
@@ -39,4 +40,12 @@ export const getWalletErrorMessage = (error: Error) => {
     console.error(error)
     return "An unknown error occurred. Check the console for more details."
   }
+}
+
+export const weiToEther = (wei: ethers.BigNumber) => {
+  return ethers.utils.formatEther(wei)
+}
+
+export const weiToGWei = (wei: ethers.BigNumber) => {
+  return ethers.utils.formatUnits(wei, "gwei")
 }

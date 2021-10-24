@@ -8,7 +8,7 @@ type ConnectWalletButtonProps = {
   onClick: () => void
 }
 
-const ConnectWalletButton: React.FC<ConnectWalletButtonProps> = ({
+export const ConnectWalletButton: React.FC<ConnectWalletButtonProps> = ({
   onClick,
 }) => {
   const { error } = useWeb3React<ethers.providers.Web3Provider>()
@@ -23,5 +23,3 @@ const ConnectWalletButton: React.FC<ConnectWalletButtonProps> = ({
     />
   )
 }
-
-export default ConnectWalletButton

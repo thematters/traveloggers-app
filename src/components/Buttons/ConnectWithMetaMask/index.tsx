@@ -13,7 +13,7 @@ type MetaMaskButtonProps = {
   onClick: () => void
 }
 
-const MetaMaskButton: React.FC<MetaMaskButtonProps> = ({
+export const MetaMaskButton: React.FC<MetaMaskButtonProps> = ({
   loading,
   disabled,
   onClick,
@@ -26,5 +26,3 @@ const MetaMaskButton: React.FC<MetaMaskButtonProps> = ({
     disabled={disabled || loading}
   />
 )
-
-export default MetaMaskButton

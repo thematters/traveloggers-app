@@ -3,9 +3,14 @@ import React from "react"
 
 import * as styles from "./styles.module.css"
 
-const DialogContent: React.FC = ({ children }) => {
+type DialogContentProps = {
+  spacing?: "sm"
+}
+
+const DialogContent: React.FC<DialogContentProps> = ({ spacing, children }) => {
   const contentClasses = classNames({
     [styles.content]: true,
+    [styles[spacing]]: !!spacing,
   })
 
   return <section className={contentClasses}>{children}</section>

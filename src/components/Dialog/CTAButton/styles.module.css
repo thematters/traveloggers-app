@@ -1,0 +1,5 @@
+.cta {
+  padding: 0 var(--spacing-base) var(--spacing-xx-loose);
+  margin-top: var(--spacing-xx-loose);
+  width: 100%;
+}

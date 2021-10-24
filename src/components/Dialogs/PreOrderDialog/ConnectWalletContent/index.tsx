@@ -2,13 +2,11 @@ import { useWeb3React } from "@web3-react/core"
 import { ethers } from "ethers"
 import React, { useEffect } from "react"
 
-import { Dialog } from "~/components"
+import { Dialog, MetaMaskButton, WalletConnectButton } from "~/components"
 import { WalletConnector } from "~/enums"
 import { getWalletErrorMessage, walletConnectors } from "~/utils"
 
-import MetaMaskButton from "./MetaMaskButton"
 import * as styles from "./styles.module.css"
-import WalletConnectButton from "./WalletConnectButton"
 
 type ConnectWalletContentProps = {
   prevStep: () => void
@@ -65,7 +63,9 @@ const ConnectWalletContent: React.FC<ConnectWalletContentProps> = ({
         </section>
 
         {error && (
-          <p className={styles.error}>{getWalletErrorMessage(error)}</p>
+          <Dialog.ErrorMessage>
+            <p>{getWalletErrorMessage(error)}</p>
+          </Dialog.ErrorMessage>
         )}
       </section>
     </Dialog.Content>

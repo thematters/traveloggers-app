@@ -1,0 +1,16 @@
+.error {
+  @mixin flex-start-start;
+
+  margin-top: var(--spacing-loose);
+  color: var(--color-red);
+  font-size: var(--font-size-sm);
+  line-height: 1.5rem;
+}
+
+.icon {
+  @mixin inline-flex-center-all;
+
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: var(--spacing-x-tight);
+}

@@ -8,3 +8,11 @@
     padding: var(--spacing-base) var(--spacing-xxx-loose);
   }
 }
+
+.sm {
+  padding: var(--spacing-base);
+
+  @media (--sm-up) {
+    padding: var(--spacing-base);
+  }
+}
