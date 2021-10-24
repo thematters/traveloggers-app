@@ -13,6 +13,7 @@ module.exports = {
       options: {
         alias: {
           "~": "./src",
+          "@": "./",
         },
         extensions: ["ts", "tsx", "css"],
       },

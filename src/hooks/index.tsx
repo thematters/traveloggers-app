@@ -1,4 +1,7 @@
 export * from "./useDialogSwitch"
+export * from "./useEagerConnect"
+export * from "./useEagerConnect"
 export * from "./useOutsideClick"
 export * from "./useResponsive"
+export * from "./useStep"
 export * from "./useWindowResize"

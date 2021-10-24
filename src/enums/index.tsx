@@ -13,3 +13,8 @@ export const KEYCODES = {
   down: 40,
   v: 86,
 }
+
+export enum WalletConnector {
+  MetaMask = "MetaMask",
+  WalletConnect = "WalletConnect",
+}

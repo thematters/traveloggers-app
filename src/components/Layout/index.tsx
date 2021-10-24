@@ -2,14 +2,18 @@ import "~/styles/defaults.css"
 import "~/styles/reset.css"
 import "~/styles/layouts.css"
 
+import { Web3ReactProvider } from "@web3-react/core"
+import { ethers } from "ethers"
 import { ClientContext, GraphQLClient } from "graphql-hooks"
 import React from "react"
+
+import { mattersEndpoint } from "@/.env.json"
 
 import Footer from "./Footer"
 import Header from "./Header"
 
 const client = new GraphQLClient({
-  url: "https://server-develop.matters.news/graphql",
+  url: mattersEndpoint,
   useGETForQueries: false,
   ssrMode: false,
   fetchOptions: {
@@ -17,15 +21,21 @@ const client = new GraphQLClient({
   },
 })
 
+function getLibrary(provider?: any) {
+  return new ethers.providers.Web3Provider(provider)
+}
+
 const Layout: React.FC = ({ children }) => {
   return (
-    <ClientContext.Provider value={client}>
-      <Header />
+    <Web3ReactProvider getLibrary={getLibrary}>
+      <ClientContext.Provider value={client}>
+        <Header />
 
-      <main>{children}</main>
+        <main>{children}</main>
 
-      <Footer />
-    </ClientContext.Provider>
+        <Footer />
+      </ClientContext.Provider>
+    </Web3ReactProvider>
   )
 }
 

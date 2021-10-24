@@ -78,7 +78,7 @@ typings/
 # Next.js build output
 .next
 # dotenv environment variable files
-.env*
+.env.json
 
 # Gatsby files
 .cache/

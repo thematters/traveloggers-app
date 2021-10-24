@@ -1,6 +1,7 @@
 import { useManualQuery, useMutation } from "graphql-hooks"
 import React, { useEffect, useState } from "react"
 
+import { mattersLoginURL } from "@/.env.json"
 import {
   Avatar,
   CardButton,
@@ -75,7 +76,8 @@ export const SignInWithMatters = () => {
             <IconSpinner />
           ) : (
             <div className={styles.change}>
-              <button
+              <div
+                role="button"
                 onClick={async () => {
                   await logout()
                   await fetchViewer()
@@ -84,7 +86,7 @@ export const SignInWithMatters = () => {
                 <TextIcon underline size="xs">
                   變更
                 </TextIcon>
-              </button>
+              </div>
               <IconChecked size="mdS" />
             </div>
           )
@@ -99,7 +101,7 @@ export const SignInWithMatters = () => {
       title="請登入 Matters 帳戶"
       leftIcon={<IconUser size="xlM" />}
       right={polling || loading ? <IconSpinner /> : <IconArrowRight />}
-      htmlHref="https://web-develop.matters.news/login"
+      htmlHref={mattersLoginURL}
       htmlTarget="_blank"
       onClick={() => setPolling(true)}
       disabled={polling || loading}

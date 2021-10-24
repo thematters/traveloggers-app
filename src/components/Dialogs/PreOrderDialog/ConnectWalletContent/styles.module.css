@@ -1,0 +1,17 @@
+.content {
+  padding-bottom: var(--spacing-loose);
+}
+
+.buttons {
+  margin-top: var(--spacing-loose);
+
+  & > * + * {
+    margin-top: var(--spacing-loose);
+  }
+}
+
+.error {
+  margin-top: var(--spacing-base);
+  color: var(--color-red);
+  font-size: var(--font-siz-base);
+}

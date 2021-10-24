@@ -1,5 +1,21 @@
 # matters-nft
 
-matters-nft landing page website
+## Getting Started
 
-initialized with gatsby 4 starters
+Prepare environment variables:
+
+```
+cp .env.development.json .env.json
+```
+
+Install dependencies:
+
+```
+npm install --legacy-peer-deps
+```
+
+Start local dev:
+
+```
+npm run start
+```

@@ -4,13 +4,7 @@
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 
-  &.hasGrow {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-  }
-
-  &.hasFixed {
-    flex-shrink: 0;
+  @media (--sm-up) {
+    padding: var(--spacing-base) var(--spacing-xxx-loose);
   }
 }
