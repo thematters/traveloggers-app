@@ -11,7 +11,7 @@ module.exports = {
       resolve: `gatsby-theme-i18n`,
       options: {
         defaultLang: `zh-hant`,
-        locales: process.env.LOCALES || `zh-hant zh-hans en`,
+        locales: process.env.LOCALES || `zh-hant zh en`,
         configPath: require.resolve(`./i18n/config.json`),
       },
     },

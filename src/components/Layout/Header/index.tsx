@@ -7,7 +7,7 @@ import LanguageSwitch from "./LanguageSwitch"
 import Socials from "./Socials"
 import * as styles from "./styles.module.css"
 
-const Header = () => {
+const Header = ({ originalPath }) => {
   const { locale } = useLocalization()
 
   return (
@@ -19,7 +19,7 @@ const Header = () => {
       </Link>
 
       <section className={styles.buttons}>
-        <LanguageSwitch />
+        <LanguageSwitch {...{ originalPath }} />
 
         <Socials />
 
@@ -27,7 +27,7 @@ const Header = () => {
           <Button color="primary" spacingX="1.25rem" spacingY=".5rem">
             {locale === "en"
               ? "Pre-order"
-              : locale === "zh-hans"
+              : locale === "zh"
               ? "参与预购"
               : "參與預購"}
           </Button>
@@ -37,7 +37,7 @@ const Header = () => {
           <Button color="primary" spacingX="1.25rem" spacingY=".5rem">
             {locale === "en"
               ? "Register into the Airdrop"
-              : locale === "zh-hans"
+              : locale === "zh"
               ? "参与空投"
               : "參與空投"}
           </Button>

@@ -3,21 +3,18 @@
     "code": "zh-hant",
     "hrefLang": "zh-Hant",
     "name": "Chinese",
-    "localName": "中文繁體",
-    "dateFormat": "YYYY/MM/DD"
+    "localName": "繁體"
   },
   {
-    "code": "zh-hans",
+    "code": "zh",
     "hrefLang": "zh-Hans",
     "name": "Chinese",
-    "localName": "中文简体",
-    "dateFormat": "YYYY/MM/DD"
+    "localName": "简体"
   },
   {
     "code": "en",
     "hrefLang": "en",
     "name": "English",
-    "localName": "English",
-    "dateFormat": "MM/DD/YYYY"
+    "localName": "EN"
   }
 ]

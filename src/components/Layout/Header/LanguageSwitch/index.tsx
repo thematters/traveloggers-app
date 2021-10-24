@@ -1,50 +1,38 @@
-import { Location } from "@reach/router"
 import { LocalizedLink, useLocalization } from "gatsby-theme-i18n"
-import React, { useState } from "react"
+import React from "react"
 
 import { IconArrowDown, IconWorld } from "~/components"
 
 import * as styles from "./styles.module.css"
 
-const LanguageSwitch = () => {
+const LanguageSwitch = ({ originalPath }) => {
   const { locale, config } = useLocalization()
-  const langPrefix = `/${locale}`
-  const configMap = new Map(config.map(lang => [lang.code, lang]))
+  const currentLangIndex = config.findIndex(lang => lang.code === locale)
+  if (currentLangIndex < 0) return <></>
+
+  const currentLang = config[currentLangIndex]
+  const others = [
+    ...config.slice(currentLangIndex + 1),
+    ...config.slice(0, currentLangIndex),
+  ] // rotated
 
   return (
-    <Location>
-      {({ location }) => {
-        let strippedPath = location.pathname
-        // need to strip the lang prefix: from like `/en/about` to `/about`
-        // why not provide a helper in gatsby-theme-i18n?
-        if (strippedPath.startsWith(langPrefix))
-          strippedPath = strippedPath.substring(langPrefix.length)
-        if (strippedPath === "") strippedPath = "/"
-
-        return (
-          <section className={styles.switches}>
-            <button>
-              <IconWorld />
-              <span>{configMap.get(locale).localName}</span>
-              <IconArrowDown />
-            </button>
-            <ul>
-              {config
-                .filter(
-                  lang => lang.code in { "zh-hant": 1, "zh-hans": 1, en: 1 }
-                )
-                .map(lang => (
-                  <li key={lang.code}>
-                    <LocalizedLink language={lang.code} to={strippedPath}>
-                      {lang.localName}
-                    </LocalizedLink>
-                  </li>
-                ))}
-            </ul>
-          </section>
-        )
-      }}
-    </Location>
+    <section className={styles.switches}>
+      <button>
+        <IconWorld />
+        <span>{currentLang.localName}</span>
+        <IconArrowDown />
+      </button>
+      <ul>
+        {others.map(lang => (
+          <li key={lang.code}>
+            <LocalizedLink language={lang.code} to={originalPath}>
+              {lang.localName}
+            </LocalizedLink>
+          </li>
+        ))}
+      </ul>
+    </section>
   )
 }
 
