@@ -3,7 +3,7 @@
 
   flex-direction: column;
   flex-grow: 1;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgb(255 255 255 / 30%);
   border-radius: var(--spacing-x-tight);
   padding: var(--spacing-base);
   margin-bottom: var(--spacing-loose);
@@ -14,7 +14,7 @@
   }
 
   &.active {
-    border: 1px solid #ffffff;
+    border: 1px solid #fff;
   }
 }
 
@@ -71,12 +71,13 @@
 .timezone {
   font-size: var(--font-size-sm-s);
   font-weight: var(--font-weight-medium);
-  background: linear-gradient(
-    90deg,
-    var(--color-gradient-green-start) 0%,
-    var(--color-gradient-green-end) 100%
-  );
-  -webkit-background-clip: text;
+  background:
+    linear-gradient(
+      90deg,
+      var(--color-gradient-green-start) 0%,
+      var(--color-gradient-green-end) 100%
+    );
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 

@@ -12,7 +12,9 @@ const Hero = () => {
   return (
     <section
       className={styles.hero}
-      style={{ backgroundImage: `url(/images/hero.jpg)` }}
+      style={{
+        backgroundImage: `linear-gradient(to bottom, rgba(255,255,255,0) 50%, rgba(0,0,0,1)), url("/images/hero.jpg")`,
+      }}
     >
       <div className="l-container">
         <div className="l-row">

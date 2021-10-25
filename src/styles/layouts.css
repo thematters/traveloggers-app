@@ -65,4 +65,8 @@
  */
 .l-col-full {
   grid-column: 1 / -1;
+
+  @media (--md-up) {
+    grid-column: 2 / -2;
+  }
 }
