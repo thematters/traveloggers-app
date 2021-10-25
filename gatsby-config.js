@@ -3,7 +3,7 @@ const { siteUrl } = require("./.env.json")
 module.exports = {
   siteMetadata: {
     // TODO: i18n
-    title: `Travelogers`,
+    title: `Traveloggers`,
     description: `matters nft site`,
     author: `@Mattersw3b`,
     siteUrl,

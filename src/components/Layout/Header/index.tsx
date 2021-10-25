@@ -20,7 +20,7 @@ const Header = () => {
     <header className={styles.header}>
       <Link to="/">
         <TextIcon icon={<IconLogo size="xlM" />} spacing="base">
-          <span className={styles.name}>Travelogers</span>
+          <span className={styles.name}>Traveloggers</span>
         </TextIcon>
       </Link>
 
