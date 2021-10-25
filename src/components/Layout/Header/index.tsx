@@ -1,12 +1,15 @@
-import { Link } from "gatsby"
+import { LocalizedLink as Link, useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 
 import { Button, IconLogo, PreOrderDialog, TextIcon } from "~/components"
 
+import LanguageSwitch from "./LanguageSwitch"
 import Socials from "./Socials"
 import * as styles from "./styles.module.css"
 
-const Header = () => {
+const Header = ({ originalPath }) => {
+  const { locale } = useLocalization()
+
   return (
     <header className={styles.header}>
       <Link to="/">
@@ -16,6 +19,8 @@ const Header = () => {
       </Link>
 
       <section className={styles.buttons}>
+        <LanguageSwitch {...{ originalPath }} />
+
         <Socials />
 
         <div>
@@ -27,7 +32,11 @@ const Header = () => {
                 spacingY=".5rem"
                 onClick={openDialog}
               >
-                參與預購
+                {locale === "en"
+                  ? "Pre-order"
+                  : locale === "zh"
+                  ? "参与预购"
+                  : "參與預購"}
               </Button>
             )}
           </PreOrderDialog>
@@ -35,7 +44,11 @@ const Header = () => {
 
         <div>
           <Button color="primary" spacingX="1.25rem" spacingY=".5rem">
-            參與空投
+            {locale === "en"
+              ? "Register into the Airdrop"
+              : locale === "zh"
+              ? "参与空投"
+              : "參與空投"}
           </Button>
         </div>
       </section>

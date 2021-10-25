@@ -1,7 +1,7 @@
 .cardButton {
   display: block;
   border-radius: 1.5rem;
-  background: var(--color-black-semi);
+  background: var(--color-black);
   padding: var(--spacing-base);
   line-height: 1;
   width: 100%;

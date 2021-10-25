@@ -1,0 +1,67 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.line {
+	width: 2px;
+	height: 100%;
+	background: var(--color-grey);
+	margin-left: 9px;
+}
+
+.line_md_up {
+  margin-left: 19px;
+}
+
+.line_finished {
+  background: var(--color-matters-green);
+  background: linear-gradient(
+    90deg,
+    var(--color-gradient-green-start) 0%,
+    var(--color-gradient-green-end) 100%
+  );
+}
+
+.fade {
+  height: 4.5rem;
+}
+
+.ready_fade_in {
+	background: var(--color-grey);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    var(--color-grey) 100%
+  );
+}
+
+.ready_fade_out {
+	background: var(--color-grey);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0) 0%,
+    var(--color-grey) 100%
+  );
+}
+
+.finished_fade_in {
+	background: var(--color-gradient-green-start);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    var(--color-gradient-green-start) 50%,
+    var(--color-gradient-green-end) 100%
+  );
+}
+
+.finished_fade_out {
+	background: var(--color-gradient-green-start);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0) 0%,
+    var(--color-gradient-green-start) 50%,
+    var(--color-gradient-green-end) 100%
+  );
+}

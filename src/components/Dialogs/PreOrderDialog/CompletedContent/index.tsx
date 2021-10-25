@@ -41,7 +41,7 @@ const CompletedContent: React.FC<CompletedContentProps> = ({
         </p>
       </Dialog.Content>
 
-      <Dialog.CTAButton color="blackSemi" onClick={closeDialog}>
+      <Dialog.CTAButton color="black" onClick={closeDialog}>
         完成
       </Dialog.CTAButton>
     </>

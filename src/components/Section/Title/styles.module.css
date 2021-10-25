@@ -1,0 +1,12 @@
+.text {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-lg);
+}
+
+.text_md_up {
+	font-size: var(--font-size-xxxl);
+}
+
+.center {
+	text-align: center;
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "code": "zh-hant",
+    "hrefLang": "zh-Hant",
+    "name": "Chinese",
+    "localName": "繁體"
+  },
+  {
+    "code": "zh",
+    "hrefLang": "zh-Hans",
+    "name": "Chinese",
+    "localName": "简体"
+  },
+  {
+    "code": "en",
+    "hrefLang": "en",
+    "name": "English",
+    "localName": "EN"
+  }
+]

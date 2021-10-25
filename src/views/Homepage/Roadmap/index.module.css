@@ -1,0 +1,27 @@
+.roadmap {
+	background-color: var(--color-black-darkest);
+	color: var(--color-white);
+	padding-top: 6.5rem;
+}
+
+.roadmap_md_up {
+	padding-top: 14rem;
+}
+
+.time {
+  @mixin flex-center-all;
+}
+
+.fade {
+	@mixin flex-center-start;
+}
+
+.line {
+	flex-shrink: 0;
+	align-self: stretch;
+	width: var(--spacing-xx-loose);
+}
+
+.line_md_up {
+  width: 5rem;
+}

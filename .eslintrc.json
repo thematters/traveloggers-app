@@ -8,6 +8,7 @@
   },
   "extends": [
     "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
     "airbnb-typescript",
     "prettier"
   ],
@@ -19,16 +20,11 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "project": ["tsconfig.json"] ,
+    "project": ["tsconfig.json"],
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "@typescript-eslint",
-    "simple-import-sort",
-    "import"
-  ],
+  "plugins": ["react", "@typescript-eslint", "simple-import-sort", "import"],
   "settings": {
     "import/resolver": {
       "typescript": {}
@@ -40,12 +36,7 @@
     "react/jsx-filename-extension": [
       2,
       {
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx"
-        ]
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     ],
     "react/jsx-props-no-spreading": "off",

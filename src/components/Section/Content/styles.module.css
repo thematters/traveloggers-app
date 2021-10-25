@@ -1,0 +1,9 @@
+.text {
+  font-size: var(--font-size-sm-s);
+  line-height: 1.5rem;
+}
+
+.text_md_up {
+  font-size: var(--font-size-md);
+  line-height: 1.875rem;
+}
