@@ -1,12 +1,16 @@
 import classNames from "classnames"
+import { useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 
 import { Container, Section } from "~/components"
+import { Lang } from "~/enums"
 import { useResponsive } from "~/hooks"
 
 import * as styles from "./styles.module.css"
 
 const Benefits = () => {
+  const { locale } = useLocalization()
+
   const isMediumUp = useResponsive("md-up")
   const subtitleStyles = { customStyles: { paddingTop: "1.5rem" } }
   const contentStyles = { customStyles: { paddingTop: "0.5rem" } }
@@ -22,30 +26,44 @@ const Benefits = () => {
       style={{ backgroundImage: "url(/images/benefits.png)" }}
     >
       <Container>
-        <Section.Title>Avatar 獨特性</Section.Title>
+        <Section.Title>
+          {locale === Lang.en
+            ? "Uniqueness & Benefits of Avatar"
+            : "Avatar 獨特性"}
+        </Section.Title>
         <Section.Content customStyles={{ paddingTop: "1rem" }}>
-          Traveloggers 的擁有者可以登入
-          Matters，在個人主頁可以立即將個人頭像換成屬於你專屬的 Avatar。作為
-          Traveloggers 的擁有者，還意味著擁有：
+          {locale === Lang.en
+            ? `The owner of Traveloggers can log in to Matters’ account, and instantly change the profile picture on the personal homepage to your own avatar. Owners of Traveloggers can also enjoy:`
+            : `Traveloggers 擁有使用 Matters 的完整權限。同時，他還擁有：`}
         </Section.Content>
 
-        <Section.Subtitle {...subtitleStyles}>完整版權</Section.Subtitle>
+        <Section.Subtitle {...subtitleStyles}>
+          {locale === Lang.en ? "Full Copyrights" : "完整版權"}
+        </Section.Subtitle>
         <Section.Content {...contentStyles}>
-          NFT的所有版權在發售之後歸NFT擁有者所有。
+          {locale === Lang.en
+            ? "All copyrights of the NFT belong to the owner of the NFT after sale."
+            : "NFT（Traveloggers + Logbook）的所有版權在生成之後，歸NFT擁有者所有。"}
         </Section.Content>
 
-        <Section.Subtitle {...subtitleStyles}>參與故事共創</Section.Subtitle>
+        <Section.Subtitle {...subtitleStyles}>
+          {locale === Lang.en ? "Story Co-creation" : "參與故事共創"}
+        </Section.Subtitle>
         <Section.Content {...contentStyles}>
-          馬特宇宙的故事才剛剛啟動，未來的走向，宇宙建設，人物發展，都會由持有者一起來共創。接下來還會推出馬特宇宙故事系列等不同的NFT等計劃。Traveloggers持有者都可以參與其中，並且會獲得空投等福利。
+          {locale === Lang.en
+            ? "The Matterverse story has just started. The future direction, construction of the universe, and the character building will all be co-created by the owners. More NFT plans such as the Matterverse story series will also be launched in the future, which Traveloggers owners can participate in and will receive benefits such as airdrops."
+            : "馬特宇宙的故事剛剛啟動，未來的多元走向，宇宙建設，人物發展，不同故事線的生長都會由持有者一起來共創。Traveloggers 可優先參與其中，並獲得未來NFT計畫的空投福利。"}
         </Section.Content>
 
-        <Section.Subtitle {...subtitleStyles}>生態共建和福利</Section.Subtitle>
+        <Section.Subtitle {...subtitleStyles}>
+          {locale === Lang.en
+            ? "Ecosystem Co-building and Benefits"
+            : "生態共建和福利"}
+        </Section.Subtitle>
         <Section.Content {...contentStyles}>
-          Traveloggers不僅僅是一個 NFT 的
-          Avatar，它還意味著Web3創作者社區的入場券。Matters 期望打造成為 Web3
-          世界的最大創作者社群。Avatar 持有者將會解鎖 Matters
-          為創作者打造的升級功能和享受福利，如未來 Matters 為創作者配備 ENS
-          的個人主頁，NFT眾籌等功能以及參與到未來生態Token的發行中。
+          {locale === Lang.en
+            ? "...(TBD)..."
+            : `Traveloggers 是馬特宇宙 Web3 治理實驗的入場券。馬特宇宙的居民相信，Web3 不只關於數字資產的保障、個人數據的權利，也是一次互聯網公共治理的革命。Traveloggers會`}
         </Section.Content>
       </Container>
     </section>
