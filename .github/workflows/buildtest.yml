@@ -23,9 +23,11 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node-
 
+      - name: Prepare Env
+        run: cp .env.development.json .env.json
+
       - name: Build
         run: |
-          npm ci && \
+          npm ci --legacy-peer-deps && \
           npm run lint && \
           npm run build
-
