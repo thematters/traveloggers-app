@@ -50,3 +50,9 @@
     width: 22.5rem;
   }
 }
+
+.scrolldown {
+  position: absolute;
+  bottom: 0;
+  font-family: var(--font-bitmap);
+}

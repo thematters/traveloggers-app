@@ -17,7 +17,7 @@ const Roadmap = () => {
 
   const containerClasses = classNames({
     [styles.roadmap]: true,
-    [styles.roadmap_md_up]: isMediumUp,
+    // [styles.roadmap_md_up]: isMediumUp,
   })
 
   const lineClasses = classNames({

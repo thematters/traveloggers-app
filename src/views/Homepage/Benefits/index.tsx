@@ -13,7 +13,7 @@ const Benefits = () => {
 
   const containerClasses = classNames({
     [styles.benefits]: true,
-    [styles.spacing_md_up]: isMediumUp,
+    // [styles.spacing_md_up]: isMediumUp,
   })
 
   return (

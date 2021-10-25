@@ -12,7 +12,7 @@ const Questions = () => {
 
   const containerClasses = classNames({
     [styles.questions]: true,
-    [styles.spacing_md_up]: isMediumUp,
+    // [styles.spacing_md_up]: isMediumUp,
   })
 
   const expandableStyles = {

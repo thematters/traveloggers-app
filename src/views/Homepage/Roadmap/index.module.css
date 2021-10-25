@@ -4,10 +4,6 @@
 	padding-top: 6.5rem;
 }
 
-.roadmap_md_up {
-	padding-top: 14rem;
-}
-
 .time {
   @mixin flex-center-all;
 }

@@ -7,6 +7,7 @@ import CharacterIntro from "~/views/Homepage/CharacterIntro"
 import Hero from "~/views/Homepage/Hero"
 import Questions from "~/views/Homepage/Questions"
 import Roadmap from "~/views/Homepage/Roadmap"
+import ScrollDown from "~/views/Homepage/ScrollDown"
 
 type DataProps = {
   site: {
@@ -23,8 +24,11 @@ const Homepage: React.FC<PageProps<DataProps>> = ({
 
       <Hero />
       <Roadmap />
+      <ScrollDown />
       <CharacterIntro />
+      <ScrollDown />
       <Benefits />
+      <ScrollDown />
       <Questions />
     </>
   )

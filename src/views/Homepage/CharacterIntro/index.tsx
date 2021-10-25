@@ -15,7 +15,7 @@ const CharacterIntro = () => {
 
   const containerClasses = classNames({
     [styles.charintro]: true,
-    [styles.charintro_md_up]: isMediumUp,
+    // [styles.charintro_md_up]: isMediumUp,
   })
 
   return (

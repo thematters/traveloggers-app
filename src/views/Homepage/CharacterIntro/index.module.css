@@ -5,10 +5,6 @@
   background-color: var(--color-black-darkest);
 }
 
-.charintro_md_up {
-  padding-top: 14rem;
-}
-
 .grid_chars {
   margin: 4rem;
 
@@ -29,5 +25,3 @@
     border-radius: 20px;
   }
 }
-
-
