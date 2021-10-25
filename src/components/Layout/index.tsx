@@ -28,9 +28,7 @@ const Layout: React.FC = ({ children }) => {
     <Web3ReactProvider getLibrary={getLibrary}>
       <ClientContext.Provider value={client}>
         <ViewerProvider>
-          <AuthManager>
-            {children}
-          </AuthManager>
+          <AuthManager>{children}</AuthManager>
         </ViewerProvider>
       </ClientContext.Provider>
     </Web3ReactProvider>
