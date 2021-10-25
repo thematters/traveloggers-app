@@ -30,6 +30,7 @@ const Homepage: React.FC<PageProps<DataProps>> = ({
       <main>
         <Hero />
         <Logbook />
+        <ScrollDown />
         <Roadmap />
         <ScrollDown />
         <CharacterIntro />
