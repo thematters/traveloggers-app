@@ -1,19 +1,26 @@
 import { graphql, useStaticQuery } from "gatsby"
+import { useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 import { Helmet } from "react-helmet"
 
+import { LANG } from "~/enums"
+
 type SEOProps = {
-  title?: string
-  description?: string
-  lang?: string
-  meta?: any[]
+  title?: {
+    [LANG.zhHant]: string
+    [LANG.zhHans]: string
+    [LANG.en]: string
+  }
+  description?: {
+    [LANG.zhHant]: string
+    [LANG.zhHans]: string
+    [LANG.en]: string
+  }
 }
 
 export const SEO: React.FC<SEOProps> = ({
-  title = "",
-  description = "",
-  lang = "zh",
-  meta = [],
+  title: pageTitle = {},
+  description = {},
 }) => {
   const { site } = useStaticQuery(
     graphql`
@@ -29,16 +36,18 @@ export const SEO: React.FC<SEOProps> = ({
     `
   )
 
-  const metaDescription = description || site.siteMetadata.description
-  const defaultTitle = site.siteMetadata?.title
+  const { locale } = useLocalization()
+  const lang = locale as LANG
+
+  const metaDescription = description[lang] || site.siteMetadata.description
+  const siteTitle = site.siteMetadata?.title
+  const socialTitle = pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle
 
   return (
     <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : undefined}
+      title={pageTitle[lang]}
+      titleTemplate={`%s | ${siteTitle}`}
+      defaultTitle={siteTitle}
       meta={[
         {
           name: `description`,
@@ -46,7 +55,7 @@ export const SEO: React.FC<SEOProps> = ({
         },
         {
           property: `og:title`,
-          content: title,
+          content: socialTitle,
         },
         {
           property: `og:description`,
@@ -66,13 +75,31 @@ export const SEO: React.FC<SEOProps> = ({
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: socialTitle,
         },
         {
           name: `twitter:description`,
           content: metaDescription,
         },
-      ].concat(meta)}
-    />
+      ]}
+    >
+      <link
+        rel="icon"
+        type="image/png"
+        href="/favicon-16x16.png"
+        sizes="16x16"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        href="/favicon-32x32.png"
+        sizes="32x32"
+      />
+      <link
+        rel="apple-touch-icon"
+        key="apple-touch-icon"
+        href="/apple-touch-icon.png"
+      />
+    </Helmet>
   )
 }

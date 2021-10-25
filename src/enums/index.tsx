@@ -1,4 +1,8 @@
-import { ethers } from "ethers"
+export enum LANG {
+  en = "en",
+  zhHant = "zh-hant",
+  zhHans = "zh",
+}
 
 export const BREAKPOINTS = {
   SM: 768,

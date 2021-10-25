@@ -1,0 +1,18 @@
+.switches {
+  & ul {
+    position: absolute;
+    display: none;
+
+    & li {
+      padding-left: 1.25rem;
+
+      & a:hover {
+        color: #bbc;
+      }
+    }
+  }
+
+  &:hover ul {
+    display: block;
+  }
+}

@@ -1,9 +1,12 @@
+const { siteUrl } = require("./.env.json")
+
 module.exports = {
   siteMetadata: {
+    // TODO: i18n
     title: `Travelogers`,
     description: `matters nft site`,
-    author: `@thematters`,
-    siteUrl: `https://nft.matters.news/`,
+    author: `@Mattersw3b`,
+    siteUrl,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -11,7 +14,7 @@ module.exports = {
       resolve: `gatsby-theme-i18n`,
       options: {
         defaultLang: `zh-hant`,
-        locales: process.env.LOCALES || `zh-hant zh en`,
+        locales: `zh-hant zh en`,
         configPath: require.resolve(`./i18n/config.json`),
       },
     },

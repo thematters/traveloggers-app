@@ -9,6 +9,9 @@ import React from "react"
 
 import { mattersEndpoint } from "@/.env.json"
 
+import Footer from "./Footer"
+import Header from "./Header"
+
 const client = new GraphQLClient({
   url: mattersEndpoint,
   useGETForQueries: false,
@@ -26,7 +29,11 @@ const Layout: React.FC = ({ children }) => {
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
       <ClientContext.Provider value={client}>
+        <Header />
+
         <main>{children}</main>
+
+        <Footer />
       </ClientContext.Provider>
     </Web3ReactProvider>
   )

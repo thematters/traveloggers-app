@@ -43,3 +43,11 @@
     }
   }
 }
+
+.languageSwitch {
+  display: none;
+
+  @media (--md-up) {
+    display: initial;
+  }
+}
