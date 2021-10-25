@@ -2,7 +2,9 @@ import { ethers } from "ethers"
 import React from "react"
 
 import { supportedChainId } from "@/.env.json"
-import { Dialog } from "~/components"
+import { Dialog, IconExternal, TextIcon } from "~/components"
+
+import * as styles from "./styles.module.css"
 
 type CompletedContentProps = {
   txReceipt: ethers.providers.TransactionReceipt
@@ -20,10 +22,21 @@ const CompletedContent: React.FC<CompletedContentProps> = ({
   return (
     <>
       <Dialog.Content>
-        <p>
+        <p className={styles.content}>
           交易紀錄：
-          <a href={`https://${etherscanDomain}/tx/${transactionHash}`}>
-            {transactionHash}
+          <a
+            href={`https://${etherscanDomain}/tx/${transactionHash}`}
+            target="_blank"
+            rel="noreferrer"
+            className={styles.link}
+          >
+            <TextIcon
+              icon={<IconExternal />}
+              spacing="xxTight"
+              textPlacement="left"
+            >
+              {transactionHash}
+            </TextIcon>
           </a>
         </p>
       </Dialog.Content>

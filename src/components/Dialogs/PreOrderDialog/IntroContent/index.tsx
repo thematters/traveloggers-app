@@ -3,10 +3,10 @@ import { ethers } from "ethers"
 import React, { useEffect, useState } from "react"
 
 import {
-  Button,
   ConnectedAccountButton,
   ConnectWalletButton,
   Dialog,
+  IconSpinner,
 } from "~/components"
 import { useEagerConnect, useInactiveListener, usePreOrder } from "~/hooks"
 import { getWalletErrorMessage } from "~/utils"
@@ -80,9 +80,9 @@ const IntroContent: React.FC<IntroContentProps> = ({
 
       <Dialog.CTAButton
         onClick={gotoConfirm}
-        disabled={!account || pending || preOrdered}
+        disabled={!account || pending || preOrdered || !!preOrderError}
       >
-        參加預購
+        {pending ? <IconSpinner /> : "參加預購"}
       </Dialog.CTAButton>
     </>
   )

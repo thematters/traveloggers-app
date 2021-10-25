@@ -122,7 +122,6 @@ export const usePreOrder = ({
     if (!contract || !account) {
       return
     }
-
     return contract.preOrderExist(account)
   }
   const preOrder = async () => {
