@@ -1,7 +1,7 @@
 import React from "react"
 
 import { SEO } from "~/components"
-import { LANG } from "~/enums"
+import { Lang } from "~/enums"
 
 import * as styles from "./styles.module.css"
 
@@ -9,9 +9,9 @@ const NotFoundPage = () => (
   <>
     <SEO
       title={{
-        [LANG.en]: "404: Not Found",
-        [LANG.zhHant]: "404: 頁面不存在",
-        [LANG.zhHans]: "404: 页面不存在",
+        [Lang.en]: "404: Not Found",
+        [Lang.zhHant]: "404: 頁面不存在",
+        [Lang.zhHans]: "404: 页面不存在",
       }}
     />
 

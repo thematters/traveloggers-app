@@ -1,9 +1,10 @@
 import { useWeb3React } from "@web3-react/core"
 import { ethers } from "ethers"
+import { useLocalization } from "gatsby-theme-i18n"
 import React, { useEffect } from "react"
 
 import { Dialog, MetaMaskButton, WalletConnectButton } from "~/components"
-import { WalletConnector } from "~/enums"
+import { Lang, WalletConnector } from "~/enums"
 import { getWalletErrorMessage, walletConnectors } from "~/utils"
 
 import * as styles from "./styles.module.css"
@@ -15,6 +16,9 @@ type ConnectWalletContentProps = {
 const ConnectWalletContent: React.FC<ConnectWalletContentProps> = ({
   prevStep,
 }) => {
+  const { locale } = useLocalization()
+  const lang = locale as Lang
+
   const { activate, connector, account, error } =
     useWeb3React<ethers.providers.Web3Provider>()
 
@@ -50,21 +54,18 @@ const ConnectWalletContent: React.FC<ConnectWalletContentProps> = ({
               activate(connectorMetaMask)
             }}
             loading={activatingConnector === connectorMetaMask}
-            disabled={activatingConnector || !!error}
           />
           <WalletConnectButton
             onClick={() => {
               setActivatingConnector(connectorWalletConnect)
               activate(connectorWalletConnect)
             }}
-            loading={activatingConnector === connectorWalletConnect}
-            disabled={activatingConnector || !!error}
           />
         </section>
 
         {error && (
           <Dialog.ErrorMessage>
-            <p>{getWalletErrorMessage(error)}</p>
+            <p>{getWalletErrorMessage({ error, lang })}</p>
           </Dialog.ErrorMessage>
         )}
       </section>

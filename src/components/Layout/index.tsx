@@ -7,13 +7,14 @@ import { ethers } from "ethers"
 import { ClientContext, GraphQLClient } from "graphql-hooks"
 import React from "react"
 
-import { mattersEndpoint } from "@/.env.json"
+import env from "@/.env.json"
+import { WalletManager } from "~/components"
 
 import Footer from "./Footer"
 import Header from "./Header"
 
 const client = new GraphQLClient({
-  url: mattersEndpoint,
+  url: env.mattersEndpoint,
   useGETForQueries: false,
   ssrMode: false,
   fetchOptions: {
@@ -28,13 +29,15 @@ function getLibrary(provider?: any) {
 const Layout: React.FC = ({ children }) => {
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
-      <ClientContext.Provider value={client}>
-        <Header />
+      <WalletManager>
+        <ClientContext.Provider value={client}>
+          <Header />
 
-        <main>{children}</main>
+          <main>{children}</main>
 
-        <Footer />
-      </ClientContext.Provider>
+          <Footer />
+        </ClientContext.Provider>
+      </WalletManager>
     </Web3ReactProvider>
   )
 }

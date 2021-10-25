@@ -1,7 +1,7 @@
 import { useManualQuery, useMutation } from "graphql-hooks"
 import React, { useEffect, useState } from "react"
 
-import { mattersLoginURL } from "@/.env.json"
+import env from "@/.env.json"
 import {
   Avatar,
   CardButton,
@@ -101,7 +101,7 @@ export const SignInWithMatters = () => {
       title="請登入 Matters 帳戶"
       leftIcon={<IconUser size="xlM" />}
       right={polling || loading ? <IconSpinner /> : <IconArrowRight />}
-      htmlHref={mattersLoginURL}
+      htmlHref={env.mattersLoginURL}
       htmlTarget="_blank"
       onClick={() => setPolling(true)}
       disabled={polling || loading}

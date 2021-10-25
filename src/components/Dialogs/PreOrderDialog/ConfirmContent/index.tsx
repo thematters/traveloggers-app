@@ -56,7 +56,6 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
 
   const preOrderCost = getPreOrderCost()
   const totalCost = getTotalCost()
-  const isBalanceInsufficient = totalCost && balance && balance.lte(totalCost)
 
   return (
     <>
@@ -102,11 +101,6 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
             </tbody>
           </table>
 
-          {isBalanceInsufficient && (
-            <Dialog.ErrorMessage>
-              <p>錢包餘額不足</p>
-            </Dialog.ErrorMessage>
-          )}
           {error && (
             <Dialog.ErrorMessage>
               <p>{error}</p>
@@ -117,9 +111,7 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
 
       <Dialog.CTAButton
         onClick={preOrder}
-        disabled={
-          pending || !gasLimit || isBalanceInsufficient || !isConnectedToSigner
-        }
+        disabled={pending || !gasLimit || !isConnectedToSigner}
       >
         {pending ? <IconSpinner /> : "確認預購"}
       </Dialog.CTAButton>

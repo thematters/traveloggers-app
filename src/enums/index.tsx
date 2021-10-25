@@ -1,4 +1,4 @@
-export enum LANG {
+export enum Lang {
   en = "en",
   zhHant = "zh-hant",
   zhHans = "zh",
@@ -23,6 +23,15 @@ export const KEYCODES = {
 export enum WalletConnector {
   MetaMask = "MetaMask",
   WalletConnect = "WalletConnect",
+}
+
+export enum WalletErrorType {
+  noEthereumProvider = "noEthereumProvider",
+  unsupportedChainId = "unsupportedChainId",
+  userRejectedRequest = "userRejectedRequest",
+  unablePreOrder = "unablePreOrder",
+  preOrderExist = "preOrderExist",
+  unknown = "unknown",
 }
 
 // TBC: get from contract or hard coding

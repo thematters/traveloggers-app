@@ -1,7 +1,7 @@
 import { ethers } from "ethers"
 import React from "react"
 
-import { supportedChainId } from "@/.env.json"
+import env from "@/.env.json"
 import { Dialog, IconExternal, TextIcon } from "~/components"
 
 import * as styles from "./styles.module.css"
@@ -16,7 +16,7 @@ const CompletedContent: React.FC<CompletedContentProps> = ({
   closeDialog,
 }) => {
   const etherscanDomain =
-    supportedChainId === 4 ? "rinkeby.etherscan.io" : "etherscan.io"
+    env.supportedChainId === 4 ? "rinkeby.etherscan.io" : "etherscan.io"
   const transactionHash = txReceipt.transactionHash
 
   return (

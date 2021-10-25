@@ -8,7 +8,7 @@ import {
   PreOrderDialog,
   TextIcon,
 } from "~/components"
-import { LANG } from "~/enums"
+import { Lang } from "~/enums"
 
 import Socials from "./Socials"
 import * as styles from "./styles.module.css"
@@ -40,9 +40,9 @@ const Header = () => {
                 spacingY=".5rem"
                 onClick={openDialog}
               >
-                {locale === LANG.en
+                {locale === Lang.en
                   ? "Pre-order"
-                  : locale === LANG.zhHans
+                  : locale === Lang.zhHans
                   ? "参与预购"
                   : "參與預購"}
               </Button>
@@ -52,9 +52,9 @@ const Header = () => {
 
         <div>
           <Button color="primary" spacingX="1.25rem" spacingY=".5rem">
-            {locale === LANG.en
+            {locale === Lang.en
               ? "Airdrop"
-              : locale === LANG.zhHans
+              : locale === Lang.zhHans
               ? "参与空投"
               : "參與空投"}
           </Button>

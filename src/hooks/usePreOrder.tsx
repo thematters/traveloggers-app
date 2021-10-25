@@ -1,9 +1,10 @@
 import { useWeb3React } from "@web3-react/core"
 import { ethers } from "ethers"
+import { useLocalization } from "gatsby-theme-i18n"
 import { useEffect, useState } from "react"
 
-import { contractABI, contractAddress } from "@/.env.json"
-import { PRE_ORDER_MIN_QUANTITY } from "~/enums"
+import env from "@/.env.json"
+import { Lang, PRE_ORDER_MIN_QUANTITY, WalletErrorType } from "~/enums"
 import { getWalletErrorMessage } from "~/utils"
 
 type UsePreOrderProps = {
@@ -15,15 +16,19 @@ export const usePreOrder = ({
   fetchOnMount = true,
   onPreOrderConfirm,
 }: UsePreOrderProps) => {
+  const { locale } = useLocalization()
+  const lang = locale as Lang
+
   const { account, library } = useWeb3React<ethers.providers.Web3Provider>()
 
   const [contract, setContract] = useState(
-    new ethers.Contract(contractAddress, contractABI, library)
+    new ethers.Contract(env.contractAddress, env.contractABI, library)
   )
 
   const [pending, setPending] = useState(false)
   const [error, setError] = useState("")
   const [quantity, setQuantity] = useState(PRE_ORDER_MIN_QUANTITY)
+  const [preOrdered, setPreOrdered] = useState(false)
 
   const [gasLimit, setGasLimit] = useState<ethers.BigNumber>()
   const [gasPrice, setGasPrice] = useState<ethers.BigNumber>()
@@ -46,18 +51,23 @@ export const usePreOrder = ({
       return
     }
 
-    // is in PreOrder
-    setInPreOrder(await contract.inPreOrder())
+    try {
+      // is in PreOrder
+      setInPreOrder(await contract.inPreOrder())
 
-    // uni price
-    const preOrderUnitPrice = (await contract.minAmount()) as ethers.BigNumber
-    setUnitPrice(preOrderUnitPrice)
+      // uni price
+      const preOrderUnitPrice = (await contract.minAmount()) as ethers.BigNumber
+      setUnitPrice(preOrderUnitPrice)
 
-    // TODO: pre-ordered quantity in current account
+      // TODO: pre-ordered quantity in current account
 
-    // TODO: available pre-orderable quantity
+      // TODO: available pre-orderable quantity
 
-    // TODO: if account already pre-ordered
+      // TODO: if account already pre-ordered
+    } catch (err) {
+      console.error(err)
+      setError(getWalletErrorMessage({ error: err as Error, lang }))
+    }
   }
 
   /**
@@ -75,19 +85,26 @@ export const usePreOrder = ({
     }
 
     // TODO: support qty
-    const gas = (await contract.estimateGas.preOrder({
-      value: unitPrice.mul(quantity),
-    })) as ethers.BigNumber
+    try {
+      const gas = (await contract.estimateGas.preOrder({
+        value: unitPrice.mul(quantity),
+      })) as ethers.BigNumber
 
-    // add buffer
-    const maxGas = gas.mul(3).div(2)
+      // add buffer
+      const maxGas = gas.mul(3).div(2)
 
-    setGasLimit(maxGas)
+      setGasLimit(maxGas)
 
-    // get gas price
-    if (library) {
-      const price = await library.getGasPrice()
-      setGasPrice(price)
+      // get gas price
+      if (library) {
+        const price = await library.getGasPrice()
+        setGasPrice(price)
+      }
+    } catch (err) {
+      console.error(err)
+      setError(
+        getWalletErrorMessage({ type: WalletErrorType.unablePreOrder, lang })
+      )
     }
   }
   const getPreOrderCost = () => {
@@ -118,11 +135,24 @@ export const usePreOrder = ({
   /**
    * Pre Order
    */
-  const isPreOrdered = async () => {
+  const checkPreOrdered = async () => {
     if (!contract || !account) {
       return
     }
-    return contract.preOrderExist(account)
+
+    try {
+      const isPreOrdered = await contract.preOrderExist(account)
+      setPreOrdered(isPreOrdered)
+
+      if (isPreOrdered) {
+        setError(
+          getWalletErrorMessage({ type: WalletErrorType.preOrderExist, lang })
+        )
+      }
+    } catch (err) {
+      console.error(err)
+      setError(getWalletErrorMessage({ error: err as Error, lang }))
+    }
   }
   const preOrder = async () => {
     if (
@@ -149,7 +179,10 @@ export const usePreOrder = ({
         onPreOrderConfirm(receipt)
       }
     } catch (err) {
-      setError(getWalletErrorMessage(err as Error))
+      console.error(err)
+      setError(
+        getWalletErrorMessage({ type: WalletErrorType.unablePreOrder, lang })
+      )
     }
 
     setPending(false)
@@ -167,6 +200,8 @@ export const usePreOrder = ({
 
   return {
     contract,
+
+    // `preOrder` requires contract connected to signer
     isConnectedToSigner: !!contract.signer,
 
     gasLimit,
@@ -181,7 +216,9 @@ export const usePreOrder = ({
     pending,
     error,
     preOrder,
-    isPreOrdered,
+
+    preOrdered,
+    checkPreOrdered,
 
     getPreOrderCost,
     getGasCost,

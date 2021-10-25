@@ -1,5 +1,6 @@
 import { useWeb3React } from "@web3-react/core"
 import { ethers } from "ethers"
+import { useLocalization } from "gatsby-theme-i18n"
 import React, { useEffect, useState } from "react"
 
 import {
@@ -8,7 +9,8 @@ import {
   Dialog,
   IconSpinner,
 } from "~/components"
-import { useEagerConnect, useInactiveListener, usePreOrder } from "~/hooks"
+import { Lang } from "~/enums"
+import { usePreOrder } from "~/hooks"
 import { getWalletErrorMessage } from "~/utils"
 
 import * as styles from "./styles.module.css"
@@ -22,39 +24,21 @@ const IntroContent: React.FC<IntroContentProps> = ({
   gotoConnectWallet,
   gotoConfirm,
 }) => {
-  const { account, error } = useWeb3React<ethers.providers.Web3Provider>()
+  const { locale } = useLocalization()
+  const lang = locale as Lang
 
-  // const triedEager = useEagerConnect()
-  // useInactiveListener(!triedEager)
+  const { account, error: walletError } =
+    useWeb3React<ethers.providers.Web3Provider>()
+  const {
+    pending,
+    error: preOrderError,
+    preOrdered,
+    checkPreOrdered,
+  } = usePreOrder({ fetchOnMount: false })
 
-  const [preOrderError, setPreOrderError] = useState<string>("")
-  const [preOrdered, setPreOrdered] = useState(false)
-  const [pending, setPending] = useState(false)
-  const { isPreOrdered } = usePreOrder({ fetchOnMount: false })
-  const checkAccount = async () => {
-    if (!account) {
-      return
-    }
-
-    setPending(true)
-
-    try {
-      if (await isPreOrdered()) {
-        setPreOrdered(true)
-        setPreOrderError("提醒您：此錢包已有預購紀錄，請變更錢包以繼續操作")
-      } else {
-        setPreOrdered(false)
-        setPreOrderError("")
-      }
-    } catch (err) {
-      setPreOrderError(getWalletErrorMessage(err as Error))
-    }
-
-    setPending(false)
-  }
-
+  // check on account changes
   useEffect(() => {
-    checkAccount()
+    checkPreOrdered()
   }, [account])
 
   return (
@@ -71,9 +55,13 @@ const IntroContent: React.FC<IntroContentProps> = ({
           {account && <ConnectedAccountButton />}
         </section>
 
-        {(error || preOrderError) && (
+        {(walletError || preOrderError) && (
           <Dialog.ErrorMessage>
-            <p>{error ? getWalletErrorMessage(error) : preOrderError}</p>
+            <p>
+              {walletError
+                ? getWalletErrorMessage({ error: walletError, lang })
+                : preOrderError}
+            </p>
           </Dialog.ErrorMessage>
         )}
       </Dialog.Content>

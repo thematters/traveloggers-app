@@ -3,18 +3,18 @@ import { useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 import { Helmet } from "react-helmet"
 
-import { LANG } from "~/enums"
+import { Lang } from "~/enums"
 
 type SEOProps = {
   title?: {
-    [LANG.zhHant]: string
-    [LANG.zhHans]: string
-    [LANG.en]: string
+    [Lang.zhHant]: string
+    [Lang.zhHans]: string
+    [Lang.en]: string
   }
   description?: {
-    [LANG.zhHant]: string
-    [LANG.zhHans]: string
-    [LANG.en]: string
+    [Lang.zhHant]: string
+    [Lang.zhHans]: string
+    [Lang.en]: string
   }
 }
 
@@ -37,7 +37,7 @@ export const SEO: React.FC<SEOProps> = ({
   )
 
   const { locale } = useLocalization()
-  const lang = locale as LANG
+  const lang = locale as Lang
 
   const metaDescription = description[lang] || site.siteMetadata.description
   const siteTitle = site.siteMetadata?.title
