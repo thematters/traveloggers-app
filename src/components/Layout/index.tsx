@@ -10,9 +10,6 @@ import React from "react"
 import env from "@/.env.json"
 import { AuthManager, ViewerProvider } from "~/components"
 
-import Footer from "./Footer"
-import Header from "./Header"
-
 const client = new GraphQLClient({
   url: env.mattersEndpoint,
   useGETForQueries: false,
@@ -32,11 +29,7 @@ const Layout: React.FC = ({ children }) => {
       <ClientContext.Provider value={client}>
         <ViewerProvider>
           <AuthManager>
-            <Header />
-
-            <main>{children}</main>
-
-            <Footer />
+            {children}
           </AuthManager>
         </ViewerProvider>
       </ClientContext.Provider>

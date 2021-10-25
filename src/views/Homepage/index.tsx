@@ -2,6 +2,8 @@ import { PageProps } from "gatsby"
 import React from "react"
 
 import { SEO } from "~/components"
+import Footer from "~/components/Layout/Footer"
+import Header from "~/components/Layout/Header"
 import Benefits from "~/views/Homepage/Benefits"
 import CharacterIntro from "~/views/Homepage/CharacterIntro"
 import Hero from "~/views/Homepage/Hero"
@@ -23,15 +25,21 @@ const Homepage: React.FC<PageProps<DataProps>> = ({
     <>
       <SEO title="CryptoMatties" lang={locale} />
 
-      <Hero />
-      <Logbook />
-      <Roadmap />
-      <ScrollDown />
-      <CharacterIntro />
-      <ScrollDown />
-      <Benefits />
-      <ScrollDown />
-      <Questions />
+      <Header {...{ locale, originalPath }} />
+
+      <main>
+        <Hero />
+        <Logbook />
+        <Roadmap />
+        <ScrollDown />
+        <CharacterIntro />
+        <ScrollDown />
+        <Benefits />
+        <ScrollDown />
+        <Questions />
+      </main>
+
+      <Footer {...{ locale, originalPath }} />
     </>
   )
 }

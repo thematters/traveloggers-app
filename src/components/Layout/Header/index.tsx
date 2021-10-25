@@ -14,8 +14,8 @@ import { Lang } from "~/enums"
 import Socials from "./Socials"
 import * as styles from "./styles.module.css"
 
-const Header = () => {
-  const { locale } = useLocalization()
+const Header = ({ locale, originalPath }) => {
+  // const { locale } = useLocalization()
 
   return (
     <header className={styles.header}>
@@ -27,7 +27,7 @@ const Header = () => {
 
       <section className={styles.buttons}>
         <div className={styles.languageSwitch}>
-          <LanguageSwitch color="white" />
+          <LanguageSwitch color="white" {...{ locale, originalPath }} />
         </div>
 
         <Socials />
