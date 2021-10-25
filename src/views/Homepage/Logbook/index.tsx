@@ -2,7 +2,7 @@ import classNames from "classnames"
 import { useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 
-import { Container } from "~/components"
+import { Container, Section } from "~/components"
 import { Lang } from "~/enums"
 
 import * as styles from "./styles.module.css"
@@ -18,13 +18,13 @@ const Logbook = () => {
             <img src="/images/logbook.png" />
           </div>
           <div className={classNames(styles.column, styles.col_right)}>
-            <h2>
+            <Section.Title>
               {locale === Lang.en
                 ? "Logbook"
                 : locale === Lang.zhHans
                 ? "航行日志"
                 : "航行日誌"}
-            </h2>
+            </Section.Title>
             <p>
               {locale === Lang.en
                 ? "Write down your logbookvoyage log and pass your voyage message to the next voyager."
