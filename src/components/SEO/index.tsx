@@ -41,7 +41,9 @@ export const SEO: React.FC<SEOProps> = ({
 
   const metaDescription = description[lang] || site.siteMetadata.description
   const siteTitle = site.siteMetadata?.title
-  const socialTitle = pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle
+  const socialTitle = pageTitle[lang]
+    ? `${pageTitle[lang]} | ${siteTitle}`
+    : siteTitle
 
   return (
     <Helmet

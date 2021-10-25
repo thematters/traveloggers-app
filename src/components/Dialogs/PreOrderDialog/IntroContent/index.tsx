@@ -24,8 +24,8 @@ const IntroContent: React.FC<IntroContentProps> = ({
 }) => {
   const { account, error } = useWeb3React<ethers.providers.Web3Provider>()
 
-  const triedEager = useEagerConnect()
-  useInactiveListener(!triedEager)
+  // const triedEager = useEagerConnect()
+  // useInactiveListener(!triedEager)
 
   const [preOrderError, setPreOrderError] = useState<string>("")
   const [preOrdered, setPreOrdered] = useState(false)
