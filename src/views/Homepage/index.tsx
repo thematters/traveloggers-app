@@ -16,13 +16,16 @@ type DataProps = {
   }
 }
 
-const Homepage: React.FC<PageProps<DataProps>> = ({ data, path }) => {
-  const { locale } = useLocalization()
+const Homepage: React.FC<PageProps<DataProps>> = ({
+  pageContext: { locale, originalPath },
+}) => {
+  // const { locale } = useLocalization()
+
   return (
     <>
       <SEO title="CryptoMatties" lang={locale} />
 
-      <Header />
+      <Header {...{ locale, originalPath }} />
       <main>
         <Hero />
         <Roadmap />
@@ -30,7 +33,7 @@ const Homepage: React.FC<PageProps<DataProps>> = ({ data, path }) => {
         <Questions />
       </main>
 
-      <Footer />
+      <Footer {...{ locale, originalPath }} />
     </>
   )
 }
