@@ -1,7 +1,8 @@
 .title {
   font-weight: var(--font-weight-semibold);
-  font-size: var(--font-size-xm);
+  font-size: var(--font-size-xl);
   text-align: center;
+  white-space: nowrap;
 
   @media (--md-up) {
     font-size: var(--font-size-xxxl);
