@@ -10,7 +10,7 @@ const Title = ({ children }: { children: React.ReactNode }) => {
 
   const classes = classNames({
     [styles.text]: true,
-    [styles.text_md_up]: isMediumUp,
+    [styles.textMdUp]: isMediumUp,
     [styles.center]: !isMediumUp,
   })
 

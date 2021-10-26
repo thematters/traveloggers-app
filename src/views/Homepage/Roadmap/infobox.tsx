@@ -19,33 +19,33 @@ const Infobox = ({ active, title, content, time, button }: InfoboxProps) => {
   const containerClasses = classNames({
     infobox: true,
     [styles.container]: true,
-    [styles.container_md_up]: isMediumUp,
+    [styles.containerMdUp]: isMediumUp,
     [styles.active]: active,
   })
 
   const titleClasses = classNames({
     [styles.title]: true,
-    [styles.title_md_up]: isMediumUp,
+    [styles.titleMdUp]: isMediumUp,
   })
 
   const timeDetailsClasses = classNames({
-    [styles.time_details]: true,
-    [styles.time_details_md_up]: isMediumUp,
+    [styles.timeDetails]: true,
+    [styles.timeDetailsMdUp]: isMediumUp,
   })
 
   const timezoneClasses = classNames({
     [styles.timezone]: true,
-    [styles.timezone_md_up]: isMediumUp,
+    [styles.timezoneMdUp]: isMediumUp,
   })
 
   const timeClasses = classNames({
     [styles.time]: true,
-    [styles.time_md_up]: isMediumUp,
+    [styles.timeMdUp]: isMediumUp,
   })
 
   const buttonClasses = classNames({
     [styles.button]: true,
-    [styles.button_md_up]: isMediumUp,
+    [styles.buttonMdUp]: isMediumUp,
   })
 
   return (
