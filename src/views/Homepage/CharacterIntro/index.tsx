@@ -54,16 +54,20 @@ const CharacterIntro = () => {
         <div
           className={classNames({
             [styles.group_chars]: true,
-            [styles.group_chars_md_up]: isMediumUp,
+            // [styles.group_chars_md_up]: isMediumUp,
           })}
         >
-          <div className={styles.char_group1}>
-            <div className={styles.frame}>
-              <img src="/images/char1.png" />
+          <div className={styles.group1}>
+            <div>
+              <div className={styles.frame}>
+                <img src="/images/char1.png" />
+              </div>
+              <div>
+                <span>一個人物＋兩個配件：Matties 的誕生</span>
+              </div>
             </div>
-            <span>一個人物＋兩個配件：Matties 的誕生</span>
           </div>
-          <div className={styles.char_group2}>
+          <div className={styles.group2}>
             <div>
               <div className={styles.frame}>
                 <img src="/images/char2.png" />
