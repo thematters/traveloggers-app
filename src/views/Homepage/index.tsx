@@ -2,6 +2,7 @@ import { PageProps } from "gatsby"
 import React from "react"
 
 import { SEO } from "~/components"
+import About from "~/views/Homepage/About"
 import Benefits from "~/views/Homepage/Benefits"
 import CharacterIntro from "~/views/Homepage/CharacterIntro"
 import Hero from "~/views/Homepage/Hero"
@@ -30,6 +31,8 @@ const Homepage: React.FC<PageProps<DataProps>> = ({
       <Benefits />
       <ScrollDown />
       <Questions />
+      <ScrollDown />
+      <About />
     </>
   )
 }
