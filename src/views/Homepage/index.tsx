@@ -5,6 +5,7 @@ import { SEO } from "~/components"
 import Benefits from "~/views/Homepage/Benefits"
 import CharacterIntro from "~/views/Homepage/CharacterIntro"
 import Hero from "~/views/Homepage/Hero"
+import Logbook from "~/views/Homepage/Logbook"
 import Questions from "~/views/Homepage/Questions"
 import Roadmap from "~/views/Homepage/Roadmap"
 import ScrollDown from "~/views/Homepage/ScrollDown"
@@ -23,6 +24,7 @@ const Homepage: React.FC<PageProps<DataProps>> = ({
       <SEO title="CryptoMatties" lang={locale} />
 
       <Hero />
+      <Logbook />
       <Roadmap />
       <ScrollDown />
       <CharacterIntro />

@@ -1,0 +1,55 @@
+.logbook {
+  @mixin flex-center-all;
+
+  height: 100vh;
+  color: var(--color-white);
+  text-align: center;
+  background-color: var(--color-black-darkest);
+}
+
+.l_row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+}
+
+.column {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.col_left {
+  & img {
+    object-fit: fill;
+    max-width: 540px;
+  }
+}
+
+.col_right {
+  font-family: var(--font-sans-sc); /* PingFang HK; */
+  font-style: normal;
+  text-align: left;
+
+  & h2 {
+    font-size: var(--sizing-logbook-header-height);
+    font-weight: 600;
+
+    /* line-height: 36px; */
+  }
+
+  & p {
+    /* Article Text */
+    font-weight: normal;
+    line-height: var(--sizing-logbook-header-height);
+
+    /* Grey Light */
+    color: var(--color-grey-light);
+  }
+
+  & p + p {
+    padding-top: 0.5rem;
+  }
+}
