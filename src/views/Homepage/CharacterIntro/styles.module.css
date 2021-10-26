@@ -46,9 +46,16 @@
     grid-row: 1 / 2;
 
     @media(--md-down) {
-      & > div {
-        left: 20vw;
-        margin-right: -20vw;
+      & p {
+        position: absolute;
+        width: 100%;
+        right: -100%;
+        top: 0;
+        height: 100%;
+        padding-left: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     }
   }
