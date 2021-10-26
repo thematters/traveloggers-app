@@ -20,6 +20,11 @@ export const KEYCODES = {
   v: 86,
 }
 
+export enum CryptoWalletSignaturePurpose {
+  airdrop = "airdrop",
+  connect = "connect",
+}
+
 export enum WalletConnector {
   MetaMask = "MetaMask",
   WalletConnect = "WalletConnect",
@@ -31,6 +36,7 @@ export enum WalletErrorType {
   userRejectedRequest = "userRejectedRequest",
   unablePreOrder = "unablePreOrder",
   preOrderExist = "preOrderExist",
+  userRejectedSignMessage = "userRejectedSignMessage",
   unknown = "unknown",
 }
 

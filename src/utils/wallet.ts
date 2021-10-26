@@ -35,6 +35,8 @@ const WALLET_ERROR_MESSAGES = {
       "Please authorize this website to access your Ethereum account.",
     [WalletErrorType.unablePreOrder]: "Insufficient funds or network error.",
     [WalletErrorType.preOrderExist]: "This account has been pre-ordered.",
+    [WalletErrorType.userRejectedSignMessage]:
+      "Please sign the message to complete the operation.",
     [WalletErrorType.unknown]:
       "An unknown error occurred. Check the console for more details.",
   },
@@ -44,6 +46,7 @@ const WALLET_ERROR_MESSAGES = {
     [WalletErrorType.userRejectedRequest]: "請先授權本網站獲取你的以太坊地址",
     [WalletErrorType.unablePreOrder]: "錢包餘額不足或網絡錯誤",
     [WalletErrorType.preOrderExist]: "此錢包已有預購紀錄，請變更錢包以繼續操作",
+    [WalletErrorType.userRejectedSignMessage]: "請簽署以完成操作",
     [WalletErrorType.unknown]: "發生未知錯誤，請確保你的網絡正常",
   },
   [Lang.zhHans]: {
@@ -52,6 +55,7 @@ const WALLET_ERROR_MESSAGES = {
     [WalletErrorType.userRejectedRequest]: "请先授权本网站获取你的以太坊地址",
     [WalletErrorType.unablePreOrder]: "钱包余额不足或网络错误",
     [WalletErrorType.preOrderExist]: "此钱包已有预购纪录，请变更钱包以继续操作",
+    [WalletErrorType.userRejectedSignMessage]: "请签署以完成操作",
     [WalletErrorType.unknown]: "发生未知错误，请确保你的网络正常",
   },
 }
