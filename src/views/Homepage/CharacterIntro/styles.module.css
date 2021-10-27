@@ -7,14 +7,14 @@
   grid-gap: var(--spacing-base);
 
   & .title {
-    grid-column: title;
+    grid-area: title;
   }
   & .button {
-    grid-column: button;
+    grid-area: button;
     width: 100%;
   }
   & .description {
-    grid-column: description;
+    grid-area: description;
   }
 
   @media (--md-up) {
