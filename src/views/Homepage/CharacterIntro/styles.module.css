@@ -1,7 +1,7 @@
 .charintro {
+  @mixin pixel-bg;
   padding-top: var(--global-section-padding-top);
   color: var(--color-white);
-  background-color: var(--color-black-darkest);
 }
 
 .content {

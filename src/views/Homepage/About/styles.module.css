@@ -5,9 +5,9 @@
 }
 
 .container {
-  background-color: var(--color-black-darkest);
+  @mixin pixel-bg;
   color: var(--color-white);
-	padding: 6.5rem 0;
+  padding: 6.5rem 0;
 }
 
 .about {
@@ -40,7 +40,7 @@
 }
 
 .button {
- padding-top: var(--spacing-loose);
+  padding-top: var(--spacing-loose);
 }
 
 .logo {

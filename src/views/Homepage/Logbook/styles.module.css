@@ -1,10 +1,10 @@
 .logbook {
   @mixin flex-center-all;
+  @mixin pixel-bg;
 
   height: 100vh;
   color: var(--color-white);
   text-align: center;
-  background-color: var(--color-black-darkest);
 }
 
 .l_row {
