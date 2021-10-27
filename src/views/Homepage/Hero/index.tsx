@@ -10,12 +10,7 @@ const Hero = () => {
   const { locale } = useLocalization()
 
   return (
-    <section
-      className={styles.hero}
-      style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(255,255,255,0) 50%, rgba(0,0,0,1)), url("/images/hero.png")`,
-      }}
-    >
+    <section className={styles.hero}>
       <div className="l-container">
         <div className="l-row">
           <div className="l-col-full">

@@ -1,8 +1,4 @@
 .scroll {
-  padding: var(--spacing-loose) var(--spacing-base);
+  padding: var(--spacing-xx-loose) var(--spacing-base);
   text-align: center;
-
-  @media (--md-up) {
-    padding: var(--spacing-xx-loose) var(--spacing-base);
-  }
 }

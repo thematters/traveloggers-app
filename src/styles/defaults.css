@@ -6,6 +6,7 @@ html {
   line-height: var(--line-height-base);
   word-break: break-word;
   background-color: var(--color-black-darkest);
+  color: var(--color-white);
   -webkit-text-size-adjust: 100%;
   -ms-overflow-style: -ms-autohiding-scrollbar;
   -webkit-tap-highlight-color: transparent;

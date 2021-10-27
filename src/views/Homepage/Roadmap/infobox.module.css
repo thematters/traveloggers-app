@@ -8,6 +8,7 @@
   border-radius: var(--spacing-x-tight);
   padding: var(--spacing-base);
   margin-bottom: var(--spacing-loose);
+  background-image: url(/images/pixel-bg-2.png);
 
   & .info,
   & .timeDetails {

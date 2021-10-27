@@ -1,7 +1,8 @@
 .charintro {
   @mixin pixel-bg;
-  padding-top: var(--global-section-padding-top);
-  color: var(--color-white);
+
+  padding: var(--spacing-xxx-loose) 0;
+  background-image: url(/images/pixel-bg-3.png);
 }
 
 .content {

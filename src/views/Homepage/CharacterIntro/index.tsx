@@ -18,10 +18,7 @@ const CharacterIntro = () => {
   })
 
   return (
-    <section
-      className={containerClasses}
-      style={{ backgroundImage: "url(/images/pixel-bg-3.png)" }}
-    >
+    <section className={containerClasses}>
       <Container>
         <Section.Title>
           {locale === Lang.en ? "Character Introduction" : "人物介紹"}

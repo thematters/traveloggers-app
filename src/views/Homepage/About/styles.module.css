@@ -6,8 +6,9 @@
 
 .container {
   @mixin pixel-bg;
-  color: var(--color-white);
-  padding: 6.5rem 0;
+
+  padding: var(--spacing-xxx-loose) 0;
+  background-image: url(/images/pixel-bg-6.png);
 }
 
 .about {

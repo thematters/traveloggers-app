@@ -1,5 +1,6 @@
 .benefits {
   @mixin pixel-bg;
-  color: var(--color-white);
-  padding-top: var(--global-section-padding-top);
+
+  padding: var(--spacing-xxx-loose) 0;
+  background-image: url(/images/pixel-bg-4.png);
 }

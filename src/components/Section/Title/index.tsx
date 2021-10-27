@@ -1,20 +1,9 @@
-import classNames from "classnames"
 import React from "react"
-
-import { useResponsive } from "~/hooks"
 
 import * as styles from "./styles.module.css"
 
-const Title = ({ children }: { children: React.ReactNode }) => {
-  const isMediumUp = useResponsive("md-up")
-
-  const classes = classNames({
-    [styles.text]: true,
-    [styles.textMdUp]: isMediumUp,
-    [styles.center]: !isMediumUp,
-  })
-
-  return <h2 className={classes}>{children}</h2>
+const Title: React.FC = ({ children }) => {
+  return <h2 className={styles.title}>{children}</h2>
 }
 
 export default Title

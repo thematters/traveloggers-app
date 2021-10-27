@@ -24,10 +24,7 @@ const About = () => {
   })
 
   return (
-    <section
-      className={containerClasses}
-      style={{ backgroundImage: "url(/images/pixel-bg-6.png)" }}
-    >
+    <section className={containerClasses}>
       <Container>
         <Section.Title>團隊介紹</Section.Title>
         <section className={aboutClasses}>

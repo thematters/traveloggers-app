@@ -25,10 +25,7 @@ const Roadmap = () => {
   })
 
   return (
-    <section
-      className={containerClasses}
-      style={{ backgroundImage: "url(/images/pixel-bg-2.png)" }}
-    >
+    <section className={containerClasses}>
       <Container>
         <Section.Title>Roadmap</Section.Title>
 

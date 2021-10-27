@@ -17,10 +17,7 @@ const Benefits = () => {
   })
 
   return (
-    <section
-      className={containerClasses}
-      style={{ backgroundImage: "url(/images/pixel-bg-4.png)" }}
-    >
+    <section className={containerClasses}>
       <Container>
         <Section.Title>
           {locale === Lang.en

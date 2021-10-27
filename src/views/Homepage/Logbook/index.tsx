@@ -11,19 +11,18 @@ const Logbook = () => {
   const { locale } = useLocalization()
 
   return (
-    <section
-      className={styles.logbook}
-      style={{ backgroundImage: "url(/images/pixel-bg-1.png)" }}
-    >
+    <section className={styles.logbook}>
       <Container>
-        <div className={styles.l_row}>
-          <div className={classNames(styles.column, styles.col_left)}>
-            <img src="/images/logbook.png" />
-          </div>
-          <div className={classNames(styles.column, styles.col_right)}>
-            <Section.Title>
-              {locale === Lang.en ? "Logbook" : "航行日誌"}
-            </Section.Title>
+        <section className={styles.content}>
+          <img className={styles.image} src="/images/logbook.png" />
+
+          <section className={styles.text}>
+            <section className={styles.title}>
+              <Section.Title>
+                {locale === Lang.en ? "Logbook" : "航行日誌"}
+              </Section.Title>
+            </section>
+
             <p>
               {locale === Lang.en
                 ? "Write down your logbook and pass your voyage message to the next voyager."
@@ -39,8 +38,8 @@ const Logbook = () => {
                 ? `The voyage log will enter Matterverse with the avatar, and will record the collective memory of the avatar owners.`
                 : `航行日誌是 Traveloggers 身份的一部分，也是Traveloggers 擁有者的集體記憶密碼。`}
             </p>
-          </div>
-        </div>
+          </section>
+        </section>
       </Container>
     </section>
   )
