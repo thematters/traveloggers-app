@@ -2,17 +2,13 @@ import classNames from "classnames"
 import React from "react"
 
 import { Container, Expandable, Section } from "~/components"
-import { useResponsive } from "~/hooks"
 
 import * as Items from "./items"
 import * as styles from "./styles.module.css"
 
 const Questions = () => {
-  const isMediumUp = useResponsive("md-up")
-
   const containerClasses = classNames({
     [styles.questions]: true,
-    // [styles.spacing_md_up]: isMediumUp,
   })
 
   const expandableStyles = {

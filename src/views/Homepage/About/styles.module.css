@@ -1,0 +1,62 @@
+:root {
+  --intro-padding-right: 7rem;
+  --logo-size: 10rem;
+  --logo-size-md-up: 15rem;
+}
+
+.container {
+  background-color: var(--color-black-darkest);
+  color: var(--color-white);
+	padding: 6.5rem 0;
+}
+
+.about {
+  @mixin flex-center-start;
+
+  flex-direction: column;
+  padding-top: var(--spacing-base);
+
+  & .intro,
+  & .logo {
+    width: 100%;
+  }
+}
+
+.aboutMdUp {
+  @mixin flex-center-space-between;
+
+  align-items: flex-start;
+  flex-direction: row;
+  padding-top: var(--spacing-loose);
+
+  & .intro,
+  & .logo {
+    width: 50%;
+  }
+
+  & .intro {
+    padding-right: var(--intro-padding-right);
+  }
+}
+
+.button {
+ padding-top: var(--spacing-loose);
+}
+
+.logo {
+  @mixin flex-center-all;
+
+  & svg {
+    margin-top: var(--spacing-loose);
+    width: var(--logo-size);
+    height: var(--logo-size);
+  }
+}
+
+.logoMdUp {
+  & svg {
+    margin-top: calc(var(--spacing-xx-loose) * -1);
+    width: var(--logo-size-md-up);
+    height: var(--logo-size-md-up);
+  }
+}

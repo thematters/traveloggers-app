@@ -4,6 +4,7 @@ import React from "react"
 import { SEO } from "~/components"
 import Footer from "~/components/Layout/Footer"
 import Header from "~/components/Layout/Header"
+import About from "~/views/Homepage/About"
 import Benefits from "~/views/Homepage/Benefits"
 import CharacterIntro from "~/views/Homepage/CharacterIntro"
 import Hero from "~/views/Homepage/Hero"
@@ -38,6 +39,8 @@ const Homepage: React.FC<PageProps<DataProps>> = ({
         <Benefits />
         <ScrollDown />
         <Questions />
+        <ScrollDown />
+        <About />
       </main>
 
       <Footer {...{ locale, originalPath }} />

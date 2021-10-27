@@ -21,14 +21,14 @@ const Timeline = ({ state, fade }: TimelineProps) => {
 
   const baseClasses = {
     [styles.line]: true,
-    [styles.line_md_up]: isMediumUp,
+    [styles.lineMdUp]: isMediumUp,
   }
 
   if (fade) {
     const fadeClasses = classNames({
       ...baseClasses,
       [styles.fade]: !!fade,
-      [styles[`${state}_fade_${fade}`]]: true,
+      [styles[`${state}Fade${fade}`]]: true,
     })
     return (
       <section className={styles.container}>
@@ -39,7 +39,7 @@ const Timeline = ({ state, fade }: TimelineProps) => {
 
   const lineClasses = classNames({
     ...baseClasses,
-    [styles.line_finished]: state === "finished",
+    [styles.lineFinished]: state === "finished",
   })
 
   return (

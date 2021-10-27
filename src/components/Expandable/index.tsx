@@ -22,17 +22,17 @@ export const Expandable = ({
 
   const itemClasses = classNames({
     [styles.item]: true,
-    [styles.item_md_up]: isMediumUp,
+    [styles.itemMdUp]: isMediumUp,
   })
 
   const titleClasses = classNames({
     [styles.title]: true,
-    [styles.title_md_up]: isMediumUp,
+    [styles.titleMdUp]: isMediumUp,
   })
 
   const contentClasses = classNames({
     [styles.content]: true,
-    [styles.content_md_up]: isMediumUp,
+    [styles.contentMdUp]: isMediumUp,
   })
 
   return (

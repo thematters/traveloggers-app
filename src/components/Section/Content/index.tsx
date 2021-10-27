@@ -15,7 +15,7 @@ const Content = ({ children, customStyles }: ContentProps) => {
 
   const classes = classNames({
     [styles.text]: true,
-    [styles.text_md_up]: isMediumUp,
+    [styles.textMdUp]: isMediumUp,
   })
 
   return (

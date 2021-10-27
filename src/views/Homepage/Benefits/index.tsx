@@ -4,20 +4,16 @@ import React from "react"
 
 import { Container, Section } from "~/components"
 import { Lang } from "~/enums"
-import { useResponsive } from "~/hooks"
 
 import * as styles from "./styles.module.css"
 
 const Benefits = () => {
   const { locale } = useLocalization()
-
-  const isMediumUp = useResponsive("md-up")
   const subtitleStyles = { customStyles: { paddingTop: "1.5rem" } }
   const contentStyles = { customStyles: { paddingTop: "0.5rem" } }
 
   const containerClasses = classNames({
     [styles.benefits]: true,
-    // [styles.spacing_md_up]: isMediumUp,
   })
 
   return (
