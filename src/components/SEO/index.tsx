@@ -7,13 +7,11 @@ import { Lang } from "~/enums"
 
 type SEOProps = {
   title?: {
-    [Lang.zhHant]: string
-    [Lang.zhHans]: string
+    [Lang.zh]: string
     [Lang.en]: string
   }
   description?: {
-    [Lang.zhHant]: string
-    [Lang.zhHans]: string
+    [Lang.zh]: string
     [Lang.en]: string
   }
 }

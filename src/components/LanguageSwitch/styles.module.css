@@ -1,20 +1,9 @@
 .switches {
-  font-size: var(--font-size-sm);
+  padding: var(--spacing-xxx-tight) var(--spacing-x-tight);
+  font-size: 0;
+  color: var(--color-grey);
 
-  & ul {
-    position: absolute;
-    display: none;
-
-    & li {
-      padding-left: 1.25rem;
-
-      & a:hover {
-        color: #bbc;
-      }
-    }
-  }
-
-  &:hover ul {
-    display: block;
+  @media (--md-up) {
+    color: var(--color-white);
   }
 }

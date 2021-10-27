@@ -38,9 +38,3 @@
     order: initial;
   }
 }
-
-.languageSwitch {
-  @media (--md-up) {
-    display: none;
-  }
-}

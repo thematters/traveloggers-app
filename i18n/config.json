@@ -3,12 +3,12 @@
     "code": "zh",
     "hrefLang": "zh-Hant",
     "name": "Traditional Chinese",
-    "localName": "繁體中文"
+    "localName": "中文"
   },
   {
     "code": "en",
     "hrefLang": "en",
     "name": "English",
-    "localName": "English"
+    "localName": "EN"
   }
 ]

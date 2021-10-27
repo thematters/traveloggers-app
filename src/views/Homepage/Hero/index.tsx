@@ -43,8 +43,6 @@ const Hero = () => {
                 >
                   {locale === Lang.en
                     ? "Watch the Prequel Storyline"
-                    : locale === Lang.zhHans
-                    ? "查看前传故事"
                     : "查看前傳故事"}
                 </Button>
               </section>

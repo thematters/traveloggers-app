@@ -1,7 +1,6 @@
 export enum Lang {
   en = "en",
-  zhHant = "zh",
-  zhHans = "zh-hans",
+  zh = "zh",
 }
 
 export const BREAKPOINTS = {

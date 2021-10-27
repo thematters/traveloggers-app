@@ -19,11 +19,7 @@ const Logbook = () => {
           </div>
           <div className={classNames(styles.column, styles.col_right)}>
             <Section.Title>
-              {locale === Lang.en
-                ? "Logbook"
-                : locale === Lang.zhHans
-                ? "航行日志"
-                : "航行日誌"}
+              {locale === Lang.en ? "Logbook" : "航行日誌"}
             </Section.Title>
             <p>
               {locale === Lang.en

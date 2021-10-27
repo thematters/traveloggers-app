@@ -1,5 +1,7 @@
+import classNames from "classnames"
 import { LocalizedLink as Link, useLocalization } from "gatsby-theme-i18n"
-import React from "react"
+import React, { useState } from "react"
+import { Waypoint } from "react-waypoint"
 
 import {
   AirdriopDialog,
@@ -10,67 +12,82 @@ import {
   TextIcon,
 } from "~/components"
 import { Lang } from "~/enums"
+import { useResponsive } from "~/hooks"
 
 import Socials from "./Socials"
 import * as styles from "./styles.module.css"
 
-const Header = ({ locale, originalPath }) => {
-  // const { locale } = useLocalization()
+type HeaderProps = {
+  originalPath: string
+}
+
+const Header: React.FC<HeaderProps> = ({ originalPath }) => {
+  const { locale } = useLocalization()
+  const isMediumUp = useResponsive("md-up")
+
+  const [active, setActive] = useState(false)
+
+  const headerClasses = classNames({
+    [styles.header]: true,
+    [styles.active]: active,
+  })
+
+  const handlePositionChange = ({ currentPosition }: Waypoint.CallbackArgs) => {
+    setActive(currentPosition === "above")
+  }
 
   return (
-    <header className={styles.header}>
-      <Link to="/">
-        <TextIcon icon={<IconLogo size="xlM" />} spacing="base">
-          <span className={styles.name}>Traveloggers</span>
-        </TextIcon>
-      </Link>
+    <>
+      <Waypoint onPositionChange={handlePositionChange} />
+      <header className={headerClasses}>
+        <Link to="/">
+          <TextIcon
+            icon={<IconLogo size={isMediumUp ? "xlM" : "lg"} />}
+            spacing="base"
+          >
+            <span className={styles.name}>Traveloggers</span>
+          </TextIcon>
+        </Link>
 
-      <section className={styles.buttons}>
-        <div className={styles.languageSwitch}>
-          <LanguageSwitch color="white" {...{ locale, originalPath }} />
-        </div>
+        <section className={styles.buttons}>
+          <div className={styles.languageSwitch}>
+            <LanguageSwitch originalPath={originalPath} />
+          </div>
 
-        <Socials />
+          <Socials />
 
-        <div>
-          <PreOrderDialog>
-            {({ openDialog }) => (
-              <Button
-                color="primary"
-                spacingX="1.25rem"
-                spacingY=".5rem"
-                onClick={openDialog}
-              >
-                {locale === Lang.en
-                  ? "Pre-order"
-                  : locale === Lang.zhHans
-                  ? "参与预购"
-                  : "參與預購"}
-              </Button>
-            )}
-          </PreOrderDialog>
-        </div>
+          <div>
+            <PreOrderDialog>
+              {({ openDialog }) => (
+                <Button
+                  color="primary"
+                  spacingX="1.25rem"
+                  spacingY=".5rem"
+                  onClick={openDialog}
+                >
+                  {locale === Lang.en ? "Pre-order" : "預購"}
+                </Button>
+              )}
+            </PreOrderDialog>
+          </div>
 
-        <div>
-          <AirdriopDialog>
-            {({ openDialog }) => (
-              <Button
-                color="primary"
-                spacingX="1.25rem"
-                spacingY=".5rem"
-                onClick={openDialog}
-              >
-                {locale === Lang.en
-                  ? "Airdrop"
-                  : locale === Lang.zhHans
-                  ? "参与空投"
-                  : "參與空投"}
-              </Button>
-            )}
-          </AirdriopDialog>
-        </div>
-      </section>
-    </header>
+          <div>
+            <AirdriopDialog>
+              {({ openDialog }) => (
+                <Button
+                  color="primary"
+                  spacingX="1.25rem"
+                  spacingY=".5rem"
+                  onClick={openDialog}
+                >
+                  {locale === Lang.en ? "Airdrop" : "空投"}
+                </Button>
+              )}
+            </AirdriopDialog>
+          </div>
+        </section>
+      </header>
+    </>
   )
 }
 
