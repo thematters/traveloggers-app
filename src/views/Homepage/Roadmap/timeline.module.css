@@ -17,11 +17,12 @@
 
 .lineFinished {
   background: var(--color-matters-green);
-  background: linear-gradient(
-    90deg,
-    var(--color-gradient-green-start) 0%,
-    var(--color-gradient-green-end) 100%
-  );
+  background:
+    linear-gradient(
+      90deg,
+      var(--color-gradient-green-start) 0%,
+      var(--color-gradient-green-end) 100%
+    );
 }
 
 .fade {
@@ -30,11 +31,12 @@
 
 .readyFadein {
   background: var(--color-grey);
-  background: linear-gradient(
-    180deg,
-    rgb(0 0 0 / 0%) 0%,
-    var(--color-grey) 100%
-  );
+  background:
+    linear-gradient(
+      180deg,
+      rgb(0 0 0 / 0%) 0%,
+      var(--color-grey) 100%
+    );
 }
 
 .readyFadeout {
@@ -44,20 +46,22 @@
 
 .finishedFadein {
   background: var(--color-gradient-green-start);
-  background: linear-gradient(
-    180deg,
-    rgb(0 0 0 / 0%) 0%,
-    var(--color-gradient-green-start) 50%,
-    var(--color-gradient-green-end) 100%
-  );
+  background:
+    linear-gradient(
+      180deg,
+      rgb(0 0 0 / 0%) 0%,
+      var(--color-gradient-green-start) 50%,
+      var(--color-gradient-green-end) 100%
+    );
 }
 
 .finishedFadeout {
   background: var(--color-gradient-green-start);
-  background: linear-gradient(
-    0deg,
-    rgb(0 0 0 / 0%) 0%,
-    var(--color-gradient-green-start) 50%,
-    var(--color-gradient-green-end) 100%
-  );
+  background:
+    linear-gradient(
+      0deg,
+      rgb(0 0 0 / 0%) 0%,
+      var(--color-gradient-green-start) 50%,
+      var(--color-gradient-green-end) 100%
+    );
 }

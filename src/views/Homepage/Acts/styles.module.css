@@ -1,0 +1,110 @@
+.container.active {
+  @mixin expand-to-container;
+
+  background-image:
+    url("/images/background-stars.png"),
+    linear-gradient(0deg, rgb(0 0 0 / 60%), rgb(0 0 0 / 60%)),
+    url("/images/story-bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 2;
+  overflow: hidden;
+
+  @media (--md-up) {
+    background-image:
+      url("/images/background-stars.png"),
+      linear-gradient(0deg, rgb(0 0 0 / 60%), rgb(0 0 0 / 60%)),
+      url(/images/story-bg-md.png);
+  }
+
+  & .slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 600ms ease-out, opacity 600ms ease-out;
+  }
+
+  & .slide:not(.present) {
+    opacity: 0%;
+    pointer-events: none;
+  }
+
+  & .past {
+    transform: translate(0, -100%);
+  }
+
+  & .future {
+    transform: translate(0, 100%);
+  }
+
+  & .slide.past:nth-child(1) {
+    transform: translate(0, 100%);
+  }
+  & .slide.future:nth-child(2) {
+    transform: translate(0, -100%);
+  }
+
+  & .slide.past:nth-child(2) {
+    transform: translate(-100%, -100%);
+  }
+  & .slide.future:nth-child(3) {
+    transform: translate(100%, 100%);
+  }
+
+  & .slide.future:nth-child(4) {
+    transform: translate(-100%, 100%);
+  }
+  & .slide.past:nth-child(3) {
+    transform: translate(100%, -100%);
+  }
+
+  & .slide.past:nth-child(4) {
+    transition: opacity 600ms ease-out;
+  }
+
+  & .present {
+    transform: translate(0, 0);
+    pointer-events: auto;
+  }
+
+  & .dialog {
+    position: absolute;
+    top: 6rem;
+    left: 50%;
+    width: 20rem;
+    transform: translate(-50%, 0);
+
+    @media (--md-up) {
+      top: 0;
+      left: 0;
+      width: 24rem;
+    }
+
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background-color: rgb(1 1 1 / 50%);
+
+    transition: transform 600ms ease-out, height 600ms ease-out;
+
+    & h2 {
+      font-size: var(--font-size-xm);
+    }
+
+    & p {
+      font-size: var(--font-size-md);
+    }
+
+    & div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+.container:not(.active) {
+  display: none;
+}

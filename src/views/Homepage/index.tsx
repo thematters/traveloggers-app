@@ -1,4 +1,5 @@
-import React from "react"
+import classNames from "classnames"
+import React, { useState } from "react"
 
 import { SEO } from "~/components"
 import Footer from "~/components/Layout/Footer"
@@ -12,6 +13,9 @@ import Questions from "~/views/Homepage/Questions"
 import Roadmap from "~/views/Homepage/Roadmap"
 import ScrollDown from "~/views/Homepage/ScrollDown"
 
+import Acts from "./Acts"
+import * as styles from "./styles.module.css"
+
 type PageProps = {
   pageContext: {
     originalPath: string
@@ -19,14 +23,17 @@ type PageProps = {
 }
 
 const Homepage: React.FC<PageProps> = ({ pageContext: { originalPath } }) => {
+  const [storyActive, setStoryActive] = useState<boolean>(false)
+
   return (
     <>
       <SEO />
 
       <Header originalPath={originalPath} />
 
-      <main>
-        <Hero />
+      <main className={classNames({ [styles.storyActive]: storyActive })}>
+        <Acts active={storyActive} setActive={setStoryActive} />
+        <Hero setStoryActive={setStoryActive} />
         <Logbook />
         <ScrollDown />
         <Roadmap />

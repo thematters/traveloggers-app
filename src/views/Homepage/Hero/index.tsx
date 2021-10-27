@@ -6,7 +6,11 @@ import { Lang } from "~/enums"
 
 import * as styles from "./styles.module.css"
 
-const Hero = () => {
+type Props = {
+  setStoryActive: (arg0: boolean) => void
+}
+
+const Hero: React.FC<Props> = ({ setStoryActive }) => {
   const { locale } = useLocalization()
 
   return (
@@ -35,6 +39,7 @@ const Hero = () => {
                   width="100%"
                   height="3.5rem"
                   spacingY="1rem"
+                  onClick={() => setStoryActive(true)}
                 >
                   {locale === Lang.en
                     ? "Watch the Prequel Storyline"

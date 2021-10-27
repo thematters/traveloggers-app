@@ -1,0 +1,5 @@
+.storyActive {
+  & > section + section {
+    display: none;
+  }
+}

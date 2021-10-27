@@ -74,3 +74,13 @@
     }
   }
 }
+
+.transparent {
+  background: transparent;
+}
+
+.teal {
+  background: transparent;
+  color: var(--color-gradient-green-start);
+  font-weight: var(--font-weight-normal);
+}

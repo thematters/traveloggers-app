@@ -73,11 +73,12 @@
 .timezone {
   font-size: var(--font-size-sm-s);
   font-weight: var(--font-weight-medium);
-  background: linear-gradient(
-    90deg,
-    var(--color-gradient-green-start) 0%,
-    var(--color-gradient-green-end) 100%
-  );
+  background:
+    linear-gradient(
+      90deg,
+      var(--color-gradient-green-start) 0%,
+      var(--color-gradient-green-end) 100%
+    );
   background-clip: text;
   -webkit-text-fill-color: transparent;
 
