@@ -56,7 +56,8 @@ export const usePreOrder = ({
       setInPreOrder(await contract.inPreOrder())
 
       // uni price
-      const preOrderUnitPrice = (await contract.minAmount()) as ethers.BigNumber
+      const preOrderUnitPrice =
+        (await contract.preOrderMinAmount()) as ethers.BigNumber
       setUnitPrice(preOrderUnitPrice)
 
       // TODO: pre-ordered quantity in current account
@@ -84,11 +85,13 @@ export const usePreOrder = ({
       return
     }
 
-    // TODO: support qty
     try {
-      const gas = (await contract.estimateGas.preOrder({
-        value: unitPrice.mul(quantity),
-      })) as ethers.BigNumber
+      const gas = (await contract.estimateGas.preOrder(
+        ethers.BigNumber.from(quantity),
+        {
+          value: unitPrice.mul(quantity),
+        }
+      )) as ethers.BigNumber
 
       // add buffer
       const maxGas = gas.mul(3).div(2)
