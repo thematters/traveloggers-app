@@ -10,32 +10,32 @@
   @mixin flex-center-space-between;
 
   background-color: var(--color-expandable-item-bg);
-  border-radius: var(--spacing-x-tight); 
+  border-radius: var(--spacing-x-tight);
   cursor: pointer;
   padding: var(--spacing-tight) var(--spacing-base);
-}
 
-.itemMdUp {
-  padding: var(--spacing-base) var(--spacing-x-loose);
+  @media (--md-up) {
+    padding: var(--spacing-base) var(--spacing-x-loose);
+  }
 }
 
 .title {
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-medium);
   padding-right: var(--spacing-base);
-}
 
-.titleMdUp {
-  font-size: var(--font-size-xm);
+  @media (--md-up) {
+    font-size: var(--font-size-xm);
+  }
 }
 
 .content {
   font-size: var(--font-size-sm-s);
   line-height: 1.5rem;
   padding: var(--spacing-base) 0;
-}
 
-.contentMdUp {
-  font-size: var(--font-size-md-s);
-  padding: var(--spacing-loose) var(--spacing-x-loose);
+  @media (--md-up) {
+    font-size: var(--font-size-md-s);
+    padding: var(--spacing-loose) var(--spacing-x-loose);
+  }
 }

@@ -19,14 +19,9 @@ const Timeline = ({ state, fade }: TimelineProps) => {
   const isMediumUp = useResponsive("md-up")
   const iconSize = isMediumUp ? "xlM" : "mdS"
 
-  const baseClasses = {
-    [styles.line]: true,
-    [styles.lineMdUp]: isMediumUp,
-  }
-
   if (fade) {
     const fadeClasses = classNames({
-      ...baseClasses,
+      [styles.line]: true,
       [styles.fade]: !!fade,
       [styles[`${state}Fade${fade}`]]: true,
     })
@@ -38,7 +33,7 @@ const Timeline = ({ state, fade }: TimelineProps) => {
   }
 
   const lineClasses = classNames({
-    ...baseClasses,
+    [styles.line]: true,
     [styles.lineFinished]: state === "finished",
   })
 

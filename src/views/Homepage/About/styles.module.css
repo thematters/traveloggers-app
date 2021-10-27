@@ -21,22 +21,22 @@
   & .logo {
     width: 100%;
   }
-}
 
-.aboutMdUp {
-  @mixin flex-center-space-between;
+  @media (--md-up) {
+    @mixin flex-center-space-between;
 
-  align-items: flex-start;
-  flex-direction: row;
-  padding-top: var(--spacing-loose);
+    align-items: flex-start;
+    flex-direction: row;
+    padding-top: var(--spacing-loose);
 
-  & .intro,
-  & .logo {
-    width: 50%;
-  }
+    & .intro,
+    & .logo {
+      width: 50%;
+    }
 
-  & .intro {
-    padding-right: var(--intro-padding-right);
+    & .intro {
+      padding-right: var(--intro-padding-right);
+    }
   }
 }
 
@@ -52,12 +52,12 @@
     width: var(--logo-size);
     height: var(--logo-size);
   }
-}
 
-.logoMdUp {
-  & svg {
-    margin-top: calc(var(--spacing-xx-loose) * -1);
-    width: var(--logo-size-md-up);
-    height: var(--logo-size-md-up);
+  @media (--md-up) {
+    & svg {
+      margin-top: calc(var(--spacing-xx-loose) * -1);
+      width: var(--logo-size-md-up);
+      height: var(--logo-size-md-up);
+    }
   }
 }
