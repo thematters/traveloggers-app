@@ -19,7 +19,7 @@ export interface TextIconProps {
 
   color?: TextIconColor
   size?: "xs" | "sm" | "smS" | "mdS" | "md" | "xm" | "lg"
-  spacing?: 0 | "xxxTight" | "xxTight" | "xTight" | "tight" | "base"
+  spacing?: 0 | "xxxTight" | "xxTight" | "xTight" | "tight" | "base" | "loose"
   weight?: "light" | "normal" | "medium" | "semibold" | "bold"
 
   textPlacement?: "bottom" | "left" | "right"

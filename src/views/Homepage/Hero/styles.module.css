@@ -1,5 +1,6 @@
 .hero {
   @mixin flex-center-all;
+  position: relative;
 
   height: 100vh;
   color: var(--color-white);

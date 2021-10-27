@@ -1,7 +1,7 @@
 import { useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 
-import { Button, IconScrollDown } from "~/components"
+import { Button, IconScrollDown, TextIcon } from "~/components"
 import { Lang } from "~/enums"
 
 import * as styles from "./styles.module.css"
@@ -52,8 +52,13 @@ const Hero = () => {
       </div>
 
       <div className={styles.scrolldown}>
-        <IconScrollDown size="xxl" />
-        <div>Scroll Down</div>
+        <TextIcon
+          icon={<IconScrollDown />}
+          textPlacement="bottom"
+          spacing="loose"
+        >
+          Scroll Down
+        </TextIcon>
       </div>
     </section>
   )

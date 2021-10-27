@@ -9,7 +9,7 @@ const ScrollDown = () => {
     <section>
       <Container>
         <div className={styles.scroll}>
-          <IconScrollDown size="xxl" />
+          <IconScrollDown />
         </div>
       </Container>
     </section>
