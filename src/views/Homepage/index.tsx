@@ -1,4 +1,3 @@
-import { PageProps } from "gatsby"
 import React from "react"
 
 import { SEO } from "~/components"
@@ -13,20 +12,18 @@ import Questions from "~/views/Homepage/Questions"
 import Roadmap from "~/views/Homepage/Roadmap"
 import ScrollDown from "~/views/Homepage/ScrollDown"
 
-type DataProps = {
-  site: {
-    buildTime: string
+type PageProps = {
+  pageContext: {
+    originalPath: string
   }
 }
 
-const Homepage: React.FC<PageProps<DataProps>> = ({
-  pageContext: { locale, originalPath },
-}) => {
+const Homepage: React.FC<PageProps> = ({ pageContext: { originalPath } }) => {
   return (
     <>
-      <SEO title="CryptoMatties" lang={locale} />
+      <SEO />
 
-      <Header {...{ locale, originalPath }} />
+      <Header originalPath={originalPath} />
 
       <main>
         <Hero />
@@ -43,7 +40,7 @@ const Homepage: React.FC<PageProps<DataProps>> = ({
         <About />
       </main>
 
-      <Footer {...{ locale, originalPath }} />
+      <Footer />
     </>
   )
 }

@@ -1,4 +1,12 @@
-import { withIcon } from "../withIcon"
-import { ReactComponent as Icon } from "./scroll-down.svg"
+import React from "react"
 
-export const IconScrollDown = withIcon(Icon)
+import { ReactComponent as Icon } from "./scroll-down.svg"
+import * as styles from "./styles.module.css"
+
+export const IconScrollDown = () => {
+  return (
+    <span className={styles.icon}>
+      <Icon />
+    </span>
+  )
+}

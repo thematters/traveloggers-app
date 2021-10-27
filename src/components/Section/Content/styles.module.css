@@ -1,9 +1,13 @@
-.text {
+.content {
   font-size: var(--font-size-sm-s);
   line-height: 1.5rem;
-}
 
-.textMdUp {
-  font-size: var(--font-size-md);
-  line-height: 1.875rem;
+  @media (--md-up) {
+    font-size: var(--font-size-md);
+    line-height: 1.875rem;
+  }
+
+  & > * + * {
+    margin-top: var(--spacing-base);
+  }
 }

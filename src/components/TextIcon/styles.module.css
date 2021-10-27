@@ -173,6 +173,20 @@
       padding-top: var(--spacing-base);
     }
   }
+
+  &.loose.hasIcon {
+    &.right > .text {
+      padding-left: var(--spacing-loose);
+    }
+
+    &.left > .text {
+      padding-right: var(--spacing-loose);
+    }
+
+    &.bottom > .text {
+      padding-top: var(--spacing-loose);
+    }
+  }
 }
 
 /* weight */

@@ -1,4 +1,3 @@
-import classNames from "classnames"
 import React from "react"
 
 import { Button, Container, IconLogoText, Section } from "~/components"
@@ -9,25 +8,11 @@ import * as styles from "./styles.module.css"
 const About = () => {
   const isMediumUp = useResponsive("md-up")
 
-  const containerClasses = classNames({
-    [styles.container]: true,
-  })
-
-  const aboutClasses = classNames({
-    [styles.about]: true,
-    [styles.aboutMdUp]: isMediumUp,
-  })
-
-  const logoClasses = classNames({
-    [styles.logo]: true,
-    [styles.logoMdUp]: isMediumUp,
-  })
-
   return (
-    <section className={containerClasses}>
+    <section className={styles.container}>
       <Container>
         <Section.Title>團隊介紹</Section.Title>
-        <section className={aboutClasses}>
+        <section className={styles.about}>
           <section className={styles.intro}>
             <Section.Content>
               Matters 致力搭建基於 IPFS
@@ -46,7 +31,7 @@ const About = () => {
               </Button>
             </section>
           </section>
-          <section className={logoClasses}>
+          <section className={styles.logo}>
             <IconLogoText />
           </section>
         </section>

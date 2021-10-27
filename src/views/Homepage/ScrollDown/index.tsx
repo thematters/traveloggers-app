@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Container, IconScrollDown, Section } from "~/components"
+import { Container, IconScrollDown } from "~/components"
 
 import * as styles from "./styles.module.css"
 
@@ -9,7 +9,7 @@ const ScrollDown = () => {
     <section>
       <Container>
         <div className={styles.scroll}>
-          <IconScrollDown size="xxl" />
+          <IconScrollDown />
         </div>
       </Container>
     </section>

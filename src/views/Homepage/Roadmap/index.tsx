@@ -1,4 +1,3 @@
-import classNames from "classnames"
 import React from "react"
 
 import { Button, Container, Section } from "~/components"
@@ -15,20 +14,8 @@ const Roadmap = () => {
   const isAirdropActive = false
   const isOpenSaleActive = false
 
-  const containerClasses = classNames({
-    [styles.roadmap]: true,
-  })
-
-  const lineClasses = classNames({
-    [styles.line]: true,
-    [styles.lineMdUp]: isMediumUp,
-  })
-
   return (
-    <section
-      className={containerClasses}
-      style={{ backgroundImage: "url(/images/roadmap.png)" }}
-    >
+    <section className={styles.roadmap}>
       <Container>
         <Section.Title>Roadmap</Section.Title>
 
@@ -36,13 +23,13 @@ const Roadmap = () => {
           className={styles.fade}
           style={{ marginTop: isMediumUp ? "1.5rem" : "0" }}
         >
-          <section className={lineClasses}>
+          <section className={styles.line}>
             <Timeline state="ready" fade="in" />
           </section>
         </section>
 
         <section className={styles.time}>
-          <section className={lineClasses}>
+          <section className={styles.line}>
             <Timeline state="ready" />
           </section>
           <Infobox
@@ -62,7 +49,7 @@ const Roadmap = () => {
         </section>
 
         <section className={styles.time}>
-          <section className={lineClasses}>
+          <section className={styles.line}>
             <Timeline state="ready" />
           </section>
           <Infobox
@@ -82,7 +69,7 @@ const Roadmap = () => {
         </section>
 
         <section className={styles.time}>
-          <section className={lineClasses}>
+          <section className={styles.line}>
             <Timeline state="ready" />
           </section>
           <Infobox
@@ -102,7 +89,7 @@ const Roadmap = () => {
         </section>
 
         <section className={styles.fade}>
-          <section className={lineClasses}>
+          <section className={styles.line}>
             <Timeline state="ready" fade="out" />
           </section>
         </section>

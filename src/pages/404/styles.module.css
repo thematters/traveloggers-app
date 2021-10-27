@@ -1,8 +1,14 @@
 .hero {
   @mixin flex-center-all;
-  color: var(--color-white);
-  height: 100vh;
+
+  min-height: 100vh;
   text-align: center;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0) 50%,
+      rgba(0, 0, 0, 1)
+    ),
+    url("/images/hero.png");
 }
 
 .content {

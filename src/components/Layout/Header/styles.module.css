@@ -1,16 +1,22 @@
 .header {
   @mixin flex-center-space-between;
+  @mixin all-transition;
 
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  padding: var(--spacing-loose) var(--spacing-base);
+  padding: var(--spacing-base);
   color: var(--color-white);
   z-index: 1;
+  background: rgba(0, 0, 0, 0);
 
   @media (--md-up) {
     padding: var(--spacing-loose) var(--spacing-xxx-loose);
+  }
+
+  &.active {
+    background: rgba(0, 0, 0, 0.7);
   }
 }
 
@@ -34,20 +40,12 @@
   @mixin inline-flex-center-all;
 
   & > * + * {
-    padding-left: var(--spacing-tight);
+    padding-left: var(--spacing-x-tight);
   }
 
   @media (--md-up) {
     & > * + * {
-      padding-left: var(--spacing-base);
+      padding-left: var(--spacing-loose);
     }
-  }
-}
-
-.languageSwitch {
-  display: none;
-
-  @media (--md-up) {
-    display: initial;
   }
 }

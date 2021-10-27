@@ -95,6 +95,11 @@
   object-fit: cover;
 }
 
+@define-mixin pixel-bg {
+  background-size: 100% auto;
+  background-position: top;
+}
+
 @define-mixin all-transition {
   transition: all 0.2s ease-in-out;
 }

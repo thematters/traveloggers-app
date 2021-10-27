@@ -4,6 +4,7 @@
   font-size: var(--font-size-sm-s);
   line-height: 1.5rem;
   color: var(--color-grey);
+  margin: 0 auto;
 }
 
 .designedBy {

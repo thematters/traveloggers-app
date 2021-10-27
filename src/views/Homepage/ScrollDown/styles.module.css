@@ -1,4 +1,4 @@
 .scroll {
-  margin: 4rem auto;
-  width: 4rem;
+  padding: var(--spacing-xx-loose) var(--spacing-base);
+  text-align: center;
 }

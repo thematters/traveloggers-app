@@ -16,10 +16,7 @@ const Questions = () => {
   }
 
   return (
-    <section
-      className={containerClasses}
-      style={{ backgroundImage: "url(/images/questions.png)" }}
-    >
+    <section className={containerClasses}>
       <Container>
         <Section.Title>FAQ</Section.Title>
 

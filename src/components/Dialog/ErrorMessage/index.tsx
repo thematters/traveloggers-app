@@ -1,3 +1,4 @@
+import Alert from "@reach/alert"
 import React from "react"
 
 import { IconInfo } from "~/components"
@@ -11,7 +12,7 @@ const DialogErrorMessage: React.FC = ({ children }) => {
         <IconInfo color="red" />
       </span>
 
-      {children}
+      <Alert>{children}</Alert>
     </section>
   )
 }

@@ -1,7 +1,7 @@
 import { useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 
-import { Button, IconScrollDown } from "~/components"
+import { Button, IconScrollDown, TextIcon } from "~/components"
 import { Lang } from "~/enums"
 
 import * as styles from "./styles.module.css"
@@ -10,12 +10,7 @@ const Hero = () => {
   const { locale } = useLocalization()
 
   return (
-    <section
-      className={styles.hero}
-      style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(255,255,255,0) 50%, rgba(0,0,0,1)), url("/images/hero.jpg")`,
-      }}
-    >
+    <section className={styles.hero}>
       <div className="l-container">
         <div className="l-row">
           <div className="l-col-full">
@@ -43,8 +38,6 @@ const Hero = () => {
                 >
                   {locale === Lang.en
                     ? "Watch the Prequel Storyline"
-                    : locale === Lang.zhHans
-                    ? "查看前传故事"
                     : "查看前傳故事"}
                 </Button>
               </section>
@@ -54,8 +47,13 @@ const Hero = () => {
       </div>
 
       <div className={styles.scrolldown}>
-        <IconScrollDown size="xxl" />
-        <div>Scroll Down</div>
+        <TextIcon
+          icon={<IconScrollDown />}
+          textPlacement="bottom"
+          spacing="loose"
+        >
+          Scroll Down
+        </TextIcon>
       </div>
     </section>
   )

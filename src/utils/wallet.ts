@@ -40,7 +40,7 @@ const WALLET_ERROR_MESSAGES = {
     [WalletErrorType.unknown]:
       "An unknown error occurred. Check the console for more details.",
   },
-  [Lang.zhHant]: {
+  [Lang.zh]: {
     [WalletErrorType.noEthereumProvider]: "請先安装 MetaMask 擴充",
     [WalletErrorType.unsupportedChainId]: `請先切換網絡到 ${chainName}`,
     [WalletErrorType.userRejectedRequest]: "請先授權本網站獲取你的以太坊地址",
@@ -48,15 +48,6 @@ const WALLET_ERROR_MESSAGES = {
     [WalletErrorType.preOrderExist]: "此錢包已有預購紀錄，請變更錢包以繼續操作",
     [WalletErrorType.userRejectedSignMessage]: "請簽署以完成操作",
     [WalletErrorType.unknown]: "發生未知錯誤，請確保你的網絡正常",
-  },
-  [Lang.zhHans]: {
-    [WalletErrorType.noEthereumProvider]: "请先安装 MetaMask 扩展程序",
-    [WalletErrorType.unsupportedChainId]: `请先切换网络到 ${chainName}`,
-    [WalletErrorType.userRejectedRequest]: "请先授权本网站获取你的以太坊地址",
-    [WalletErrorType.unablePreOrder]: "钱包余额不足或网络错误",
-    [WalletErrorType.preOrderExist]: "此钱包已有预购纪录，请变更钱包以继续操作",
-    [WalletErrorType.userRejectedSignMessage]: "请签署以完成操作",
-    [WalletErrorType.unknown]: "发生未知错误，请确保你的网络正常",
   },
 }
 
