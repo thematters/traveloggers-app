@@ -18,22 +18,22 @@
   &.active {
     border: 1px solid #fff;
   }
-}
 
-.containerMdUp {
-  @mixin flex-center-space-between;
+  @media (--md-up) {
+    @mixin flex-center-space-between;
 
-  align-items: flex-start;
-  flex-direction: row;
-  padding: var(--spacing-loose);
+    align-items: flex-start;
+    flex-direction: row;
+    padding: var(--spacing-loose);
 
-  & .info,
-  & .timeDetails {
-    width: 50%;
-  }
+    & .info,
+    & .timeDetails {
+      width: 50%;
+    }
 
-  & .info {
-    padding-right: 5rem;
+    & .info {
+      padding-right: 5rem;
+    }
   }
 }
 
@@ -45,10 +45,10 @@
 .title {
   font-size: var(--font-size-md-s);
   font-weight: var(--font-weight-semibold);
-}
 
-.titleMdUp {
-  font-size: var(--font-size-xl);
+  @media (--md-up) {
+    font-size: var(--font-size-xl);
+  }
 }
 
 .content {
@@ -63,11 +63,11 @@
   flex-direction: column;
   align-self: normal;
   padding-top: var(--spacing-tight);
-}
 
-.timeDetailsMdUp {
-  padding-top: 0;
-  text-align: right;
+  @media (--md-up) {
+    padding-top: 0;
+    text-align: right;
+  }
 }
 
 .timezone {
@@ -80,20 +80,20 @@
   );
   background-clip: text;
   -webkit-text-fill-color: transparent;
-}
 
-.timezoneMdUp {
-  font-size: var(--font-size-md);
+  @media (--md-up) {
+    font-size: var(--font-size-md);
+  }
 }
 
 .time {
   font-size: var(--font-size-sm-s);
   font-weight: var(--font-weight-medium);
   padding-top: var(--spacing-xx-tight);
-}
 
-.timeMdUp {
-  font-size: var(--font-size-lg);
+  @media (--md-up) {
+    font-size: var(--font-size-lg);
+  }
 }
 
 .button {
@@ -104,10 +104,10 @@
   & button {
     margin-top: var(--spacing-loose);
   }
-}
 
-.buttonMdUp {
-  & button {
-    margin-left: auto;
+  @media (--md-up) {
+    & button {
+      margin-left: auto;
+    }
   }
 }

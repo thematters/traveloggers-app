@@ -14,8 +14,8 @@
   flex-shrink: 0;
   align-self: stretch;
   width: var(--spacing-xx-loose);
-}
 
-.lineMdUp {
-  width: 5rem;
+  @media (--md-up) {
+    width: 5rem;
+  }
 }
