@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Container, IconScrollDown, Section } from "~/components"
+import { Container, IconScrollDown } from "~/components"
 
 import * as styles from "./styles.module.css"
 

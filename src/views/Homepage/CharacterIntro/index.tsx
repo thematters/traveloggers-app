@@ -15,19 +15,21 @@ const CharacterIntro = () => {
 
   const containerClasses = classNames({
     [styles.charintro]: true,
-    [styles.charintro_md_up]: isMediumUp,
   })
 
   return (
-    <section className={containerClasses}>
+    <section
+      className={containerClasses}
+      style={{ backgroundImage: "url(/images/pixel-bg-3.png)" }}
+    >
       <Container>
         <Section.Title>
           {locale === Lang.en ? "Character Introduction" : "人物介紹"}
         </Section.Title>
+
         <div
           className={classNames({
             [styles.content]: true,
-            [styles.content_md_up]: true,
           })}
         >
           <div>
@@ -37,6 +39,7 @@ const CharacterIntro = () => {
                 : "我們為Traveloggers創造了6個基礎人物，分別是xxx, xxx, xxx, xxx, xxx, xxx。同時我們根據創作者的價值取向，哲學主張，創作者的創作氣質，思考方式，創作者的創作習慣和個性等6個維度，提取關鍵詞進行設計， 生成了xxx個 Traveloggers。每一個 Traveloggers 都有專屬的創作者屬性，都是獨一無二的。"}
             </Section.Content>
           </div>
+
           <div className={styles.button_center}>
             <Button
               color="primary"

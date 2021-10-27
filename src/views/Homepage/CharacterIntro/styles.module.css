@@ -4,9 +4,6 @@
   background-color: var(--color-black-darkest);
 }
 
-.charintro_md_up {
-}
-
 .content {
   display: flex;
   flex-flow: column wrap;
@@ -21,9 +18,6 @@
       margin-bottom: 0.25rem;
     }
   }
-}
-
-.content_md_up {
 }
 
 .group_chars {

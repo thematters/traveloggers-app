@@ -11,7 +11,10 @@ const Logbook = () => {
   const { locale } = useLocalization()
 
   return (
-    <section className={styles.logbook}>
+    <section
+      className={styles.logbook}
+      style={{ backgroundImage: "url(/images/pixel-bg-1.png)" }}
+    >
       <Container>
         <div className={styles.l_row}>
           <div className={classNames(styles.column, styles.col_left)}>
