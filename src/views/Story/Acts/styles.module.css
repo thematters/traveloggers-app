@@ -1,0 +1,12 @@
+.container {
+  @mixin expand-to-container;
+
+  background-image: url(/images/story-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  @media(--md-up) {
+    background-image: url(/images/story-bg-md.png);
+  }
+}
