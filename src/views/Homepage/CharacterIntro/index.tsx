@@ -1,4 +1,3 @@
-import classNames from "classnames"
 import { useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 
