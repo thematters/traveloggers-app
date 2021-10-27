@@ -1,5 +1,4 @@
-import { useManualQuery, useMutation } from "graphql-hooks"
-import React, { useEffect, useState } from "react"
+import React, { useContext } from "react"
 
 import env from "@/.env.json"
 import {
@@ -10,60 +9,13 @@ import {
   IconSpinner,
   IconUser,
   TextIcon,
+  ViewerContext,
 } from "~/components"
 
 import * as styles from "./styles.module.css"
 
-const GET_VIEWER = `
-  query ViewerQuery {
-    viewer {
-      id
-      displayName
-      userName
-      avatar
-    }
-  }
-`
-
-const LOGOUT_VIEWER = `
-  mutation UserLogout {
-    userLogout
-  }
-`
-
 export const SignInWithMatters = () => {
-  const [polling, setPolling] = useState(false)
-  const [logout] = useMutation(LOGOUT_VIEWER)
-  const [fetchViewer, { loading, error, data }] = useManualQuery(GET_VIEWER)
-  const viewer = data?.viewer
-
-  // TODO: error handling
-
-  // init fetch on mount
-  useEffect(() => {
-    fetchViewer()
-  }, [])
-
-  // polling on signing in
-  useEffect(() => {
-    if (!polling) {
-      return
-    }
-
-    const timer = setInterval(async () => {
-      const { data: newData } = await fetchViewer()
-      const newViewer = newData?.viewer
-
-      if (newViewer && newViewer.id) {
-        setPolling(false)
-        clearTimeout(timer)
-      }
-    }, 1000)
-
-    return () => {
-      clearTimeout(timer)
-    }
-  }, [polling])
+  const { viewer, loading, error, signIn, signOut } = useContext(ViewerContext)
 
   if (viewer && viewer.id) {
     return (
@@ -72,17 +24,11 @@ export const SignInWithMatters = () => {
         subtitle={`@${viewer.userName}`}
         leftIcon={<Avatar src={viewer.avatar} />}
         right={
-          polling || loading ? (
+          loading ? (
             <IconSpinner />
           ) : (
             <div className={styles.change}>
-              <div
-                role="button"
-                onClick={async () => {
-                  await logout()
-                  await fetchViewer()
-                }}
-              >
+              <div role="button" onClick={signOut}>
                 <TextIcon underline size="xs">
                   變更
                 </TextIcon>
@@ -91,7 +37,7 @@ export const SignInWithMatters = () => {
             </div>
           )
         }
-        disabled={polling || loading}
+        disabled={loading || !!error}
       />
     )
   }
@@ -100,11 +46,11 @@ export const SignInWithMatters = () => {
     <CardButton
       title="請登入 Matters 帳戶"
       leftIcon={<IconUser size="xlM" />}
-      right={polling || loading ? <IconSpinner /> : <IconArrowRight />}
+      right={loading ? <IconSpinner /> : <IconArrowRight />}
       htmlHref={env.mattersLoginURL}
       htmlTarget="_blank"
-      onClick={() => setPolling(true)}
-      disabled={polling || loading}
+      onClick={signIn}
+      disabled={loading || !!error}
     />
   )
 }

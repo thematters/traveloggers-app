@@ -1,0 +1,11 @@
+.content {
+  padding-bottom: var(--spacing-loose);
+}
+
+.buttons {
+  margin-top: var(--spacing-loose);
+
+  & > * + * {
+    margin-top: var(--spacing-loose);
+  }
+}

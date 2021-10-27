@@ -1,15 +1,9 @@
 [
   {
-    "code": "zh-hant",
+    "code": "zh",
     "hrefLang": "zh-Hant",
     "name": "Traditional Chinese",
     "localName": "繁體中文"
-  },
-  {
-    "code": "zh",
-    "hrefLang": "zh-Hans",
-    "name": "Simplified Chinese",
-    "localName": "简体中文"
   },
   {
     "code": "en",

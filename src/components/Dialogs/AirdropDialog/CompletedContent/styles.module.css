@@ -1,0 +1,15 @@
+.content {
+  @mixin flex-center-all;
+  flex-wrap: wrap;
+  line-height: 1;
+}
+
+.highlight {
+  color: var(--color-matters-green);
+  background: -webkit-linear-gradient(
+    var(--color-gradient-green-start),
+    var(--color-gradient-green-end)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

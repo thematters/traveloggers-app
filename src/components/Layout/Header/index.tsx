@@ -2,6 +2,7 @@ import { LocalizedLink as Link, useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 
 import {
+  AirdriopDialog,
   Button,
   IconLogo,
   LanguageSwitch,
@@ -13,8 +14,8 @@ import { Lang } from "~/enums"
 import Socials from "./Socials"
 import * as styles from "./styles.module.css"
 
-const Header = () => {
-  const { locale } = useLocalization()
+const Header = ({ locale, originalPath }) => {
+  // const { locale } = useLocalization()
 
   return (
     <header className={styles.header}>
@@ -26,7 +27,7 @@ const Header = () => {
 
       <section className={styles.buttons}>
         <div className={styles.languageSwitch}>
-          <LanguageSwitch color="white" />
+          <LanguageSwitch color="white" {...{ locale, originalPath }} />
         </div>
 
         <Socials />
@@ -51,13 +52,22 @@ const Header = () => {
         </div>
 
         <div>
-          <Button color="primary" spacingX="1.25rem" spacingY=".5rem">
-            {locale === Lang.en
-              ? "Airdrop"
-              : locale === Lang.zhHans
-              ? "参与空投"
-              : "參與空投"}
-          </Button>
+          <AirdriopDialog>
+            {({ openDialog }) => (
+              <Button
+                color="primary"
+                spacingX="1.25rem"
+                spacingY=".5rem"
+                onClick={openDialog}
+              >
+                {locale === Lang.en
+                  ? "Airdrop"
+                  : locale === Lang.zhHans
+                  ? "参与空投"
+                  : "參與空投"}
+              </Button>
+            )}
+          </AirdriopDialog>
         </div>
       </section>
     </header>

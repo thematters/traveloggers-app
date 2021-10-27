@@ -1,0 +1,63 @@
+.logbook {
+  @mixin flex-center-all;
+
+  height: 100vh;
+  color: var(--color-white);
+  text-align: center;
+  background-color: var(--color-black-darkest);
+}
+
+.l_row {
+  --sizing-logbook-header-height: 2rem; /* 36px */
+
+  padding-top: var(--global-section-padding-top);
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  @media (--md-up) {
+    flex-flow: row nowrap;
+  }
+
+  & .column {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    font-family: var(--font-sans-sc); /* PingFang HK; */
+    font-style: normal;
+    text-align: left;
+
+    & img {
+      object-fit: fill;
+      max-width: 540px;
+    }
+
+    & h2 {
+      font-size: var(--sizing-logbook-header-height);
+      font-weight: 600;
+
+      /* line-height: 36px; */
+    }
+
+    & p {
+      /* Article Text */
+      font-weight: normal;
+      line-height: var(--sizing-logbook-header-height);
+
+      /* Grey Light */
+      color: var(--color-grey-light);
+    }
+
+    & p + p {
+      padding-top: 0.5rem;
+    }
+  }
+
+  & .col_left {
+  }
+
+  & .col_right {
+  }
+}

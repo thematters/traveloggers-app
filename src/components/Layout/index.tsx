@@ -8,10 +8,7 @@ import { ClientContext, GraphQLClient } from "graphql-hooks"
 import React from "react"
 
 import env from "@/.env.json"
-import { WalletManager } from "~/components"
-
-import Footer from "./Footer"
-import Header from "./Header"
+import { AuthManager, ViewerProvider } from "~/components"
 
 const client = new GraphQLClient({
   url: env.mattersEndpoint,
@@ -29,15 +26,11 @@ function getLibrary(provider?: any) {
 const Layout: React.FC = ({ children }) => {
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
-      <WalletManager>
-        <ClientContext.Provider value={client}>
-          <Header />
-
-          <main>{children}</main>
-
-          <Footer />
-        </ClientContext.Provider>
-      </WalletManager>
+      <ClientContext.Provider value={client}>
+        <ViewerProvider>
+          <AuthManager>{children}</AuthManager>
+        </ViewerProvider>
+      </ClientContext.Provider>
     </Web3ReactProvider>
   )
 }

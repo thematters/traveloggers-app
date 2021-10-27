@@ -1,4 +1,5 @@
 export * from "./useAccount"
+export * from "./useAirdrop"
 export * from "./useDialogSwitch"
 export * from "./useEagerConnect"
 export * from "./useEagerConnect"

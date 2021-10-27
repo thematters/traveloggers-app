@@ -7,9 +7,13 @@ import * as styles from "./styles.module.css"
 
 type LanguageSwitchProps = {
   color: "white" | "grey"
+  originalPath: string
 }
 
-export const LanguageSwitch: React.FC<LanguageSwitchProps> = ({ color }) => {
+export const LanguageSwitch: React.FC<LanguageSwitchProps> = ({
+  color,
+  originalPath = "/",
+}) => {
   const { locale, config } = useLocalization()
   const currentLangIndex = config.findIndex((lang: any) => lang.code === locale)
 
@@ -40,7 +44,7 @@ export const LanguageSwitch: React.FC<LanguageSwitchProps> = ({ color }) => {
       <ul>
         {others.map(lang => (
           <li key={lang.code}>
-            <LocalizedLink language={lang.code} to="/">
+            <LocalizedLink language={lang.code} to={originalPath}>
               {lang.localName}
             </LocalizedLink>
           </li>

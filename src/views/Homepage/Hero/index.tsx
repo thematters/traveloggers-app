@@ -12,26 +12,26 @@ const Hero = () => {
   return (
     <section
       className={styles.hero}
-      style={{ backgroundImage: `url(/images/hero.jpg)` }}
+      style={{
+        backgroundImage: `linear-gradient(to bottom, rgba(255,255,255,0) 50%, rgba(0,0,0,1)), url("/images/hero.jpg")`,
+      }}
     >
       <div className="l-container">
         <div className="l-row">
           <div className="l-col-full">
             <div className={styles.content}>
-              <h1 className={styles.title}>CryptoMatties</h1>
+              <h1 className={styles.title}>Traveloggers</h1>
 
               <h3 className={styles.subtitle}>
                 {locale === Lang.en
                   ? "The Matterverse, a revolution orginated from the galaxy, a long expedition to far far away"
-                  : locale === Lang.zhHans
-                  ? "马特宇宙，来源于银河宇宙的一次革命，一次离乡的征途"
                   : "馬特宇宙，來源於銀河宇宙的一次革命，一次離鄉的征途"}
               </h3>
 
               <p className={styles.intro}>
-                {locale === Lang.zhHans
-                  ? "CryptoMatties 是 Matters 发行的通向马特宇宙的 1500 个远航者 NFT Avatar，是马特宇宙的远航者标志。 Avatar 的拥有者将会踏上马特宇宙，开始新世界的探索征途。"
-                  : "CryptoMatties 是 Matters 發行的通向馬特宇宙的 1500 個遠航者 NFT Avatar，是馬特宇宙的遠航者標誌。 Avatar 的擁有者將會踏上馬特宇宙，開始新世界的探索征途。"}
+                {locale === Lang.en
+                  ? "Traveloggers is the 1500 NFT avatars issued by Matters that marks a voyager’s journey to Matterverse, which is the identity mark of a voyager to Matterverse. Owners of the avatars will set foot on Matterverse and begin a journey that explores a new world."
+                  : "Traveloggers 是 Matters社區發行的 1500 個 NFT 數字头像，代表馬特宇宙的遠航者身份。擁有此身份，將開啟馬特宇宙中最激進的實驗權限。"}
               </p>
 
               <section className={styles.cta}>

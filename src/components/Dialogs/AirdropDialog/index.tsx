@@ -1,29 +1,25 @@
 import { ethers } from "ethers"
-import React, { useState } from "react"
+import React from "react"
 
 import { Dialog } from "~/components"
 import { useDialogSwitch, useStep } from "~/hooks"
 
 import CompletedContent from "./CompletedContent"
-import ConfirmContent from "./ConfirmContent"
 import ConnectWalletContent from "./ConnectWalletContent"
 import IntroContent from "./IntroContent"
 
-type PreOrderDialogProps = {
+type AirdriopDialogProps = {
   children: ({ openDialog }: { openDialog: () => void }) => React.ReactNode
 }
 
-type Step = "intro" | "connect-wallet" | "confirm" | "completed"
+type Step = "intro" | "connect-wallet" | "completed"
 
-export const PreOrderDialog: React.FC<PreOrderDialogProps> = ({ children }) => {
+export const AirdriopDialog: React.FC<AirdriopDialogProps> = ({ children }) => {
   const {
     show,
     openDialog: baseOpenDialog,
     closeDialog,
   } = useDialogSwitch(false)
-
-  const [txReceipt, setTxReceipt] =
-    useState<ethers.providers.TransactionReceipt | null>(null)
 
   const defaultStep = "intro"
   const { currStep, forward } = useStep<Step>(defaultStep)
@@ -35,7 +31,6 @@ export const PreOrderDialog: React.FC<PreOrderDialogProps> = ({ children }) => {
 
   const isIntro = currStep === "intro"
   const isConnectWallet = currStep === "connect-wallet"
-  const isConfirm = currStep === "confirm"
   const isCompleted = currStep === "completed"
 
   return (
@@ -46,13 +41,11 @@ export const PreOrderDialog: React.FC<PreOrderDialogProps> = ({ children }) => {
         <Dialog.Header
           title={
             isIntro ? (
-              <span>參加預購</span>
+              <span>參與空投</span>
             ) : isConnectWallet ? (
               <span>連接錢包</span>
-            ) : isConfirm ? (
-              <span>預購交易確認</span>
             ) : (
-              <span>你已成功登記預購 🎉</span>
+              <span>你已成功參加空投囉 🎉</span>
             )
           }
           closeDialog={closeDialog}
@@ -61,24 +54,13 @@ export const PreOrderDialog: React.FC<PreOrderDialogProps> = ({ children }) => {
         {isIntro && (
           <IntroContent
             gotoConnectWallet={() => forward("connect-wallet")}
-            gotoConfirm={() => forward("confirm")}
+            gotoCompleted={() => forward("completed")}
           />
         )}
         {isConnectWallet && (
           <ConnectWalletContent prevStep={() => forward("intro")} />
         )}
-        {isConfirm && (
-          <ConfirmContent
-            gotoConnectWallet={() => forward("connect-wallet")}
-            onConfirm={(receipt: ethers.providers.TransactionReceipt) => {
-              forward("completed")
-              setTxReceipt(receipt)
-            }}
-          />
-        )}
-        {isCompleted && txReceipt && (
-          <CompletedContent txReceipt={txReceipt} closeDialog={closeDialog} />
-        )}
+        {isCompleted && <CompletedContent closeDialog={closeDialog} />}
       </Dialog>
     </>
   )

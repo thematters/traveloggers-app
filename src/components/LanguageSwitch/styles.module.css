@@ -1,4 +1,6 @@
 .switches {
+  font-size: var(--font-size-sm);
+
   & ul {
     position: absolute;
     display: none;
