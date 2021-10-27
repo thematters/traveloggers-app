@@ -1,3 +1,4 @@
+import classNames from "classnames"
 import { useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 
@@ -54,6 +55,9 @@ const CharacterIntro = () => {
                   : "一個人物＋兩個配件：Matties 的誕生"}
               </p>
             </div>
+          </section>
+          <section className={classNames(styles.avatar, styles.empty)}>
+            <div></div>
           </section>
           <section className={styles.avatar}>
             <div>
