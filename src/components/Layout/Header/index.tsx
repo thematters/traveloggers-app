@@ -50,7 +50,7 @@ const Header: React.FC<HeaderProps> = ({ originalPath }) => {
         </Link>
 
         <section className={styles.buttons}>
-          <div className={styles.languageSwitch}>
+          <div>
             <LanguageSwitch originalPath={originalPath} />
           </div>
 

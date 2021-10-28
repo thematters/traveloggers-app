@@ -12,8 +12,9 @@
   justify-content: space-between;
   align-items: flex-start;
   flex-direction: column;
+  column-gap: var(--spacing-base);
 
-  @media (--lg-up) {
+  @media (--md-up) {
     flex-direction: row;
   }
 }
@@ -26,7 +27,7 @@
   margin: 0 auto;
   margin-bottom: var(--spacing-xx-loose);
 
-  @media (--lg-up) {
+  @media (--md-up) {
     margin-bottom: 0;
   }
 }

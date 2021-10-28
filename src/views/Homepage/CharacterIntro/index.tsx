@@ -1,3 +1,4 @@
+import classNames from "classnames"
 import { useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 
@@ -12,7 +13,7 @@ const CharacterIntro = () => {
   const isMediumUp = useResponsive("md-up")
 
   return (
-    <section className={styles.intro}>
+    <section>
       <Container>
         <section className={styles.intro}>
           <section className={styles.title}>
@@ -36,10 +37,9 @@ const CharacterIntro = () => {
           <section className={styles.description}>
             <Section.Content>
               <p>
-                我們為遠航者創造了6個基礎人物，分別是
-                Sasha（薩沙）、Zhenya（振亞）、Valya（瓦拉）、Gena（根那）、Lesya（列峽）、Yury（尤里）。同時我們根據創作者的價值取向，哲學主張，創作者的創作氣質，思考方式，創作者的創作習慣和個性等6個維度，提取關鍵詞進行設計，
-                生成了xxx個CryptoMatties。每一個 CryptoMatties
-                都有專屬的創作者屬性，都是獨一無二的。
+                {locale === Lang.en
+                  ? `We have created 6 basic characters for voyagers, namely, Gena, Lesya, Sasha, Valya, Yury, and Zhenya. Meanwhile, we have generated xxx(number) Traveloggers with character designs based on 6 aspects: value orientation, philosophical proposition, creative temperament, way of thinking, creative habits, and personality. Each Traveloggers is unique with its own creator attributes.`
+                  : `我們為遠航者創造了6個基礎人物，分別是 Sasha（薩沙）、Zhenya（振亞）、Valya（瓦拉）、Gena（根那）、Lesya（列峽）、Yury（尤里）。同時我們根據創作者的價值取向，哲學主張，創作者的創作氣質，思考方式，創作者的創作習慣和個性等6個維度，提取關鍵詞進行設計， 生成了xxx個CryptoMatties。每一個 CryptoMatties 都有專屬的創作者屬性，都是獨一無二的。`}
               </p>
             </Section.Content>
           </section>
@@ -49,43 +49,50 @@ const CharacterIntro = () => {
           <section className={styles.avatar}>
             <div>
               <img src="/images/char1.png" />
-              <p>一個人物＋兩個配件：Matties 的誕生</p>
+              <p>
+                {locale === Lang.en
+                  ? "1 Character + 2 Accessories: Born of Matties"
+                  : "一個人物＋兩個配件：Matties 的誕生"}
+              </p>
             </div>
+          </section>
+          <section className={classNames(styles.avatar, styles.empty)}>
+            <div></div>
           </section>
           <section className={styles.avatar}>
             <div>
               <img src="/images/char2.png" />
-              <p>Sasha 薩沙</p>
+              <p>{locale === Lang.en ? "Sasha" : "Sasha 薩沙"}</p>
             </div>
           </section>
           <section className={styles.avatar}>
             <div>
               <img src="/images/char3.png" />
-              <p>Zhenya 振亞</p>
+              <p>{locale === Lang.en ? "Zhenya" : "Zhenya 振亞"}</p>
             </div>
           </section>
           <section className={styles.avatar}>
             <div>
               <img src="/images/char4.png" />
-              <p>Valya 瓦拉</p>
+              <p>{locale === Lang.en ? "Valya" : "Valya 瓦拉"}</p>
             </div>
           </section>
           <section className={styles.avatar}>
             <div>
               <img src="/images/char5.png" />
-              <p>Gena 根那</p>
+              <p>{locale === Lang.en ? "Gena" : "Gena 根那"}</p>
             </div>
           </section>
           <section className={styles.avatar}>
             <div>
               <img src="/images/char6.png" />
-              <p>Lesya 列峽</p>
+              <p>{locale === Lang.en ? "Lesya" : "Lesya 列峽"}</p>
             </div>
           </section>
           <section className={styles.avatar}>
             <div>
               <img src="/images/char7.png" />
-              <p>Yury 尤里</p>
+              <p>{locale === Lang.en ? "Yury" : "Yury 尤里"}</p>
             </div>
           </section>
         </section>
