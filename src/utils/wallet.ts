@@ -28,26 +28,41 @@ export const walletConnectors = {
 
 const WALLET_ERROR_MESSAGES = {
   [Lang.en]: {
+    // common
     [WalletErrorType.noEthereumProvider]:
       "No Ethereum browser extension detected, install MetaMask on desktop or visit from a dApp browser on mobile.",
     [WalletErrorType.unsupportedChainId]: `You're connected to an unsupported network, please switch to ${chainName}.`,
     [WalletErrorType.userRejectedRequest]:
       "Please authorize this website to access your Ethereum account.",
-    [WalletErrorType.unablePreOrder]: "Insufficient funds or network error.",
-    [WalletErrorType.preOrderExist]: "This account has been pre-ordered.",
-    [WalletErrorType.userRejectedSignMessage]:
-      "Please sign the message to complete the operation.",
     [WalletErrorType.unknown]:
       "An unknown error occurred. Check the console for more details.",
+    // sign message
+    [WalletErrorType.userRejectedSignMessage]:
+      "Please sign the message to complete the operation.",
+    // contract
+    [WalletErrorType.failedToEstimateGas]:
+      "Insufficient funds or network error.",
+    [WalletErrorType.failedToSendTx]: "Failed to send transaction.",
+    [WalletErrorType.preOrderExist]: "This account has been pre-ordered.",
+    [WalletErrorType.preOrderNotStarted]: "Pre-order isn' started yet.",
+    [WalletErrorType.preOrderReachLimit]: "Reach pre-order limit.",
+    [WalletErrorType.preOrderInvalidUnitPrice]: "Invalid amount.",
   },
   [Lang.zh]: {
+    // common
     [WalletErrorType.noEthereumProvider]: "請先安装 MetaMask 擴充",
     [WalletErrorType.unsupportedChainId]: `請先切換網絡到 ${chainName}`,
     [WalletErrorType.userRejectedRequest]: "請先授權本網站獲取你的以太坊地址",
-    [WalletErrorType.unablePreOrder]: "錢包餘額不足或網絡錯誤",
-    [WalletErrorType.preOrderExist]: "此錢包已有預購紀錄，請變更錢包以繼續操作",
-    [WalletErrorType.userRejectedSignMessage]: "請簽署以完成操作",
     [WalletErrorType.unknown]: "發生未知錯誤，請確保你的網絡正常",
+    // sign message
+    [WalletErrorType.userRejectedSignMessage]: "請簽署以完成操作",
+    // contract
+    [WalletErrorType.failedToEstimateGas]: "錢包餘額不足或網絡錯誤",
+    [WalletErrorType.failedToSendTx]: "交易請求發送失敗",
+    [WalletErrorType.preOrderExist]: "此錢包已有預購紀錄，請變更錢包以繼續操作",
+    [WalletErrorType.preOrderNotStarted]: "預購尚未開始",
+    [WalletErrorType.preOrderReachLimit]: "超出預購數量限制",
+    [WalletErrorType.preOrderInvalidUnitPrice]: "預購金額不正確",
   },
 }
 

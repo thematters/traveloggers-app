@@ -30,15 +30,20 @@ export enum WalletConnector {
 }
 
 export enum WalletErrorType {
+  // common
   noEthereumProvider = "noEthereumProvider",
   unsupportedChainId = "unsupportedChainId",
   userRejectedRequest = "userRejectedRequest",
-  unablePreOrder = "unablePreOrder",
-  preOrderExist = "preOrderExist",
-  userRejectedSignMessage = "userRejectedSignMessage",
   unknown = "unknown",
+  // contract
+  failedToEstimateGas = "failedToEstimateGas",
+  failedToSendTx = "failedToSendTx",
+  preOrderExist = "preOrderExist",
+  preOrderNotStarted = "preOrderNotStarted",
+  preOrderReachLimit = "preOrderReachLimit",
+  preOrderInvalidUnitPrice = "preOrderInvalidUnitPrice",
+  // sign message
+  userRejectedSignMessage = "userRejectedSignMessage",
 }
 
-// TBC: get from contract or hard coding
 export const PRE_ORDER_MIN_QUANTITY = 1
-export const PRE_ORDER_MAX_QUANTITY = 5

@@ -1,7 +1,7 @@
 import { useWeb3React } from "@web3-react/core"
 import { ethers } from "ethers"
 import { useLocalization } from "gatsby-theme-i18n"
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 
 import {
   ConnectedAccountButton,
@@ -29,16 +29,12 @@ const IntroContent: React.FC<IntroContentProps> = ({
 
   const { account, error: walletError } =
     useWeb3React<ethers.providers.Web3Provider>()
-  const {
-    pending,
-    error: preOrderError,
-    preOrdered,
-    checkPreOrdered,
-  } = usePreOrder({ fetchOnMount: false })
+
+  const { loading, error: preOrderError, canPreOrder } = usePreOrder({})
 
   // check on account changes
   useEffect(() => {
-    checkPreOrdered()
+    canPreOrder(false)
   }, [account])
 
   return (
@@ -68,9 +64,9 @@ const IntroContent: React.FC<IntroContentProps> = ({
 
       <Dialog.CTAButton
         onClick={gotoConfirm}
-        disabled={!account || pending || preOrdered || !!preOrderError}
+        disabled={!account || loading || !!preOrderError}
       >
-        {pending ? <IconSpinner /> : "參加預購"}
+        {loading ? <IconSpinner /> : "參加預購"}
       </Dialog.CTAButton>
     </>
   )

@@ -1,7 +1,10 @@
+import { useWeb3React } from "@web3-react/core"
 import { ethers } from "ethers"
-import React from "react"
+import { useLocalization } from "gatsby-theme-i18n"
+import React, { useEffect } from "react"
 
-import { Dialog, IconSpinner } from "~/components"
+import { Dialog, IconInfo, IconSpinner, Spinner, TextIcon } from "~/components"
+import { Lang } from "~/enums"
 import { useAccount, usePreOrder } from "~/hooks"
 import { weiToEther, weiToGWei } from "~/utils"
 
@@ -16,46 +19,58 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
   gotoConnectWallet,
   onConfirm,
 }) => {
+  const { locale } = useLocalization()
+  const { library } = useWeb3React<ethers.providers.Web3Provider>()
   const { account, maskedAddress, balance } = useAccount()
   const {
-    isConnectedToSigner,
-
+    loading,
+    error,
+    qtySelected,
+    qtyOrdered,
+    qtyLimited,
+    qtyAvailable,
+    inPreOrder,
+    unitPrice,
     gasLimit,
     gasPrice,
-    unitPrice,
-    inPreOrder,
-    quantity,
 
     preOrder,
-    pending,
-    error,
-
-    getTotalCost,
-    getPreOrderCost,
+    canPreOrder,
   } = usePreOrder({ onPreOrderConfirm: onConfirm })
 
-  if (!account || !inPreOrder) {
-    return (
-      <>
-        <Dialog.Content>
-          <Dialog.ErrorMessage>
-            <p>
-              {!inPreOrder
-                ? "預購還未開始，可先連接加密錢包"
-                : "要參加預購，請先連接加密錢包"}
-            </p>
-          </Dialog.ErrorMessage>
-        </Dialog.Content>
+  useEffect(() => {
+    canPreOrder(true)
+  }, [!!library, account])
 
-        <Dialog.CTAButton onClick={gotoConnectWallet}>
-          連接加密錢包
-        </Dialog.CTAButton>
-      </>
-    )
+  if (loading && !unitPrice) {
+    return <Spinner />
   }
 
+  const getPreOrderCost = () => {
+    if (!unitPrice || !qtySelected) {
+      return
+    }
+    return unitPrice.mul(qtySelected)
+  }
+  const getGasCost = () => {
+    if (!gasLimit || !gasPrice) {
+      return
+    }
+    return gasLimit.mul(gasPrice)
+  }
+  const getTotalCost = () => {
+    const gasCost = getGasCost()
+    const preOrderCost = getPreOrderCost()
+
+    if (!gasCost || !preOrderCost) {
+      return
+    }
+
+    return preOrderCost.add(gasCost)
+  }
   const preOrderCost = getPreOrderCost()
   const totalCost = getTotalCost()
+  const isReadyOutOfSupply = qtyAvailable.lt(10)
 
   return (
     <>
@@ -74,10 +89,25 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
               <hr className={styles.divider} />
               <tr className={styles.highlight}>
                 <td>
-                  <span className={styles.highlight}>預購數量</span>
+                  <div className={styles.qty}>
+                    <span className={styles.highlight}>預購數量</span>
+                    <span className={styles.supply}>
+                      <TextIcon
+                        icon={!isReadyOutOfSupply ? <IconInfo /> : null}
+                        spacing="xTight"
+                        size="smS"
+                        color={!isReadyOutOfSupply ? "gold" : "green"}
+                      >
+                        {locale === Lang.en
+                          ? `${qtyAvailable.toString()} left`
+                          : `剩餘 ${qtyAvailable.toString()} 個`}
+                      </TextIcon>
+                    </span>
+                  </div>
                 </td>
                 <td>
-                  {unitPrice ? weiToEther(unitPrice) : "..."} ETH x {quantity}
+                  {unitPrice ? weiToEther(unitPrice) : "..."} ETH x{" "}
+                  {qtySelected.toString()}
                 </td>
               </tr>
               <tr className={styles.highlight}>
@@ -109,11 +139,8 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
         </section>
       </Dialog.Content>
 
-      <Dialog.CTAButton
-        onClick={preOrder}
-        disabled={pending || !gasLimit || !isConnectedToSigner}
-      >
-        {pending ? <IconSpinner /> : "確認預購"}
+      <Dialog.CTAButton onClick={preOrder} disabled={loading || !!error}>
+        {loading ? <IconSpinner /> : "確認預購"}
       </Dialog.CTAButton>
     </>
   )
