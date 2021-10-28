@@ -61,6 +61,10 @@
     color: var(--color-black);
   }
 
+  &.blackLight {
+    color: var(--color-black-light);
+  }
+
   &.grey-dark {
     color: var(--color-grey-dark);
   }

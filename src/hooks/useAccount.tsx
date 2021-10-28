@@ -2,12 +2,12 @@ import { useWeb3React } from "@web3-react/core"
 import { ethers } from "ethers"
 import { useEffect, useState } from "react"
 
+import { maskAddress } from "~/utils"
+
 export const useAccount = () => {
   const { library, account } = useWeb3React<ethers.providers.Web3Provider>()
 
-  const maskedAddress = account
-    ? `${account.substring(0, 6)}...${account.substring(account.length - 4)}`
-    : ""
+  const maskedAddress = account ? maskAddress(account) : ""
 
   const [balance, setBalance] = useState<ethers.BigNumber>()
   const getAccountBalance = async () => {

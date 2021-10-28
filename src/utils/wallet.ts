@@ -101,3 +101,7 @@ export const weiToEther = (wei: ethers.BigNumber) => {
 export const weiToGWei = (wei: ethers.BigNumber) => {
   return ethers.utils.formatUnits(wei, "gwei")
 }
+
+export const maskAddress = (address: string) => {
+  return `${address.substring(0, 6)}...${address.substring(address.length - 4)}`
+}

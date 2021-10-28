@@ -50,7 +50,7 @@ export const PreOrderDialog: React.FC<PreOrderDialogProps> = ({ children }) => {
             ) : isConnectWallet ? (
               <span>連接錢包</span>
             ) : isConfirm ? (
-              <span>預購交易確認</span>
+              <span>預購確認</span>
             ) : (
               <span>你已成功登記預購 🎉</span>
             )

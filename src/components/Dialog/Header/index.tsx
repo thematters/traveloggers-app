@@ -23,7 +23,7 @@ const Header = ({ title, closeDialog }: HeaderProps) => {
 
       <section className={styles.left}>
         <button onClick={closeDialog} type="button">
-          <IconCircleClose size="lg" />
+          <IconCircleClose size="lg" color="blackLight" />
         </button>
       </section>
     </header>

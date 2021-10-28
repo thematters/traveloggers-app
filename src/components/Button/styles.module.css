@@ -32,3 +32,9 @@
   color: var(--color-white);
   font-weight: var(--font-weight-normal);
 }
+
+.blackLight {
+  background: var(--color-black-light);
+  color: var(--color-white);
+  font-weight: var(--font-weight-normal);
+}

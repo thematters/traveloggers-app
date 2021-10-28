@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react"
 import { animated, useSpring } from "react-spring"
 
 import { KEYCODES } from "~/enums"
-import { useOutsideClick, useResponsive } from "~/hooks"
+import { useResponsive } from "~/hooks"
 import { dom } from "~/utils"
 
 import Overlay from "./Overlay"
@@ -55,7 +55,7 @@ const Container: React.FC<
     onDismiss()
   }
 
-  useOutsideClick(node, closeTopDialog)
+  // useOutsideClick(node, closeTopDialog)
 
   return (
     <div className="l-row">

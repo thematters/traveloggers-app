@@ -3,10 +3,17 @@ import { ethers } from "ethers"
 import { useLocalization } from "gatsby-theme-i18n"
 import React, { useEffect } from "react"
 
-import { Dialog, IconInfo, IconSpinner, Spinner, TextIcon } from "~/components"
+import {
+  Dialog,
+  IconInfo,
+  IconSpinner,
+  Select,
+  Spinner,
+  TextIcon,
+} from "~/components"
 import { Lang } from "~/enums"
 import { useAccount, usePreOrder } from "~/hooks"
-import { weiToEther, weiToGWei } from "~/utils"
+import { maskAddress, weiToEther, weiToGWei } from "~/utils"
 
 import * as styles from "./styles.module.css"
 
@@ -23,17 +30,20 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
   const { library } = useWeb3React<ethers.providers.Web3Provider>()
   const { account, maskedAddress, balance } = useAccount()
   const {
+    contract,
+
     loading,
     error,
     qtySelected,
-    // qtyOrdered,
-    // qtyLimited,
+    qtyOrdered,
+    qtyLimited,
     qtyAvailable,
     // inPreOrder,
     unitPrice,
     gasLimit,
     gasPrice,
 
+    setQtySelected,
     preOrder,
     canPreOrder,
   } = usePreOrder({ onPreOrderConfirm: onConfirm })
@@ -46,6 +56,7 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
     return <Spinner />
   }
 
+  // costs
   const getPreOrderCost = () => {
     if (!unitPrice || !qtySelected) {
       return
@@ -68,9 +79,22 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
 
     return preOrderCost.add(gasCost)
   }
+
   const preOrderCost = getPreOrderCost()
   const totalCost = getTotalCost()
+
+  // qty
   const isReadyOutOfSupply = qtyAvailable.lt(10)
+  const qtyOptions = [...Array(qtyLimited.sub(qtyOrdered).toNumber())].map(
+    (_, index) => ({
+      value: index + 1 + "",
+      name: index + 1 + "",
+    })
+  )
+  const onQtySelectChange = (value: string) => {
+    setQtySelected(ethers.BigNumber.from(value))
+    canPreOrder(true)
+  }
 
   return (
     <>
@@ -78,6 +102,13 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
         <section className={styles.content}>
           <table className={styles.table}>
             <tbody>
+              <tr className={styles.highlight}>
+                <td>合約地址</td>
+                <td>
+                  {/* use checksum address */}
+                  {maskAddress(ethers.utils.getAddress(contract.address))}
+                </td>
+              </tr>
               <tr className={styles.highlight}>
                 <td>錢包地址</td>
                 <td>{maskedAddress}</td>
@@ -106,8 +137,20 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
                   </div>
                 </td>
                 <td>
-                  {unitPrice ? weiToEther(unitPrice) : "..."} ETH x{" "}
-                  {qtySelected.toString()}
+                  <div className={styles.selector}>
+                    {unitPrice ? weiToEther(unitPrice) : "..."} ETH&nbsp;x&nbsp;
+                    <Select
+                      options={qtyOptions}
+                      value={qtySelected.toString()}
+                      onChange={onQtySelectChange}
+                      label={
+                        locale === Lang.en
+                          ? "Choose quantity to order"
+                          : "選擇預購數量"
+                      }
+                      disabled={loading || !!error}
+                    />
+                  </div>
                 </td>
               </tr>
               <tr className={styles.highlight}>

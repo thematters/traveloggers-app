@@ -12,11 +12,12 @@
   flex-direction: column;
   max-height: 80vh;
   max-height: calc(var(--vh) * 90);
-  background: var(--color-black-darkest);
+  background: var(--color-black);
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
   color: var(--color-white);
   border-radius: var(--spacing-x-tight) var(--spacing-x-tight) 0 0;
   will-change: transform, top;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
 
   &::before {
     position: absolute;
@@ -25,7 +26,7 @@
     left: 0;
     height: 300vh;
     content: "";
-    background: var(--color-black-darkest);
+    background: var(--color-black);
   }
 
   &.fixedHeight {

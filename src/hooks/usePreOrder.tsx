@@ -72,6 +72,13 @@ export const usePreOrder = ({ onPreOrderConfirm }: UsePreOrderProps) => {
   /**
    * Pre Order
    */
+  const setQtySelected = (qtySelected: ethers.BigNumber) => {
+    dispatch({
+      type: "update",
+      payload: { ...state, qtySelected },
+    })
+  }
+
   // retrieve pre-order info
   const getPreOrderDetail = async () => {
     if (!account) {
@@ -253,6 +260,7 @@ export const usePreOrder = ({ onPreOrderConfirm }: UsePreOrderProps) => {
     error,
     ...state,
 
+    setQtySelected,
     preOrder,
     canPreOrder,
     getPreOrderDetail,

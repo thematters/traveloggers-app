@@ -3,6 +3,7 @@ import React from "react"
 
 import env from "@/.env.json"
 import { Dialog, IconExternal, TextIcon } from "~/components"
+import { maskAddress } from "~/utils"
 
 import * as styles from "./styles.module.css"
 
@@ -17,7 +18,8 @@ const CompletedContent: React.FC<CompletedContentProps> = ({
 }) => {
   const etherscanDomain =
     env.supportedChainId === 4 ? "rinkeby.etherscan.io" : "etherscan.io"
-  const transactionHash = txReceipt.transactionHash
+  const txHash = txReceipt.transactionHash
+  const maskedTxHash = maskAddress(txHash)
 
   return (
     <>
@@ -25,7 +27,7 @@ const CompletedContent: React.FC<CompletedContentProps> = ({
         <p className={styles.content}>
           交易紀錄：
           <a
-            href={`https://${etherscanDomain}/tx/${transactionHash}`}
+            href={`https://${etherscanDomain}/tx/${txHash}`}
             target="_blank"
             rel="noreferrer"
             className={styles.link}
@@ -35,13 +37,13 @@ const CompletedContent: React.FC<CompletedContentProps> = ({
               spacing="xxTight"
               textPlacement="left"
             >
-              {transactionHash}
+              {maskedTxHash}
             </TextIcon>
           </a>
         </p>
       </Dialog.Content>
 
-      <Dialog.CTAButton color="black" onClick={closeDialog}>
+      <Dialog.CTAButton color="blackLight" onClick={closeDialog}>
         完成
       </Dialog.CTAButton>
     </>
