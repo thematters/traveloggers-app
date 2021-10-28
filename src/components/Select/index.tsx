@@ -20,7 +20,7 @@ type Option = {
 }
 
 type SelectProps = {
-  value: Value
+  value: Option
   options: Option[]
   label: string
   onChange: (value: Value) => void
@@ -41,7 +41,7 @@ export const Select: React.FC<SelectProps> = ({
       <VisuallyHidden id={labelId}>{label}</VisuallyHidden>
       <ListboxInput
         aria-labelledby={labelId}
-        value={value}
+        value={value.value}
         onChange={onChange}
         disabled={disabled}
       >
@@ -52,14 +52,23 @@ export const Select: React.FC<SelectProps> = ({
             spacing="xTight"
             textPlacement="left"
           >
-            {value}
+            {value.name}
           </TextIcon>
         </ListboxButton>
         <ListboxPopover portal={false}>
           <ListboxList>
             {options.map(option => (
               <ListboxOption key={option.value} value={option.value}>
-                {option.name}
+                <TextIcon
+                  icon={<IconArrowDown size="xs" color="greyDark" />}
+                  // icon in popover just as placeholder
+                  // to stretch the content width, will be hide by CSS
+                  size="mdS"
+                  spacing="xTight"
+                  textPlacement="left"
+                >
+                  {option.name}
+                </TextIcon>
               </ListboxOption>
             ))}
           </ListboxList>

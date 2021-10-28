@@ -141,7 +141,10 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
                     {unitPrice ? weiToEther(unitPrice) : "..."} ETH&nbsp;x&nbsp;
                     <Select
                       options={qtyOptions}
-                      value={qtySelected.toString()}
+                      value={{
+                        name: qtySelected.toString(),
+                        value: qtySelected.toString(),
+                      }}
                       onChange={onQtySelectChange}
                       label={
                         locale === Lang.en
