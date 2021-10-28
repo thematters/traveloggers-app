@@ -10,7 +10,7 @@ type DialogContentProps = {
 const DialogContent: React.FC<DialogContentProps> = ({ spacing, children }) => {
   const contentClasses = classNames({
     [styles.content]: true,
-    [styles[spacing]]: !!spacing,
+    ...(spacing ? { [styles[spacing]]: true } : {}),
   })
 
   return <section className={contentClasses}>{children}</section>

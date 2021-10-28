@@ -13,7 +13,7 @@ export interface AvatarProps {
 export const Avatar = ({ size, src }: AvatarProps) => {
   const avatarClasses = classNames({
     [styles.avatar]: true,
-    [styles[size]]: true,
+    ...(size ? { [styles[size]]: true } : {}),
   })
 
   return (

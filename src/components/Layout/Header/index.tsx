@@ -40,7 +40,7 @@ const Header: React.FC<HeaderProps> = ({ originalPath }) => {
     <>
       <Waypoint onPositionChange={handlePositionChange} />
       <header className={headerClasses}>
-        <Link to="/">
+        <Link to="/" language={undefined}>
           <TextIcon
             icon={<IconLogo size={isMediumUp ? "xlM" : "lg"} />}
             spacing="base"

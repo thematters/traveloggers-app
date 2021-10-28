@@ -57,16 +57,16 @@ export const TextIcon: React.FC<TextIconProps> = ({
   const textIconClasses = classNames({
     [styles.textIcon]: true,
     [styles.color]: !!color,
-    [styles[color]]: !!color,
+    ...(color ? { [styles[color]]: true } : {}),
     [styles.placement]: true,
     [styles[textPlacement]]: true,
     [styles.underline]: !!underline,
     [styles.size]: !!size,
-    [styles[size]]: !!size,
+    ...(size ? { [styles[size]]: true } : {}),
     [styles.spacing]: !!spacing,
-    [styles[spacing]]: !!spacing,
+    ...(spacing ? { [styles[spacing]]: true } : {}),
     [styles.weight]: !!weight,
-    [styles[weight]]: !!weight,
+    ...(weight ? { [styles[weight]]: true } : {}),
     [styles.hasIcon]: !!icon,
   })
 

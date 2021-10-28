@@ -98,7 +98,7 @@ export const Button: React.FC<ButtonProps> = forwardRef(
     // internal link
     if (to) {
       return (
-        <Link to={to}>
+        <Link to={to} language={undefined}>
           <a {...buttonProps}>{children}</a>
         </Link>
       )

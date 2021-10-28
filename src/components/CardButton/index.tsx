@@ -91,7 +91,7 @@ export const CardButton: React.FC<CardButtonProps> = forwardRef(
     // internal link
     if (to) {
       return (
-        <Link to={to}>
+        <Link to={to} language={undefined}>
           <a {...buttonProps}>
             <Content />
           </a>
