@@ -22,8 +22,8 @@ const Header = ({ title, closeDialog }: HeaderProps) => {
       </h1>
 
       <section className={styles.left}>
-        <button onClick={closeDialog} type="button">
-          <IconCircleClose size="lg" color="blackLight" />
+        <button onClick={closeDialog} type="button" className={styles.closeBtn}>
+          <IconCircleClose size="lg" />
         </button>
       </section>
     </header>

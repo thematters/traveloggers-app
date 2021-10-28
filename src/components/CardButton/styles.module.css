@@ -1,10 +1,18 @@
 .cardButton {
+  @mixin all-transition;
   display: block;
   border-radius: 1.5rem;
   background: var(--color-black-light);
   padding: var(--spacing-base);
   line-height: 1;
   width: 100%;
+
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      background: var(--color-grey-darker);
+    }
+  }
 }
 
 .content {

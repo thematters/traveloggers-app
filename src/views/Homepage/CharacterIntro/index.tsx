@@ -1,8 +1,9 @@
 import classNames from "classnames"
 import { useLocalization } from "gatsby-theme-i18n"
-import React from "react"
+import React, { useContext } from "react"
 
-import { Button, Container, Section } from "~/components"
+import env from "@/.env.json"
+import { Button, Container, RoadmapContext, Section } from "~/components"
 import { Lang } from "~/enums"
 import { useResponsive } from "~/hooks"
 
@@ -11,6 +12,9 @@ import * as styles from "./styles.module.css"
 const CharacterIntro = () => {
   const { locale } = useLocalization()
   const isMediumUp = useResponsive("md-up")
+
+  const { isOpenSaleStarted, isOpenSaleEnded } = useContext(RoadmapContext)
+  const isOpenSaleActive = isOpenSaleStarted && !isOpenSaleEnded
 
   return (
     <section>
@@ -24,10 +28,11 @@ const CharacterIntro = () => {
 
           <section className={styles.button}>
             <Button
+              disabled={!isOpenSaleActive}
               color="primary"
               width={isMediumUp ? "12.5rem" : "100%"}
               spacingY="0.75rem"
-              htmlHref="https://opensea.io"
+              htmlHref={isOpenSaleActive ? env.socialUrls.opensea : undefined}
               htmlTarget="_blank"
             >
               View all on Opensea

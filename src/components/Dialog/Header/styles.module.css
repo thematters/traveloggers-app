@@ -13,7 +13,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    padding: var(--spacing-x-loose) 0 var(--spacing-tight);
+    padding: var(--spacing-tight) 0;
     font-size: var(--font-size-xm);
     font-weight: var(--font-weight-medium);
     line-height: 1.5rem;
@@ -37,5 +37,14 @@
     & .left {
       min-height: 2rem;
     }
+  }
+}
+
+.closeBtn {
+  color: var(--color-black-light);
+
+  &:hover,
+  &:focus {
+    color: var(--color-grey-darker);
   }
 }
