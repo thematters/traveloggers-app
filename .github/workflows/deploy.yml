@@ -63,3 +63,10 @@ jobs:
         with:
           dest-s3-bucket: nft-develop.matters.news
           cloudfront-id-to-invalidate: E373DGM0H9GIJM
+
+      - name: Deploy (Production)
+        if: github.base_ref == 'main'
+        uses: jonelantha/gatsby-s3-action@v1
+        with:
+          dest-s3-bucket: traveloggers.matters.news
+          cloudfront-id-to-invalidate: PLACEHOLDER
