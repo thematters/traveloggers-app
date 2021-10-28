@@ -93,10 +93,10 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
                     <span className={styles.highlight}>預購數量</span>
                     <span className={styles.supply}>
                       <TextIcon
-                        icon={!isReadyOutOfSupply ? <IconInfo /> : null}
+                        icon={isReadyOutOfSupply ? <IconInfo /> : null}
                         spacing="xTight"
                         size="smS"
-                        color={!isReadyOutOfSupply ? "gold" : "green"}
+                        color={isReadyOutOfSupply ? "gold" : "green"}
                       >
                         {locale === Lang.en
                           ? `${qtyAvailable.toString()} left`
