@@ -1,0 +1,9 @@
+.content {
+  @mixin flex-center-all;
+  flex-wrap: wrap;
+  line-height: 1;
+}
+
+.link {
+  text-decoration: underline !important;
+}

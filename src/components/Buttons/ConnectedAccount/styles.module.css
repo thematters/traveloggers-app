@@ -1,0 +1,7 @@
+.change {
+  @mixin inline-flex-center-all;
+
+  & > * + * {
+    margin-left: var(--spacing-base);
+  }
+}

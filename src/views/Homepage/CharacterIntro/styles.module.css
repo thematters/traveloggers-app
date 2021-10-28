@@ -1,0 +1,109 @@
+.intro {
+  display: grid;
+  grid-template-areas:
+    "title"
+    "description"
+    "button";
+  grid-gap: var(--spacing-base);
+
+  & .title {
+    grid-area: title;
+  }
+  & .button {
+    grid-area: button;
+    width: 100%;
+  }
+  & .description {
+    grid-area: description;
+  }
+
+  @media (--md-up) {
+    grid-template-areas:
+      "title button"
+      "description description";
+    grid-column-gap: 0;
+    grid-row-gap: var(--spacing-x-loose);
+
+    & .button {
+      align-self: start;
+      justify-self: end;
+      width: auto;
+    }
+  }
+}
+
+.images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(auto, 1fr);
+  grid-column-gap: var(--spacing-base);
+  grid-row-gap: var(--spacing-xxx-loose);
+  margin-top: var(--spacing-x-loose);
+  margin-bottom: var(--spacing-xxx-loose);
+
+  & .avatar:first-child {
+    @media(--md-down) {
+      & p {
+        position: absolute;
+        width: 100%;
+        right: -100%;
+        top: 0;
+        height: 100%;
+        padding-left: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+  @media (--md-up) {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 3rem;
+
+    & .avatar:first-child {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    & .avatar.empty {
+      display: none;
+    }
+  }
+}
+
+.avatar {
+  position: relative;
+  text-align: center;
+
+  &::before {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  & > div {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  & img {
+    display: block;
+    padding: var(--spacing-base);
+    border: 1px solid var(--color-matters-green);
+    /* border-image-slice: 1;
+    border-image-source: linear-gradient(
+      to left,
+      var(--color-gradient-green-start),
+      var(--color-gradient-green-end)
+    ); */
+    border-radius: 1.25rem;
+  }
+
+  & p {
+    margin-top: var(--spacing-x-tight);
+  }
+}

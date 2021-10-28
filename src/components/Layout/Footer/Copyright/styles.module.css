@@ -1,0 +1,18 @@
+.copyright {
+  @mixin inline-flex-center-all;
+
+  font-size: var(--font-size-sm-s);
+  line-height: 1.5rem;
+  color: var(--color-grey);
+  margin: 0 auto;
+}
+
+.designedBy {
+  display: none;
+
+  @media (--md-up) {
+    display: initial;
+
+    margin-left: var(--spacing-loose);
+  }
+}

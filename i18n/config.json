@@ -1,0 +1,14 @@
+[
+  {
+    "code": "zh",
+    "hrefLang": "zh-Hant",
+    "name": "Traditional Chinese",
+    "localName": "中文"
+  },
+  {
+    "code": "en",
+    "hrefLang": "en",
+    "name": "English",
+    "localName": "EN"
+  }
+]

@@ -1,0 +1,21 @@
+.roadmap {
+  padding: var(--spacing-xxx-loose) 0;
+}
+
+.time {
+  @mixin flex-center-all;
+}
+
+.fade {
+  @mixin flex-center-start;
+}
+
+.line {
+  flex-shrink: 0;
+  align-self: stretch;
+  width: var(--spacing-xx-loose);
+
+  @media (--md-up) {
+    width: 5rem;
+  }
+}

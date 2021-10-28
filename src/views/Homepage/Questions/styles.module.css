@@ -1,0 +1,6 @@
+.questions {
+  @mixin pixel-bg;
+
+  padding: var(--spacing-xxx-loose) 0;
+  background-image: url(/images/pixel-bg-5.png);
+}

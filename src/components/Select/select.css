@@ -1,0 +1,118 @@
+:root {
+  --reach-listbox: 1;
+}
+
+[data-reach-listbox-popover] {
+  display: block;
+  position: absolute;
+  margin-top: var(--spacing-x-tight);
+  min-width: min-content;
+  outline: none;
+
+  padding: var(--spacing-xx-tight) 0;
+  background: var(--color-black-light);
+  border-radius: 0.5rem;
+}
+
+[data-reach-listbox-popover]:focus-within {
+  box-shadow: 0 0 4px Highlight;
+  outline: -webkit-focus-ring-color auto 4px;
+}
+
+[data-reach-listbox-popover][hidden] {
+  display: none;
+}
+
+[data-reach-listbox-list] {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+[data-reach-listbox-list]:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+[data-reach-listbox-option] {
+  display: block;
+  margin: 0;
+  padding: var(--spacing-xx-tight) var(--spacing-tight);
+  margin: var(--spacing-xxx-tight) 0;
+  font-size: var(--font-size-md-s);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+
+  & svg {
+    opacity: 0;
+  }
+}
+
+[data-reach-listbox-option][data-current-nav] {
+  background: hsl(211, 81%, 46%);
+  color: hsl(0, 0%, 100%);
+}
+
+[data-reach-listbox-option][data-current-selected] {
+  font-weight: bolder;
+}
+
+[data-reach-listbox-option][data-current-selected][data-confirming] {
+  animation: flash 100ms;
+  animation-iteration-count: 1;
+}
+
+[data-reach-listbox-option][aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+[data-reach-listbox-button] {
+  @mixin inline-flex-center-all;
+
+  padding: var(--spacing-xx-tight) var(--spacing-tight);
+  background: var(--color-black-light);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+[data-reach-listbox-button][aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+[data-reach-listbox-arrow] {
+  margin-left: 0.5rem;
+  display: block;
+  font-size: 0.5em;
+}
+
+[data-reach-listbox-group-label] {
+  display: block;
+  margin: 0;
+  padding: 0.25rem 0.5rem;
+  white-space: nowrap;
+  user-select: none;
+  font-weight: bolder;
+}
+
+@keyframes flash {
+  0% {
+    background: hsla(211, 81%, 36%, 1);
+    color: hsl(0, 0%, 100%);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+    background: inherit;
+    color: inherit;
+  }
+  100% {
+    background: hsla(211, 81%, 36%, 1);
+    color: hsl(0, 0%, 100%);
+    opacity: 1;
+  }
+}

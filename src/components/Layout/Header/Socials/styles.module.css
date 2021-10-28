@@ -1,0 +1,26 @@
+.socials {
+  @mixin inline-flex-center-all;
+  font-size: 0;
+  display: none;
+
+  & a {
+    @mixin all-transition;
+
+    &:hover,
+    &:focus {
+      color: var(--color-matters-green);
+    }
+  }
+
+  & > * + * {
+    padding-left: var(--spacing-tight);
+  }
+
+  @media (--md-up) {
+    display: initial;
+
+    & > * + * {
+      padding-left: var(--spacing-loose);
+    }
+  }
+}

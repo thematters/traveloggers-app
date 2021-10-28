@@ -1,0 +1,18 @@
+.benefits {
+  @mixin pixel-bg;
+
+  padding: var(--spacing-xxx-loose) 0;
+  background-image: url(/images/pixel-bg-4.png);
+}
+
+.title {
+  margin-bottom: var(--spacing-loose);
+}
+
+.item {
+  margin-top: var(--spacing-loose);
+
+  & > * + * {
+    margin-top: var(--spacing-x-tight);
+  }
+}

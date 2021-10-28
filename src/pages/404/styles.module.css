@@ -1,0 +1,38 @@
+.hero {
+  @mixin flex-center-all;
+
+  min-height: 100vh;
+  text-align: center;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0) 50%,
+      rgba(0, 0, 0, 1)
+    ),
+    url("/images/hero.png");
+}
+
+.content {
+  margin: 0 auto;
+
+  max-width: 40.5rem;
+}
+
+.title {
+  font-family: var(--font-bitmap);
+  font-size: var(--font-size-xl);
+  line-height: 1;
+
+  @media (--sm-up) {
+    font-size: 3rem;
+  }
+}
+
+.intro {
+  margin-top: var(--spacing-base);
+  font-size: var(--font-size-sm-s);
+  line-height: 1.5rem;
+
+  @media (--sm-up) {
+    font-size: var(--font-size-md);
+  }
+}
