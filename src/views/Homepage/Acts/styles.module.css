@@ -1,6 +1,7 @@
 .container.active {
   @mixin expand-to-container;
 
+  min-height: 100vh;
   background-image:
     url("/images/background-stars.png"),
     linear-gradient(0deg, rgb(0 0 0 / 60%), rgb(0 0 0 / 60%)),
@@ -8,7 +9,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  z-index: 2;
+  z-index: var(--z-index-above);
   overflow: hidden;
 
   @media (--md-up) {
@@ -41,6 +42,7 @@
   & .slide.past:nth-child(1) {
     transform: translate(0, 100%);
   }
+
   & .slide.future:nth-child(2) {
     transform: translate(0, -100%);
   }
@@ -48,6 +50,7 @@
   & .slide.past:nth-child(2) {
     transform: translate(-100%, -100%);
   }
+
   & .slide.future:nth-child(3) {
     transform: translate(100%, 100%);
   }
@@ -55,6 +58,7 @@
   & .slide.future:nth-child(4) {
     transform: translate(-100%, 100%);
   }
+
   & .slide.past:nth-child(3) {
     transform: translate(100%, -100%);
   }
@@ -85,7 +89,6 @@
     border-radius: 1.25rem;
     padding: 1.5rem;
     background-color: rgb(3 3 3 / 80%);
-
     transition: transform 600ms ease-out, height 600ms ease-out;
 
     & h2 {
@@ -97,6 +100,7 @@
     & p {
       color: var(--color-grey-light);
     }
+
     & p + p {
       margin-top: var(--spacing-x-tight);
     }

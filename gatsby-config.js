@@ -102,6 +102,7 @@ module.exports = {
               "./src/styles/variables/colors.css",
               "./src/styles/variables/sizing.css",
               "./src/styles/variables/spacing.css",
+              "./src/styles/variables/z-index.css",
               "./src/styles/variables/typography.css",
             ],
           }),

@@ -19,7 +19,7 @@
     var(--color-gradient-green-start) 0%,
     var(--color-gradient-green-end) 100%
   );
-  z-index: 0;
+  /* z-index: 0; */
 
   &::before {
     position: absolute;
@@ -34,7 +34,7 @@
       var(--color-gradient-green-start-hover) 0%,
       var(--color-gradient-green-end-hover) 100%
     );
-    z-index: -1;
+    z-index: var(--z-index-behind);
     transition: opacity 0.2s ease-in-out;
     opacity: 0;
   }

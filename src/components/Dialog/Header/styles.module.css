@@ -22,7 +22,7 @@
   & .left {
     display: inline-flex;
     min-height: 1rem;
-    z-index: 2;
+    z-index: var(--z-index-dialog);
 
     & :global(> *) {
       line-height: 1.5rem;

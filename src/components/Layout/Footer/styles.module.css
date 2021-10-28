@@ -1,7 +1,7 @@
 .footer {
   padding: var(--spacing-xx-loose) var(--spacing-base);
   color: var(--color-white);
-  z-index: 1;
+  z-index: var(--z-index-header);
 
   @media (--md-up) {
     padding: var(--spacing-xx-loose) var(--spacing-xxx-loose);
