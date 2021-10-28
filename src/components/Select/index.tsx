@@ -55,7 +55,7 @@ export const Select: React.FC<SelectProps> = ({
             {value}
           </TextIcon>
         </ListboxButton>
-        <ListboxPopover>
+        <ListboxPopover portal={false}>
           <ListboxList>
             {options.map(option => (
               <ListboxOption key={option.value} value={option.value}>

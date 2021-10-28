@@ -9,9 +9,11 @@
   min-width: min-content;
   outline: none;
 
+  min-width: 3rem;
   padding: var(--spacing-xx-tight) 0;
   background: var(--color-black-light);
   border-radius: 0.5rem;
+  text-align: left;
 }
 
 [data-reach-listbox-popover]:focus-within {
