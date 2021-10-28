@@ -30,6 +30,20 @@ const Acts: React.FC<Props> = ({ active, setActive }) => {
     }
   }
 
+  /* const Slide = ({ stepIndex, imgSrc }: { stepIndex: number, imgSrc: string }) => (
+    <section
+      className={classNames({
+        [styles.slide]: true,
+        [styles.past]: step > stepIndex,
+        [styles.present]: step === stepIndex,
+        [styles.future]: step < stepIndex,
+      })}
+      // style={{ backgroundImage: `url("${imgSrc}")` }}
+    >
+      <img src={imgSrc} /> // why not moving with section transition?
+    </section>
+  ) */
+
   return (
     <section
       className={classNames({
@@ -37,6 +51,7 @@ const Acts: React.FC<Props> = ({ active, setActive }) => {
         [styles.active]: active,
       })}
     >
+      {/* <Slide stepIndex={0} imgSrc="/images/story-1.png" /> */}
       <section
         className={classNames({
           [styles.slide]: true,
@@ -44,10 +59,9 @@ const Acts: React.FC<Props> = ({ active, setActive }) => {
           [styles.present]: step === 0,
           [styles.future]: step < 0,
         })}
-        style={{
-          backgroundImage: `url("/images/story-1.png")`,
-        }}
-      ></section>
+      >
+        <img src="/images/story-1.png" />
+      </section>
       <section
         className={classNames({
           [styles.slide]: true,
@@ -55,10 +69,9 @@ const Acts: React.FC<Props> = ({ active, setActive }) => {
           [styles.present]: step === 1,
           [styles.future]: step < 1,
         })}
-        style={{
-          backgroundImage: `url("/images/story-2.png")`,
-        }}
-      ></section>
+      >
+        <img src="/images/story-2.png" />
+      </section>
       <section
         className={classNames({
           [styles.slide]: true,
@@ -66,10 +79,9 @@ const Acts: React.FC<Props> = ({ active, setActive }) => {
           [styles.present]: step === 2,
           [styles.future]: step < 2,
         })}
-        style={{
-          backgroundImage: `url("/images/story-3.png")`,
-        }}
-      ></section>
+      >
+        <img src="/images/story-3.png" />
+      </section>
       <section
         className={classNames({
           [styles.slide]: true,
@@ -84,15 +96,13 @@ const Acts: React.FC<Props> = ({ active, setActive }) => {
       <div
         className={styles.dialog}
         style={
-          isMediumUp
-            ? {
-                transform: [
-                  `translate(10rem,6rem)`,
-                  `translate(10rem,6rem)`,
-                  `translate(10rem,10rem)`,
-                  `translate(30rem,8rem)`,
-                ][step],
-              }
+          isMediumUp && 0 <= step && step <= 3
+            ? [
+                { top: "6rem", left: "16rem" },
+                { top: "6rem", left: "16rem" },
+                { top: "50%", left: "16rem", transform: "translate(0,-6rem)" },
+                { top: "50%", left: "50%", transform: "translate(0,-10rem)" },
+              ][step]
             : {}
         }
       >
