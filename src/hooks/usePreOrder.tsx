@@ -8,6 +8,7 @@ import { Lang, PRE_ORDER_MIN_QUANTITY, WalletErrorType } from "~/enums"
 import { getWalletErrorMessage } from "~/utils"
 
 type UsePreOrderProps = {
+  onPreOrderSend?: (tx: ethers.providers.TransactionResponse) => void
   onPreOrderConfirm?: (txReceipt: ethers.providers.TransactionReceipt) => void
 }
 
@@ -25,7 +26,10 @@ type ReducerState = {
 
 type ReducerDispatchActionType = "update"
 
-export const usePreOrder = ({ onPreOrderConfirm }: UsePreOrderProps) => {
+export const usePreOrder = ({
+  onPreOrderSend,
+  onPreOrderConfirm,
+}: UsePreOrderProps) => {
   const { locale } = useLocalization()
   const lang = locale as Lang
 
@@ -40,6 +44,7 @@ export const usePreOrder = ({ onPreOrderConfirm }: UsePreOrderProps) => {
    * States
    */
   const [loading, setLoading] = useState(false)
+  const [sending, setSending] = useState(false)
   const [error, setError] = useState("")
 
   const initialState: ReducerState = {
@@ -228,18 +233,23 @@ export const usePreOrder = ({ onPreOrderConfirm }: UsePreOrderProps) => {
     }
 
     setLoading(true)
+    setSending(true)
     setError("")
 
     try {
-      // send transaction and wait for confirmation
+      // send transaction
       const tx = await contract
         .connect(library.getSigner())
         .preOrder(ethers.BigNumber.from(state.qtySelected), {
           value: state.unitPrice.mul(state.qtySelected),
           gasLimit: state.gasLimit,
         })
-      const receipt = await tx.wait()
+      if (onPreOrderSend) {
+        onPreOrderSend(tx)
+      }
 
+      // wait for confirmation
+      const receipt = await tx.wait()
       if (onPreOrderConfirm) {
         onPreOrderConfirm(receipt)
       }
@@ -250,6 +260,7 @@ export const usePreOrder = ({ onPreOrderConfirm }: UsePreOrderProps) => {
       )
     }
 
+    setSending(false)
     setLoading(false)
   }
 
@@ -257,6 +268,7 @@ export const usePreOrder = ({ onPreOrderConfirm }: UsePreOrderProps) => {
     contract,
 
     loading,
+    sending,
     error,
     ...state,
 

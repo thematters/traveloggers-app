@@ -65,24 +65,24 @@ const IntroContent: React.FC<IntroContentProps> = ({
         </section>
 
         {walletError && (
-          <Dialog.ErrorMessage>
+          <Dialog.Message>
             <p>{getWalletErrorMessage({ error: walletError, lang })}</p>
-          </Dialog.ErrorMessage>
+          </Dialog.Message>
         )}
         {signInError && (
-          <Dialog.ErrorMessage>
+          <Dialog.Message>
             <p>Failed to Sign-In with Matters, please try again later.</p>
-          </Dialog.ErrorMessage>
+          </Dialog.Message>
         )}
         {registered && (
-          <Dialog.ErrorMessage>
+          <Dialog.Message>
             <p>This Ethereum account has registered the airdrop.</p>
-          </Dialog.ErrorMessage>
+          </Dialog.Message>
         )}
         {airdropError && (
-          <Dialog.ErrorMessage>
+          <Dialog.Message>
             <p>{airdropError}</p>
-          </Dialog.ErrorMessage>
+          </Dialog.Message>
         )}
       </Dialog.Content>
 

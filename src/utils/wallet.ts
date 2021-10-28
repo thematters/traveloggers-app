@@ -105,3 +105,15 @@ export const weiToGWei = (wei: ethers.BigNumber) => {
 export const maskAddress = (address: string) => {
   return `${address.substring(0, 6)}...${address.substring(address.length - 4)}`
 }
+
+export const toEtherscanUrl = (hash: string) => {
+  const etherscanDomain =
+    env.supportedChainId === 4 ? "rinkeby.etherscan.io" : "etherscan.io"
+  const maskedHash = maskAddress(hash)
+
+  return {
+    url: `https://${etherscanDomain}/tx/${hash}`,
+    hash,
+    maskedHash,
+  }
+}

@@ -52,13 +52,13 @@ const IntroContent: React.FC<IntroContentProps> = ({
         </section>
 
         {(walletError || preOrderError) && (
-          <Dialog.ErrorMessage>
+          <Dialog.Message>
             <p>
               {walletError
                 ? getWalletErrorMessage({ error: walletError, lang })
                 : preOrderError}
             </p>
-          </Dialog.ErrorMessage>
+          </Dialog.Message>
         )}
       </Dialog.Content>
 

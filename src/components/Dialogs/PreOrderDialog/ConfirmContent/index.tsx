@@ -1,7 +1,7 @@
 import { useWeb3React } from "@web3-react/core"
 import { ethers } from "ethers"
 import { useLocalization } from "gatsby-theme-i18n"
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 
 import {
   Dialog,
@@ -13,7 +13,7 @@ import {
 } from "~/components"
 import { Lang } from "~/enums"
 import { useAccount, usePreOrder } from "~/hooks"
-import { maskAddress, weiToEther, weiToGWei } from "~/utils"
+import { maskAddress, toEtherscanUrl, weiToEther, weiToGWei } from "~/utils"
 
 import * as styles from "./styles.module.css"
 
@@ -29,10 +29,17 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
   const { locale } = useLocalization()
   const { library } = useWeb3React<ethers.providers.Web3Provider>()
   const { account, maskedAddress, balance } = useAccount()
+
+  const [tx, setTx] = useState<ethers.providers.TransactionResponse | null>(
+    null
+  )
+  const { url: txUrl } = tx ? toEtherscanUrl(tx.hash) : { url: "" }
+
   const {
     contract,
 
     loading,
+    sending,
     error,
     qtySelected,
     qtyOrdered,
@@ -46,7 +53,10 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
     setQtySelected,
     preOrder,
     canPreOrder,
-  } = usePreOrder({ onPreOrderConfirm: onConfirm })
+  } = usePreOrder({
+    onPreOrderSend: (_tx: ethers.providers.TransactionResponse) => setTx(_tx),
+    onPreOrderConfirm: onConfirm,
+  })
 
   useEffect(() => {
     canPreOrder(true)
@@ -151,7 +161,7 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
                           ? "Choose quantity to order"
                           : "選擇預購數量"
                       }
-                      disabled={loading || !!error}
+                      disabled={loading}
                     />
                   </div>
                 </td>
@@ -178,14 +188,33 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
           </table>
 
           {error && (
-            <Dialog.ErrorMessage>
+            <Dialog.Message>
               <p>{error}</p>
-            </Dialog.ErrorMessage>
+            </Dialog.Message>
+          )}
+          {sending && (
+            <Dialog.Message type={tx ? "success" : "warning"}>
+              {!tx && <p>請到你的錢包確認交易</p>}
+              {tx && (
+                <p>
+                  交易確認中（
+                  <a
+                    href={txUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={styles.link}
+                  >
+                    在 Ethertscan 上查看
+                  </a>
+                  ）
+                </p>
+              )}
+            </Dialog.Message>
           )}
         </section>
       </Dialog.Content>
 
-      <Dialog.CTAButton onClick={preOrder} disabled={loading || !!error}>
+      <Dialog.CTAButton onClick={preOrder} disabled={loading}>
         {loading ? <IconSpinner /> : "確認預購"}
       </Dialog.CTAButton>
     </>

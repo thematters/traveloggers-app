@@ -1,6 +1,6 @@
 {
-  "name": "matters-nft",
-  "description": "Matters NFT site",
+  "name": "traveloggers-app",
+  "description": "traveloggers site",
   "version": "0.1.0",
   "author": "the matters <dev@matters.news>",
   "dependencies": {

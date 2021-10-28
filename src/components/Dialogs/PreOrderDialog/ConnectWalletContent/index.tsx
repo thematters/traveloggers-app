@@ -64,9 +64,9 @@ const ConnectWalletContent: React.FC<ConnectWalletContentProps> = ({
         </section>
 
         {error && (
-          <Dialog.ErrorMessage>
+          <Dialog.Message>
             <p>{getWalletErrorMessage({ error, lang })}</p>
-          </Dialog.ErrorMessage>
+          </Dialog.Message>
         )}
       </section>
     </Dialog.Content>
