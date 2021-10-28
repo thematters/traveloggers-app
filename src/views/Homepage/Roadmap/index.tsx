@@ -1,6 +1,14 @@
-import React from "react"
+import React, { useContext } from "react"
 
-import { Button, Container, Section } from "~/components"
+import env from "@/.env.json"
+import {
+  AirdriopDialog,
+  Button,
+  Container,
+  PreOrderDialog,
+  RoadmapContext,
+  Section,
+} from "~/components"
 import { useResponsive } from "~/hooks"
 
 import * as Events from "./events"
@@ -10,12 +18,20 @@ import Timeline from "./timeline"
 
 const Roadmap = () => {
   const isMediumUp = useResponsive("md-up")
-  const isPreorderActive = false
-  const isAirdropActive = false
-  const isOpenSaleActive = false
+  const {
+    isPreOrderStarted,
+    isPreOrderEnded,
+    isAirdropStarted,
+    isAirdropEnded,
+    isOpenSaleStarted,
+    isOpenSaleEnded,
+  } = useContext(RoadmapContext)
+  const isPreOrderActive = isPreOrderStarted && !isPreOrderEnded
+  const isAirdropActive = isAirdropStarted && !isAirdropEnded
+  const isOpenSaleActive = isOpenSaleStarted && !isOpenSaleEnded
 
   return (
-    <section className={styles.roadmap}>
+    <section className={styles.roadmap} id="roadmap">
       <Container>
         <Section.Title>Roadmap</Section.Title>
 
@@ -33,16 +49,21 @@ const Roadmap = () => {
             <Timeline state="ready" />
           </section>
           <Infobox
-            active={isPreorderActive}
+            active={isPreOrderActive}
             button={
-              <Button
-                disabled={!isPreorderActive}
-                color={isPreorderActive ? "primary" : "black"}
-                width={isMediumUp ? "12.5rem" : "100%"}
-                spacingY="0.75rem"
-              >
-                尚未開始
-              </Button>
+              <PreOrderDialog>
+                {({ openDialog }) => (
+                  <Button
+                    disabled={!isPreOrderActive}
+                    color={isPreOrderActive ? "primary" : "black"}
+                    width={isMediumUp ? "12.5rem" : "100%"}
+                    spacingY="0.75rem"
+                    onClick={openDialog}
+                  >
+                    {isPreOrderActive ? "參與預售" : "尚未開始"}
+                  </Button>
+                )}
+              </PreOrderDialog>
             }
             {...Events.Event1}
           />
@@ -55,14 +76,19 @@ const Roadmap = () => {
           <Infobox
             active={isAirdropActive}
             button={
-              <Button
-                disabled={!isAirdropActive}
-                color={isPreorderActive ? "primary" : "black"}
-                width={isMediumUp ? "12.5rem" : "100%"}
-                spacingY="0.75rem"
-              >
-                尚未開始
-              </Button>
+              <AirdriopDialog>
+                {({ openDialog }) => (
+                  <Button
+                    disabled={!isAirdropActive}
+                    color={isAirdropActive ? "primary" : "black"}
+                    width={isMediumUp ? "12.5rem" : "100%"}
+                    spacingY="0.75rem"
+                    onClick={openDialog}
+                  >
+                    {isAirdropActive ? "參與空頭" : "尚未開始"}
+                  </Button>
+                )}
+              </AirdriopDialog>
             }
             {...Events.Event2}
           />
@@ -80,8 +106,10 @@ const Roadmap = () => {
                 color={isOpenSaleActive ? "primary" : "black"}
                 width={isMediumUp ? "12.5rem" : "100%"}
                 spacingY="0.75rem"
+                htmlHref={isOpenSaleActive ? env.socialUrls.opensea : undefined}
+                htmlTarget="_blank"
               >
-                尚未開始
+                {isOpenSaleActive ? "前往查看" : "尚未開始"}
               </Button>
             }
             {...Events.Event3}

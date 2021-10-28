@@ -8,7 +8,7 @@ import { ClientContext, GraphQLClient } from "graphql-hooks"
 import React from "react"
 
 import env from "@/.env.json"
-import { AuthManager, ViewerProvider } from "~/components"
+import { AuthManager, RoadmapProvider, ViewerProvider } from "~/components"
 
 const client = new GraphQLClient({
   url: env.mattersEndpoint,
@@ -27,9 +27,11 @@ const Layout: React.FC = ({ children }) => {
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
       <ClientContext.Provider value={client}>
-        <ViewerProvider>
-          <AuthManager>{children}</AuthManager>
-        </ViewerProvider>
+        <RoadmapProvider>
+          <ViewerProvider>
+            <AuthManager>{children}</AuthManager>
+          </ViewerProvider>
+        </RoadmapProvider>
       </ClientContext.Provider>
     </Web3ReactProvider>
   )

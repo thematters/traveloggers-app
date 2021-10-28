@@ -1,13 +1,16 @@
-/* Container
-   ========================================================================== */
+:root {
+  --button-radius: 10rem;
+}
+
 .button {
   @mixin all-transition;
   @mixin inline-flex-center-all;
 
-  border-radius: 10rem;
+  border-radius: var(--button-radius);
 }
 
 .primary {
+  position: relative;
   color: var(--color-white);
   font-weight: var(--font-weight-medium);
   background: var(--color-matters-green);
@@ -16,25 +19,52 @@
     var(--color-gradient-green-start) 0%,
     var(--color-gradient-green-end) 100%
   );
+  z-index: 1;
 
-  /* &:hover,
-  &:focus {
+  &::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: var(--button-radius);
     background: linear-gradient(
       90deg,
       var(--color-gradient-green-start-hover) 0%,
       var(--color-gradient-green-end-hover) 100%
     );
-  } */
+    z-index: -1;
+    transition: opacity 0.2s ease-in-out;
+    opacity: 0;
+  }
+
+  &:hover,
+  &:focus {
+    &::before {
+      opacity: 1;
+    }
+  }
 }
 
 .black {
   background: var(--color-black);
   color: var(--color-white);
   font-weight: var(--font-weight-normal);
+
+  &:hover,
+  &:focus {
+    background: var(--color-black-light);
+  }
 }
 
 .blackLight {
   background: var(--color-black-light);
   color: var(--color-white);
   font-weight: var(--font-weight-normal);
+
+  &:hover,
+  &:focus {
+    background: var(--color-grey-darker);
+  }
 }

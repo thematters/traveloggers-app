@@ -32,6 +32,7 @@
     "gatsby-theme-i18n": "^2.0.0",
     "gatsby-transformer-sharp": "^4.0.0",
     "graphql-hooks": "^5.4.1",
+    "jump.js": "^1.0.2",
     "lodash": "^4.17.21",
     "postcss": "^8.3.11",
     "postcss-mixins": "^8.1.0",
@@ -43,6 +44,7 @@
     "react-waypoint": "^10.1.0"
   },
   "devDependencies": {
+    "@types/jump.js": "^1.0.4",
     "@types/react-helmet": "^6.1.4",
     "@typescript-eslint/eslint-plugin": "^5.1.0",
     "@typescript-eslint/parser": "^5.1.0",

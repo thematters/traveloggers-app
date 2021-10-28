@@ -1,5 +1,6 @@
 import React from "react"
 
+import env from "@/.env.json"
 import { IconDiscord, IconTwitter } from "~/components"
 
 import * as styles from "./styles.module.css"
@@ -7,11 +8,11 @@ import * as styles from "./styles.module.css"
 const Socials = () => {
   return (
     <section className={styles.socials}>
-      <a href="https://matters.news">
+      <a href={env.socialUrls.discord}>
         <IconDiscord size="md" />
       </a>
 
-      <a href="https://matters.news">
+      <a href={env.socialUrls.twitter}>
         <IconTwitter size="md" />
       </a>
     </section>

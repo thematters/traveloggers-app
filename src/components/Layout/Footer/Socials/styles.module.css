@@ -24,3 +24,15 @@
     display: initial;
   }
 }
+
+.icons,
+.texts {
+  & a {
+    @mixin all-transition;
+
+    &:hover,
+    &:focus {
+      color: var(--color-matters-green);
+    }
+  }
+}

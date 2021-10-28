@@ -1,6 +1,7 @@
 import classNames from "classnames"
 import { LocalizedLink as Link, useLocalization } from "gatsby-theme-i18n"
-import React, { useState } from "react"
+import jump from "jump.js"
+import React, { useContext, useState } from "react"
 import { Waypoint } from "react-waypoint"
 
 import {
@@ -9,6 +10,7 @@ import {
   IconLogo,
   LanguageSwitch,
   PreOrderDialog,
+  RoadmapContext,
   TextIcon,
 } from "~/components"
 import { Lang } from "~/enums"
@@ -34,6 +36,19 @@ const Header: React.FC<HeaderProps> = ({ originalPath }) => {
 
   const handlePositionChange = ({ currentPosition }: Waypoint.CallbackArgs) => {
     setActive(currentPosition === "above")
+  }
+
+  const {
+    isPreOrderStarted,
+    isPreOrderEnded,
+    isAirdropStarted,
+    isAirdropEnded,
+  } = useContext(RoadmapContext)
+  const isPreOrderActive = isPreOrderStarted && !isPreOrderEnded
+  const isAirdropActive = isAirdropStarted && !isAirdropEnded
+
+  const scrollToRoadmap = () => {
+    jump("#roadmap", { offset: -100 })
   }
 
   return (
@@ -63,7 +78,7 @@ const Header: React.FC<HeaderProps> = ({ originalPath }) => {
                   color="primary"
                   spacingX="1.25rem"
                   spacingY=".5rem"
-                  onClick={openDialog}
+                  onClick={isPreOrderActive ? openDialog : scrollToRoadmap}
                 >
                   {locale === Lang.en ? "Pre-order" : "預購"}
                 </Button>
@@ -78,7 +93,7 @@ const Header: React.FC<HeaderProps> = ({ originalPath }) => {
                   color="primary"
                   spacingX="1.25rem"
                   spacingY=".5rem"
-                  onClick={openDialog}
+                  onClick={isAirdropActive ? openDialog : scrollToRoadmap}
                 >
                   {locale === Lang.en ? "Airdrop" : "空投"}
                 </Button>
