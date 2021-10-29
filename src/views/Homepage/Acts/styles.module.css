@@ -15,7 +15,7 @@
     background-image:
       url("/images/background-stars.png"),
       linear-gradient(0deg, rgb(0 0 0 / 60%), rgb(0 0 0 / 60%)),
-      url(/images/story-bg-md.png);
+      url("/images/story-bg-md.png");
   }
 
   & .slide {
@@ -78,29 +78,34 @@
     @media (--md-up) {
       top: 0;
       left: 0;
-      width: 24rem;
+      width: 28rem;
     }
 
     border: 1px solid black;
-    border-radius: 0.5rem;
-    padding: 1rem;
-    background-color: rgb(1 1 1 / 50%);
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    background-color: rgb(3 3 3 / 80%);
 
     transition: transform 600ms ease-out, height 600ms ease-out;
 
     & h2 {
-      font-size: var(--font-size-xm);
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--font-size-lg);
+      padding-bottom: var(--spacing-tight);
     }
 
     & p {
-      font-size: var(--font-size-md);
+      color: var(--color-grey-light);
+    }
+    & p + p {
+      margin-top: var(--spacing-x-tight);
     }
 
-    & div {
+    & p + div {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 0.5rem;
+      margin-top: var(--spacing-base);
     }
   }
 }
