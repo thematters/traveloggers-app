@@ -19,7 +19,7 @@
     var(--color-gradient-green-start) 0%,
     var(--color-gradient-green-end) 100%
   );
-  z-index: 1;
+  z-index: 0;
 
   &::before {
     position: absolute;
