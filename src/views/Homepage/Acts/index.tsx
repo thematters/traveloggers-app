@@ -6,6 +6,7 @@ import { Button } from "~/components"
 import { Lang } from "~/enums"
 import { useResponsive } from "~/hooks"
 
+import Slide from "./slide"
 import * as styles from "./styles.module.css"
 
 type Props = {
@@ -30,20 +31,6 @@ const Acts: React.FC<Props> = ({ active, setActive }) => {
     }
   }
 
-  /* const Slide = ({ stepIndex, imgSrc }: { stepIndex: number, imgSrc: string }) => (
-    <section
-      className={classNames({
-        [styles.slide]: true,
-        [styles.past]: step > stepIndex,
-        [styles.present]: step === stepIndex,
-        [styles.future]: step < stepIndex,
-      })}
-      // style={{ backgroundImage: `url("${imgSrc}")` }}
-    >
-      <img src={imgSrc} /> // why not moving with section transition?
-    </section>
-  ) */
-
   return (
     <section
       className={classNames({
@@ -51,48 +38,10 @@ const Acts: React.FC<Props> = ({ active, setActive }) => {
         [styles.active]: active,
       })}
     >
-      {/* <Slide stepIndex={0} imgSrc="/images/story-1.png" /> */}
-      <section
-        className={classNames({
-          [styles.slide]: true,
-          [styles.past]: step > 0,
-          [styles.present]: step === 0,
-          [styles.future]: step < 0,
-        })}
-      >
-        <img src="/images/story-1.png" />
-      </section>
-      <section
-        className={classNames({
-          [styles.slide]: true,
-          [styles.past]: step > 1,
-          [styles.present]: step === 1,
-          [styles.future]: step < 1,
-        })}
-      >
-        <img src="/images/story-2.png" />
-      </section>
-      <section
-        className={classNames({
-          [styles.slide]: true,
-          [styles.past]: step > 2,
-          [styles.present]: step === 2,
-          [styles.future]: step < 2,
-        })}
-      >
-        <img src="/images/story-3.png" />
-      </section>
-      <section
-        className={classNames({
-          [styles.slide]: true,
-          [styles.past]: step > 3,
-          [styles.present]: step === 3,
-          [styles.future]: step < 3,
-        })}
-        style={{
-          backgroundImage: `url("/images/story-4.png")`,
-        }}
-      ></section>
+      <Slide step={step} stepIndex={0} imgSrc="/images/story-1.png" />
+      <Slide step={step} stepIndex={1} imgSrc="/images/story-2.png" />
+      <Slide step={step} stepIndex={2} imgSrc="/images/story-3.png" />
+      <Slide step={step} stepIndex={3} imgSrc="/images/story-4.png" />
       <div
         className={styles.dialog}
         style={
