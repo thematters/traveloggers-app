@@ -49,8 +49,8 @@ const Acts: React.FC<Props> = ({ active, setActive }) => {
             ? [
                 { top: "6rem", left: "16rem" },
                 { top: "6rem", left: "16rem" },
-                { top: "50%", left: "16rem", transform: "translate(0,-6rem)" },
-                { top: "50%", left: "50%", transform: "translate(0,-10rem)" },
+                { top: "50%", left: "16rem", transform: "translateY(-10rem)" },
+                { top: "50%", left: "50%", transform: "translateY(-10rem)" },
               ][step]
             : {}
         }
@@ -58,9 +58,14 @@ const Acts: React.FC<Props> = ({ active, setActive }) => {
         {step === 0 ? (
           <>
             <h2>
-              {locale === Lang.en
-                ? "The old days of exchanging information and energy in voyaging"
-                : "在銀河宇宙遨遊，交換信息和能源的日子"}
+              {locale === Lang.en ? (
+                <>
+                  Traveling in Galactic Universe, Exchanging Information and
+                  Energy
+                </>
+              ) : (
+                <>在銀河宇宙遨遊，交換信息和能源的日子</>
+              )}
             </h2>
             <p>
               {locale === Lang.en ? (
@@ -110,7 +115,7 @@ const Acts: React.FC<Props> = ({ active, setActive }) => {
           <>
             <h2>
               {locale === Lang.en ? (
-                <>The born of rotating clock, connected stars into a network</>
+                <>The Rotating Clock Was Born, Forming a Star Network</>
               ) : (
                 <>自轉鐘誕生，讓每顆星星之間連成星網</>
               )}
@@ -143,7 +148,10 @@ const Acts: React.FC<Props> = ({ active, setActive }) => {
           <>
             <h2>
               {locale === Lang.en ? (
-                <>Algorithms were widening the gap</>
+                <>
+                  Algorithms Widen The Gap Between Prosperity and
+                  Marginalization
+                </>
               ) : (
                 <>演算法使差距拉大，繁盛與邊緣化形成斷層</>
               )}
@@ -189,7 +197,7 @@ const Acts: React.FC<Props> = ({ active, setActive }) => {
           <>
             <h2>
               {locale === Lang.en ? (
-                `"Freedom from the Rotating Clock"`
+                <>Without The Rotating Clock, Can a New Universe Emerge</>
               ) : (
                 <>卸下自轉鐘，能否建立另一個宇宙</>
               )}
