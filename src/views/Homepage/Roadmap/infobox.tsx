@@ -3,15 +3,31 @@ import React from "react"
 
 import * as styles from "./infobox.module.css"
 
+interface Stage {
+  name: string
+  startDate: string
+  startTime: string
+  endDate?: string
+  endTime?: string
+}
+
 interface InfoboxProps {
   active: boolean
-  title: React.ReactNode
+  event: React.ReactNode
   content: React.ReactNode
-  time: React.ReactNode
+  stage1?: Stage
+  stage2?: Stage
   button: React.ReactNode
 }
 
-const Infobox = ({ active, title, content, time, button }: InfoboxProps) => {
+const Infobox = ({
+  active,
+  event,
+  content,
+  stage1,
+  stage2,
+  button,
+}: InfoboxProps) => {
   const containerClasses = classNames({
     infobox: true,
     [styles.container]: true,
@@ -21,13 +37,41 @@ const Infobox = ({ active, title, content, time, button }: InfoboxProps) => {
   return (
     <section className={containerClasses}>
       <section className={styles.info}>
-        <section className={styles.title}>{title}</section>
+        <section className={styles.title}>{event}</section>
         <section className={styles.content}>{content}</section>
       </section>
 
       <section className={styles.timeDetails}>
-        <p className={styles.timezone}>香港/台灣時區</p>
-        <section className={styles.time}>{time}</section>
+        <section className={styles.stages}>
+          {stage1 && (
+            <section className={styles.stage}>
+              <p className={styles.event}>{stage1.name}</p>
+              <p className={styles.date}>{stage1.startDate}</p>
+              <p className={styles.time}>{stage1.startTime}</p>
+              {stage1.endDate && (
+                <>
+                  <p className={styles.dash}>|</p>
+                  <p className={styles.date}>{stage1.endDate}</p>
+                  <p className={styles.time}>{stage1.endTime}</p>
+                </>
+              )}
+            </section>
+          )}
+          {stage2 && (
+            <section className={styles.stage}>
+              <p className={styles.event}>{stage2.name}</p>
+              <p className={styles.date}>{stage2.startDate}</p>
+              <p className={styles.time}>{stage2.startTime}</p>
+              {stage2.endDate && (
+                <>
+                  <p className={styles.dash}>|</p>
+                  <p className={styles.date}>{stage2.endDate}</p>
+                  <p className={styles.time}>{stage2.endTime}</p>
+                </>
+              )}
+            </section>
+          )}
+        </section>
         <section className={styles.button}>{button}</section>
       </section>
     </section>

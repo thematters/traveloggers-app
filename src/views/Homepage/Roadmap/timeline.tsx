@@ -11,7 +11,7 @@ import { useResponsive } from "~/hooks"
 import * as styles from "./timeline.module.css"
 
 interface TimelineProps {
-  state: "ready" | "ongoing" | "finished"
+  state: "upcoming" | "open" | "closed"
   fade?: "in" | "out"
 }
 
@@ -34,14 +34,14 @@ const Timeline = ({ state, fade }: TimelineProps) => {
 
   const lineClasses = classNames({
     [styles.line]: true,
-    [styles.lineFinished]: state === "finished",
+    [styles.lineClosed]: state === "closed",
   })
 
   return (
     <section className={styles.container}>
-      {state === "ready" && <IconTimelineReady size={iconSize} />}
-      {state === "ongoing" && <IconTimelineOngoing size={iconSize} />}
-      {state === "finished" && <IconTimelineFinished size={iconSize} />}
+      {state === "upcoming" && <IconTimelineReady size={iconSize} />}
+      {state === "open" && <IconTimelineOngoing size={iconSize} />}
+      {state === "closed" && <IconTimelineFinished size={iconSize} />}
       <div className={lineClasses} />
     </section>
   )

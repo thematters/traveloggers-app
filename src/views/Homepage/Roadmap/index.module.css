@@ -1,5 +1,17 @@
 .roadmap {
+  @mixin pixel-bg;
+
   padding: var(--spacing-xxx-loose) 0;
+  background-image: url(/images/pixel-bg-2.png);
+}
+
+.timezone {
+  font-size: var(--font-size-md-s);
+
+  @media(--md-up) {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-medium);
+  }
 }
 
 .time {

@@ -24,56 +24,67 @@ const Questions = () => {
       <Container>
         <Section.Title>FAQ</Section.Title>
 
-        <Expandable customStyles={{ paddingTop: "1.5rem" }}
+        <Expandable
+          customStyles={{ paddingTop: "1.5rem" }}
           title={texts.question1}
-          content={(
+          content={
             <>
-              <p>{texts.answer1_1}</p><br/>
+              <p>{texts.answer1_1}</p>
+              <br />
               <p>{texts.answer1_2}</p>
             </>
-          )}
+          }
         />
-        <Expandable {...expandableStyles}
+        <Expandable
+          {...expandableStyles}
           title={texts.question2}
-          content={(<p>{texts.answer2}</p>)}
+          content={<p>{texts.answer2}</p>}
         />
-        <Expandable {...expandableStyles}
+        <Expandable
+          {...expandableStyles}
           title={texts.question3}
-          content={(<p>{texts.answer3}</p>)}
+          content={<p>{texts.answer3}</p>}
         />
-        <Expandable {...expandableStyles}
+        <Expandable
+          {...expandableStyles}
           title={texts.question4}
-          content={(
+          content={
             <>
-              <p>{texts.answer4_1}</p><br/>
-              <a href={link4} target="_blank" rel="noreferrer" className={styles.link}>
+              <p>{texts.answer4_1}</p>
+              <br />
+              <a href={link4} target="_blank" rel="noreferrer">
                 {texts.answer4_2}
               </a>
             </>
-          )}
+          }
         />
-        <Expandable {...expandableStyles}
+        <Expandable
+          {...expandableStyles}
           title={texts.question5}
-          content={(
+          content={
             <>
-              <p>{texts.answer5_1}</p><br/>
+              <p>{texts.answer5_1}</p>
+              <br />
               <p>{texts.answer5_2}</p>
             </>
-          )}
+          }
         />
-        <Expandable {...expandableStyles}
+        <Expandable
+          {...expandableStyles}
           title={texts.question6}
-          content={(
+          content={
             <>
-              <p>{texts.answer6_1}</p><br/>
-              <p>{texts.answer6_2}</p><br/>
+              <p>{texts.answer6_1}</p>
+              <br />
+              <p>{texts.answer6_2}</p>
+              <br />
               {/*
-              <a href="" target="_blank" rel="noreferrer" className={styles.link}>
+              <a href="" target="_blank" rel="noreferrer">
                 {texts.answer6_3}
               </a>
               */}
             </>
-          )}
+          }
         />
         {/*
         <Expandable {...expandableStyles}
@@ -81,9 +92,10 @@ const Questions = () => {
           content={(<a>{texts.answer7}</a>)}
         />
         */}
-        <Expandable {...expandableStyles}
+        <Expandable
+          {...expandableStyles}
           title={texts.question8}
-          content={(<p>{texts.answer8}</p>)}
+          content={<p>{texts.answer8}</p>}
         />
       </Container>
     </section>
