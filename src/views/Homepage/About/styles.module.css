@@ -1,5 +1,5 @@
 :root {
-  --intro-padding-right: 7rem;
+  --intro-padding-right: 6rem;
   --logo-size: 10rem;
   --logo-size-md-up: 15rem;
 }
@@ -55,7 +55,7 @@
 
   @media (--md-up) {
     & svg {
-      margin-top: calc(var(--spacing-xx-loose) * -1);
+      margin-top: calc(var(--spacing-xxx-loose) * -1);
       width: var(--logo-size-md-up);
       height: var(--logo-size-md-up);
     }
