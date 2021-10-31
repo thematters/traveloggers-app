@@ -230,7 +230,7 @@ const Acts: React.FC<Props> = ({ active, setActive }) => {
                     and began their new journey in Matterverse. The story
                     continues. &nbsp;
                     <a
-                      href="https://matters.news/"
+                      href="https://matters.news/@hi176/馬特宇宙共建計畫-24小時故事創作挑戰-最大獎將免費獲得-nft-bafyreiguse66l5cfdvosfka34zsc2saxs2ovimyacgoqhux2dnrlp3k2bq"
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -244,7 +244,7 @@ const Acts: React.FC<Props> = ({ active, setActive }) => {
                     有能看見死去的星星的研究者......他們一起離開了銀河宇宙，
                     馬特宇宙，是他們新的征途。故事還在繼續中。
                     <a
-                      href="https://matters.news/"
+                      href="https://matters.news/@hi176/馬特宇宙共建計畫-24小時故事創作挑戰-最大獎將免費獲得-nft-bafyreiguse66l5cfdvosfka34zsc2saxs2ovimyacgoqhux2dnrlp3k2bq"
                       target="_blank"
                       rel="noreferrer"
                     >
