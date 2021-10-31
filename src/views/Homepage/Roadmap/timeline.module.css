@@ -15,7 +15,7 @@
   }
 }
 
-.lineFinished {
+.lineClosed {
   background: var(--color-matters-green);
   background:
     linear-gradient(
@@ -29,7 +29,8 @@
   height: 4.5rem;
 }
 
-.readyFadein {
+.upcomingFadein,
+.openFadein {
   background: var(--color-grey);
   background:
     linear-gradient(
@@ -39,12 +40,13 @@
     );
 }
 
-.readyFadeout {
+.upcomingFadeout,
+.openFadeout {
   background: var(--color-grey);
   background: linear-gradient(0deg, rgb(0 0 0 / 0%) 0%, var(--color-grey) 100%);
 }
 
-.finishedFadein {
+.closedFadein {
   background: var(--color-gradient-green-start);
   background:
     linear-gradient(
@@ -55,7 +57,7 @@
     );
 }
 
-.finishedFadeout {
+.closedFadeout {
   background: var(--color-gradient-green-start);
   background:
     linear-gradient(
