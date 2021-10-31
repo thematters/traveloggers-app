@@ -18,4 +18,13 @@
   & > * + * {
     margin-top: var(--spacing-x-tight);
   }
+
+  & h4:before {
+    content: "";
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin: 0.25rem 0.5rem 0.25rem 0;
+    background: gold;
+  }
 }
