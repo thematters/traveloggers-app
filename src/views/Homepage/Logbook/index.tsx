@@ -18,25 +18,25 @@ const Logbook = () => {
           <section className={styles.text}>
             <section className={styles.title}>
               <Section.Title>
-                {locale === Lang.en ? "Logbook" : "航行日誌"}
+                {locale === Lang.en ? "The Logbook" : "航行日誌"}
               </Section.Title>
             </section>
 
             <Section.Content>
               <p>
                 {locale === Lang.en
-                  ? "Write down your logbook and pass your voyage message to the next voyager."
-                  : "Traveloggers 遠航者，所能開啟的第一個實驗權限，是以 NFT 形式寫下、並傳遞航行日誌。"}
+                  ? "Traveloggers can record their journey on NFT and pass the logbook to the next Traveloggers."
+                  : "Traveloggers 可以向 NFT 中寫下、並傳遞航行日誌。"}
               </p>
               <p>
                 {locale === Lang.en
-                  ? `On the journey to Matterverse, the owner of Traveloggers can sign in to the personal page of Matters and write down their logbookvoyage log. When your avatar is passed on to the next owner, the next owner can unlock your log content.`
-                  : `Traveloggers 頭像的擁有者可以在此頁面登入錢包後或者 通過 Matters 的個人頁寫下自己的航行日誌。當你将頭像移轉給下一任擁有者時，下一任擁有者可以解鎖你的日誌內容。`}
+                  ? "Each Travelogger avatar comes with a unique logbook, on which only the avatar’s owner can record their journey. When the avatar is passed on to the next owner, the next owner can review and own all the former log contents."
+                  : "每個 Traveloggers 頭像隱藏了獨一無二的航行日誌本，只有擁有者可以向其中添加紀錄。將頭像移轉給下一任擁有者時，下一任擁有者可以看到前任的日誌內容。當你獲得一個頭像時，也獲得了這個頭像歷任擁有者共同創作的航行日誌。"}
               </p>
               <p>
                 {locale === Lang.en
-                  ? `The voyage log will enter Matterverse with the avatar, and will record the collective memory of the avatar owners.`
-                  : `航行日誌是 Traveloggers 身份的一部分，也是 Traveloggers 擁有者的集體記憶密碼。`}
+                  ? "The logbook is part of Traveloggers, as well as the key to the collective memory of the Traveloggers’ owners."
+                  : "航行日誌是 Traveloggers 身份的一部分，也是Traveloggers 擁有者的集體記憶密碼。"}
               </p>
             </Section.Content>
           </section>

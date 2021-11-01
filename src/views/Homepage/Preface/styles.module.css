@@ -1,0 +1,44 @@
+.preface {
+  @mixin flex-center-all;
+	@mixin pixel-bg;
+
+	background-position: bottom;
+	padding: var(--spacing-xxx-loose) 0;
+
+	@media(--md-up) {
+		padding: 15rem 0 12rem;
+  	background-image: url("/images/pixel-bg-0.png");
+	}
+
+	@media(--lg-up) {
+		padding: 22rem 0;
+	}
+}
+
+.contents {
+  @mixin flex-center-start;
+
+	flex-direction: column-reverse;
+
+	& section {
+		width: 100%;
+	}
+
+	@media(--md-up) {
+		@mixin flex-center-space-between;
+
+		flex-direction: row;
+
+		& section {
+			width: 50%;
+		}
+	}
+}
+
+.image {
+	margin-bottom: var(--spacing-xx-loose);
+
+	@media(--md-up) {
+		display: none;
+	}
+}
