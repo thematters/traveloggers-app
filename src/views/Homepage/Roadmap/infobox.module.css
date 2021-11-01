@@ -56,6 +56,10 @@
   line-height: 1.5rem;
   padding-top: var(--spacing-tight);
 
+  & :global(a) {
+    color: var(--color-gradient-green-start);
+  }
+
   @media(--md-up) {
     font-size: var(--font-size-md-s);
   }
