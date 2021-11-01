@@ -59,6 +59,8 @@ export const SEO: React.FC<SEOProps> = ({
     "Ethereum",
     "Blockchain",
     "ERC-721",
+    "以太坊",
+    "區塊鏈",
   ]
 
   return (
