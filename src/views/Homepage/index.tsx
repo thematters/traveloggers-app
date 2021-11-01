@@ -9,6 +9,7 @@ import Benefits from "~/views/Homepage/Benefits"
 import CharacterIntro from "~/views/Homepage/CharacterIntro"
 import Hero from "~/views/Homepage/Hero"
 import Logbook from "~/views/Homepage/Logbook"
+import Preface from "~/views/Homepage/Preface"
 import Questions from "~/views/Homepage/Questions"
 import Roadmap from "~/views/Homepage/Roadmap"
 import ScrollDown from "~/views/Homepage/ScrollDown"
@@ -34,6 +35,7 @@ const Homepage: React.FC<PageProps> = ({ pageContext: { originalPath } }) => {
       <main className={classNames({ [styles.storyActive]: storyActive })}>
         <Acts active={storyActive} setActive={setStoryActive} />
         <Hero setStoryActive={setStoryActive} />
+        <Preface />
         <Logbook />
         <ScrollDown />
         <Roadmap />
