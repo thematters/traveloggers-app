@@ -1,7 +1,7 @@
 import { useWeb3React } from "@web3-react/core"
 import { ethers } from "ethers"
 import { useLocalization } from "gatsby-theme-i18n"
-import React, { useContext, useEffect } from "react"
+import React, { useContext } from "react"
 
 import {
   ConnectedAccountButton,
@@ -43,19 +43,13 @@ const IntroContent: React.FC<IntroContentProps> = ({
   const isConnectWallet = !!account && !walletError
   const canAirdrop = isSignedIn && isConnectWallet && !registered
 
-  useEffect(() => {
-    if (registered) {
-      gotoCompleted()
-    }
-  }, [registered])
-
   return (
     <>
       <Dialog.Content>
         <p>
-          確認錢包地址與 Matters
-          帳號可進行綁定，每位用戶只能參與一次空投，我們會將此帳號與錢包綁定，並將
-          NFT 空投到此錢包。
+          {locale === Lang.en
+            ? "Make sure your wallet address is able to connect to your Matters.news account. Each user can only register for airdrops once. We will connect this account to your wallet and airdrop Traveloggers to this wallet"
+            : "確認錢包地址與 Matters.news 帳戶可進行綁定。每位用戶只能參與一次空投登記，我們會將此帳戶與錢包綁定，並將 Traveloggers 空投到此錢包。"}
         </p>
 
         <section className={styles.buttons}>
@@ -71,12 +65,20 @@ const IntroContent: React.FC<IntroContentProps> = ({
         )}
         {signInError && (
           <Dialog.Message>
-            <p>Failed to Sign-In with Matters, please try again later.</p>
+            <p>
+              {locale === Lang.en
+                ? "Failed to log in, please try again later."
+                : "登入失敗，請稍候再試"}
+            </p>
           </Dialog.Message>
         )}
         {registered && (
           <Dialog.Message>
-            <p>This Ethereum account has registered the airdrop.</p>
+            <p>
+              {locale === Lang.en
+                ? "This wallet or Matters acccount already had registered for airdrop, please use another wallet or account."
+                : "此錢包或 Matters 帳戶已有參與空投，請變更以繼續操作"}
+            </p>
           </Dialog.Message>
         )}
         {airdropError && (
@@ -88,9 +90,13 @@ const IntroContent: React.FC<IntroContentProps> = ({
 
       <Dialog.CTAButton
         disabled={!canAirdrop || registering}
-        onClick={registerAirdrop}
+        onClick={() => registerAirdrop({ callback: gotoCompleted })}
       >
-        {registering ? <IconSpinner /> : "參加空投"}
+        {registering ? (
+          <IconSpinner />
+        ) : (
+          <>{locale === Lang.en ? "Register" : "參與空投"}</>
+        )}
       </Dialog.CTAButton>
     </>
   )

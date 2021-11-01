@@ -1,6 +1,9 @@
+import { useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 
+import env from "@/.env.json"
 import { Dialog } from "~/components"
+import { Lang } from "~/enums"
 
 import * as styles from "./styles.module.css"
 
@@ -9,17 +12,40 @@ type CompletedContentProps = {
 }
 
 const CompletedContent: React.FC<CompletedContentProps> = ({ closeDialog }) => {
+  const { locale } = useLocalization()
+
+  const { airdrop } = env.roadmap
+  const airdropStart = new Date(airdrop.start)
+  const airdropStartStr = `${airdropStart.getFullYear()}/${
+    airdropStart.getMonth() + 1
+  }/${airdropStart.getDate()}`
+
   return (
     <>
       <Dialog.Content>
+        <p>
+          {locale === Lang.en
+            ? "You have successfully registered for airdrop"
+            : "你已成功登記參加空投囉 🎉"}
+        </p>
+
         <p className={styles.content}>
-          空投將在&nbsp;<span className={styles.highlight}>11/10</span>
-          &nbsp;進行
+          {locale === Lang.en ? (
+            <>
+              Airdrop begins on{" "}
+              <span className={styles.highlight}>{airdropStartStr}</span>
+            </>
+          ) : (
+            <>
+              空投將在{" "}
+              <span className={styles.highlight}>{airdropStartStr} 進行</span>
+            </>
+          )}
         </p>
       </Dialog.Content>
 
       <Dialog.CTAButton color="blackLight" onClick={closeDialog}>
-        完成
+        {locale === Lang.en ? "OK" : "完成"}
       </Dialog.CTAButton>
     </>
   )

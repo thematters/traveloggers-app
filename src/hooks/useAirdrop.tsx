@@ -42,7 +42,7 @@ Chain ID: ${env.supportedChainId}
 Nonce: ${new Date().getTime()}
 Issued At: ${new Date().toISOString()}`
 
-  const registerAirdrop = async () => {
+  const registerAirdrop = async ({ callback }: { callback: () => void }) => {
     if (!library || !account) {
       return
     }
@@ -63,6 +63,7 @@ Issued At: ${new Date().toISOString()}`
         })
       )
       setSigning(false)
+      callback()
       return
     }
 
