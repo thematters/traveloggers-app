@@ -10,6 +10,7 @@ import {
   RoadmapContext,
   Section,
 } from "~/components"
+import { Lang } from "~/enums"
 import { useResponsive } from "~/hooks"
 
 import * as styles from "./index.module.css"
@@ -48,6 +49,8 @@ const Roadmap = () => {
     ? "closed"
     : "upcoming"
   const texts = TEXTS[locale]
+
+  const { opensea } = env.socialUrls[locale as Lang]
 
   return (
     <section className={styles.roadmap} id="roadmap">
@@ -180,7 +183,7 @@ const Roadmap = () => {
                 color={isOpenSaleActive ? "primary" : "black"}
                 width="100%"
                 spacingY="0.75rem"
-                htmlHref={isOpenSaleActive ? env.socialUrls.opensea : undefined}
+                htmlHref={isOpenSaleActive && opensea ? opensea : undefined}
                 htmlTarget="_blank"
               >
                 {openSaleState === "open"
