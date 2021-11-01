@@ -81,6 +81,15 @@
   background: var(--color-black);
   border-radius: var(--spacing-base);
 
+  & p {
+    display: inline-block;
+    white-space: pre;
+
+    & span {
+      color: var(--color-grey);
+    }
+  }
+
   & .event {
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);

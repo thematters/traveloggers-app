@@ -65,7 +65,7 @@ const Roadmap = () => {
           <section className={styles.line}>
             <Timeline state={preOrderState} fade="in" />
           </section>
-          <section className={styles.timezone}>{texts.timezone}</section>
+          {/* <section className={styles.timezone}>{texts.timezone}</section> */}
         </section>
 
         {/* Pre-order */}
@@ -79,6 +79,7 @@ const Roadmap = () => {
             content={texts.content1}
             stage1={{
               name: texts.event1_1,
+              content: texts.event1_1_content,
               startDate: texts.event1_1_start_date,
               startTime: texts.event1_1_start_time,
               endDate: texts.event1_1_end_date,
@@ -86,6 +87,7 @@ const Roadmap = () => {
             }}
             stage2={{
               name: texts.event1_2,
+              content: texts.event1_2_content,
               startDate: texts.event1_2_start_date,
               startTime: texts.event1_2_start_time,
               endDate: texts.event1_2_end_date,
@@ -139,6 +141,7 @@ const Roadmap = () => {
             }
             stage1={{
               name: texts.event2_1,
+              content: texts.event2_1_content,
               startDate: texts.event2_1_start_date,
               startTime: texts.event2_1_start_time,
               endDate: texts.event2_1_end_date,
@@ -146,6 +149,7 @@ const Roadmap = () => {
             }}
             stage2={{
               name: texts.event2_2,
+              content: texts.event2_2_content,
               startDate: texts.event2_2_start_date,
               startTime: texts.event2_2_start_time,
               endDate: texts.event2_2_end_date,
@@ -187,6 +191,7 @@ const Roadmap = () => {
             content={texts.content3}
             stage1={{
               name: texts.event3_1,
+              content: texts.event3_1_content,
               startDate: texts.event3_1_start_date,
               startTime: texts.event3_1_start_time,
             }}
