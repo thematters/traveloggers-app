@@ -24,6 +24,8 @@ export interface TextIconProps {
 
   textPlacement?: "bottom" | "left" | "right"
   underline?: boolean
+
+  onClick?: (event?: React.MouseEvent<HTMLElement, MouseEvent>) => any
 }
 
 /**
@@ -53,6 +55,7 @@ export const TextIcon: React.FC<TextIconProps> = ({
   underline,
 
   children,
+  ...rest
 }) => {
   const textIconClasses = classNames({
     [styles.textIcon]: true,
@@ -72,7 +75,7 @@ export const TextIcon: React.FC<TextIconProps> = ({
 
   if (textPlacement === "left") {
     return (
-      <span className={textIconClasses}>
+      <span className={textIconClasses} {...rest}>
         {children && <span className={styles.text}>{children}</span>}
 
         {icon}
@@ -81,7 +84,7 @@ export const TextIcon: React.FC<TextIconProps> = ({
   }
 
   return (
-    <span className={textIconClasses}>
+    <span className={textIconClasses} {...rest}>
       {icon}
 
       {children && <span className={styles.text}>{children}</span>}

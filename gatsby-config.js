@@ -1,4 +1,4 @@
-const { siteUrl } = require("./.env.json")
+const { siteUrl } = require("./.env.json");
 
 module.exports = {
   siteMetadata: {
@@ -120,4 +120,4 @@ module.exports = {
       },
     },
   ],
-}
+};

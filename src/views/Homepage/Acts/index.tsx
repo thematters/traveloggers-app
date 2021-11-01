@@ -5,6 +5,7 @@ import React, { useState } from "react"
 import { Button } from "~/components"
 import { Lang } from "~/enums"
 import { useResponsive } from "~/hooks"
+import { analytics } from "~/utils"
 
 import Slide from "./slide"
 import * as styles from "./styles.module.css"
@@ -242,10 +243,25 @@ const Acts: React.FC<Props> = ({ active, setActive }) => {
           <></>
         )}
         <div>
-          <Button color="transparent" onClick={onPrev}>
-            ← Preview
+          <Button
+            color="transparent"
+            onClick={() => {
+              analytics("click_button", {
+                type: "previous_story",
+                state: step,
+              })
+              onPrev()
+            }}
+          >
+            ← Previous
           </Button>
-          <Button color="teal" onClick={onNext}>
+          <Button
+            color="teal"
+            onClick={() => {
+              analytics("click_button", { type: "next_story", state: step })
+              onNext()
+            }}
+          >
             Next →
           </Button>
         </div>

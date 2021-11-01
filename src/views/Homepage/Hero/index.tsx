@@ -3,6 +3,7 @@ import React from "react"
 
 import { Button, IconScrollDown, TextIcon } from "~/components"
 import { Lang } from "~/enums"
+import { analytics } from "~/utils"
 
 import * as styles from "./styles.module.css"
 
@@ -39,7 +40,10 @@ const Hero: React.FC<Props> = ({ setStoryActive }) => {
                   width="100%"
                   height="3.5rem"
                   spacingY="1rem"
-                  onClick={() => setStoryActive(true)}
+                  onClick={() => {
+                    analytics("click_button", { type: "story_line" })
+                    setStoryActive(true)
+                  }}
                 >
                   {locale === Lang.en
                     ? "Watch the Prequel Storyline"

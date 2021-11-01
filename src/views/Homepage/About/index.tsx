@@ -3,6 +3,7 @@ import React from "react"
 
 import { Button, Container, IconLogoText, Section } from "~/components"
 import { useResponsive } from "~/hooks"
+import { analytics } from "~/utils"
 
 import * as styles from "./styles.module.css"
 import TEXTS from "./texts"
@@ -34,6 +35,9 @@ const About = () => {
                 spacingY="0.75rem"
                 htmlHref="https://matters.news/about"
                 htmlTarget="_blank"
+                onClick={() =>
+                  analytics("click_button", { type: "more_about" })
+                }
               >
                 {texts.button}
               </Button>
