@@ -15,7 +15,7 @@ export const ConnectWalletButton: React.FC<ConnectWalletButtonProps> = ({
 
   return (
     <CardButton
-      title={locale === Lang.en ? "Connect Wallet" : "請連接加密錢包"}
+      title={locale === Lang.en ? "Connect Wallet" : "請連接錢包"}
       leftIcon={<IconWallet size="xlM" />}
       right={<IconArrowRight />}
       onClick={onClick}

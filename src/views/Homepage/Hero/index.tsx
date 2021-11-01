@@ -30,7 +30,7 @@ const Hero: React.FC<Props> = ({ setStoryActive }) => {
               <p className={styles.intro}>
                 {locale === Lang.en
                   ? "Traveloggers is the 1500 NFT avatars issued by Matters that marks a voyager’s journey to Matterverse, which is the identity mark of a voyager to Matterverse. Owners of the avatars will set foot on Matterverse and begin a journey that explores a new world."
-                  : "Traveloggers 是 Matters社區發行的 1500 個 NFT 數字头像，代表馬特宇宙的遠航者身份。擁有此身份，將開啟馬特宇宙中最激進的實驗權限。"}
+                  : "Traveloggers 是 Matters 社區發行的 1500 個 NFT 數字头像，代表馬特宇宙的遠航者身份。擁有此身份，將開啟馬特宇宙中最激進的實驗權限。"}
               </p>
 
               <section className={styles.cta}>

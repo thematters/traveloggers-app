@@ -25,7 +25,7 @@ const CompletedContent: React.FC<CompletedContentProps> = ({
   return (
     <>
       <Dialog.Content>
-        <p>
+        <p className={styles.content}>
           {locale === Lang.en
             ? "You have successfully participated in pre-order 🎉"
             : "你已成功參與預購 🎉"}

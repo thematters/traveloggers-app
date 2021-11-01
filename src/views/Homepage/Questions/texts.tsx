@@ -1,6 +1,6 @@
 const TEXTS: Record<string, any> = {
   zh: {
-    question1: "什麼是NFT？什麼是 Traveloggers？",
+    question1: "什麼是 NFT？什麼是 Traveloggers？",
     answer1_1:
       "NFT 是「非同質化代幣」的意思，它是一種獨特的、獨一無二的數字物品，用戶可以購買、擁有和交易。",
     answer1_2:
@@ -21,13 +21,13 @@ const TEXTS: Record<string, any> = {
     answer5_1: "預購開啟後，只要綁定以太坊錢包，有足夠的 ETH 就可以參與預購。",
     answer5_2:
       "如果預購成功，你的以太坊錢包和以太坊地址都可以看到交易紀錄。預購獲得的 Traveloggers 是隨機分配的，" +
-      "你購買的Traveloggers 將會在 2021/11/12日中午揭曉。",
+      "你購買的Traveloggers 將會在 2021/11/12 中午揭曉。",
     answer5_3: "查看預購操作指南",
     question6: "如何參與空投？",
     answer6_1:
-      "空投是給 Matters.news 社群的用戶福利。只要是在 2021年11/11日之前綁定了以太坊錢包的 Matters.news 用戶就可參與空投。",
+      "空投是給 Matters.news 社群的用戶福利。只要是在 2021/11/11 之前綁定了以太坊錢包的 Matters.news 用戶就可參與空投。",
     answer6_2:
-      "為儘可能保證公平，獲得空投的概率會根據用戶的活躍程度有所不同，即在Matters 社區的活躍度越高的用戶獲得空投的概率越高。" +
+      "為儘可能保證公平，獲得空投的概率會根據用戶的活躍程度有所不同，即在 Matters 社區的活躍度越高的用戶獲得空投的概率越高。" +
       "活躍程度的考量有以下六項指標：用戶發表文章的被拍手次數，被支持的人數，發表文章的閱讀時長，被追蹤次數，付費訂閱圍爐數。",
     answer6_3: "查看參與空投指南",
     question7: "如何在 OpenSea 購買 Traveloggers？",

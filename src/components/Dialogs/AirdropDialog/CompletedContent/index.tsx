@@ -23,22 +23,27 @@ const CompletedContent: React.FC<CompletedContentProps> = ({ closeDialog }) => {
   return (
     <>
       <Dialog.Content>
-        <p>
+        <p className={styles.content}>
           {locale === Lang.en
-            ? "You have successfully registered for airdrop"
+            ? "You have successfully registered for airdrop 🎉"
             : "你已成功登記參加空投囉 🎉"}
         </p>
 
         <p className={styles.content}>
           {locale === Lang.en ? (
             <>
-              Airdrop begins on{" "}
-              <span className={styles.highlight}>{airdropStartStr}</span>
+              Airdrop begins on
+              <span className={styles.highlight}>
+                &nbsp;{airdropStartStr}&nbsp;
+              </span>
             </>
           ) : (
             <>
-              空投將在{" "}
-              <span className={styles.highlight}>{airdropStartStr} 進行</span>
+              空投將在
+              <span className={styles.highlight}>
+                &nbsp;{airdropStartStr}&nbsp;
+              </span>
+              進行
             </>
           )}
         </p>

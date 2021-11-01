@@ -55,9 +55,7 @@ export const SignInWithMatters = () => {
     <>
       <CardButton
         title={
-          locale === Lang.en
-            ? "Sign In with your Matters"
-            : "請登入 Matters 帳戶"
+          locale === Lang.en ? "Sign In with Matters" : "請登入 Matters 帳戶"
         }
         leftIcon={<IconUser size="xlM" />}
         right={loading ? <IconSpinner /> : <IconArrowRight />}

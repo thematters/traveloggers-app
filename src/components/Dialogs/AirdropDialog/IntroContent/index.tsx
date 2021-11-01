@@ -67,7 +67,7 @@ const IntroContent: React.FC<IntroContentProps> = ({
           <Dialog.Message>
             <p>
               {locale === Lang.en
-                ? "Failed to log in, please try again later."
+                ? "Failed to sign in, please try again later."
                 : "登入失敗，請稍候再試"}
             </p>
           </Dialog.Message>
