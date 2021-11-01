@@ -50,7 +50,7 @@ const CompletedContent: React.FC<CompletedContentProps> = ({ closeDialog }) => {
       </Dialog.Content>
 
       <Dialog.CTAButton color="blackLight" onClick={closeDialog}>
-        {locale === Lang.en ? "OK" : "完成"}
+        {locale === Lang.en ? "Complete" : "完成"}
       </Dialog.CTAButton>
     </>
   )
