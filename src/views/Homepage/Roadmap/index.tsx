@@ -118,11 +118,17 @@ const Roadmap = () => {
             active={isAirdropActive}
             event={texts.event2}
             content={
-              <>
-                <p>{texts.content2_1}</p>
-                <br />
-                <p>{texts.content2_2}</p>
-              </>
+              <p>
+                {texts.content2_1}
+                <a
+                  href="https://matters.news/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {texts.content2_2}
+                </a>
+                {texts.content2_3}
+              </p>
             }
             stage1={{
               name: texts.event2_1,

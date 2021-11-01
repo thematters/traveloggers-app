@@ -18,13 +18,22 @@ const About = () => {
         <Section.Title>{texts.title}</Section.Title>
         <section className={styles.about}>
           <section className={styles.intro}>
-            <Section.Content>{texts.content}</Section.Content>
+            <Section.Content>
+              <p>
+                {texts.content1}
+                <br />
+                <br />
+                {texts.content2}
+              </p>
+            </Section.Content>
 
             <section className={styles.button}>
               <Button
                 color="primary"
                 width={isMediumUp ? "11rem" : "100%"}
                 spacingY="0.75rem"
+                htmlHref="https://matters.news/about"
+                htmlTarget="_blank"
               >
                 {texts.button}
               </Button>

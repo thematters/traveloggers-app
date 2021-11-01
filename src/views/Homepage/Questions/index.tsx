@@ -49,13 +49,13 @@ const Questions = () => {
           {...expandableStyles}
           title={texts.question4}
           content={
-            <>
-              <p>{texts.answer4_1}</p>
-              <br />
+            <p>
+              {texts.answer4_1}
               <a href={link4} target="_blank" rel="noreferrer">
                 {texts.answer4_2}
               </a>
-            </>
+              {texts.answer4_3}
+            </p>
           }
         />
         <Expandable
