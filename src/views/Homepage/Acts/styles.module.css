@@ -12,11 +12,33 @@
   z-index: var(--z-index-above);
   overflow: hidden;
 
+  & section {
+    background-size: contain;
+    background-position: bottom;
+
+    & img {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+  }
+
   @media (--md-up) {
     background-image:
       url("/images/background-stars.png"),
       linear-gradient(0deg, rgb(0 0 0 / 60%), rgb(0 0 0 / 60%)),
       url("/images/story-bg-md.png");
+
+    & section {
+      background-size: cover;
+      background-position: center;
+
+      & img {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
   }
 
   & .slide {
@@ -74,22 +96,21 @@
 
   & .dialog {
     position: absolute;
-    top: 6rem;
-    left: 50%;
-    width: 20rem;
-    transform: translate(-50%, 0);
-
-    @media (--md-up) {
-      top: 0;
-      left: 0;
-      width: 28rem;
-    }
 
     border: 1px solid black;
     border-radius: 1.25rem;
     padding: 1.5rem;
     background-color: rgb(3 3 3 / 80%);
-    transition: transform 600ms ease-out, height 600ms ease-out;
+    transition: all 600ms ease-out;
+
+    width: 28rem;
+
+    @media (--md-down) {
+      top: 6rem;
+      left: 1rem;
+      right: 1rem;
+      width: unset;
+    }
 
     & h2 {
       font-weight: var(--font-weight-semibold);

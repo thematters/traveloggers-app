@@ -36,6 +36,7 @@
 
   @media (--sm-up) {
     font-size: var(--font-size-xl);
+    line-height: 2.25rem;
   }
 }
 

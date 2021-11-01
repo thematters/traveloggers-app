@@ -1,5 +1,5 @@
 :root {
-  --intro-padding-right: 6rem;
+  --intro-padding-right: 5rem;
   --logo-size: 10rem;
   --logo-size-md-up: 15rem;
 }
@@ -46,6 +46,8 @@
 
 .logo {
   @mixin flex-center-all;
+
+  align-self: stretch;
 
   & svg {
     margin-top: var(--spacing-loose);
