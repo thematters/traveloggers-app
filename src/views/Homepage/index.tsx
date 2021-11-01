@@ -58,7 +58,7 @@ const Homepage: React.FC<PageProps> = ({ pageContext: { originalPath } }) => {
         <About />
       </main>
 
-      <Footer />
+      {!storyActive && <Footer />}
     </>
   )
 }

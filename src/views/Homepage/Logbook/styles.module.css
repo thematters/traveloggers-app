@@ -3,10 +3,18 @@
   @mixin pixel-bg;
 
   min-height: 100vh;
-  padding: var(--spacing-xxx-loose) 0;
+  /* padding: var(--spacing-xxx-loose) 0; */
+
+  position: relative;
+  padding-bottom: 56.25%; /* keep same ratio as background img 1920x1080 */
 
   @media(--md-up) {
     background-image: url("/images/pixel-bg-1.png");
+  }
+
+  & > div {
+    @mixin object-fit-cover;
+    @mixin flex-center-all;
   }
 }
 
