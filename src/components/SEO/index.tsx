@@ -66,6 +66,10 @@ export const SEO: React.FC<SEOProps> = ({
           content: `website`,
         },
         {
+          property: `og:image`,
+          content: `/images/social-cover.jpg`,
+        },
+        {
           name: `twitter:card`,
           content: `summary`,
         },
