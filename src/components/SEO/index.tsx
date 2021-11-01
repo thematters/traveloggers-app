@@ -28,6 +28,14 @@ export const SEO: React.FC<SEOProps> = ({
             title
             description
             author
+            en {
+              title
+              description
+            }
+            zh {
+              title
+              description
+            }
           }
         }
       }
@@ -37,11 +45,23 @@ export const SEO: React.FC<SEOProps> = ({
   const { locale } = useLocalization()
   const lang = locale as Lang
 
-  const metaDescription = description[lang] || site.siteMetadata.description
-  const siteTitle = site.siteMetadata?.title
+  const metaDescription =
+    description[lang] || site.siteMetadata[lang].description
+  const siteTitle = site.siteMetadata[lang].title
   const socialTitle = pageTitle[lang]
     ? `${pageTitle[lang]} | ${siteTitle}`
     : siteTitle
+
+  const keywords = [
+    siteTitle,
+    "Matters",
+    "NFT",
+    "Ethereum",
+    "Blockchain",
+    "ERC-721",
+    "以太坊",
+    "區塊鏈",
+  ]
 
   return (
     <Helmet
@@ -54,6 +74,14 @@ export const SEO: React.FC<SEOProps> = ({
           content: metaDescription,
         },
         {
+          name: `description`,
+          content: metaDescription,
+        },
+        {
+          name: `keywords`,
+          content: keywords.join(`, `),
+        },
+        {
           property: `og:title`,
           content: socialTitle,
         },
@@ -64,6 +92,10 @@ export const SEO: React.FC<SEOProps> = ({
         {
           property: `og:type`,
           content: `website`,
+        },
+        {
+          property: `og:image`,
+          content: `/images/social-cover.jpg`,
         },
         {
           name: `twitter:card`,
