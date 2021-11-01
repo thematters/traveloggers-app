@@ -3,10 +3,8 @@ import React from "react"
 import env from "@/.env.json"
 import {
   IconDiscord,
-  IconFacebook,
-  IconInstagram,
   IconMatters,
-  IconOpenSea,
+  // IconOpenSea,
   IconTwitter,
 } from "~/components"
 
@@ -20,17 +18,9 @@ const Socials: React.FC = () => {
           <IconMatters size="md" />
         </a>
 
-        <a href={env.socialUrls.opensea}>
+        {/* <a href={env.socialUrls.opensea}>
           <IconOpenSea size="md" />
-        </a>
-
-        <a href={env.socialUrls.instagram}>
-          <IconInstagram size="md" />
-        </a>
-
-        <a href={env.socialUrls.facebook}>
-          <IconFacebook size="md" />
-        </a>
+        </a> */}
 
         <a href={env.socialUrls.twitter}>
           <IconTwitter size="md" />
@@ -44,11 +34,7 @@ const Socials: React.FC = () => {
       <section className={styles.texts}>
         <a href={env.socialUrls.matters}>Matters</a>
 
-        <a href={env.socialUrls.opensea}>OpenSea</a>
-
-        <a href={env.socialUrls.instagram}>Instagram</a>
-
-        <a href={env.socialUrls.facebook}>Facebook</a>
+        {/* <a href={env.socialUrls.opensea}>OpenSea</a> */}
 
         <a href={env.socialUrls.twitter}>Twitter</a>
 

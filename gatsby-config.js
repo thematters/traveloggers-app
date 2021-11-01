@@ -2,9 +2,18 @@ const { siteUrl } = require("./.env.json")
 
 module.exports = {
   siteMetadata: {
-    // TODO: i18n
-    title: `Traveloggers`,
-    description: `matters nft site`,
+    title: "Traveloggers",
+    description: "",
+    en: {
+      title: "Traveloggers",
+      description:
+        "Traveloggers is the 1500 NFT avatars issued by Matters to mark the identity of a voyager to Matterverse. Owners of these avatars will have access to the most revolutionary experiments in Matterverse.",
+    },
+    zh: {
+      title: "Traveloggers",
+      description:
+        "Traveloggers 是 Matters Lab 發行的 1500 個 NFT 數字头像，代表馬特宇宙的遠航者身份。擁有此身份，將開啟馬特宇宙中最激進的實驗權限。",
+    },
     author: `@Mattersw3b`,
     siteUrl,
   },
