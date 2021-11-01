@@ -60,7 +60,7 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
 
   useEffect(() => {
     canPreOrder(true)
-  }, [!!library, account])
+  }, [!!library, account, qtySelected])
 
   if (loading && !unitPrice) {
     return <Spinner />
@@ -103,7 +103,6 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
   )
   const onQtySelectChange = (value: string) => {
     setQtySelected(ethers.BigNumber.from(value))
-    canPreOrder(true)
   }
 
   return (

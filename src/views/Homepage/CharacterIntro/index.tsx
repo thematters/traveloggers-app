@@ -16,6 +16,8 @@ const CharacterIntro = () => {
   const { isOpenSaleStarted, isOpenSaleEnded } = useContext(RoadmapContext)
   const isOpenSaleActive = isOpenSaleStarted && !isOpenSaleEnded
 
+  const { opensea } = env.socialUrls[locale as Lang]
+
   return (
     <section>
       <Container>
@@ -32,7 +34,7 @@ const CharacterIntro = () => {
               color="primary"
               width={isMediumUp ? "12.5rem" : "100%"}
               spacingY="0.75rem"
-              htmlHref={isOpenSaleActive ? env.socialUrls.opensea : undefined}
+              htmlHref={isOpenSaleActive && opensea ? opensea : undefined}
               htmlTarget="_blank"
             >
               View all on Opensea

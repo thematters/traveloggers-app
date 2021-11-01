@@ -114,7 +114,7 @@ export const usePreOrder = ({
         qtyLimited: preOrderLimit,
         inPreOrder,
         unitPrice: preOrderMinAmount,
-        qtyOrdered: accountPreOrder.n,
+        qtyOrdered: accountPreOrder,
         qtyAvailable: preOrderSupply.sub(preOrderMintIndex),
       } as ReducerState
       dispatch({ type: "update", payload })
@@ -204,7 +204,9 @@ export const usePreOrder = ({
       ])
 
       // add buffer
-      const maxGasUsed = gasUsed.mul(3).div(2)
+      const maxGasUsed = qtyOrdered.gt(0)
+        ? gasUsed.mul(3).div(2) // +33% if it's not first order
+        : gasUsed.mul(2) // +100% if it's first order
 
       // update estimate gas cost
       dispatch({ type: "update", payload: { gasLimit: maxGasUsed, gasPrice } })
