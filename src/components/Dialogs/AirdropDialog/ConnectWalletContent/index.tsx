@@ -5,6 +5,7 @@ import React, { useEffect } from "react"
 
 import { Dialog, MetaMaskButton, WalletConnectButton } from "~/components"
 import { Lang, WalletConnector } from "~/enums"
+import { analytics } from "~/utils"
 import { getWalletErrorMessage, walletConnectors } from "~/utils"
 
 import * as styles from "./styles.module.css"
@@ -54,6 +55,7 @@ const ConnectWalletContent: React.FC<ConnectWalletContentProps> = ({
         <section className={styles.buttons}>
           <MetaMaskButton
             onClick={() => {
+              analytics("click_button", { type: "metamask" })
               setActivatingConnector(connectorMetaMask)
               activate(connectorMetaMask)
             }}
@@ -61,6 +63,7 @@ const ConnectWalletContent: React.FC<ConnectWalletContentProps> = ({
           />
           <WalletConnectButton
             onClick={() => {
+              analytics("click_button", { type: "wallet_connect" })
               setActivatingConnector(connectorWalletConnect)
               activate(connectorWalletConnect)
             }}

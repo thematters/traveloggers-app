@@ -1,9 +1,11 @@
 import classNames from "classnames"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
+import env from "@/.env.json"
 import { SEO } from "~/components"
 import Footer from "~/components/Layout/Footer"
 import Header from "~/components/Layout/Header"
+import { analytics } from "~/utils"
 import About from "~/views/Homepage/About"
 import Benefits from "~/views/Homepage/Benefits"
 import CharacterIntro from "~/views/Homepage/CharacterIntro"
@@ -25,6 +27,13 @@ type PageProps = {
 
 const Homepage: React.FC<PageProps> = ({ pageContext: { originalPath } }) => {
   const [storyActive, setStoryActive] = useState<boolean>(false)
+
+  useEffect(() => {
+    import("firebase/app").then(({ initializeApp }) => {
+      initializeApp(env.firebase)
+      analytics("page_view")
+    })
+  }, [])
 
   return (
     <>
@@ -49,7 +58,7 @@ const Homepage: React.FC<PageProps> = ({ pageContext: { originalPath } }) => {
         <About />
       </main>
 
-      <Footer />
+      {!storyActive && <Footer />}
     </>
   )
 }

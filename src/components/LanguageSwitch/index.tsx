@@ -3,6 +3,7 @@ import React from "react"
 
 import { IconWorld, TextIcon } from "~/components"
 import { Lang } from "~/enums"
+import { analytics } from "~/utils"
 
 import * as styles from "./styles.module.css"
 
@@ -25,6 +26,12 @@ export const LanguageSwitch: React.FC<LanguageSwitchProps> = ({
           spacing="xxTight"
           weight="medium"
           size="xs"
+          onClick={() =>
+            analytics("click_button", {
+              type: "language",
+              state: current.code,
+            })
+          }
         >
           {current.localName}
         </TextIcon>

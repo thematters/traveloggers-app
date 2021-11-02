@@ -21,7 +21,7 @@ const TEXTS: Record<string, any> = {
       "platform in the Web3 world with 80,000 content creators. Avatar-Traveloggers is our second project which aims " +
       "to explore a creator economy model. We will be launching our third project, The Space, dedicated to the concept " +
       "of public governance with radical market principles.",
-    button: "More Details",
+    button: "More",
   },
 }
 

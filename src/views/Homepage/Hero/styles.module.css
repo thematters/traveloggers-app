@@ -11,6 +11,8 @@
       rgb(0 0 0 / 100%)
     ),
     url("/images/hero.png");
+
+  transition: all 600ms ease-out;
 }
 
 .content {

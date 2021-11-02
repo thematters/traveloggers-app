@@ -12,6 +12,7 @@ import {
   IconTwitter,
 } from "~/components"
 import { Lang } from "~/enums"
+import { analytics } from "~/utils"
 
 import * as styles from "./styles.module.css"
 
@@ -25,62 +26,136 @@ const Socials: React.FC = () => {
     <>
       <section className={styles.icons}>
         {matters && (
-          <a href={matters}>
+          <a
+            href={matters}
+            onClick={() =>
+              analytics("click_button", { type: "footer_matters" })
+            }
+          >
             <IconMatters size="md" />
           </a>
         )}
 
         {opensea && (
-          <a href={opensea}>
+          <a
+            href={opensea}
+            onClick={() => analytics("click_button", { type: "footer_os" })}
+          >
             <IconOpenSea size="md" />
           </a>
         )}
 
         {instagram && (
-          <a href={instagram}>
+          <a
+            href={instagram}
+            onClick={() => analytics("click_button", { type: "footer_ins" })}
+          >
             <IconInstagram size="md" />
           </a>
         )}
 
         {facebook && (
-          <a href={facebook}>
+          <a
+            href={facebook}
+            onClick={() => analytics("click_button", { type: "footer_fb" })}
+          >
             <IconFacebook size="md" />
           </a>
         )}
 
         {twitter && (
-          <a href={twitter}>
+          <a
+            href={twitter}
+            onClick={() => analytics("click_button", { type: "footer_tt" })}
+          >
             <IconTwitter size="md" />
           </a>
         )}
 
         {discord && (
-          <a href={discord}>
+          <a
+            href={discord}
+            onClick={() => analytics("click_button", { type: "footer_dis" })}
+          >
             <IconDiscord size="md" />
           </a>
         )}
 
         {telegram && (
-          <a href={telegram}>
+          <a
+            href={telegram}
+            onClick={() => analytics("click_button", { type: "footer_tg" })}
+          >
             <IconTelegram size="md" />
           </a>
         )}
       </section>
 
       <section className={styles.texts}>
-        {matters && <a href={matters}>Matters</a>}
+        {matters && (
+          <a
+            href={matters}
+            onClick={() =>
+              analytics("click_button", { type: "footer_matters" })
+            }
+          >
+            Matters
+          </a>
+        )}
 
-        {opensea && <a href={opensea}>OpenSea</a>}
+        {opensea && (
+          <a
+            href={opensea}
+            onClick={() => analytics("click_button", { type: "footer_os" })}
+          >
+            OpenSea
+          </a>
+        )}
 
-        {instagram && <a href={instagram}>Instagram</a>}
+        {instagram && (
+          <a
+            href={instagram}
+            onClick={() => analytics("click_button", { type: "footer_ins" })}
+          >
+            Instagram
+          </a>
+        )}
 
-        {facebook && <a href={facebook}>Facebook</a>}
+        {facebook && (
+          <a
+            href={facebook}
+            onClick={() => analytics("click_button", { type: "footer_fb" })}
+          >
+            Facebook
+          </a>
+        )}
 
-        {twitter && <a href={twitter}>Twitter</a>}
+        {twitter && (
+          <a
+            href={twitter}
+            onClick={() => analytics("click_button", { type: "footer_tt" })}
+          >
+            Twitter
+          </a>
+        )}
 
-        {discord && <a href={discord}>Discord</a>}
+        {discord && (
+          <a
+            href={discord}
+            onClick={() => analytics("click_button", { type: "footer_dis" })}
+          >
+            Discord
+          </a>
+        )}
 
-        {telegram && <a href={telegram}>Telegram</a>}
+        {telegram && (
+          <a
+            href={telegram}
+            onClick={() => analytics("click_button", { type: "footer_tg" })}
+          >
+            Telegram
+          </a>
+        )}
       </section>
     </>
   )

@@ -12,6 +12,7 @@ import {
 } from "~/components"
 import { Lang } from "~/enums"
 import { useResponsive } from "~/hooks"
+import { analytics } from "~/utils"
 
 import * as styles from "./index.module.css"
 import Infobox from "./infobox"
@@ -98,7 +99,10 @@ const Roadmap = () => {
                     color={isPreOrderActive ? "primary" : "black"}
                     width="100%"
                     spacingY="0.75rem"
-                    onClick={openDialog}
+                    onClick={() => {
+                      analytics("click_button", { type: "pre_order" })
+                      openDialog()
+                    }}
                   >
                     {preOrderState === "upcoming"
                       ? texts.event1_button_upcoming
@@ -155,7 +159,10 @@ const Roadmap = () => {
                     color={isAirdropActive ? "primary" : "black"}
                     width="100%"
                     spacingY="0.75rem"
-                    onClick={openDialog}
+                    onClick={() => {
+                      analytics("click_button", { type: "air_drop" })
+                      openDialog()
+                    }}
                   >
                     {airdropState === "open"
                       ? texts.event2_button_open
@@ -191,6 +198,7 @@ const Roadmap = () => {
                 spacingY="0.75rem"
                 htmlHref={isOpenSaleActive && opensea ? opensea : undefined}
                 htmlTarget="_blank"
+                onClick={() => analytics("click_button", { type: "opensea" })}
               >
                 {openSaleState === "open"
                   ? texts.event3_button_open
