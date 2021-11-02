@@ -22,7 +22,7 @@ const TEXTS: Record<string, any> = {
     intro:
       "The inhabitants of Matterverse believe that Web3 wave is toward better public governance of the Internet. " +
       "Owners of Traveloggers will jump in the wave, to enjoy:",
-    subtitle1: "Full Copyrights of NFTs",
+    subtitle1: "Full Copyrights of NFTs and Logbook",
     content1:
       "Owners of Traveloggers not only have all copyrights of the NFT avatar, but also the collective memory of the logbook co-creation.",
     subtitle2: "Exclusive Personal Page",
