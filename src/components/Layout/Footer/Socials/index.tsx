@@ -177,7 +177,9 @@ const Socials: React.FC = () => {
         {telegram && (
           <a
             href={telegram}
+            target="_blank"
             onClick={() => analytics("click_button", { type: "footer_tg" })}
+            rel="noreferrer"
           >
             Telegram
           </a>
