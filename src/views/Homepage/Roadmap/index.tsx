@@ -168,7 +168,7 @@ const Roadmap = () => {
                       ? texts.event2_button_open
                       : airdropState === "closed"
                       ? texts.event2_button_closed
-                      : texts.event2_button_open}
+                      : texts.event2_button_upcoming}
                   </Button>
                 )}
               </AirdriopDialog>
