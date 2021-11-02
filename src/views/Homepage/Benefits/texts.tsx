@@ -7,12 +7,10 @@ const TEXTS: Record<string, any> = {
     content1:
       "Traveloggers 的擁有者不僅擁有 NFT 頭像的所有版權，還擁有歷任持有者共創的日誌記憶。",
     subtitle2: "專屬個人頁",
-    content2:
-      "有專屬 Traveloggers 頭像、航行日誌以及藏家勳章的個人頁面，以及進入 Matters 社區的權限。",
+    content2: "有專屬 Traveloggers 頭像、航行日誌以及藏家勳章的個人頁面。",
     subtitle3: "參與共創，獲得空投",
     content3:
-      "馬特宇宙的故事剛剛啟動，未來的多元走向，宇宙建設，人物發展，不同故事線的生長都會由持有者一起來共創。" +
-      "Traveloggers 可優先參與其中，並獲得未來 NFT 計畫的空投福利。",
+      "Traveloggers 將優先參與未來馬特宇宙故事的共建，並獲得未來 NFT 計畫的空投福利。",
     subtitle4: "生態共建的入場券",
     content4:
       "Traveloggers 是馬特宇宙 Web3 自治實驗的入場券。Traveloggers 身份會對應治理代幣的優先投票權、參與定義一種全新的數字所有權。",

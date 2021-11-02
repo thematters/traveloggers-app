@@ -48,7 +48,7 @@ const CharacterIntro = () => {
               <p>
                 {locale === Lang.en
                   ? `Traveloggers have six basic characters, namely, Gena, Lesya, Sasha, Valya, Yury, and Zhenya. 1500 avatars were generated based on the combination of different accessories: value position, philosophical standpoint, way of thinking, creative habits, personality, etc. Each Traveloggers is unique with its own creator attributes.`
-                  : `Traveloggers 有 6 個基礎人物，分別是  Gena、Lesya、Sasha、Valya、Yury、Zhenya。我們根據創作者的價值取向、哲學主張、創作者的思考方式、創作習慣和個性等多個維度，提取關鍵元素組合，創造了 1500 個 Traveloggers 的化身，每一個都獨一無二。`}
+                  : `Traveloggers 有 6 個基礎人物，分別是  Gena、Lesya、Sasha、Valya、Yury、Zhenya。我們根據創作者的價值取向、哲學主張、思考方式、創作個性等維度，提取關鍵元素組合，創造了 1500 個 Traveloggers 的化身，每一個都獨一無二。`}
               </p>
             </Section.Content>
           </section>

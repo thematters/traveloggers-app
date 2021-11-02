@@ -38,7 +38,6 @@ const Hero: React.FC<Props> = ({ setStoryActive }) => {
                     </p>
                   </Section.Content>
                 </section>
-
                 <section className={styles.cta}>
                   <Button
                     color="primary"

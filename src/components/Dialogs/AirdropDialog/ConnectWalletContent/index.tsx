@@ -49,7 +49,7 @@ const ConnectWalletContent: React.FC<ConnectWalletContentProps> = ({
         <p>
           {locale === Lang.en
             ? "Select a wallet, or register a new wallet"
-            : "選擇一個已註冊的錢包，或者註冊新的錢包"}
+            : "選擇一個錢包，或者註冊新的錢包"}
         </p>
 
         <section className={styles.buttons}>
