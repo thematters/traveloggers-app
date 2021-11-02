@@ -3,10 +3,10 @@
 
   flex-direction: column;
   flex-grow: 1;
-  border: 1px solid rgb(255 255 255 / 30%);
-  border-radius: var(--spacing-x-tight);
   padding: var(--spacing-base);
   margin-bottom: var(--spacing-loose);
+  border: 1px solid rgb(255 255 255 / 30%);
+  border-radius: var(--spacing-x-tight);
 
   & .info,
   & .timeDetails {
@@ -20,19 +20,17 @@
   @media (--md-up) {
     @mixin flex-center-space-between;
 
-    align-items: flex-start;
     flex-direction: row;
+    align-items: flex-start;
     padding: var(--spacing-loose);
 
     & .info {
       width: 46%;
-    }
-    & .timeDetails {
-      width: 54%;
+      padding-right: var(--spacing-x-loose);
     }
 
-    & .info {
-      padding-right: var(--spacing-x-loose);
+    & .timeDetails {
+      width: 54%;
     }
   }
 }
@@ -76,18 +74,17 @@
 .stage {
   display: flex;
   flex-direction: column;
-
   padding: var(--spacing-base);
+  font-size: var(--font-size-md);
+  line-height: 1.5rem;
+  text-align: left;
   background: var(--color-black);
   border-radius: var(--spacing-base);
-  line-height: 1.5rem;
-  font-size: var(--font-size-md);
-  text-align: left;
 
   & .event {
-    color: var(--color-matters-green);
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
+    color: var(--color-matters-green);
   }
 
   & .date {
@@ -99,11 +96,11 @@
   }
 
   & .dash {
-    font-size: var(--font-size-xl);
     padding: 0 3px 0 5px;
+    font-size: var(--font-size-xl);
   }
 
-  @media(--md-up) {
+  @media (--md-up) {
     & .evnt,
     & .date,
     & .time {
@@ -125,7 +122,7 @@
     width: 100%;
   }
 
-  @media(--md-up) {
+  @media (--md-up) {
     flex-direction: row;
     padding-top: var(--spacing-xx-tight);
   }

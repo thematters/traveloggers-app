@@ -1,14 +1,12 @@
-
-
 .container {
-  margin: 0 auto;
   padding: var(--spacing-base);
-    background: var(--color-black-darkest);
+  margin: 0 auto;
+  background: var(--color-black-darkest);
   border-radius: var(--spacing-base);
 
   @media (--sm-up) {
-    padding: var(--spacing-xx-loose);
     width: 50%;
+    padding: var(--spacing-xx-loose);
   }
 }
 
@@ -18,7 +16,7 @@
   line-height: 1;
 
   @media (--sm-up) {
-  font-size: var(--font-size-xl);
+    font-size: var(--font-size-xl);
   }
 }
 

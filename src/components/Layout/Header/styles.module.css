@@ -4,19 +4,19 @@
 
   position: fixed;
   top: 0;
-  left: 0;
   right: 0;
+  left: 0;
+  z-index: var(--z-index-header);
   padding: var(--spacing-base);
   color: var(--color-white);
-  z-index: var(--z-index-header);
-  background: rgba(0, 0, 0, 0);
+  background: rgb(0 0 0 / 0%);
 
   @media (--md-up) {
     padding: var(--spacing-loose) var(--spacing-xxx-loose);
   }
 
   &.active {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgb(0 0 0 / 70%);
   }
 }
 
@@ -27,11 +27,11 @@
     display: initial;
     font-family: var(--font-bitmap);
     color: var(--color-matters-green);
-    background: -webkit-linear-gradient(
+    background: linear-gradient(
       var(--color-gradient-green-start),
       var(--color-gradient-green-end)
     );
-    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 }

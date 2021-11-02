@@ -7,7 +7,7 @@
     color: var(--color-matters-green);
   }
 
-  @media(--md-up) {
-    background-image: url(/images/pixel-bg-5.png);
+  @media (--md-up) {
+    background-image: url("/images/pixel-bg-5.png");
   }
 }

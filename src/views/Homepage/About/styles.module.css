@@ -9,8 +9,8 @@
 
   padding: var(--spacing-xxx-loose) 0;
 
-  @media(--md-up) {
-    background-image: url(/images/pixel-bg-6.png);
+  @media (--md-up) {
+    background-image: url("/images/pixel-bg-6.png");
   }
 }
 
@@ -28,8 +28,8 @@
   @media (--md-up) {
     @mixin flex-center-space-between;
 
-    align-items: flex-start;
     flex-direction: row;
+    align-items: flex-start;
     padding-top: var(--spacing-loose);
 
     & .intro,
@@ -53,16 +53,16 @@
   align-self: stretch;
 
   & svg {
-    margin-top: var(--spacing-loose);
     width: var(--logo-size);
     height: var(--logo-size);
+    margin-top: var(--spacing-loose);
   }
 
   @media (--md-up) {
     & svg {
-      margin-top: calc(var(--spacing-xxx-loose) * -1);
       width: var(--logo-size-md-up);
       height: var(--logo-size-md-up);
+      margin-top: calc(var(--spacing-xxx-loose) * -1);
     }
   }
 }
