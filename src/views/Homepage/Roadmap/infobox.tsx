@@ -57,19 +57,13 @@ const Infobox = ({
               <section className={styles.stageTime}>
                 <p>
                   <span className={styles.date}>{stage1.startDate}</span>
-                  <span className={styles.time}>
-                    {" "}
-                    UTC+8:00 {stage1.startTime}
-                  </span>
+                  <span className={styles.time}>{stage1.startTime}</span>
                   {stage1.endDate && <span className={styles.dash}>-</span>}
                 </p>
                 {stage1.endDate && (
                   <p>
                     <span className={styles.date}>{stage1.endDate}</span>
-                    <span className={styles.time}>
-                      {" "}
-                      UTC+8:00 {stage1.endTime}
-                    </span>
+                    <span className={styles.time}>{stage1.endTime}</span>
                   </p>
                 )}
               </section>
@@ -81,19 +75,13 @@ const Infobox = ({
               <section className={styles.stageTime}>
                 <p>
                   <span className={styles.date}>{stage2.startDate}</span>
-                  <span className={styles.time}>
-                    {" "}
-                    UTC+8:00 {stage2.startTime}
-                  </span>
+                  <span className={styles.time}>{stage2.startTime}</span>
                   <span className={styles.dash}>-</span>
                 </p>
                 {stage2.endDate && (
                   <p>
                     <span className={styles.date}>{stage2.endDate}</span>
-                    <span className={styles.time}>
-                      {" "}
-                      UTC+8:00 {stage2.endTime}
-                    </span>
+                    <span className={styles.time}>{stage2.endTime}</span>
                   </p>
                 )}
               </section>

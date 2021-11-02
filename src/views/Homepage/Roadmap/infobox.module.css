@@ -25,12 +25,12 @@
     padding: var(--spacing-loose);
 
     & .info {
-      width: 46%;
+      width: 50%;
       padding-right: var(--spacing-x-loose);
     }
 
     & .timeDetails {
-      width: 54%;
+      width: 50%;
     }
   }
 }
