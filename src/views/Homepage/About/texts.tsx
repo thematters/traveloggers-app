@@ -13,14 +13,13 @@ const TEXTS: Record<string, any> = {
   en: {
     title: "About Matters Lab",
     content1:
-      "Matters Lab was established in 2018, with the mission to create a freer and fairer creator ecosystem " +
-      "through the next evolution of the Internet, Web3. Our initiatives include using decentralization tools to " +
-      "protect digital rights, design a self-governing system and community, and establish a creator economy model.",
+      "Matters Lab was established in 2018, with the mission to create a freer and fairer creator ecosystem through " +
+      "the next evolution of the Internet, Web3. Our initiatives include using decentralization tools to protect digital " +
+      "rights, design a self-governing system and community, and invent models for a new creator economy.",
     content2:
-      "Matters.news is the first project of Matters Lab. It is the largest open-source decentralized publishing " +
-      "platform in the Web3 world with 80,000 content creators. Avatar-Traveloggers is our second project which aims " +
-      "to explore a creator economy model. We will be launching our third project, The Space, dedicated to the concept " +
-      "of public governance with radical market principles.",
+      "Matters.news is the first entrance of Matters Lab. It is the largest open-source decentralized publishing platform " +
+      "in the Web3 world with 80,000 content creators. Traveloggers is the second entrance leading to a news creator economy " +
+      "model. We will be launching our third project, The Space, towards governing public space with radical market principles.",
     button: "More",
   },
 }
