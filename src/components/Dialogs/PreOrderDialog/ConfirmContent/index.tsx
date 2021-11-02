@@ -118,7 +118,7 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
   return (
     <>
       <Dialog.Content spacing="sm">
-        <section className={styles.content}>
+        <section>
           <table className={styles.table}>
             <tbody>
               <tr className={styles.highlight}>
