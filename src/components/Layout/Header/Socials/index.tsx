@@ -17,14 +17,18 @@ const Socials = () => {
     <section className={styles.socials}>
       <a
         href={discord}
+        target="_blank"
         onClick={() => analytics("click_button", { type: "header_dis" })}
+        rel="noreferrer"
       >
         <IconDiscord size="md" />
       </a>
 
       <a
         href={twitter}
+        target="_blank"
         onClick={() => analytics("click_button", { type: "header_tt" })}
+        rel="noreferrer"
       >
         <IconTwitter size="md" />
       </a>
