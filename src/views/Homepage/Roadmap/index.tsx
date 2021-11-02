@@ -97,7 +97,7 @@ const Roadmap = () => {
                   <Button
                     disabled={!isPreOrderActive}
                     color={isPreOrderActive ? "primary" : "black"}
-                    width="100%"
+                    width={isMediumUp ? "15rem" : "100%"}
                     spacingY="0.75rem"
                     onClick={() => {
                       analytics("click_button", { type: "pre_order" })
@@ -157,7 +157,7 @@ const Roadmap = () => {
                   <Button
                     disabled={!isAirdropActive}
                     color={isAirdropActive ? "primary" : "black"}
-                    width="100%"
+                    width={isMediumUp ? "15rem" : "100%"}
                     spacingY="0.75rem"
                     onClick={() => {
                       analytics("click_button", { type: "air_drop" })
@@ -194,7 +194,7 @@ const Roadmap = () => {
               <Button
                 disabled={!isOpenSaleActive}
                 color={isOpenSaleActive ? "primary" : "black"}
-                width="100%"
+                width={isMediumUp ? "15rem" : "100%"}
                 spacingY="0.75rem"
                 htmlHref={isOpenSaleActive && opensea ? opensea : undefined}
                 htmlTarget="_blank"
