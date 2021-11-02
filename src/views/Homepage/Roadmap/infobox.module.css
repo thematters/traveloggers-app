@@ -52,17 +52,7 @@
 }
 
 .content {
-  font-size: var(--font-size-sm-s);
-  line-height: 1.5rem;
-  padding-top: var(--spacing-tight);
-
-  & :global(a) {
-    color: var(--color-gradient-green-start);
-  }
-
-  @media(--md-up) {
-    font-size: var(--font-size-md-s);
-  }
+  margin-top: var(--spacing-tight);
 }
 
 .timeDetails {
@@ -95,7 +85,7 @@
   line-height: 1.5rem;
 
   & .event {
-    color: var(--color-gradient-green-start);
+    color: var(--color-matters-green);
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
   }

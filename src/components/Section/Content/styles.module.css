@@ -2,9 +2,14 @@
   font-size: var(--font-size-sm-s);
   line-height: 1.5rem;
 
+
+  & a {
+    color: var(--color-matters-green);
+  }
+
   @media (--md-up) {
-    font-size: var(--font-size-md);
-    line-height: 1.875rem;
+    font-size: var(--font-size-xm);
+    line-height: 2rem;
   }
 
   & > * + * {

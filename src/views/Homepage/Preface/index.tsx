@@ -16,7 +16,6 @@ const Preface = () => {
         <section className={styles.contents}>
           <Section.Content>
             <p>{texts.content1}</p>
-            <br />
             <p>{texts.content2}</p>
           </Section.Content>
           <Section.Content>

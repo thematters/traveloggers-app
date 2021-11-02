@@ -1,6 +1,8 @@
 import classNames from "classnames"
 import React from "react"
 
+import { Section } from "~/components"
+
 import * as styles from "./infobox.module.css"
 
 interface Stage {
@@ -38,7 +40,9 @@ const Infobox = ({
     <section className={containerClasses}>
       <section className={styles.info}>
         <section className={styles.title}>{event}</section>
-        <section className={styles.content}>{content}</section>
+        <section className={styles.content}>
+          <Section.Content>{content}</Section.Content>
+        </section>
       </section>
 
       <section className={styles.timeDetails}>

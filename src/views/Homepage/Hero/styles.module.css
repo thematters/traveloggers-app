@@ -43,13 +43,7 @@
 }
 
 .intro {
-  margin-top: var(--spacing-base);
-  font-size: var(--font-size-sm-s);
-  line-height: 1.5rem;
-
-  @media (--sm-up) {
-    font-size: var(--font-size-md);
-  }
+  margin-top: var(--spacing-x-tight);
 }
 
 .cta {
