@@ -96,11 +96,12 @@
 
   & .time {
     color: var(--color-grey);
+    padding-left: var(--spacing-xx-tight);
   }
 
   & .dash {
-    font-size: var(--font-size-xl);
-    padding: 0 3px 0 5px;
+    font-size: var(--font-size-xm);
+    padding: 0 var(--spacing-x-tight);
   }
 
   @media(--md-up) {
@@ -122,11 +123,14 @@
   flex-direction: column;
 
   & p {
-    width: 100%;
+    display: flex;
+    align-items: center;
+    align-self: flex-start;
   }
 
   @media(--md-up) {
     flex-direction: row;
+    flex-wrap: wrap;
     padding-top: var(--spacing-xx-tight);
   }
 }
