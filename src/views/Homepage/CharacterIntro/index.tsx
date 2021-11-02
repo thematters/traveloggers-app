@@ -77,13 +77,13 @@ const CharacterIntro = () => {
           <section className={styles.avatar}>
             <div>
               <img src="/images/char3.png" />
-              <p>{locale === Lang.en ? "Zhenya" : "Zhenya 振亞"}</p>
+              <p>{locale === Lang.en ? "Valya" : "Valya 瓦拉"}</p>
             </div>
           </section>
           <section className={styles.avatar}>
             <div>
               <img src="/images/char4.png" />
-              <p>{locale === Lang.en ? "Valya" : "Valya 瓦拉"}</p>
+              <p>{locale === Lang.en ? "Zhenya" : "Zhenya 振亞"}</p>
             </div>
           </section>
           <section className={styles.avatar}>
