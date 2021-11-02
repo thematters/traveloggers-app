@@ -22,10 +22,10 @@ export const LanguageSwitch: React.FC<LanguageSwitchProps> = ({
     <LocalizedLink language={target.code} to={originalPath}>
       <section className={styles.switches}>
         <TextIcon
-          icon={<IconWorld />}
+          icon={<IconWorld size="md"/>}
           spacing="xxTight"
           weight="medium"
-          size="xs"
+          size="md"
           onClick={() =>
             analytics("click_button", {
               type: "language",
