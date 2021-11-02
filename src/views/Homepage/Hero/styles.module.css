@@ -4,15 +4,26 @@
   position: relative;
   min-height: 100vh;
   text-align: center;
-  background-image:
+  transition: all 600ms ease-out;
+
+ background-image:
     linear-gradient(
       to bottom,
       rgb(255 255 255 / 0%) 50%,
       rgb(0 0 0 / 100%)
     ),
-    url("/images/hero.png");
+    url("/images/hero-bg-sm.jpg");
 
-  transition: all 600ms ease-out;
+
+  @media(--md-up) {
+ background-image:
+    linear-gradient(
+      to bottom,
+      rgb(255 255 255 / 0%) 50%,
+      rgb(0 0 0 / 100%)
+    ),
+    url("/images/hero.jpg");
+  }
 }
 
 .content {
@@ -57,6 +68,22 @@
 
 .scrolldown {
   position: absolute;
-  bottom: 0;
+  bottom: var(--spacing-loose);
   font-family: var(--font-bitmap);
+}
+
+.extra {
+  position: relative;
+  width: 100%;
+    background-image: url("/images/hero-sm.png");
+
+  &::before {
+        display: block;
+    content: "";
+  padding-bottom: 56%;
+  }
+
+  @media(--md-up) {
+    display: none;
+  }
 }
