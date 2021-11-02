@@ -1,7 +1,7 @@
 .footer {
+  z-index: var(--z-index-header);
   padding: var(--spacing-xx-loose) var(--spacing-base);
   color: var(--color-white);
-  z-index: var(--z-index-header);
 
   @media (--md-up) {
     padding: var(--spacing-xx-loose) var(--spacing-xxx-loose);
@@ -10,8 +10,8 @@
 
 .content {
   @mixin flex-center-space-between;
-  flex-direction: column;
 
+  flex-direction: column;
   padding: var(--spacing-loose) 0;
   border-top: 1px solid var(--color-black);
   border-bottom: 1px solid var(--color-black);
@@ -24,6 +24,7 @@
 .left,
 .right {
   @mixin flex-center-space-between;
+
   width: 100%;
 
   @media (--md-up) {

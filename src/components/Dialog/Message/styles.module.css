@@ -9,15 +9,19 @@
 .info {
   color: var(--color-grey-dark);
 }
+
 .success {
   color: var(--color-matters-green);
 }
+
 .warning {
   color: var(--color-matters-gold);
 }
+
 .error {
   color: var(--color-red);
 }
+
 .icon {
   @mixin inline-flex-center-all;
 

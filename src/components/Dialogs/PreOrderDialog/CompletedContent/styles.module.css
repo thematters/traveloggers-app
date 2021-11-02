@@ -1,5 +1,6 @@
 .content {
   @mixin flex-center-all;
+
   flex-wrap: wrap;
   line-height: 1;
 }
