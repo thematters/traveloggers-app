@@ -134,7 +134,6 @@
 .button {
   display: flex;
   flex-direction: row-reverse;
-  flex-grow: 1;
 
   & > * {
     margin-top: var(--spacing-base);
