@@ -1,5 +1,6 @@
 import { useWeb3React } from "@web3-react/core"
 import { ethers } from "ethers"
+import { useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 
 import {
@@ -9,11 +10,14 @@ import {
   IconWallet,
   TextIcon,
 } from "~/components"
+import { Lang } from "~/enums"
 import { chainName } from "~/utils"
 
 import * as styles from "./styles.module.css"
 
 export const ConnectedAccountButton: React.FC = () => {
+  const { locale } = useLocalization()
+
   const { deactivate, account, error } =
     useWeb3React<ethers.providers.Web3Provider>()
 
@@ -37,7 +41,7 @@ export const ConnectedAccountButton: React.FC = () => {
         <div className={styles.change}>
           <div role="button" onClick={deactivate}>
             <TextIcon underline size="xs">
-              變更
+              {locale === Lang.en ? "Edit" : "變更"}
             </TextIcon>
           </div>
           <IconChecked size="mdS" />

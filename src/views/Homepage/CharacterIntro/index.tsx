@@ -25,7 +25,7 @@ const CharacterIntro = () => {
         <section className={styles.intro}>
           <section className={styles.title}>
             <Section.Title>
-              {locale === Lang.en ? "Character Introduction" : "人物介紹"}
+              {locale === Lang.en ? "Introducing Characters" : "人物介紹"}
             </Section.Title>
           </section>
 
@@ -47,8 +47,8 @@ const CharacterIntro = () => {
             <Section.Content>
               <p>
                 {locale === Lang.en
-                  ? `We have created 6 basic characters for voyagers, namely, Gena, Lesya, Sasha, Valya, Yury, and Zhenya. Meanwhile, we have generated xxx(number) Traveloggers with character designs based on 6 aspects: value orientation, philosophical proposition, creative temperament, way of thinking, creative habits, and personality. Each Traveloggers is unique with its own creator attributes.`
-                  : `我們為遠航者創造了6個基礎人物，分別是 Sasha（薩沙）、Zhenya（振亞）、Valya（瓦拉）、Gena（根那）、Lesya（列峽）、Yury（尤里）。同時我們根據創作者的價值取向，哲學主張，創作者的創作氣質，思考方式，創作者的創作習慣和個性等6個維度，提取關鍵詞進行設計， 生成了xxx個CryptoMatties。每一個 CryptoMatties 都有專屬的創作者屬性，都是獨一無二的。`}
+                  ? `Traveloggers have six basic characters, namely, Gena, Lesya, Sasha, Valya, Yury, and Zhenya. 1500 avatars were generated based on the combination of different accessories: value position, philosophical standpoint, way of thinking, creative habits, personality, etc. Each Traveloggers is unique with its own creator attributes.`
+                  : `Traveloggers 有 6 個基礎人物，分別是  Gena、Lesya、Sasha、Valya、Yury、Zhenya。我們根據創作者的價值取向、哲學主張、創作者的思考方式、創作習慣和個性等多個維度，提取關鍵元素組合，創造了 1500 個 Traveloggers 的化身，每一個都獨一無二。`}
               </p>
             </Section.Content>
           </section>
@@ -60,8 +60,8 @@ const CharacterIntro = () => {
               <img src="/images/char1.png" />
               <p>
                 {locale === Lang.en
-                  ? "1 Character + 2 Accessories: Born of Matties"
-                  : "一個人物＋兩個配件：Matties 的誕生"}
+                  ? "1 Character + 2 Accessories: Birth of Traveloggers"
+                  : "一個人物＋兩個配件：Traveloggers 的誕生"}
               </p>
             </div>
           </section>

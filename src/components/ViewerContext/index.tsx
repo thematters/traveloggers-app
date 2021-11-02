@@ -1,5 +1,5 @@
 import { useManualQuery, useMutation } from "graphql-hooks"
-import React, { createContext, useState } from "react"
+import React, { createContext, useRef, useState } from "react"
 
 import env from "@/.env.json"
 
@@ -22,6 +22,7 @@ type Context = {
   error?: Error
   signIn: () => Promise<any>
   signOut: () => Promise<any>
+  stopPolling: () => void
   getViewer: () => Promise<any>
 }
 
@@ -58,18 +59,31 @@ export const ViewerProvider = ({ children }: { children: React.ReactNode }) => {
   const [getViewer, { loading, error, data }] = useManualQuery(GET_VIEWER)
   const viewer = data?.viewer as Viewer
 
+  const timerRef = useRef<NodeJS.Timer | null>(null)
+
+  const stopPolling = () => {
+    setPolling(false)
+
+    if (timerRef?.current) {
+      clearTimeout(timerRef.current)
+    }
+  }
+
   const signIn = async () => {
-    window.open(env.mattersLoginURL, "_blank")
+    const signInUrl = `${env.mattersLoginURL}?target=${decodeURIComponent(
+      window.location.origin + "/sign-in-success"
+    )}`
+
+    window.open(signInUrl, "_blank")
 
     setPolling(true)
 
-    const timer = setInterval(async () => {
+    timerRef.current = setInterval(async () => {
       const { data: newData } = await getViewer()
       const newViewer = newData?.viewer as Viewer
 
       if (newViewer && newViewer.id) {
-        setPolling(false)
-        clearTimeout(timer)
+        stopPolling()
       }
     }, 1000)
   }
@@ -87,6 +101,7 @@ export const ViewerProvider = ({ children }: { children: React.ReactNode }) => {
         viewer,
         signIn,
         signOut,
+        stopPolling,
         getViewer,
       }}
     >

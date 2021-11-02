@@ -58,9 +58,19 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
     onPreOrderConfirm: onConfirm,
   })
 
+  // refresh on account or qty changes
   useEffect(() => {
     canPreOrder(true)
   }, [!!library, account, qtySelected])
+
+  // refresh every 10 secs
+  useEffect(() => {
+    const timer = setInterval(() => {
+      canPreOrder(true)
+    }, 10000)
+
+    return () => clearInterval(timer)
+  }, [])
 
   if (loading && !unitPrice) {
     return <Spinner />
@@ -112,25 +122,27 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
           <table className={styles.table}>
             <tbody>
               <tr className={styles.highlight}>
-                <td>合約地址</td>
+                <td>{locale === Lang.en ? "Contract Address" : "合約地址"}</td>
                 <td>
                   {/* use checksum address */}
                   {maskAddress(ethers.utils.getAddress(contract.address))}
                 </td>
               </tr>
               <tr className={styles.highlight}>
-                <td>錢包地址</td>
+                <td>{locale === Lang.en ? "Wallet Address" : "錢包地址"}</td>
                 <td>{maskedAddress}</td>
               </tr>
               <tr>
-                <td>錢包餘額</td>
+                <td>{locale === Lang.en ? "Wallet Balance" : "錢包餘額"}</td>
                 <td>{balance ? weiToEther(balance) : "..."} ETH</td>
               </tr>
               <hr className={styles.divider} />
               <tr className={styles.highlight}>
                 <td>
                   <div className={styles.qty}>
-                    <span className={styles.highlight}>預購數量</span>
+                    <span className={styles.highlight}>
+                      {locale === Lang.en ? "Amount" : "預購數量"}
+                    </span>
                     <span className={styles.supply}>
                       <TextIcon
                         icon={isReadyOutOfSupply ? <IconInfo /> : null}
@@ -157,7 +169,7 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
                       onChange={onQtySelectChange}
                       label={
                         locale === Lang.en
-                          ? "Choose quantity to order"
+                          ? "Select pre-order amount"
                           : "選擇預購數量"
                       }
                       disabled={loading}
@@ -166,7 +178,7 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
                 </td>
               </tr>
               <tr className={styles.highlight}>
-                <td>金額小計</td>
+                <td>{locale === Lang.en ? "Subtotal" : "金額小計"}</td>
                 <td>{preOrderCost ? weiToEther(preOrderCost) : "..."} ETH</td>
               </tr>
               <hr className={styles.divider} />
@@ -180,7 +192,7 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
               </tr>
               <hr className={styles.divider} />
               <tr className={styles.highlight}>
-                <td>總計金額（最高）</td>
+                <td>{locale === Lang.en ? "Total" : "總計金額（最高）"}</td>
                 <td>{totalCost ? weiToEther(totalCost) : "..."} ETH</td>
               </tr>
             </tbody>
@@ -193,19 +205,29 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
           )}
           {sending && (
             <Dialog.Message type={tx ? "success" : "warning"}>
-              {!tx && <p>請到你的錢包確認交易</p>}
+              {!tx && (
+                <p>
+                  {locale === Lang.en
+                    ? "Please confirm transaction in your wallet"
+                    : "請到你的錢包確認交易"}
+                </p>
+              )}
               {tx && (
                 <p>
-                  交易確認中（
+                  {locale === Lang.en
+                    ? "Confirming transaction ("
+                    : "交易確認中（"}
                   <a
                     href={txUrl}
                     target="_blank"
                     rel="noreferrer"
                     className={styles.link}
                   >
-                    在 Ethertscan 上查看
+                    {locale === Lang.en
+                      ? "View on Etherscan"
+                      : "在 Ethertscan 上查看"}
                   </a>
-                  ）
+                  {locale === Lang.en ? ")" : "）"}
                 </p>
               )}
             </Dialog.Message>
@@ -214,7 +236,11 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
       </Dialog.Content>
 
       <Dialog.CTAButton onClick={preOrder} disabled={loading}>
-        {loading ? <IconSpinner /> : "確認預購"}
+        {loading ? (
+          <IconSpinner />
+        ) : (
+          <>{locale === Lang.en ? "Confirm" : "確認預購"}</>
+        )}
       </Dialog.CTAButton>
     </>
   )

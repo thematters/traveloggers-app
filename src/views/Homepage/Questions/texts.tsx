@@ -1,6 +1,6 @@
 const TEXTS: Record<string, any> = {
   zh: {
-    question1: "什麼是NFT？什麼是 Traveloggers？",
+    question1: "什麼是 NFT？什麼是 Traveloggers？",
     answer1_1:
       "NFT 是「非同質化代幣」的意思，它是一種獨特的、獨一無二的數字物品，用戶可以購買、擁有和交易。",
     answer1_2:

@@ -45,7 +45,11 @@ const ConnectWalletContent: React.FC<ConnectWalletContentProps> = ({
   return (
     <Dialog.Content>
       <section className={styles.content}>
-        <p>選擇一個已註冊的裝置，或者註冊新的錢包</p>
+        <p>
+          {locale === Lang.en
+            ? "Select a wallet, or register a new wallet"
+            : "選擇一個已註冊的錢包，或者註冊新的錢包"}
+        </p>
 
         <section className={styles.buttons}>
           <MetaMaskButton

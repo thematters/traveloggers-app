@@ -35,13 +35,13 @@ const WALLET_ERROR_MESSAGES = {
     [WalletErrorType.userRejectedRequest]:
       "Please authorize this website to access your Ethereum account.",
     [WalletErrorType.unknown]:
-      "An unknown error occurred. Check the console for more details.",
+      "An unknown error occurred, please make sure your wallet and network are in working.",
     // sign message
     [WalletErrorType.userRejectedSignMessage]:
       "Please sign the message to complete the operation.",
     // contract
     [WalletErrorType.failedToEstimateGas]:
-      "Insufficient funds or network error.",
+      "Insufficient balance or network error.",
     [WalletErrorType.failedToSendTx]: "Failed to send transaction.",
     [WalletErrorType.preOrderExist]: "This account has been pre-ordered.",
     [WalletErrorType.preOrderNotStarted]: "Pre-order isn' started yet.",
@@ -53,7 +53,7 @@ const WALLET_ERROR_MESSAGES = {
     [WalletErrorType.noEthereumProvider]: "請先安装 MetaMask 擴充",
     [WalletErrorType.unsupportedChainId]: `請先切換網絡到 ${chainName}`,
     [WalletErrorType.userRejectedRequest]: "請先授權本網站獲取你的以太坊地址",
-    [WalletErrorType.unknown]: "發生未知錯誤，請確保你的網絡正常",
+    [WalletErrorType.unknown]: "發生未知錯誤，請確保你的錢包和網絡正常",
     // sign message
     [WalletErrorType.userRejectedSignMessage]: "請簽署以完成操作",
     // contract

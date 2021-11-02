@@ -41,9 +41,9 @@ const IntroContent: React.FC<IntroContentProps> = ({
     <>
       <Dialog.Content>
         <p>
-          任何擁有 Ethereum 錢包的朋友即可進行預購。有 Matters
-          帳號的會員可以先登入綁定，取得 NFT
-          後可以享有福利，也歡迎尚未註冊帳號的朋友成為馬特市一員。
+          {locale === Lang.en
+            ? "Anyone with an Ethereum wallet can participate in pre-orders. Each wallet address can purchase up to 5 Traveloggers. Pre-order amount is limited. Registered users of Matters.news can sign in, connect Ethereum wallet, and enjoy benefits. If you don’t have an account on Matters.news yet, we sincerely welcome you to join!"
+            : "任何擁有 Ethereum 錢包的朋友即可進行預購，每個錢包地址購買上限為 5 個，總預購數量有限，請把握機會。預購活動結束後，已有 Matters.news 帳戶的用戶可以進行登入綁定，綁定完成將享有福利，也歡迎尚未註冊帳戶的朋友加入 Matters.news。"}
         </p>
 
         <section className={styles.buttons}>
@@ -66,7 +66,11 @@ const IntroContent: React.FC<IntroContentProps> = ({
         onClick={gotoConfirm}
         disabled={!account || loading || !!preOrderError}
       >
-        {loading ? <IconSpinner /> : "參加預購"}
+        {loading ? (
+          <IconSpinner />
+        ) : (
+          <>{locale === Lang.en ? "Pre-order Now" : "參加預購"}</>
+        )}
       </Dialog.CTAButton>
     </>
   )
