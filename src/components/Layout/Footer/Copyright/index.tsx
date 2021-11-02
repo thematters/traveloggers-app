@@ -10,7 +10,7 @@ const Copyright = () => {
         <span itemProp="copyrightHolder">, All Rights Reserved</span>
       </section>
 
-      <section className={styles.designedBy}>Designed By Matters.</section>
+      <section className={styles.designedBy}>Designed By Matters Lab.</section>
     </section>
   )
 }
