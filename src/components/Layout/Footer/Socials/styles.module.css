@@ -1,8 +1,8 @@
 .icons {
   @mixin flex-center-space-between;
 
-  margin-bottom: var(--spacing-base);
   width: 100%;
+  margin-bottom: var(--spacing-base);
   font-size: 0;
 
   @media (--md-up) {

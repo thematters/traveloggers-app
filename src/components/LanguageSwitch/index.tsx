@@ -3,6 +3,7 @@ import React from "react"
 
 import { IconWorld, TextIcon } from "~/components"
 import { Lang } from "~/enums"
+import { analytics } from "~/utils"
 
 import * as styles from "./styles.module.css"
 
@@ -21,10 +22,16 @@ export const LanguageSwitch: React.FC<LanguageSwitchProps> = ({
     <LocalizedLink language={target.code} to={originalPath}>
       <section className={styles.switches}>
         <TextIcon
-          icon={<IconWorld />}
+          icon={<IconWorld size="md"/>}
           spacing="xxTight"
           weight="medium"
-          size="xs"
+          size="md"
+          onClick={() =>
+            analytics("click_button", {
+              type: "language",
+              state: current.code,
+            })
+          }
         >
           {current.localName}
         </TextIcon>

@@ -1,0 +1,48 @@
+.preface {
+  @mixin flex-center-all;
+  @mixin pixel-bg;
+
+  position: relative;
+  padding: var(--spacing-xxx-loose) 0;
+  background-position: bottom;
+
+  @media (--md-up) {
+    min-height: 100vh;
+    background-image: url("/images/preface.jpg");
+  }
+}
+
+.contents {
+  @mixin flex-center-start;
+
+  flex-direction: column-reverse;
+
+  & section {
+    width: 100%;
+  }
+
+  @media (--md-up) {
+    @mixin flex-center-space-between;
+
+    flex-direction: row;
+
+    & section {
+      width: 50%;
+      margin-right: var(--spacing-xxx-loose);
+    }
+  }
+}
+
+.aircraft {
+  width: 100%;
+  margin-bottom: var(--spacing-xx-loose);
+
+  @media (--md-up) {
+    position: absolute;
+    top: calc(50% - 350px);
+    right: 0;
+    width: 700px;
+    max-width: 50%;
+    margin-bottom: 0;
+  }
+}

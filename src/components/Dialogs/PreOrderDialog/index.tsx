@@ -1,7 +1,9 @@
 import { ethers } from "ethers"
+import { useLocalization } from "gatsby-theme-i18n"
 import React, { useState } from "react"
 
 import { Dialog } from "~/components"
+import { Lang } from "~/enums"
 import { useDialogSwitch, useStep } from "~/hooks"
 
 import CompletedContent from "./CompletedContent"
@@ -16,6 +18,8 @@ type PreOrderDialogProps = {
 type Step = "intro" | "connect-wallet" | "confirm" | "completed"
 
 export const PreOrderDialog: React.FC<PreOrderDialogProps> = ({ children }) => {
+  const { locale } = useLocalization()
+
   const {
     show,
     openDialog: baseOpenDialog,
@@ -45,14 +49,10 @@ export const PreOrderDialog: React.FC<PreOrderDialogProps> = ({ children }) => {
       <Dialog isOpen={show} onDismiss={closeDialog}>
         <Dialog.Header
           title={
-            isIntro ? (
-              <span>參加預購</span>
-            ) : isConnectWallet ? (
-              <span>連接錢包</span>
-            ) : isConfirm ? (
-              <span>預購確認</span>
+            isConnectWallet ? (
+              <span>{locale === Lang.en ? "Connect Wallet" : "連接錢包"}</span>
             ) : (
-              <span>你已成功登記預購 🎉</span>
+              <span>{locale === Lang.en ? "Pre-order" : "參加預購"}</span>
             )
           }
           closeDialog={closeDialog}

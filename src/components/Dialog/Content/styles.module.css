@@ -7,6 +7,10 @@
   @media (--sm-up) {
     padding: var(--spacing-base) var(--spacing-xxx-loose);
   }
+
+  & > * + * {
+    margin-top: var(--spacing-base);
+  }
 }
 
 .sm {

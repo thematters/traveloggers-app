@@ -2,9 +2,19 @@ const { siteUrl } = require("./.env.json")
 
 module.exports = {
   siteMetadata: {
-    // TODO: i18n
-    title: `Traveloggers`,
-    description: `matters nft site`,
+    title: "Traveloggers",
+    description:
+      "Traveloggers is the avatars issued by Matters Lab, a Web 3 creator ecosystem, to mark the identity of a voyager to Matterverse. Owners of these avatars will have access to the most revolutionary experiments in Matterverse",
+    en: {
+      title: "Traveloggers",
+      description:
+        "Traveloggers is the avatars issued by Matters Lab, a Web 3 creator ecosystem, to mark the identity of a voyager to Matterverse. Owners of these avatars will have access to the most revolutionary experiments in Matterverse",
+    },
+    zh: {
+      title: "Traveloggers",
+      description:
+        "Traveloggers 是致力於搭建更自由與公平的 Web 3.0 創作者生態 Matters Lab 發行的 NFT 數字頭像，代表 Matterverse 的遠航者身份。擁有此身份，將開啟 Matterverse 中最激進的實驗權限。",
+    },
     author: `@Mattersw3b`,
     siteUrl,
   },
@@ -102,6 +112,7 @@ module.exports = {
               "./src/styles/variables/colors.css",
               "./src/styles/variables/sizing.css",
               "./src/styles/variables/spacing.css",
+              "./src/styles/variables/z-index.css",
               "./src/styles/variables/typography.css",
             ],
           }),

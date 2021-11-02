@@ -15,6 +15,7 @@ import {
 } from "~/components"
 import { Lang } from "~/enums"
 import { useResponsive } from "~/hooks"
+import { analytics } from "~/utils"
 
 import Socials from "./Socials"
 import * as styles from "./styles.module.css"
@@ -78,7 +79,16 @@ const Header: React.FC<HeaderProps> = ({ originalPath }) => {
                   color="primary"
                   spacingX="1.25rem"
                   spacingY=".5rem"
-                  onClick={isPreOrderActive ? openDialog : scrollToRoadmap}
+                  onClick={() => {
+                    analytics("click_button", {
+                      type: "pre_order",
+                    })
+                    if (isPreOrderActive) {
+                      openDialog()
+                    } else {
+                      scrollToRoadmap()
+                    }
+                  }}
                 >
                   {locale === Lang.en ? "Pre-order" : "預購"}
                 </Button>
@@ -93,7 +103,16 @@ const Header: React.FC<HeaderProps> = ({ originalPath }) => {
                   color="primary"
                   spacingX="1.25rem"
                   spacingY=".5rem"
-                  onClick={isAirdropActive ? openDialog : scrollToRoadmap}
+                  onClick={() => {
+                    analytics("click_button", {
+                      type: "air_drop",
+                    })
+                    if (isAirdropActive) {
+                      openDialog()
+                    } else {
+                      scrollToRoadmap()
+                    }
+                  }}
                 >
                   {locale === Lang.en ? "Airdrop" : "空投"}
                 </Button>

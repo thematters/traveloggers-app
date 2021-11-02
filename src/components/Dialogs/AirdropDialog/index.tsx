@@ -1,6 +1,8 @@
+import { useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 
 import { Dialog } from "~/components"
+import { Lang } from "~/enums"
 import { useDialogSwitch, useStep } from "~/hooks"
 
 import CompletedContent from "./CompletedContent"
@@ -14,6 +16,8 @@ type AirdriopDialogProps = {
 type Step = "intro" | "connect-wallet" | "completed"
 
 export const AirdriopDialog: React.FC<AirdriopDialogProps> = ({ children }) => {
+  const { locale } = useLocalization()
+
   const {
     show,
     openDialog: baseOpenDialog,
@@ -40,11 +44,11 @@ export const AirdriopDialog: React.FC<AirdriopDialogProps> = ({ children }) => {
         <Dialog.Header
           title={
             isIntro ? (
-              <span>參與空投</span>
+              <span>{locale === Lang.en ? "Airdop" : "參與空投"}</span>
             ) : isConnectWallet ? (
-              <span>連接錢包</span>
+              <span>{locale === Lang.en ? "Connect Wallet" : "連接錢包"}</span>
             ) : (
-              <span>你已成功參加空投囉 🎉</span>
+              <span>{locale === Lang.en ? "Airdop" : "參與空投"}</span>
             )
           }
           closeDialog={closeDialog}

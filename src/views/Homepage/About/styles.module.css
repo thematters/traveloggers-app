@@ -1,5 +1,5 @@
 :root {
-  --intro-padding-right: 7rem;
+  --intro-padding-right: 5rem;
   --logo-size: 10rem;
   --logo-size-md-up: 15rem;
 }
@@ -8,7 +8,10 @@
   @mixin pixel-bg;
 
   padding: var(--spacing-xxx-loose) 0;
-  background-image: url(/images/pixel-bg-6.png);
+
+  @media (--md-up) {
+    background-image: url("/images/pixel-bg-6.png");
+  }
 }
 
 .about {
@@ -25,8 +28,8 @@
   @media (--md-up) {
     @mixin flex-center-space-between;
 
-    align-items: flex-start;
     flex-direction: row;
+    align-items: flex-start;
     padding-top: var(--spacing-loose);
 
     & .intro,
@@ -47,17 +50,19 @@
 .logo {
   @mixin flex-center-all;
 
+  align-self: stretch;
+
   & svg {
-    margin-top: var(--spacing-loose);
     width: var(--logo-size);
     height: var(--logo-size);
+    margin-top: var(--spacing-loose);
   }
 
   @media (--md-up) {
     & svg {
-      margin-top: calc(var(--spacing-xx-loose) * -1);
       width: var(--logo-size-md-up);
       height: var(--logo-size-md-up);
+      margin-top: calc(var(--spacing-xxx-loose) * -1);
     }
   }
 }

@@ -1,6 +1,6 @@
 import React from "react"
 
-import { SEO } from "~/components"
+import { MessageBox, SEO } from "~/components"
 import Footer from "~/components/Layout/Footer"
 import Header from "~/components/Layout/Header"
 import { Lang } from "~/enums"
@@ -27,17 +27,14 @@ const NotFoundPage: React.FC<PageProps> = ({
     <Header originalPath={originalPath} />
 
     <main>
-      <section className={styles.hero}>
+      <section className={styles.container}>
         <div className="l-container">
           <div className="l-row">
             <div className="l-col-full">
-              <div className={styles.content}>
-                <h1 className={styles.title}>Not Found</h1>
-
-                <p className={styles.intro}>
-                  You just hit a route that doesn&#39;t exist... the sadness.
-                </p>
-              </div>
+              <MessageBox
+                title="Not Found"
+                description="You just hit a route that doesn&#39;t exist... the sadness."
+              />
             </div>
           </div>
         </div>

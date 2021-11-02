@@ -7,15 +7,15 @@
 .line {
   width: 2px;
   height: 100%;
-  background: var(--color-grey);
   margin-left: 9px;
+  background: var(--color-grey);
 
   @media (--md-up) {
     margin-left: 19px;
   }
 }
 
-.lineFinished {
+.lineClosed {
   background: var(--color-matters-green);
   background: linear-gradient(
     90deg,
@@ -28,7 +28,8 @@
   height: 4.5rem;
 }
 
-.readyFadein {
+.upcomingFadein,
+.openFadein {
   background: var(--color-grey);
   background: linear-gradient(
     180deg,
@@ -37,13 +38,14 @@
   );
 }
 
-.readyFadeout {
+.upcomingFadeout,
+.openFadeout {
   background: var(--color-grey);
   background: linear-gradient(0deg, rgb(0 0 0 / 0%) 0%, var(--color-grey) 100%);
 }
 
-.finishedFadein {
-  background: var(--color-gradient-green-start);
+.closedFadein {
+  background: var(--color-matters-green);
   background: linear-gradient(
     180deg,
     rgb(0 0 0 / 0%) 0%,
@@ -52,8 +54,8 @@
   );
 }
 
-.finishedFadeout {
-  background: var(--color-gradient-green-start);
+.closedFadeout {
+  background: var(--color-matters-green);
   background: linear-gradient(
     0deg,
     rgb(0 0 0 / 0%) 0%,

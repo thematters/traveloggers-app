@@ -2,17 +2,28 @@
   @mixin flex-center-all;
   @mixin pixel-bg;
 
+  /* padding: var(--spacing-xxx-loose) 0; */
+
+  position: relative;
   min-height: 100vh;
-  padding: var(--spacing-xxx-loose) 0;
-  background-image: url(/images/pixel-bg-1.png);
+  padding-bottom: 56.25%; /* keep same ratio as background img 1920x1080 */
+
+  @media (--md-up) {
+    background-image: url("/images/logbook.jpg");
+  }
+
+  & > div {
+    @mixin object-fit-cover;
+    @mixin flex-center-all;
+  }
 }
 
 .content {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
   flex-direction: column;
   column-gap: var(--spacing-base);
+  align-items: flex-start;
+  justify-content: space-between;
 
   @media (--md-up) {
     flex-direction: row;
@@ -20,10 +31,10 @@
 }
 
 .image {
+  flex-shrink: 0;
   width: 100%;
   max-width: 32rem;
   height: auto;
-  flex-shrink: 0;
   margin: 0 auto;
   margin-bottom: var(--spacing-xx-loose);
 

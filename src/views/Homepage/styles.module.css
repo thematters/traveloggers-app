@@ -1,0 +1,6 @@
+.storyActive {
+  & > section + section {
+    display: none;
+    opacity: 0%;
+  }
+}

@@ -1,11 +1,11 @@
 .avatar {
   position: relative;
   display: inline-block;
-  width: 2.5rem;
-  height: 2.5rem;
 
   /* may under a flex layout, keep it unshrinkable */
   flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
 
   & > img {
