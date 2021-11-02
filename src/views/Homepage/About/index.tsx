@@ -20,12 +20,8 @@ const About = () => {
         <section className={styles.about}>
           <section className={styles.intro}>
             <Section.Content>
-              <p>
-                {texts.content1}
-                <br />
-                <br />
-                {texts.content2}
-              </p>
+              <p>{texts.content1}</p>
+              <p>{texts.content2}</p>
             </Section.Content>
 
             <section className={styles.button}>

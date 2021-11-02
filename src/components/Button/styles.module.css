@@ -81,6 +81,6 @@
 
 .teal {
   background: transparent;
-  color: var(--color-gradient-green-start);
+  color: var(--color-matters-green);
   font-weight: var(--font-weight-normal);
 }

@@ -47,7 +47,7 @@
 }
 
 .closedFadein {
-  background: var(--color-gradient-green-start);
+  background: var(--color-matters-green);
   background:
     linear-gradient(
       180deg,
@@ -58,7 +58,7 @@
 }
 
 .closedFadeout {
-  background: var(--color-gradient-green-start);
+  background: var(--color-matters-green);
   background:
     linear-gradient(
       0deg,

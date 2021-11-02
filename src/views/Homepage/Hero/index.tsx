@@ -1,7 +1,7 @@
 import { useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 
-import { Button, IconScrollDown, TextIcon } from "~/components"
+import { Button, IconScrollDown, Section, TextIcon } from "~/components"
 import { Lang } from "~/enums"
 import { analytics } from "~/utils"
 
@@ -28,11 +28,15 @@ const Hero: React.FC<Props> = ({ setStoryActive }) => {
                   : "馬特宇宙，來源於銀河宇宙的一次革命，一次離鄉的征途"}
               </h3>
 
-              <p className={styles.intro}>
-                {locale === Lang.en
-                  ? "Traveloggers is the 1500 NFT avatars issued by Matters Lab to mark the identity of a voyager to Matterverse. Owners of these avatars will have access to the most revolutionary experiments in Matterverse."
-                  : "Traveloggers 是 Matters Lab 發行的 1500 個 NFT 數字頭像，代表馬特宇宙的遠航者身份。擁有此身份，將開啟馬特宇宙中最激進的實驗權限。"}
-              </p>
+              <section className={styles.intro}>
+                <Section.Content>
+                  <p>
+                    {locale === Lang.en
+                      ? "Traveloggers is the 1500 NFT avatars issued by Matters Lab to mark the identity of a voyager to Matterverse. Owners of these avatars will have access to the most revolutionary experiments in Matterverse."
+                      : "Traveloggers 是 Matters Lab 發行的 1500 個 NFT 數字頭像，代表馬特宇宙的遠航者身份。擁有此身份，將開啟馬特宇宙中最激進的實驗權限。"}
+                  </p>
+                </Section.Content>
+              </section>
 
               <section className={styles.cta}>
                 <Button

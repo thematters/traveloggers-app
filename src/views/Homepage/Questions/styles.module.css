@@ -3,8 +3,8 @@
 
   padding: var(--spacing-xxx-loose) 0;
 
-  & :global(a) {
-    color: var(--color-gradient-green-start);
+  & a {
+    color: var(--color-matters-green);
   }
 
   @media(--md-up) {

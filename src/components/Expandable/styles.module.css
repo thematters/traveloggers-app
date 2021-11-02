@@ -30,12 +30,5 @@
 }
 
 .content {
-  font-size: var(--font-size-sm-s);
-  line-height: 1.5rem;
-  padding: var(--spacing-base) 0;
-
-  @media (--md-up) {
-    font-size: var(--font-size-md-s);
-    padding: var(--spacing-loose) var(--spacing-x-loose);
-  }
+  margin: var(--spacing-base) 0;
 }
