@@ -3,6 +3,7 @@ import { useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 import { Helmet } from "react-helmet"
 
+import env from "@/.env.json"
 import { Lang } from "~/enums"
 
 type SEOProps = {
@@ -95,7 +96,7 @@ export const SEO: React.FC<SEOProps> = ({
         },
         {
           property: `og:image`,
-          content: `/images/social-cover.jpg`,
+          content: `${env.siteUrl}/images/social-cover.jpg`,
         },
         {
           name: `twitter:card`,
@@ -103,7 +104,7 @@ export const SEO: React.FC<SEOProps> = ({
         },
         {
           property: `twitter:image`,
-          content: `/images/social-cover.jpg`,
+          content: `${env.siteUrl}/images/social-cover.jpg`,
         },
         {
           name: `twitter:creator`,
