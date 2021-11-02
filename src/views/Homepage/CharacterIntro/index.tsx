@@ -6,6 +6,7 @@ import env from "@/.env.json"
 import { Button, Container, RoadmapContext, Section } from "~/components"
 import { Lang } from "~/enums"
 import { useResponsive } from "~/hooks"
+import { analytics } from "~/utils"
 
 import * as styles from "./styles.module.css"
 
@@ -36,6 +37,7 @@ const CharacterIntro = () => {
               spacingY="0.75rem"
               htmlHref={isOpenSaleActive && opensea ? opensea : undefined}
               htmlTarget="_blank"
+              onClick={() => analytics("click_button", { type: "opensea" })}
             >
               View all on Opensea
             </Button>

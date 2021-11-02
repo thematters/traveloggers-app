@@ -5,6 +5,7 @@ import React, { useState } from "react"
 import { Button } from "~/components"
 import { Lang } from "~/enums"
 import { useResponsive } from "~/hooks"
+import { analytics } from "~/utils"
 
 import Slide from "./slide"
 import * as styles from "./styles.module.css"
@@ -45,6 +46,7 @@ const Acts: React.FC<Props> = ({ active, setActive }) => {
       <Slide step={step} stepIndex={1} imgSrc="/images/story-2.png" />
       <Slide step={step} stepIndex={2} imgSrc="/images/story-3.png" />
       <Slide step={step} stepIndex={3} imgSrc="/images/story-4.png" />
+
       {
         <div
           className={styles.dialog}
@@ -254,10 +256,25 @@ const Acts: React.FC<Props> = ({ active, setActive }) => {
             </>
           )}
           <div>
-            <Button color="transparent" onClick={onPrev}>
+            <Button
+              color="transparent"
+              onClick={() => {
+                analytics("click_button", {
+                  type: "previous_story",
+                  state: step,
+                })
+                onPrev()
+              }}
+            >
               ←&nbsp;{locale === Lang.en ? "Previous" : "上一頁"}
             </Button>
-            <Button color="teal" onClick={onNext}>
+            <Button
+              color="teal"
+              onClick={() => {
+                analytics("click_button", { type: "next_story", state: step })
+                onNext()
+              }}
+            >
               {step < 3
                 ? locale === Lang.en
                   ? "Next"
