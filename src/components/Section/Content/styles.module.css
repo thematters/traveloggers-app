@@ -2,7 +2,6 @@
   font-size: var(--font-size-sm-s);
   line-height: 1.5rem;
 
-
   & a {
     color: var(--color-matters-green);
   }

@@ -3,10 +3,10 @@
 
   flex-direction: column;
   flex-grow: 1;
-  border: 1px solid rgb(255 255 255 / 30%);
-  border-radius: var(--spacing-x-tight);
   padding: var(--spacing-base);
   margin-bottom: var(--spacing-loose);
+  border: 1px solid rgb(255 255 255 / 30%);
+  border-radius: var(--spacing-x-tight);
 
   & .info,
   & .timeDetails {
@@ -20,19 +20,17 @@
   @media (--md-up) {
     @mixin flex-center-space-between;
 
-    align-items: flex-start;
     flex-direction: row;
+    align-items: flex-start;
     padding: var(--spacing-loose);
 
     & .info {
       width: 70%;
-    }
-    & .timeDetails {
-      width: 30%;
+      padding-right: var(--spacing-x-loose);
     }
 
-    & .info {
-      padding-right: var(--spacing-x-loose);
+    & .timeDetails {
+      width: 30%;
     }
   }
 }
@@ -78,35 +76,34 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-
   padding: var(--spacing-base);
+  line-height: 1.5rem;
   background: var(--color-black);
   border-radius: var(--spacing-base);
-  line-height: 1.5rem;
 
   & .event {
-    color: var(--color-matters-green);
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
+    color: var(--color-matters-green);
   }
 
   & .date {
+    padding-top: var(--spacing-x-tight);
     font-size: var(--font-size-xm);
     font-weight: var(--font-weight-semibold);
-    padding-top: var(--spacing-x-tight);
   }
 
   & .time {
-    color: var(--color-grey);
-    font-size: var(--font-size-xs);
     padding-top: var(--spacing-x-tight);
+    font-size: var(--font-size-xs);
+    color: var(--color-grey);
   }
 
   & .dash {
     font-size: 0.25rem;
   }
 
-  @media(--md-up) {
+  @media (--md-up) {
     & .evnet {
       font-size: var(--font-size-base);
       line-height: 1.875rem;

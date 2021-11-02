@@ -3,8 +3,8 @@
 
   padding: var(--spacing-xxx-loose) 0;
 
-  @media(--md-up) {
-    background-image: url(/images/pixel-bg-4.png);
+  @media (--md-up) {
+    background-image: url("/images/pixel-bg-4.png");
   }
 }
 

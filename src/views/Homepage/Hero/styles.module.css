@@ -4,25 +4,21 @@
   position: relative;
   min-height: 100vh;
   text-align: center;
-  transition: all 600ms ease-out;
-
- background-image:
-    linear-gradient(
+  background-image: linear-gradient(
       to bottom,
       rgb(255 255 255 / 0%) 50%,
       rgb(0 0 0 / 100%)
     ),
     url("/images/hero-bg-sm.jpg");
+  transition: all 600ms ease-out;
 
-
-  @media(--md-up) {
- background-image:
-    linear-gradient(
-      to bottom,
-      rgb(255 255 255 / 0%) 50%,
-      rgb(0 0 0 / 100%)
-    ),
-    url("/images/hero.jpg");
+  @media (--md-up) {
+    background-image: linear-gradient(
+        to bottom,
+        rgb(255 255 255 / 0%) 50%,
+        rgb(0 0 0 / 100%)
+      ),
+      url("/images/hero.jpg");
   }
 }
 
@@ -75,15 +71,15 @@
 .extra {
   position: relative;
   width: 100%;
-    background-image: url("/images/hero-sm.png");
+  background-image: url("/images/hero-sm.png");
 
   &::before {
-        display: block;
+    display: block;
+    padding-bottom: 56%;
     content: "";
-  padding-bottom: 56%;
   }
 
-  @media(--md-up) {
+  @media (--md-up) {
     display: none;
   }
 }

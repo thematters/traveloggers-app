@@ -96,8 +96,8 @@
 }
 
 @define-mixin pixel-bg {
-  background-size: 100% auto;
   background-position: top;
+  background-size: 100% auto;
 }
 
 @define-mixin all-transition {
@@ -112,7 +112,7 @@
 }
 
 @define-mixin line-clamp {
-  display: -webkit-box;
+  display: box;
   -webkit-line-clamp: 1;
 
   /* autoprefixer: ignore next */
