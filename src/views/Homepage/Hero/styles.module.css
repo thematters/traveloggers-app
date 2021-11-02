@@ -59,11 +59,14 @@
 }
 
 .cta {
-  width: 100%;
+  @mixin flex-center-all;
+
+  column-gap: var(--spacing-loose);
   margin: var(--spacing-xx-loose) auto 0;
 
-  @media (--sm-up) {
-    width: 22.5rem;
+  & > button {
+    flex-grow: 1;
+    opacity: 100%;
   }
 }
 

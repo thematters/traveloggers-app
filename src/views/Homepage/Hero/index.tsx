@@ -1,18 +1,27 @@
 import { useLocalization } from "gatsby-theme-i18n"
-import React from "react"
+import React, { useContext } from "react"
 
-import { Button, IconScrollDown, Section, TextIcon } from "~/components"
+import env from "@/.env.json"
+import {
+  Button,
+  IconScrollDown,
+  PreOrderDialog,
+  RoadmapContext,
+  Section,
+  TextIcon,
+} from "~/components"
 import { Lang } from "~/enums"
 import { analytics } from "~/utils"
 
 import * as styles from "./styles.module.css"
 
-type Props = {
-  setStoryActive: (arg0: boolean) => void
-}
-
-const Hero: React.FC<Props> = ({ setStoryActive }) => {
+const Hero = () => {
   const { locale } = useLocalization()
+
+  const { discord } = env.socialUrls[locale as Lang]
+
+  const { isPreOrderStarted, isPreOrderEnded } = useContext(RoadmapContext)
+  const isPreOrderActive = isPreOrderStarted && !isPreOrderEnded
 
   return (
     <>
@@ -38,18 +47,37 @@ const Hero: React.FC<Props> = ({ setStoryActive }) => {
                     </p>
                   </Section.Content>
                 </section>
+
                 <section className={styles.cta}>
+                  <PreOrderDialog>
+                    {({ openDialog }) => (
+                      <Button
+                        color="primary"
+                        width="100%"
+                        height="3.5rem"
+                        spacingY="1rem"
+                        disabled={!isPreOrderActive}
+                        onClick={() => {
+                          openDialog()
+                          analytics("click_button", { type: "hero_preorder" })
+                        }}
+                      >
+                        {locale === Lang.en ? "11/5 Pre-sale" : "11/5 開啟預購"}
+                      </Button>
+                    )}
+                  </PreOrderDialog>
                   <Button
                     color="primary"
                     width="100%"
                     height="3.5rem"
                     spacingY="1rem"
+                    htmlHref={discord}
+                    htmlTarget="_blank"
                     onClick={() => {
-                      analytics("click_button", { type: "story_line" })
-                      setStoryActive(true)
+                      analytics("click_button", { type: "hero_discord" })
                     }}
                   >
-                    {locale === Lang.en ? "The Prequel" : "查看前傳故事"}
+                    {locale === Lang.en ? "Join Discord" : "加入 Discord"}
                   </Button>
                 </section>
               </div>
@@ -68,7 +96,7 @@ const Hero: React.FC<Props> = ({ setStoryActive }) => {
         </div>
       </section>
 
-      <div className={styles.extra}></div>
+      <section className={styles.extra}></section>
     </>
   )
 }
