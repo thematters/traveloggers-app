@@ -9,7 +9,7 @@
   padding-bottom: 56.25%; /* keep same ratio as background img 1920x1080 */
 
   @media (--md-up) {
-    background-image: url("/images/pixel-bg-1.png");
+    background-image: url("/images/logbook.jpg");
   }
 
   & > div {
