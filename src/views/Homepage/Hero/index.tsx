@@ -49,9 +49,7 @@ const Hero: React.FC<Props> = ({ setStoryActive }) => {
                     setStoryActive(true)
                   }}
                 >
-                  {locale === Lang.en
-                    ? "The Prequel"
-                    : "查看前傳故事"}
+                  {locale === Lang.en ? "The Prequel" : "查看前傳故事"}
                 </Button>
               </section>
             </div>
