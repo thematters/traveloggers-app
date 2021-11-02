@@ -2,16 +2,13 @@
   @mixin flex-center-all;
   @mixin pixel-bg;
 
+  position: relative;
   padding: var(--spacing-xxx-loose) 0;
   background-position: bottom;
 
   @media (--md-up) {
-    padding: 15rem 0 12rem;
-    background-image: url("/images/pixel-bg-0.png");
-  }
-
-  @media (--lg-up) {
-    padding: 22rem 0;
+    min-height: 100vh;
+    background-image: url("/images/preface.jpg");
   }
 }
 
@@ -31,14 +28,21 @@
 
     & section {
       width: 50%;
+      margin-right: var(--spacing-xxx-loose);
     }
   }
 }
 
-.image {
+.aircraft {
+  width: 100%;
   margin-bottom: var(--spacing-xx-loose);
 
   @media (--md-up) {
-    display: none;
+    position: absolute;
+    top: calc(50% - 350px);
+    right: 0;
+    width: 700px;
+    max-width: 50%;
+    margin-bottom: 0;
   }
 }

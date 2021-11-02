@@ -28,9 +28,11 @@ const Socials: React.FC = () => {
         {matters && (
           <a
             href={matters}
+            target="_blank"
             onClick={() =>
               analytics("click_button", { type: "footer_matters" })
             }
+            rel="noreferrer"
           >
             <IconMatters size="md" />
           </a>
@@ -39,7 +41,9 @@ const Socials: React.FC = () => {
         {opensea && (
           <a
             href={opensea}
+            target="_blank"
             onClick={() => analytics("click_button", { type: "footer_os" })}
+            rel="noreferrer"
           >
             <IconOpenSea size="md" />
           </a>
@@ -48,7 +52,9 @@ const Socials: React.FC = () => {
         {instagram && (
           <a
             href={instagram}
+            target="_blank"
             onClick={() => analytics("click_button", { type: "footer_ins" })}
+            rel="noreferrer"
           >
             <IconInstagram size="md" />
           </a>
@@ -57,7 +63,9 @@ const Socials: React.FC = () => {
         {facebook && (
           <a
             href={facebook}
+            target="_blank"
             onClick={() => analytics("click_button", { type: "footer_fb" })}
+            rel="noreferrer"
           >
             <IconFacebook size="md" />
           </a>
@@ -66,7 +74,9 @@ const Socials: React.FC = () => {
         {twitter && (
           <a
             href={twitter}
+            target="_blank"
             onClick={() => analytics("click_button", { type: "footer_tt" })}
+            rel="noreferrer"
           >
             <IconTwitter size="md" />
           </a>
@@ -75,7 +85,9 @@ const Socials: React.FC = () => {
         {discord && (
           <a
             href={discord}
+            target="_blank"
             onClick={() => analytics("click_button", { type: "footer_dis" })}
+            rel="noreferrer"
           >
             <IconDiscord size="md" />
           </a>
@@ -84,7 +96,9 @@ const Socials: React.FC = () => {
         {telegram && (
           <a
             href={telegram}
+            target="_blank"
             onClick={() => analytics("click_button", { type: "footer_tg" })}
+            rel="noreferrer"
           >
             <IconTelegram size="md" />
           </a>
@@ -95,9 +109,11 @@ const Socials: React.FC = () => {
         {matters && (
           <a
             href={matters}
+            target="_blank"
             onClick={() =>
               analytics("click_button", { type: "footer_matters" })
             }
+            rel="noreferrer"
           >
             Matters
           </a>
@@ -106,7 +122,9 @@ const Socials: React.FC = () => {
         {opensea && (
           <a
             href={opensea}
+            target="_blank"
             onClick={() => analytics("click_button", { type: "footer_os" })}
+            rel="noreferrer"
           >
             OpenSea
           </a>
@@ -115,7 +133,9 @@ const Socials: React.FC = () => {
         {instagram && (
           <a
             href={instagram}
+            target="_blank"
             onClick={() => analytics("click_button", { type: "footer_ins" })}
+            rel="noreferrer"
           >
             Instagram
           </a>
@@ -124,7 +144,9 @@ const Socials: React.FC = () => {
         {facebook && (
           <a
             href={facebook}
+            target="_blank"
             onClick={() => analytics("click_button", { type: "footer_fb" })}
+            rel="noreferrer"
           >
             Facebook
           </a>
@@ -133,7 +155,9 @@ const Socials: React.FC = () => {
         {twitter && (
           <a
             href={twitter}
+            target="_blank"
             onClick={() => analytics("click_button", { type: "footer_tt" })}
+            rel="noreferrer"
           >
             Twitter
           </a>
@@ -142,7 +166,9 @@ const Socials: React.FC = () => {
         {discord && (
           <a
             href={discord}
+            target="_blank"
             onClick={() => analytics("click_button", { type: "footer_dis" })}
+            rel="noreferrer"
           >
             Discord
           </a>

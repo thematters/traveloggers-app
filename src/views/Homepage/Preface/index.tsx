@@ -18,9 +18,9 @@ const Preface = () => {
             <p>{texts.content1}</p>
             <p>{texts.content2}</p>
           </Section.Content>
-          <Section.Content>
-            <img className={styles.image} src="/images/aircraft.png" />
-          </Section.Content>
+          <div className={styles.aircraft}>
+            <img src="/images/aircraft.png" />
+          </div>
         </section>
       </Container>
     </section>

@@ -8,7 +8,7 @@
   }
 
   @media (--md-up) {
-    font-size: var(--font-size-xm);
+    font-size: var(--font-size-lg);
     line-height: 2rem;
   }
 

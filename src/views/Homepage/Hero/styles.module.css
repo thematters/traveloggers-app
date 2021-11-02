@@ -25,6 +25,11 @@
 .content {
   max-width: 40.5rem;
   margin: 0 auto;
+  margin-bottom: 3rem;
+
+  @media (--md-up) {
+    margin-bottom: 7rem;
+  }
 }
 
 .title {
@@ -40,7 +45,7 @@
 .subtitle {
   margin-top: var(--spacing-xx-loose);
   font-size: var(--font-size-xm);
-  font-size: var(--font-weight-semibold);
+  font-weight: var(--font-weight-semibold);
   line-height: 1.5rem;
 
   @media (--sm-up) {
