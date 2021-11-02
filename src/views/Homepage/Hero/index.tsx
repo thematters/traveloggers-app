@@ -62,7 +62,9 @@ const Hero = () => {
                           analytics("click_button", { type: "hero_preorder" })
                         }}
                       >
-                        {locale === Lang.en ? "11/5 Pre-sale" : "11/5 開啟預購"}
+                        {locale === Lang.en
+                          ? "11/5 Pre-order"
+                          : "11/5 開啟預購"}
                       </Button>
                     )}
                   </PreOrderDialog>
@@ -77,7 +79,9 @@ const Hero = () => {
                       analytics("click_button", { type: "hero_discord" })
                     }}
                   >
-                    {locale === Lang.en ? "Join Discord" : "加入 Discord"}
+                    {locale === Lang.en
+                      ? "Join Discord Discussion"
+                      : "加入 Discord 討論"}
                   </Button>
                 </section>
               </div>

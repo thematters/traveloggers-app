@@ -127,10 +127,8 @@ const TEXTS: Record<string, any> = {
     event1_2: "Reveal",
     event1_2_content: (
       <section>
-        <p>
-          <b>12 &mdash; 2pm, November 12, 2021</b>
-          <span>&nbsp;(UTC+8)</span>
-        </p>
+        <b>12 &mdash; 2pm, November 12, 2021</b>
+        <span>&nbsp;(UTC+8)</span>
       </section>
     ),
     event1_button_upcoming: "Upcoming",
