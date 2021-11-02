@@ -36,7 +36,7 @@ const SignInSuccess: React.FC<PageProps> = ({
           <div className="l-container">
             <div className="l-row">
               <div className="l-col-full">
-                <div className={styles.content}>
+                <div>
                   <MessageBox
                     title="Success"
                     description={

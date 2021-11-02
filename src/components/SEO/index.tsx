@@ -99,7 +99,11 @@ export const SEO: React.FC<SEOProps> = ({
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary_large_image`,
+        },
+        {
+          property: `twitter:image`,
+          content: `/images/social-cover.jpg`,
         },
         {
           name: `twitter:creator`,
