@@ -25,12 +25,12 @@
     padding: var(--spacing-loose);
 
     & .info {
-      width: 70%;
+      width: 46%;
       padding-right: var(--spacing-x-loose);
     }
 
     & .timeDetails {
-      width: 30%;
+      width: 54%;
     }
   }
 }
@@ -67,17 +67,17 @@
 }
 
 .stages {
-  @mixin flex-center-space-between;
-
-  gap: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .stage {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
   padding: var(--spacing-base);
+  font-size: var(--font-size-md);
   line-height: 1.5rem;
+  text-align: left;
   background: var(--color-black);
   border-radius: var(--spacing-base);
 
@@ -88,40 +88,49 @@
   }
 
   & .date {
-    padding-top: var(--spacing-x-tight);
-    font-size: var(--font-size-xm);
     font-weight: var(--font-weight-semibold);
   }
 
   & .time {
-    padding-top: var(--spacing-x-tight);
-    font-size: var(--font-size-xs);
     color: var(--color-grey);
   }
 
   & .dash {
-    font-size: 0.25rem;
+    padding: 0 3px 0 5px;
+    font-size: var(--font-size-xl);
   }
 
   @media (--md-up) {
-    & .evnet {
-      font-size: var(--font-size-base);
-      line-height: 1.875rem;
-    }
-
-    & .date {
-      font-size: var(--font-size-xl);
-    }
-
+    & .evnt,
+    & .date,
     & .time {
-      font-size: var(--font-size-base);
+      font-size: var(--font-size-md);
     }
+  }
+}
+
+.stageSpacing {
+  margin-top: var(--spacing-base);
+}
+
+.stageTime {
+  @mixin flex-center-start;
+
+  flex-direction: column;
+
+  & p {
+    width: 100%;
+  }
+
+  @media (--md-up) {
+    flex-direction: row;
+    padding-top: var(--spacing-xx-tight);
   }
 }
 
 .button {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: row-reverse;
   flex-grow: 1;
 
   & > * {

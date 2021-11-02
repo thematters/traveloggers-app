@@ -50,7 +50,7 @@ const TEXTS: Record<string, any> = {
       "a small amount reserved for the Matters team, and the rest will be available for sale on the OpenSea platform.",
     question3: "How can I purchase Traveloggers?",
     answer3:
-      "You need to have an ETH wallet with enough ETH (Ethereum) in the wallet. During the pre-order period, " +
+      "You need to have an Ethereum wallet with enough ETH (Ethereum) in the wallet. During the pre-order period, " +
       "you can purchase Traveloggers after connecting your Ethereum wallet on this page. After the pre-order period, " +
       "you can also purchase Traveloggers on OpenSea starting November 15, 2021.",
     question4: "Which Ethereum wallet can I use?",
