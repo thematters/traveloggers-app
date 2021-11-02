@@ -69,4 +69,4 @@ jobs:
         uses: jonelantha/gatsby-s3-action@v1
         with:
           dest-s3-bucket: traveloggers.matters.news
-          cloudfront-id-to-invalidate: PLACEHOLDER
+          cloudfront-id-to-invalidate: E1VD8GCRL095IQ
