@@ -32,7 +32,8 @@ const CompletedContent: React.FC<CompletedContentProps> = ({
         </p>
 
         <p className={styles.content}>
-          {locale === Lang.en ? "Transaction record: " : "交易紀錄："}
+          {locale === Lang.en ? "Transaction record:" : "交易紀錄："}
+          &nbsp;
           <a
             href={url}
             target="_blank"
