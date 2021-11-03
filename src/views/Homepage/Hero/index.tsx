@@ -1,6 +1,7 @@
 import { useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 
+import env from "@/.env.json"
 import { Button, IconScrollDown, Section, TextIcon } from "~/components"
 import { Lang } from "~/enums"
 import { analytics } from "~/utils"
@@ -13,6 +14,7 @@ type Props = {
 
 const Hero: React.FC<Props> = ({ setStoryActive }) => {
   const { locale } = useLocalization()
+  const { discord } = env.socialUrls[locale as Lang]
 
   return (
     <>
@@ -45,11 +47,26 @@ const Hero: React.FC<Props> = ({ setStoryActive }) => {
                     height="3.5rem"
                     spacingY="1rem"
                     onClick={() => {
-                      analytics("click_button", { type: "story_line" })
-                      setStoryActive(true)
+                      analytics("click_button", { type: "pre_order" })
                     }}
                   >
-                    {locale === Lang.en ? "The Prequel" : "查看前傳故事"}
+                    {locale === Lang.en
+                      ? "Pre-orders Open on November 5"
+                      : "11/5 開啟預購"}
+                  </Button>
+                  <Button
+                    color="primary"
+                    width="100%"
+                    height="3.5rem"
+                    spacingY="1rem"
+                    onClick={() => {
+                      analytics("click_button", { type: "hero_dis" })
+                    }}
+                    htmlHref={discord}
+                    htmlTarget="_blank"
+                    rel="noreferrer"
+                  >
+                    {locale === Lang.en ? "Join Discord" : "加入 Discord 討論"}
                   </Button>
                 </section>
               </div>

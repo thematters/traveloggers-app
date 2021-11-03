@@ -41,6 +41,7 @@ interface ClickButtonProp {
     | "header_tt" // Twitter link on header
     | "opensea" // Button link to opensea page
     | "expand_faq" // click expand icon on FAQ page
+    | "hero_dis" // Discord link in hero
   state?: number | string // current step in storyline, or current language for language switching
   page_type?: PageType
 }

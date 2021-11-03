@@ -59,11 +59,25 @@
 }
 
 .cta {
+  @mixin flex-center-all;
+
+  flex-direction: column;
   width: 100%;
   margin: var(--spacing-xx-loose) auto 0;
 
-  @media (--sm-up) {
-    width: 22.5rem;
+  & a {
+    margin-top: var(--spacing-base);
+  }
+
+  @media (--md-up) {
+    @mixin flex-center-space-between;
+
+    flex-direction: row;
+    gap: var(--spacing-base);
+
+    & a {
+      margin-top: 0;
+    }
   }
 }
 
