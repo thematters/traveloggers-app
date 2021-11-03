@@ -60,19 +60,8 @@ export const getAPIErrorMessage = ({
 
   const code = codes[0]
 
-  if (code === APIErrorCode.BAD_USER_INPUT) {
-    return API_ERROR_MESSAGES[lang][code]
-  }
-  if (code === APIErrorCode.CRYPTO_WALLET_EXISTS) {
-    return API_ERROR_MESSAGES[lang][code]
-  }
-  if (code === APIErrorCode.ENTITY_NOT_FOUND) {
-    return API_ERROR_MESSAGES[lang][code]
-  }
-  if (code === APIErrorCode.INTERNAL_SERVER_ERROR) {
-    return API_ERROR_MESSAGES[lang][code]
-  }
-  if (code === APIErrorCode.UNAUTHENTICATED) {
-    return API_ERROR_MESSAGES[lang][code]
-  }
+  return (
+    API_ERROR_MESSAGES[lang][code] ||
+    API_ERROR_MESSAGES[lang].INTERNAL_SERVER_ERROR
+  )
 }
