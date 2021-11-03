@@ -43,8 +43,8 @@ const Homepage: React.FC<PageProps> = ({ pageContext: { originalPath } }) => {
 
       <main className={classNames({ [styles.storyActive]: storyActive })}>
         <Acts active={storyActive} setActive={setStoryActive} />
-        <Hero setStoryActive={setStoryActive} />
-        <Preface />
+        <Hero />
+        <Preface setStoryActive={setStoryActive} />
         <Logbook />
         <ScrollDown />
         <Roadmap />

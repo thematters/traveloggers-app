@@ -6,7 +6,11 @@ import { Container, Section } from "~/components"
 import * as styles from "./styles.module.css"
 import TEXTS from "./texts"
 
-const Preface = () => {
+interface PrefaceProps {
+  setStoryActive: (value: boolean) => void
+}
+
+const Preface: React.FC<PrefaceProps> = ({ setStoryActive }) => {
   const { locale } = useLocalization()
   const texts = TEXTS[locale]
 

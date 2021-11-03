@@ -8,11 +8,7 @@ import { analytics } from "~/utils"
 
 import * as styles from "./styles.module.css"
 
-type Props = {
-  setStoryActive: (arg0: boolean) => void
-}
-
-const Hero: React.FC<Props> = ({ setStoryActive }) => {
+const Hero = () => {
   const { locale } = useLocalization()
   const { discord } = env.socialUrls[locale as Lang]
 
