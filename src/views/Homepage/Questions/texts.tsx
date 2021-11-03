@@ -28,8 +28,9 @@ const TEXTS: Record<string, any> = {
     answer6_1:
       "空投是給 Matters.news 社群的用戶福利。只要是在 2021/11/11 之前綁定了以太坊錢包的 Matters.news 用戶就可參與空投。",
     answer6_2:
-      "此次空投數量有限，為儘可能保證公平，獲得空投的概率會根據用戶的活躍程度有所不同，即在 Matters 社區的活躍度越高的用戶獲得空投的概率越高。" +
-      "活躍程度的考量有以下六項指標：用戶發表文章的被拍手次數，發表文章被閱讀時長，被追蹤次數，拍手人次，支持人次，付費訂閱圍爐數。",
+      "此次空投數量有限，為儘可能保證公平，獲得空投的概率會根據用戶在 2021/11/02 以前在 Matters 社區的活躍程度有所不同，" +
+      "即在Matters 社區的活躍度越高的用戶獲得空投的概率越高。活躍程度的考量有以下六項指標：用戶發表文章的被拍手次數，" +
+      "發表文章被閱讀時長，被追蹤次數，拍手人次，支持人次，付費訂閱圍爐數。",
     answer6_3: "點擊查看參與空投指南",
     question7: "如何在 OpenSea 購買 Traveloggers？",
     answer7: "查看指南",
@@ -71,10 +72,11 @@ const TEXTS: Record<string, any> = {
       "Airdrops are benefits for users of Matters.news. Matters’ users who have connected an Ethereum wallet " +
       "before November 11, 2021  have the opportunity to receive airdrops.",
     answer6_2:
-      "The number of airdrops is limited: therefore, to ensure fairness, the chances to receive airdrops will depend " +
-      "on a user’s activity level in the Matters community. A user’s activity level is measured by six factors: the number " +
-      "of Likes received, the total read time of the articles published, the number of followers, the number of users you " +
-      "have sent Likes to, the number of users you have sent supports to, and the number of subscriptions you paid.",
+      "The number of airdrops is limited; therefore, to ensure fairness as much as possible, the chances to receive " +
+      "airdrops will depend on a user’s activity level in the Matters community before November 2, 2021. A user’s activity " +
+      "level is measured by six factors: the number of Likes received, the total read time of the articles published, the number " +
+      "of followers, the number of users you have sent Likes to, the number of users you have sent supports to, and the number of " +
+      "subscriptions you paid.",
     answer6_3: "Click here for airdrop instructions",
     question7: "How do I purchase Traveloggers on OpenSea？",
     answer7: "Click here for instructions",
