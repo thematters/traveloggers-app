@@ -7,10 +7,7 @@ import * as styles from "./infobox.module.css"
 
 interface Stage {
   name: string
-  startDate: string
-  startTime: string
-  endDate?: string
-  endTime?: string
+  content: React.ReactNode
 }
 
 interface InfoboxProps {
@@ -35,11 +32,6 @@ const Infobox = ({
     [styles.active]: active,
   })
 
-  const stage2Classes = classNames({
-    [styles.stage]: true,
-    [styles.stageSpacing]: true,
-  })
-
   return (
     <section className={containerClasses}>
       <section className={styles.info}>
@@ -54,49 +46,13 @@ const Infobox = ({
           {stage1 && (
             <section className={styles.stage}>
               <p className={styles.event}>{stage1.name}</p>
-              <section className={styles.stageTime}>
-                <p>
-                  <span className={styles.date}>{stage1.startDate}</span>
-                  <span className={styles.time}>
-                    {" "}
-                    UTC+8:00 {stage1.startTime}
-                  </span>
-                  {stage1.endDate && <span className={styles.dash}>-</span>}
-                </p>
-                {stage1.endDate && (
-                  <p>
-                    <span className={styles.date}>{stage1.endDate}</span>
-                    <span className={styles.time}>
-                      {" "}
-                      UTC+8:00 {stage1.endTime}
-                    </span>
-                  </p>
-                )}
-              </section>
+              {stage1.content}
             </section>
           )}
           {stage2 && (
-            <section className={stage2Classes}>
+            <section className={styles.stage}>
               <p className={styles.event}>{stage2.name}</p>
-              <section className={styles.stageTime}>
-                <p>
-                  <span className={styles.date}>{stage2.startDate}</span>
-                  <span className={styles.time}>
-                    {" "}
-                    UTC+8:00 {stage2.startTime}
-                  </span>
-                  <span className={styles.dash}>-</span>
-                </p>
-                {stage2.endDate && (
-                  <p>
-                    <span className={styles.date}>{stage2.endDate}</span>
-                    <span className={styles.time}>
-                      {" "}
-                      UTC+8:00 {stage2.endTime}
-                    </span>
-                  </p>
-                )}
-              </section>
+              {stage2.content}
             </section>
           )}
         </section>

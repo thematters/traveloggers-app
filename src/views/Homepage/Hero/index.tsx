@@ -1,18 +1,27 @@
 import { useLocalization } from "gatsby-theme-i18n"
-import React from "react"
+import React, { useContext } from "react"
 
-import { Button, IconScrollDown, Section, TextIcon } from "~/components"
+import env from "@/.env.json"
+import {
+  Button,
+  IconScrollDown,
+  PreOrderDialog,
+  RoadmapContext,
+  Section,
+  TextIcon,
+} from "~/components"
 import { Lang } from "~/enums"
 import { analytics } from "~/utils"
 
 import * as styles from "./styles.module.css"
 
-type Props = {
-  setStoryActive: (arg0: boolean) => void
-}
-
-const Hero: React.FC<Props> = ({ setStoryActive }) => {
+const Hero = () => {
   const { locale } = useLocalization()
+
+  const { discord } = env.socialUrls[locale as Lang]
+
+  const { isPreOrderStarted, isPreOrderEnded } = useContext(RoadmapContext)
+  const isPreOrderActive = isPreOrderStarted && !isPreOrderEnded
 
   return (
     <>
@@ -33,23 +42,46 @@ const Hero: React.FC<Props> = ({ setStoryActive }) => {
                   <Section.Content>
                     <p>
                       {locale === Lang.en
-                        ? "Traveloggers is the 1500 NFT avatars issued by Matters Lab to mark the identity of a voyager to Matterverse. Owners of these avatars will have access to the most revolutionary experiments in Matterverse."
-                        : "Traveloggers 是 Matters Lab 發行的 1500 個 NFT 數字頭像，代表馬特宇宙的遠航者身份。擁有此身份，將開啟馬特宇宙中最激進的實驗權限。"}
+                        ? "Traveloggers, with 1,500 digital avatars issued by Matters Lab, expand private ownership with collective creation by allowing each successive owner of the NFT to record a message. Owners of these avatars will have access to the most revolutionary experiments in Matterverse."
+                        : "Traveloggers 是 Matters Lab 發行的 1500 個 NFT 數字頭像，是一種可交互、可拓展的社交共創型 NFT。擁有此身份，將開啟馬特宇宙中最激進的實驗權限。"}
                     </p>
                   </Section.Content>
                 </section>
+
                 <section className={styles.cta}>
+                  <PreOrderDialog>
+                    {({ openDialog }) => (
+                      <Button
+                        color="primary"
+                        width="100%"
+                        height="3.5rem"
+                        spacingY="1rem"
+                        disabled={!isPreOrderActive}
+                        onClick={() => {
+                          openDialog()
+                          analytics("click_button", { type: "hero_preorder" })
+                        }}
+                      >
+                        {locale === Lang.en
+                          ? "11/5 Pre-order"
+                          : "11/5 開啟預購"}
+                      </Button>
+                    )}
+                  </PreOrderDialog>
                   <Button
                     color="primary"
                     width="100%"
                     height="3.5rem"
                     spacingY="1rem"
+                    htmlHref={discord}
+                    htmlTarget="_blank"
                     onClick={() => {
-                      analytics("click_button", { type: "story_line" })
-                      setStoryActive(true)
+                      analytics("click_button", { type: "hero_discord" })
                     }}
                   >
-                    {locale === Lang.en ? "The Prequel" : "查看前傳故事"}
+                    {locale === Lang.en
+                      ? "Join Discord Discussion"
+                      : "加入 Discord 討論"}
                   </Button>
                 </section>
               </div>
@@ -68,7 +100,7 @@ const Hero: React.FC<Props> = ({ setStoryActive }) => {
         </div>
       </section>
 
-      <div className={styles.extra}></div>
+      <section className={styles.extra}></section>
     </>
   )
 }

@@ -64,13 +64,13 @@ const ConfirmContent: React.FC<ConfirmContentProps> = ({
   }, [!!library, account, qtySelected])
 
   // refresh every 10 secs
-  useEffect(() => {
-    const timer = setInterval(() => {
-      canPreOrder(true)
-    }, 10000)
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     canPreOrder(true)
+  //   }, 10000)
 
-    return () => clearInterval(timer)
-  }, [])
+  //   return () => clearInterval(timer)
+  // }, [])
 
   if (loading && !unitPrice) {
     return <Spinner />

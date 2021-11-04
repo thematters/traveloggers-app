@@ -57,7 +57,7 @@ const CharacterIntro = () => {
         <section className={styles.images}>
           <section className={styles.avatar}>
             <div>
-              <img src="/images/char1.png" />
+              <img src="/images/char1.gif" />
               <p>
                 {locale === Lang.en
                   ? "1 Character + 2 Accessories: Birth of Traveloggers"

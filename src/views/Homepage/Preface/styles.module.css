@@ -33,6 +33,13 @@
   }
 }
 
+.cta {
+  @mixin flex-center-all;
+
+  width: 100%;
+  margin: var(--spacing-x-loose) 0;
+}
+
 .aircraft {
   width: 100%;
   margin-bottom: var(--spacing-xx-loose);

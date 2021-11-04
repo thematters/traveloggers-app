@@ -65,7 +65,6 @@ const Roadmap = () => {
           <section className={styles.line}>
             <Timeline state={preOrderState} fade="in" />
           </section>
-          <section className={styles.timezone}>{texts.timezone}</section>
         </section>
 
         {/* Pre-order */}
@@ -79,17 +78,11 @@ const Roadmap = () => {
             content={texts.content1}
             stage1={{
               name: texts.event1_1,
-              startDate: texts.event1_1_start_date,
-              startTime: texts.event1_1_start_time,
-              endDate: texts.event1_1_end_date,
-              endTime: texts.event1_1_end_time,
+              content: texts.event1_1_content,
             }}
             stage2={{
               name: texts.event1_2,
-              startDate: texts.event1_2_start_date,
-              startTime: texts.event1_2_start_time,
-              endDate: texts.event1_2_end_date,
-              endTime: texts.event1_2_end_time,
+              content: texts.event1_2_content,
             }}
             button={
               <PreOrderDialog>
@@ -124,32 +117,14 @@ const Roadmap = () => {
           <Infobox
             active={isAirdropActive}
             event={texts.event2}
-            content={
-              <p>
-                {texts.content2_1}
-                <a
-                  href="https://matters.news/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {texts.content2_2}
-                </a>
-                {texts.content2_3}
-              </p>
-            }
+            content={texts.content2}
             stage1={{
               name: texts.event2_1,
-              startDate: texts.event2_1_start_date,
-              startTime: texts.event2_1_start_time,
-              endDate: texts.event2_1_end_date,
-              endTime: texts.event2_1_end_time,
+              content: texts.event2_1_content,
             }}
             stage2={{
               name: texts.event2_2,
-              startDate: texts.event2_2_start_date,
-              startTime: texts.event2_2_start_time,
-              endDate: texts.event2_2_end_date,
-              endTime: texts.event2_2_end_time,
+              content: texts.event2_2_content,
             }}
             button={
               <AirdriopDialog>
@@ -187,8 +162,7 @@ const Roadmap = () => {
             content={texts.content3}
             stage1={{
               name: texts.event3_1,
-              startDate: texts.event3_1_start_date,
-              startTime: texts.event3_1_start_time,
+              content: texts.event3_1_content,
             }}
             button={
               <Button

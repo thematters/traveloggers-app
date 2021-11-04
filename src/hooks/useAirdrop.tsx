@@ -7,7 +7,7 @@ import { useContext, useState } from "react"
 import env from "@/.env.json"
 import { ViewerContext } from "~/components"
 import { CryptoWalletSignaturePurpose, Lang, WalletErrorType } from "~/enums"
-import { getWalletErrorMessage } from "~/utils"
+import { getAPIErrorMessage, getWalletErrorMessage } from "~/utils"
 
 const REGISTER_AIRDROP = `
   mutation RegisterAirdrop($input: PutWalletInput!) {
@@ -29,7 +29,8 @@ export const useAirdrop = () => {
   const { viewer, getViewer } = useContext(ViewerContext)
   const connectedWalletId = viewer?.info?.cryptoWallet?.id
 
-  const [register, { loading }] = useMutation(REGISTER_AIRDROP)
+  const [register, { loading, error: registerError }] =
+    useMutation(REGISTER_AIRDROP)
   const registered = !!(viewer?.id && viewer?.info?.cryptoWallet?.id)
 
   // TODO: created nonce from server
@@ -63,7 +64,6 @@ Issued At: ${new Date().toISOString()}`
         })
       )
       setSigning(false)
-      callback()
       return
     }
 
@@ -96,11 +96,15 @@ Issued At: ${new Date().toISOString()}`
     }
 
     setSigning(false)
+    callback()
   }
 
   return {
     loading: loading || signing,
     error,
+    registerError: registerError
+      ? getAPIErrorMessage({ error: registerError, lang })
+      : "",
     registered,
     registerAirdrop,
   }
