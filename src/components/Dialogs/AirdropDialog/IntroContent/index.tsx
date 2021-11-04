@@ -37,6 +37,7 @@ const IntroContent: React.FC<IntroContentProps> = ({
     registerAirdrop,
     loading: registering,
     error: airdropError,
+    registerError,
   } = useAirdrop()
 
   const isSignedIn = !!viewer?.id && !loading && !signInError
@@ -84,6 +85,11 @@ const IntroContent: React.FC<IntroContentProps> = ({
         {airdropError && (
           <Dialog.Message>
             <p>{airdropError}</p>
+          </Dialog.Message>
+        )}
+        {registerError && (
+          <Dialog.Message>
+            <p>{registerError}</p>
           </Dialog.Message>
         )}
       </Dialog.Content>
