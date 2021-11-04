@@ -102,7 +102,9 @@ Issued At: ${new Date().toISOString()}`
   return {
     loading: loading || signing,
     error,
-    registerError: getAPIErrorMessage({ error: registerError, lang }),
+    registerError: registerError
+      ? getAPIErrorMessage({ error: registerError, lang })
+      : "",
     registered,
     registerAirdrop,
   }
