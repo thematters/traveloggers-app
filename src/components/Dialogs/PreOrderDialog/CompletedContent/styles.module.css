@@ -1,10 +1,17 @@
 .content {
-  @mixin flex-center-all;
-
-  flex-wrap: wrap;
-  line-height: 1;
+  text-align: center;
 }
 
 .link {
   text-decoration: underline !important;
+}
+
+.highlight {
+  color: var(--color-matters-green);
+  background: linear-gradient(
+    var(--color-gradient-green-start),
+    var(--color-gradient-green-end)
+  );
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

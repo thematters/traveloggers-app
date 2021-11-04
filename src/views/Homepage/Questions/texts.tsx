@@ -15,7 +15,7 @@ const TEXTS: Record<string, any> = {
       "從 2021/11/15 起，可以透過 OpenSea 購買。",
     question4: "支持哪些以太坊錢包？",
     answer4_1:
-      "支持 MetaMask 與 Wallet Connect 支持的各種錢包。如果你還沒有 MetaMask 錢包，",
+      "支持 MetaMask 與 WalletConnect 支持的各種錢包。如果你還沒有 MetaMask 錢包，",
     answer4_2: "可以參考這篇註冊指南",
     answer4_3: "。",
     question5: "如何參與預購？預購後可以在哪裡看到我的 Traveloggers?",
@@ -26,11 +26,11 @@ const TEXTS: Record<string, any> = {
     answer5_3: "點擊查看預購操作指南",
     question6: "如何參與空投？",
     answer6_1:
-      "空投是給 Matters.news 社群的用戶福利。只要是在 2021/11/11 之前綁定了以太坊錢包的 Matters.news 用戶就可參與空投。",
+      "空投是給 matters.news 社群的用戶福利。只要是在 2021/11/11 之前綁定了以太坊錢包的 matters.news 用戶就可參與空投。",
     answer6_2:
-      "此次空投數量有限，為儘可能保證公平，獲得空投的概率會根據用戶在 2021/11/02 以前在 Matters 社區的活躍程度有所不同，" +
-      "即在Matters 社區的活躍度越高的用戶獲得空投的概率越高。活躍程度的考量有以下六項指標：用戶發表文章的被拍手次數，" +
-      "發表文章被閱讀時長，被追蹤次數，拍手人次，支持人次，付費訂閱圍爐數。",
+      "此次空投數量有限，為儘可能保證公平，獲得空投的概率會根據用戶在 2021/11/2 日以前在 Matters 社區的活躍程度有所不同，" +
+      "即在Matters 社區的活躍度越高的用戶獲得空投的概率越高。活躍程度的考量有以下六項指標：用戶發表文章的被拍手次數、" +
+      "發表文章被閱讀時長、被追蹤次數、拍手人次、支持人次、付費訂閱圍爐數。",
     answer6_3: "點擊查看參與空投指南",
     question7: "如何在 OpenSea 購買 Traveloggers？",
     answer7: "查看指南",
@@ -51,12 +51,11 @@ const TEXTS: Record<string, any> = {
       "a small amount reserved for the Matters team, and the rest will be available for sale on the OpenSea platform.",
     question3: "How can I purchase Traveloggers?",
     answer3:
-      "You need to have an Ethereum wallet with enough ETH (Ethereum) in the wallet. During the pre-order period, " +
+      "You need to have an Ethereum wallet with enough ETH (Ether) in the wallet. During the pre-order period, " +
       "you can purchase Traveloggers after connecting your Ethereum wallet on this page. After the pre-order period, " +
       "you can also purchase Traveloggers on OpenSea starting November 15, 2021.",
     question4: "Which Ethereum wallet can I use?",
-    answer4_1:
-      "You can use MetaMask or any wallet supported by Wallet connect.",
+    answer4_1: "You can use MetaMask or any wallet supported by Walletconnect.",
     answer4_2: "",
     answer4_3: "",
     question5:
@@ -69,7 +68,7 @@ const TEXTS: Record<string, any> = {
     answer5_3: "Click here for pre-order instructions",
     question6: "How do I participate in airdrops?",
     answer6_1:
-      "Airdrops are benefits for users of Matters.news. Matters’ users who have connected an Ethereum wallet " +
+      "Airdrops are benefits for users of matters.news. Matters’ users who have connected an Ethereum wallet " +
       "before November 11, 2021  have the opportunity to receive airdrops.",
     answer6_2:
       "The number of airdrops is limited; therefore, to ensure fairness as much as possible, the chances to receive " +

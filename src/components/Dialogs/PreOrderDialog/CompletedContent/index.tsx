@@ -32,9 +32,18 @@ const CompletedContent: React.FC<CompletedContentProps> = ({
         </p>
 
         <p className={styles.content}>
-          {locale === Lang.en
-            ? "Your Traveloggers will be revealed at noon on November 12, 2021."
-            : "你購買的 Traveloggers 將會在 2021/11/12 中午揭曉"}
+          {locale === Lang.en ? (
+            <>
+              Your Traveloggers will be revealed at noon on
+              <span className={styles.highlight}>&nbsp;November 12, 2021</span>.
+            </>
+          ) : (
+            <>
+              你購買的 Traveloggers 將會在
+              <span className={styles.highlight}>&nbsp;2021/11/12&nbsp;</span>
+              中午揭曉
+            </>
+          )}
         </p>
 
         <p className={styles.content}>
