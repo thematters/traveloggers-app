@@ -64,7 +64,6 @@ Issued At: ${new Date().toISOString()}`
         })
       )
       setSigning(false)
-      callback()
       return
     }
 
@@ -97,6 +96,7 @@ Issued At: ${new Date().toISOString()}`
     }
 
     setSigning(false)
+    callback()
   }
 
   return {
