@@ -4,21 +4,18 @@
   position: relative;
   min-height: 100vh;
   text-align: center;
-  background-image: linear-gradient(
-      to bottom,
-      rgb(255 255 255 / 0%) 50%,
-      rgb(0 0 0 / 100%)
-    ),
+  background-image: radial-gradient(rgb(0 0 0 / 50%), transparent),
+    linear-gradient(to bottom, transparent 50%, black),
     url("/images/hero-bg-sm.jpg");
   transition: all 600ms ease-out;
 
   @media (--md-up) {
-    background-image: linear-gradient(
-        to bottom,
-        rgb(255 255 255 / 0%) 50%,
-        rgb(0 0 0 / 100%)
-      ),
-      url("/images/hero.jpg");
+    background-image: radial-gradient(rgb(0 0 0 / 50%), transparent),
+      linear-gradient(to bottom, transparent 50%, black),
+      url("/images/hero-right.png"), url("/images/hero-left.png"),
+      url("/images/hero-bg.jpeg");
+    background-position: center, center, right, left, center;
+    background-size: auto, auto, auto 100%, auto 100%, cover;
   }
 }
 
