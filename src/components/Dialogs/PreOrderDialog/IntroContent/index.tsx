@@ -42,8 +42,8 @@ const IntroContent: React.FC<IntroContentProps> = ({
       <Dialog.Content>
         <p>
           {locale === Lang.en
-            ? "Anyone with an Ethereum wallet can participate in pre-orders. Each wallet address can purchase up to 5 Traveloggers. Pre-order amount is limited. Registered users of Matters.news can sign in, connect Ethereum wallet, and enjoy benefits. If you don’t have an account on Matters.news yet, we sincerely welcome you to join!"
-            : "任何擁有 Ethereum 錢包的朋友即可進行預購，每個錢包地址購買上限為 5 個，總預購數量有限，請把握機會。預購活動結束後，用戶可以登入 Matters.news 帳戶進行綁定，綁定完成將享有福利。"}
+            ? "Anyone with an Ethereum wallet can participate in pre-orders. Each wallet address can purchase up to 5 Traveloggers. The Traveloggers purchased during the pre-order period is randomly assigned, which will be revealed at noon on November 12, 2021."
+            : "任何擁有 Ethereum 錢包的朋友即可進行預購，每個錢包地址購買上限為 5 個。預購獲得的 Traveloggers 是隨機分配的，你購買的 Traveloggers 將會在 2021/11/12 中午揭曉。"}
         </p>
 
         <section className={styles.buttons}>

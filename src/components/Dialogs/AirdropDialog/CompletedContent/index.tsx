@@ -1,7 +1,6 @@
 import { useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 
-import env from "@/.env.json"
 import { Dialog } from "~/components"
 import { Lang } from "~/enums"
 
@@ -13,12 +12,6 @@ type CompletedContentProps = {
 
 const CompletedContent: React.FC<CompletedContentProps> = ({ closeDialog }) => {
   const { locale } = useLocalization()
-
-  const { airdrop } = env.roadmap
-  const airdropStart = new Date(airdrop.start)
-  const airdropStartStr = `${airdropStart.getFullYear()}/${
-    airdropStart.getMonth() + 1
-  }/${airdropStart.getDate()}`
 
   return (
     <>
@@ -33,16 +26,12 @@ const CompletedContent: React.FC<CompletedContentProps> = ({ closeDialog }) => {
           {locale === Lang.en ? (
             <>
               Airdrop begins on
-              <span className={styles.highlight}>
-                &nbsp;{airdropStartStr}&nbsp;
-              </span>
+              <span className={styles.highlight}>&nbsp;2021/11/12&nbsp;</span>
             </>
           ) : (
             <>
               空投將在
-              <span className={styles.highlight}>
-                &nbsp;{airdropStartStr}&nbsp;
-              </span>
+              <span className={styles.highlight}>&nbsp;2021/11/12&nbsp;</span>
               進行
             </>
           )}
