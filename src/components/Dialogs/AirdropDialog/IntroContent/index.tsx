@@ -77,8 +77,8 @@ const IntroContent: React.FC<IntroContentProps> = ({
           <Dialog.Message>
             <p>
               {locale === Lang.en
-                ? "This wallet or Matters acccount already had registered for airdrop, please use another wallet or account."
-                : "此錢包或 Matters 帳戶已有參與空投，請變更以繼續操作"}
+                ? "This Matters acccount has already registered for airdrop, please use another account."
+                : "此 Matters 帳戶已有參與空投，請變更以繼續操作"}
             </p>
           </Dialog.Message>
         )}
