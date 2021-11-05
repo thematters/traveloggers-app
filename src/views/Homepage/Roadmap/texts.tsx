@@ -135,7 +135,7 @@ const TEXTS: Record<string, any> = {
     event1_button_upcoming: "Upcoming",
     event1_button_open: "Participate",
     event1_button_closed: "Closed",
-    event1_button_sold: "Sold Out",
+    event1_button_sold: "Pre-order Sold Out",
 
     // airdrop
     event2: "Airdrops",
