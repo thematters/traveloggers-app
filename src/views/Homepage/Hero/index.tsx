@@ -63,7 +63,7 @@ const Hero = () => {
                         }}
                       >
                         {locale === Lang.en
-                          ? "Pre-order November 5"
+                          ? "Pre-order 11/5 12:00"
                           : "11/5 12:00 預購"}
                       </Button>
                     )}
