@@ -16,6 +16,11 @@ const link5 =
   "9%9F%E8%B5%B0-%E8%BC%95%E9%AC%86%E5%AE%8C%E6%88%90-traveloggers-%E9%A0" +
   "%90%E8%B3%BC-bafyreihehkggyk43tz5t2ffzwpm2ffyzsj4jicqaoay4ufxbkwo6xdk4dq"
 
+const link6 =
+  "https://matters.news/@hi176/nft-%E7%99%BB%E8%A8%98%E7%A9%BA%E6%8A%95-%E5%A6%82%E4%BD%95%E7%8D%B2%E5%B" +
+  "E%97-traveloggers-%E7%A9%BA%E6%8A%95-%E5%BF%AB%E4%BE%86%E7%B6%81%E5%AE%9A%E" +
+  "9%8C%A2%E5%8C%85-bafyreigvypuhddpehillleaw73tzupcklixpw3raj5kfz5227p57v2rvpq"
+
 const Questions = () => {
   const { locale } = useLocalization()
   const texts = TEXTS[locale]
@@ -94,11 +99,13 @@ const Questions = () => {
             <Section.Content>
               <p>{texts.answer6_1}</p>
               <p>{texts.answer6_2}</p>
-              {/*
-              <a href="" target="_blank" rel="noreferrer">
-                {texts.answer6_3}
-              </a>
-              */}
+              {texts.answer6_3 && (
+                <p>
+                  <a href={link6} target="_blank" rel="noreferrer">
+                    {texts.answer6_3}
+                  </a>
+                </p>
+              )}
             </Section.Content>
           }
         />
