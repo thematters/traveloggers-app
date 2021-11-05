@@ -65,7 +65,7 @@ const TEXTS: Record<string, any> = {
     answer5_2:
       "If the pre-order is successful, the transaction record will appear in your Ethereum wallet. " +
       "The Traveloggers purchased during the pre-order period is randomly assigned, which will be revealed at noon on November 12, 2021.",
-    answer5_3: "Click here for pre-order instructions",
+    answer5_3: "",
     question6: "How do I participate in airdrops?",
     answer6_1:
       "Airdrops are benefits for users of matters.news. Matters’ users who have connected an Ethereum wallet " +
@@ -76,7 +76,7 @@ const TEXTS: Record<string, any> = {
       "level is measured by six factors: the number of Likes received, the total read time of the articles published, the number " +
       "of followers, the number of users you have sent Likes to, the number of users you have sent supports to, and the number of " +
       "subscriptions you paid.",
-    answer6_3: "Click here for airdrop instructions",
+    answer6_3: "",
     question7: "How do I purchase Traveloggers on OpenSea？",
     answer7: "Click here for instructions",
     question8: "How do I sell my Traveloggers?",
