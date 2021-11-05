@@ -42,7 +42,7 @@ const Preface: React.FC<Props> = ({ setStoryActive }) => {
           </div>
 
           <div className={styles.aircraft}>
-            <img src="/images/aircraft.png" />
+            <img src="/images/aircraft_soldout.gif" />
           </div>
         </section>
       </Container>

@@ -44,6 +44,7 @@ const TEXTS: Record<string, any> = {
     event1_button_upcoming: "尚未開始",
     event1_button_open: "參與預購",
     event1_button_closed: "已結束",
+    event1_button_sold: "預購已全數售罄",
 
     // airdrop
     event2: "空投",
@@ -134,6 +135,7 @@ const TEXTS: Record<string, any> = {
     event1_button_upcoming: "Upcoming",
     event1_button_open: "Participate",
     event1_button_closed: "Closed",
+    event1_button_sold: "Pre-order Sold Out",
 
     // airdrop
     event2: "Airdrops",

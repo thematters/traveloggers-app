@@ -88,20 +88,15 @@ const Roadmap = () => {
               <PreOrderDialog>
                 {({ openDialog }) => (
                   <Button
-                    disabled={!isPreOrderActive}
+                    disabled={true}
                     color={isPreOrderActive ? "primary" : "black"}
                     width={isMediumUp ? "15rem" : "100%"}
                     spacingY="0.75rem"
                     onClick={() => {
                       analytics("click_button", { type: "pre_order" })
-                      openDialog()
                     }}
                   >
-                    {preOrderState === "upcoming"
-                      ? texts.event1_button_upcoming
-                      : preOrderState === "closed"
-                      ? texts.event1_button_closed
-                      : texts.event1_button_open}
+                    {texts.event1_button_sold}
                   </Button>
                 )}
               </PreOrderDialog>
