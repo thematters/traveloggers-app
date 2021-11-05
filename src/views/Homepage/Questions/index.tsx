@@ -84,11 +84,13 @@ const Questions = () => {
             <Section.Content>
               <p>{texts.answer5_1}</p>
               <p>{texts.answer5_2}</p>
-              <p>
-                <a href={link5} target="_blank" rel="noreferrer">
-                  {texts.answer5_3}
-                </a>
-              </p>
+              {texts.answer5_3 && (
+                <p>
+                  <a href={link5} target="_blank" rel="noreferrer">
+                    {texts.answer5_3}
+                  </a>
+                </p>
+              )}
             </Section.Content>
           }
         />
