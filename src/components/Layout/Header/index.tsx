@@ -39,13 +39,7 @@ const Header: React.FC<HeaderProps> = ({ originalPath }) => {
     setActive(currentPosition === "above")
   }
 
-  const {
-    isPreOrderStarted,
-    isPreOrderEnded,
-    isAirdropStarted,
-    isAirdropEnded,
-  } = useContext(RoadmapContext)
-  const isPreOrderActive = isPreOrderStarted && !isPreOrderEnded
+  const { isAirdropStarted, isAirdropEnded } = useContext(RoadmapContext)
   const isAirdropActive = isAirdropStarted && !isAirdropEnded
 
   const scrollToRoadmap = () => {
@@ -83,11 +77,7 @@ const Header: React.FC<HeaderProps> = ({ originalPath }) => {
                     analytics("click_button", {
                       type: "pre_order",
                     })
-                    if (isPreOrderActive) {
-                      openDialog()
-                    } else {
-                      scrollToRoadmap()
-                    }
+                    scrollToRoadmap()
                   }}
                 >
                   {locale === Lang.en ? "Pre-order" : "預購"}
