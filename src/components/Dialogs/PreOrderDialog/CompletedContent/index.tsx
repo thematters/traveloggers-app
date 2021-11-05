@@ -27,8 +27,23 @@ const CompletedContent: React.FC<CompletedContentProps> = ({
       <Dialog.Content>
         <p className={styles.content}>
           {locale === Lang.en
-            ? "You have successfully participated in pre-order 🎉"
-            : "你已成功參與預購 🎉"}
+            ? "You have successfully pre-ordered 🎉"
+            : "你已成功預購 🎉"}
+        </p>
+
+        <p className={styles.content}>
+          {locale === Lang.en ? (
+            <>
+              Your Traveloggers will be revealed at noon on
+              <span className={styles.highlight}>&nbsp;November 12, 2021</span>.
+            </>
+          ) : (
+            <>
+              你購買的 Traveloggers 將會在
+              <span className={styles.highlight}>&nbsp;2021/11/12&nbsp;</span>
+              中午揭曉
+            </>
+          )}
         </p>
 
         <p className={styles.content}>

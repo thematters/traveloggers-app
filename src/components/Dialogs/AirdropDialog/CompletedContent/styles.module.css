@@ -1,8 +1,5 @@
 .content {
-  @mixin flex-center-all;
-
-  flex-wrap: wrap;
-  line-height: 1;
+  text-align: center;
 }
 
 .highlight {
