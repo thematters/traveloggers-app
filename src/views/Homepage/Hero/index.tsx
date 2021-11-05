@@ -1,12 +1,11 @@
 import { useLocalization } from "gatsby-theme-i18n"
-import React, { useContext } from "react"
+import React from "react"
 
 import env from "@/.env.json"
 import {
   Button,
   IconScrollDown,
   PreOrderDialog,
-  RoadmapContext,
   Section,
   TextIcon,
 } from "~/components"
@@ -17,11 +16,7 @@ import * as styles from "./styles.module.css"
 
 const Hero = () => {
   const { locale } = useLocalization()
-
   const { discord } = env.socialUrls[locale as Lang]
-
-  const { isPreOrderStarted, isPreOrderEnded } = useContext(RoadmapContext)
-  const isPreOrderActive = isPreOrderStarted && !isPreOrderEnded
 
   return (
     <>
@@ -56,15 +51,14 @@ const Hero = () => {
                         width="100%"
                         height="3.5rem"
                         spacingY="1rem"
-                        disabled={!isPreOrderActive}
+                        disabled={true}
                         onClick={() => {
-                          openDialog()
                           analytics("click_button", { type: "hero_preorder" })
                         }}
                       >
                         {locale === Lang.en
-                          ? "Pre-order 11/5 12:00"
-                          : "11/5 12:00 預購"}
+                          ? "Pre-order Sold Out"
+                          : "預購已全數售罄"}
                       </Button>
                     )}
                   </PreOrderDialog>
