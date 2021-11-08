@@ -22,6 +22,7 @@ interface ClickButtonProp {
   type:
     | "pre_order" // pre order button on header
     | "air_drop" // air drop button on header
+    | "bind" // account binding button on header
     | "hero_preorder" // pre order from hero page
     | "hero_discord" // join discord from hero page
     | "connect_wallet" // connect wallet button in pre order dialog
