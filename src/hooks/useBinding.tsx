@@ -35,9 +35,9 @@ export const useBinding = () => {
   const { viewer, getViewer } = useContext(ViewerContext)
   const connectedWalletId = viewer?.info?.cryptoWallet?.id
 
-  const [putWallet, { loading: putting, error: putError }] =
+  const [putWallet, { loading: binding, error: bindError }] =
     useMutation(PUT_WALLET)
-  const [deleteWallet, { loading: deleting, error: deleteError }] =
+  const [deleteWallet, { loading: unbinding, error: unbindError }] =
     useMutation(DELETE_WALLET)
   const bound = !!(viewer?.id && viewer?.info?.cryptoWallet?.id)
 
@@ -54,21 +54,6 @@ Issued At: ${new Date().toISOString()}`
   const bind = async ({ callback }: { callback: () => void }) => {
     if (!library || !account) {
       return
-    }
-
-    // archive old wallet if exists
-    if (connectedWalletId) {
-      try {
-        await deleteWallet({
-          variables: {
-            input: {
-              id: connectedWalletId,
-            },
-          },
-        })
-      } catch (err) {
-        console.log(err)
-      }
     }
 
     setSigning(true)
@@ -116,14 +101,40 @@ Issued At: ${new Date().toISOString()}`
     setSigning(false)
   }
 
+  const unbind = async ({ callback }: { callback: () => void }) => {
+    if (!library || !account) {
+      return
+    }
+
+    try {
+      const result = await deleteWallet({
+        variables: {
+          input: { connectedWalletId },
+        },
+      })
+
+      // refresh viewer
+      if (result.data) {
+        await getViewer()
+        setError("")
+        callback()
+      }
+    } catch (err) {
+      console.log(err)
+    }
+
+    setSigning(false)
+  }
+
   return {
-    loading: deleting || putting || signing,
+    loading: unbinding || binding || signing,
     error,
     bindError:
-      deleteError || putError
-        ? getAPIErrorMessage({ error: deleteError || putError, lang })
+      unbindError || bindError
+        ? getAPIErrorMessage({ error: unbindError || bindError, lang })
         : "",
     bound,
     bind,
+    unbind,
   }
 }
