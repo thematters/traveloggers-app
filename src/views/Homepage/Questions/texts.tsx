@@ -8,7 +8,7 @@ const TEXTS: Record<string, any> = {
       "契合馬特宇宙的法則，我們彼此獨立、絕對確權，卻又可以不同方式連結。",
     question2: "Traveloggers 的數量是如何分配的？",
     answer2:
-      "此次一共會發行 1500 個 Traveloggers，其中 300 個預購，300 個空投，除預留一小部分給 Matters 團隊外，其餘將在 OpenSea 平台上公開發售。",
+      "此次一共會發行 1500 個 Traveloggers，其中 300 個預購，300 個空投，60 個由 Matters 團隊持有，其餘 840 個將在 OpenSea 平台上公開發售。",
     question3: "如何購買 Traveloggers ？",
     answer3:
       "你需要擁有以太坊錢包以及足額的 ETH（以太幣）。在預購期內，在此頁面綁定錢包後可直接購買 Traveloggers。預購結束後，" +
@@ -48,7 +48,7 @@ const TEXTS: Record<string, any> = {
     question2: "How is the total amount of Traveloggers distributed?",
     answer2:
       "A total of 1500 Traveloggers will be issued, including 300 pre-orders, 300 airdrops, " +
-      "a small amount reserved for the Matters team, and the rest will be available for sale on the OpenSea platform.",
+      "60 reserved for the Matters team, and the rest 840 will be available for sale on the OpenSea platform.",
     question3: "How can I purchase Traveloggers?",
     answer3:
       "You need to have an Ethereum wallet with enough ETH (Ether) in the wallet. During the pre-order period, " +
