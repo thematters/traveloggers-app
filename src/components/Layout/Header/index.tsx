@@ -127,11 +127,7 @@ const Header: React.FC<HeaderProps> = ({ originalPath }) => {
                       analytics("click_button", {
                         type: "bind",
                       })
-                      if (isAirdropActive) {
-                        openDialog()
-                      } else {
-                        scrollToRoadmap()
-                      }
+                      openDialog()
                     }}
                   >
                     {locale === Lang.en ? "Binding" : "綁定帳號"}
