@@ -6,6 +6,7 @@ import { Waypoint } from "react-waypoint"
 
 import {
   AirdriopDialog,
+  BindingDialog,
   Button,
   IconLogo,
   LanguageSwitch,
@@ -66,49 +67,79 @@ const Header: React.FC<HeaderProps> = ({ originalPath }) => {
 
           <Socials />
 
-          <div>
-            <PreOrderDialog>
-              {({ openDialog }) => (
-                <Button
-                  color="primary"
-                  spacingX="1.25rem"
-                  spacingY=".5rem"
-                  onClick={() => {
-                    analytics("click_button", {
-                      type: "pre_order",
-                    })
-                    scrollToRoadmap()
-                  }}
-                >
-                  {locale === Lang.en ? "Pre-order" : "預購"}
-                </Button>
-              )}
-            </PreOrderDialog>
-          </div>
-
-          <div>
-            <AirdriopDialog>
-              {({ openDialog }) => (
-                <Button
-                  color="primary"
-                  spacingX="1.25rem"
-                  spacingY=".5rem"
-                  onClick={() => {
-                    analytics("click_button", {
-                      type: "air_drop",
-                    })
-                    if (isAirdropActive) {
-                      openDialog()
-                    } else {
+          {!isAirdropEnded && (
+            <div>
+              <PreOrderDialog>
+                {({ openDialog }) => (
+                  <Button
+                    color="primary"
+                    spacingX="1.25rem"
+                    spacingY=".5rem"
+                    onClick={() => {
+                      analytics("click_button", {
+                        type: "pre_order",
+                      })
                       scrollToRoadmap()
-                    }
-                  }}
-                >
-                  {locale === Lang.en ? "Airdrop" : "空投"}
-                </Button>
-              )}
-            </AirdriopDialog>
-          </div>
+                    }}
+                  >
+                    {locale === Lang.en ? "Pre-order" : "預購"}
+                  </Button>
+                )}
+              </PreOrderDialog>
+            </div>
+          )}
+
+          {!isAirdropEnded && (
+            <div>
+              <AirdriopDialog>
+                {({ openDialog }) => (
+                  <Button
+                    color="primary"
+                    spacingX="1.25rem"
+                    spacingY=".5rem"
+                    onClick={() => {
+                      analytics("click_button", {
+                        type: "air_drop",
+                      })
+                      if (isAirdropActive) {
+                        openDialog()
+                      } else {
+                        scrollToRoadmap()
+                      }
+                    }}
+                  >
+                    {locale === Lang.en ? "Airdrop" : "空投"}
+                  </Button>
+                )}
+              </AirdriopDialog>
+            </div>
+          )}
+
+          {isAirdropEnded && (
+            <div>
+              <BindingDialog>
+                {({ openDialog }) => (
+                  <Button
+                    color="primary"
+                    spacingX="1.25rem"
+                    spacingY=".5rem"
+                    onClick={() => {
+                      analytics("click_button", {
+                        type: "bind",
+                      })
+                      if (isAirdropActive) {
+                        openDialog()
+                      } else {
+                        scrollToRoadmap()
+                      }
+                    }}
+                  >
+                    {locale === Lang.en ? "Binding" : "綁定帳號"}
+                  </Button>
+                )}
+              </BindingDialog>
+            </div>
+          )}
         </section>
       </header>
     </>
