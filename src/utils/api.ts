@@ -32,7 +32,7 @@ const API_ERROR_MESSAGES = {
   [Lang.en]: {
     [APIErrorCode.BAD_USER_INPUT]: "Invalid address or signature.",
     [APIErrorCode.CRYPTO_WALLET_EXISTS]:
-      "This wallet or Matters acccount already had registered for airdrop, please use another wallet or account.",
+      "This wallet is already linked to a Matters account, please use another wallet.",
     [APIErrorCode.ENTITY_NOT_FOUND]: "Wallet address not found.",
     [APIErrorCode.INTERNAL_SERVER_ERROR]:
       "An unknown error occurred, please make sure your wallet and network are in working.",
@@ -44,7 +44,7 @@ const API_ERROR_MESSAGES = {
   [Lang.zh]: {
     [APIErrorCode.BAD_USER_INPUT]: "錢包地址或簽名不正確",
     [APIErrorCode.CRYPTO_WALLET_EXISTS]:
-      "此錢包或 Matters 帳戶已有參與空投，請變更以繼續操作",
+      "此錢包已綁定 Matters 帳戶，請變更錢包以繼續操作",
     [APIErrorCode.ENTITY_NOT_FOUND]: "錢包地址不存在",
     [APIErrorCode.INTERNAL_SERVER_ERROR]:
       "發生未知錯誤，請確保你的錢包和網絡正常",
