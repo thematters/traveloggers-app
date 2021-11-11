@@ -1,3 +1,3 @@
 export * from "./AirdropDialog"
-export * from "./BindingDialog"
+export * from "./LinkAccountDialog"
 export * from "./PreOrderDialog"

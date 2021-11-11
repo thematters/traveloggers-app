@@ -6,10 +6,10 @@ import { Waypoint } from "react-waypoint"
 
 import {
   AirdriopDialog,
-  BindingDialog,
   Button,
   IconLogo,
   LanguageSwitch,
+  LinkAccountDialog,
   PreOrderDialog,
   RoadmapContext,
   TextIcon,
@@ -117,7 +117,7 @@ const Header: React.FC<HeaderProps> = ({ originalPath }) => {
 
           {isAirdropEnded && (
             <div>
-              <BindingDialog>
+              <LinkAccountDialog>
                 {({ openDialog }) => (
                   <Button
                     color="primary"
@@ -125,15 +125,15 @@ const Header: React.FC<HeaderProps> = ({ originalPath }) => {
                     spacingY=".5rem"
                     onClick={() => {
                       analytics("click_button", {
-                        type: "bind",
+                        type: "link_account",
                       })
                       openDialog()
                     }}
                   >
-                    {locale === Lang.en ? "Binding" : "綁定帳號"}
+                    {locale === Lang.en ? "Link Account" : "綁定帳號"}
                   </Button>
                 )}
-              </BindingDialog>
+              </LinkAccountDialog>
             </div>
           )}
         </section>

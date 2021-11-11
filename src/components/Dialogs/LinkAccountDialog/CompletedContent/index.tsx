@@ -18,14 +18,14 @@ const CompletedContent: React.FC<CompletedContentProps> = ({ closeDialog }) => {
       <Dialog.Content>
         <p className={styles.content}>
           {locale === Lang.en
-            ? "You have successfully bound account 🎉"
+            ? "Account successfully linked 🎉"
             : "你已成功綁定帳號 🎉"}
         </p>
 
         <p className={styles.content}>
           <span>{locale === Lang.en ? "Back to " : "返回 "}</span>
           <a href="https://matters.news" className={styles.highlight}>
-            {locale === Lang.en ? "Matters" : "Matters 主站"}
+            matters.news
           </a>
         </p>
       </Dialog.Content>

@@ -9,13 +9,15 @@ import ConnectWalletContent from "../AirdropDialog/ConnectWalletContent"
 import CompletedContent from "./CompletedContent"
 import IntroContent from "./IntroContent"
 
-type BindingDialogProps = {
+type LinkAccountDialogProps = {
   children: ({ openDialog }: { openDialog: () => void }) => React.ReactNode
 }
 
 type Step = "intro" | "connect-wallet" | "completed"
 
-export const BindingDialog: React.FC<BindingDialogProps> = ({ children }) => {
+export const LinkAccountDialog: React.FC<LinkAccountDialogProps> = ({
+  children,
+}) => {
   const { locale } = useLocalization()
 
   const {
@@ -44,11 +46,11 @@ export const BindingDialog: React.FC<BindingDialogProps> = ({ children }) => {
         <Dialog.Header
           title={
             isIntro ? (
-              <span>{locale === Lang.en ? "Account Binding" : "綁定帳號"}</span>
+              <span>{locale === Lang.en ? "Link Account" : "綁定帳號"}</span>
             ) : isConnectWallet ? (
               <span>{locale === Lang.en ? "Connect Wallet" : "連接錢包"}</span>
             ) : (
-              <span>{locale === Lang.en ? "Account Binding" : "綁定帳號"}</span>
+              <span>{locale === Lang.en ? "Link Account" : "綁定帳號"}</span>
             )
           }
           closeDialog={closeDialog}

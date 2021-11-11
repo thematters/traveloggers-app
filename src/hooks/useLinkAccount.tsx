@@ -24,7 +24,7 @@ const DELETE_WALLET = `
   }
 `
 
-export const useBinding = () => {
+export const useLinkAccount = () => {
   const { locale } = useLocalization()
   const lang = locale as Lang
 
@@ -35,11 +35,11 @@ export const useBinding = () => {
   const { viewer, getViewer } = useContext(ViewerContext)
   const connectedWalletId = viewer?.info?.cryptoWallet?.id
 
-  const [putWallet, { loading: binding, error: bindError }] =
+  const [putWallet, { loading: linking, error: linkError }] =
     useMutation(PUT_WALLET)
-  const [deleteWallet, { loading: unbinding, error: unbindError }] =
+  const [deleteWallet, { loading: unlinking, error: unlinkError }] =
     useMutation(DELETE_WALLET)
-  const bound = !!(viewer?.id && viewer?.info?.cryptoWallet?.id)
+  const linked = !!(viewer?.id && viewer?.info?.cryptoWallet?.id)
 
   // TODO: created nonce from server
   const signedMessage = `matters.news wants you to sign in with your Ethereum account:
@@ -51,7 +51,7 @@ Chain ID: ${env.supportedChainId}
 Nonce: ${new Date().getTime()}
 Issued At: ${new Date().toISOString()}`
 
-  const bind = async ({ callback }: { callback: () => void }) => {
+  const link = async ({ callback }: { callback: () => void }) => {
     if (!library || !account) {
       return
     }
@@ -101,7 +101,7 @@ Issued At: ${new Date().toISOString()}`
     setSigning(false)
   }
 
-  const unbind = async ({ callback }: { callback: () => void }) => {
+  const unlink = async ({ callback }: { callback: () => void }) => {
     if (!library || !account) {
       return
     }
@@ -127,14 +127,14 @@ Issued At: ${new Date().toISOString()}`
   }
 
   return {
-    loading: unbinding || binding || signing,
+    loading: unlinking || linking || signing,
     error,
-    bindError:
-      unbindError || bindError
-        ? getAPIErrorMessage({ error: unbindError || bindError, lang })
+    linkError:
+      unlinkError || linkError
+        ? getAPIErrorMessage({ error: unlinkError || linkError, lang })
         : "",
-    bound,
-    bind,
-    unbind,
+    linked,
+    link,
+    unlink,
   }
 }
