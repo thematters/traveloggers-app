@@ -59,7 +59,19 @@ type ReducerState = {
   ownLogbooks: OwnLogbooks
 }
 
-type ReducerDispatchActionType = "update"
+type ReducerAction =
+  | {
+      type: "update"
+      payload: Partial<ReducerState>
+    }
+  | {
+      type: "updateLogbook"
+      payload: { tokenId: string; logbook: Partial<Logbook> }
+    }
+  | {
+      type: "updateDraft"
+      payload: { tokenId: string; draft: LogDraft }
+    }
 
 export const useLogbook = () => {
   const { locale } = useLocalization()
@@ -79,10 +91,7 @@ export const useLogbook = () => {
     logbooks: {},
     ownLogbooks: { loading: false, logbooks: [] },
   }
-  const reducer = (
-    state: ReducerState,
-    action: { type: ReducerDispatchActionType; payload: Partial<ReducerState> }
-  ) => {
+  const reducer = (state: ReducerState, action: ReducerAction) => {
     if (env.env === "development") {
       console.log(action)
     }
@@ -96,6 +105,31 @@ export const useLogbook = () => {
           ownLogbooks: {
             ...state.ownLogbooks,
             ...action.payload.ownLogbooks,
+          },
+        }
+      case "updateLogbook":
+        return {
+          ...state,
+          logbooks: {
+            ...state.logbooks,
+            [action.payload.tokenId]: {
+              ...state.logbooks[action.payload.tokenId],
+              ...action.payload.logbook,
+            },
+          },
+        }
+      case "updateDraft":
+        return {
+          ...state,
+          logbooks: {
+            ...state.logbooks,
+            [action.payload.tokenId]: {
+              ...state.logbooks[action.payload.tokenId],
+              draft: {
+                ...state.logbooks[action.payload.tokenId]?.draft,
+                ...action.payload.draft,
+              },
+            },
           },
         }
       default:
@@ -119,15 +153,14 @@ export const useLogbook = () => {
   const getLogbook = async (tokenId: string) => {
     // mark as loading
     dispatch({
-      type: "update",
+      type: "updateLogbook",
       payload: {
-        logbooks: {
-          [tokenId]: {
-            ...state.logbooks[tokenId],
-            loading: true,
-            error: "",
-            tokenId,
-          },
+        tokenId,
+        logbook: {
+          ...state.logbooks[tokenId],
+          loading: true,
+          error: "",
+          tokenId,
         },
       },
     })
@@ -138,21 +171,20 @@ export const useLogbook = () => {
       const tokenOwner = await contract.ownerOf(tokenId)
 
       dispatch({
-        type: "update",
+        type: "updateLogbook",
         payload: {
-          logbooks: {
-            [tokenId]: {
-              loading: false,
-              error: "",
+          tokenId,
+          logbook: {
+            loading: false,
+            error: "",
 
-              tokenId,
-              tokenOwner,
+            tokenId,
+            tokenOwner,
 
-              isLocked: logbook.isLocked,
-              logs: normalizedLogs(logbook.logs),
+            isLocked: logbook.isLocked,
+            logs: normalizedLogs(logbook.logs),
 
-              openSeaURL: toOpenSeaNFTUrl(tokenId),
-            },
+            openSeaURL: toOpenSeaNFTUrl(tokenId),
           },
         },
       })
@@ -161,15 +193,14 @@ export const useLogbook = () => {
       const errorMsg = getWalletErrorMessage({ error: err as Error, lang })
 
       dispatch({
-        type: "update",
+        type: "updateLogbook",
         payload: {
-          logbooks: {
-            [tokenId]: {
-              ...state.logbooks[tokenId],
-              loading: false,
-              error: errorMsg,
-              tokenId,
-            },
+          tokenId,
+          logbook: {
+            ...state.logbooks[tokenId],
+            loading: false,
+            error: errorMsg,
+            tokenId,
           },
         },
       })
@@ -206,8 +237,6 @@ export const useLogbook = () => {
       const logbooksMap: { [tokenId: string]: Logbook } = {}
       logbooks.forEach((logbook, index) => {
         const tokenId = tokens[index].token_id
-
-        console.log({ tokenId })
 
         logbooksMap[tokenId] = {
           loading: false,
@@ -276,23 +305,18 @@ export const useLogbook = () => {
       const maxGasUsed = gasUsed.mul(3).div(2) // +33%
 
       dispatch({
-        type: "update",
+        type: "updateDraft",
         payload: {
-          logbooks: {
-            ...state.logbooks,
-            [tokenId]: {
-              ...state.logbooks[tokenId],
-              draft: {
-                sending: false,
-                error: "",
+          tokenId,
+          draft: {
+            sending: false,
+            error: "",
 
-                message,
+            message,
 
-                gasPrice,
-                gasLimit: maxGasUsed,
-                gasCost: gasPrice.mul(maxGasUsed),
-              },
-            },
+            gasPrice,
+            gasLimit: maxGasUsed,
+            gasCost: gasPrice.mul(maxGasUsed),
           },
         },
       })
@@ -304,18 +328,13 @@ export const useLogbook = () => {
       })
 
       dispatch({
-        type: "update",
+        type: "updateDraft",
         payload: {
-          logbooks: {
-            ...state.logbooks,
-            [tokenId]: {
-              ...state.logbooks[tokenId],
-              draft: {
-                sending: false,
-                error: errorMsg,
-                message,
-              },
-            },
+          tokenId,
+          draft: {
+            sending: false,
+            error: errorMsg,
+            message,
           },
         },
       })
@@ -340,19 +359,13 @@ export const useLogbook = () => {
     }
 
     dispatch({
-      type: "update",
+      type: "updateDraft",
       payload: {
-        logbooks: {
-          ...state.logbooks,
-          [tokenId]: {
-            ...state.logbooks[tokenId],
-            draft: {
-              ...state.logbooks[tokenId].draft,
-              message,
-              sending: true,
-              error: "",
-            },
-          },
+        tokenId,
+        draft: {
+          message,
+          sending: true,
+          error: "",
         },
       },
     })
@@ -363,19 +376,13 @@ export const useLogbook = () => {
       })
 
       dispatch({
-        type: "update",
+        type: "updateDraft",
         payload: {
-          logbooks: {
-            ...state.logbooks,
-            [tokenId]: {
-              ...state.logbooks[tokenId],
-              draft: {
-                ...state.logbooks[tokenId].draft,
-                sending: false,
-                error: "",
-                message,
-              },
-            },
+          tokenId,
+          draft: {
+            sending: false,
+            error: "",
+            message,
           },
         },
       })
@@ -387,18 +394,13 @@ export const useLogbook = () => {
       const errorMsg = getWalletErrorMessage({ error: err as Error, lang })
 
       dispatch({
-        type: "update",
+        type: "updateDraft",
         payload: {
-          logbooks: {
-            ...state.logbooks,
-            [tokenId]: {
-              ...state.logbooks[tokenId],
-              draft: {
-                sending: false,
-                error: errorMsg,
-                message,
-              },
-            },
+          tokenId,
+          draft: {
+            sending: false,
+            error: errorMsg,
+            message,
           },
         },
       })
