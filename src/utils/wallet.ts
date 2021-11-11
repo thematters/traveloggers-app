@@ -106,7 +106,13 @@ export const maskAddress = (address: string) => {
   return `${address.substring(0, 6)}...${address.substring(address.length - 4)}`
 }
 
-export const toEtherscanUrl = (hash: string) => {
+export type EtherscanObject = {
+  url: string
+  hash: string
+  maskedHash: string
+}
+
+export const toEtherscanUrl = (hash: string): EtherscanObject => {
   const etherscanDomain =
     env.supportedChainId === 4 ? "rinkeby.etherscan.io" : "etherscan.io"
   const maskedHash = maskAddress(hash)
