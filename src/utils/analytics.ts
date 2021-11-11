@@ -42,6 +42,7 @@ interface ClickButtonProp {
     | "footer_os" // Opensea link on footer
     | "header_dis" // Discord link on header
     | "header_tt" // Twitter link on header
+    | "logbooks" // Button link to logbook page
     | "opensea" // Button link to opensea page
     | "expand_faq" // click expand icon on FAQ page
   state?: number | string // current step in storyline, or current language for language switching
