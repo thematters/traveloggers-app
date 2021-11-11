@@ -43,8 +43,8 @@ const IntroContent: React.FC<IntroContentProps> = ({
       <Dialog.Content>
         <p>
           {locale === Lang.en
-            ? "Connect a wallet to your matters.news account, or use a linked account to enhance your Traveloggers experience."
-            : "你可以將錢包和你在 matters.news 上的帳戶綁定或者更換，以更好地在 matters.news 上使用 Traveloggers。"}
+            ? "Connect a wallet to your Matters.news account, or use a linked account to enhance your Traveloggers experience."
+            : "你可以將錢包和你在 Matters.news 上的帳戶綁定或者更換，以更好地在 Matters.news 上使用 Traveloggers。"}
         </p>
 
         <section className={styles.buttons}>

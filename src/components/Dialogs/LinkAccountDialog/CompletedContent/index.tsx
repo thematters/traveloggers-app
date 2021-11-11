@@ -25,7 +25,7 @@ const CompletedContent: React.FC<CompletedContentProps> = ({ closeDialog }) => {
         <p className={styles.content}>
           <span>{locale === Lang.en ? "Back to " : "返回 "}</span>
           <a href="https://matters.news" className={styles.highlight}>
-            matters.news
+            Matters.news
           </a>
         </p>
       </Dialog.Content>

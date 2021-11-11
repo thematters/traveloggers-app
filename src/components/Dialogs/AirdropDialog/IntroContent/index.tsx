@@ -49,8 +49,8 @@ const IntroContent: React.FC<IntroContentProps> = ({
       <Dialog.Content>
         <p>
           {locale === Lang.en
-            ? "Make sure your wallet address is able to connect to your matters.news account. Each user can only register for airdrops once. We will connect this account to your wallet and airdrop Traveloggers to this wallet"
-            : "確認錢包地址與 matters.news 帳戶可進行綁定。每位用戶只能參與一次空投登記，我們會將此帳戶與錢包綁定，並將 Traveloggers 空投到此錢包。"}
+            ? "Make sure your wallet address is able to connect to your Matters.news account. Each user can only register for airdrops once. We will connect this account to your wallet and airdrop Traveloggers to this wallet"
+            : "確認錢包地址與 Matters.news 帳戶可進行綁定。每位用戶只能參與一次空投登記，我們會將此帳戶與錢包綁定，並將 Traveloggers 空投到此錢包。"}
         </p>
 
         <section className={styles.buttons}>
