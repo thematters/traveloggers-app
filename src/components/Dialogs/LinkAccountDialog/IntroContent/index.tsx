@@ -12,7 +12,7 @@ import {
   ViewerContext,
 } from "~/components"
 import { Lang } from "~/enums"
-import { useBinding } from "~/hooks"
+import { useLinkAccount } from "~/hooks"
 import { getWalletErrorMessage } from "~/utils"
 
 import * as styles from "./styles.module.css"
@@ -32,19 +32,19 @@ const IntroContent: React.FC<IntroContentProps> = ({
   const { account, error: walletError } =
     useWeb3React<ethers.providers.Web3Provider>()
   const { viewer, loading, error: signInError } = useContext(ViewerContext)
-  const { bind, loading: binding, error, bindError } = useBinding()
+  const { link, loading: linking, error, linkError } = useLinkAccount()
 
   const isSignedIn = !!viewer?.id && !loading && !signInError
   const isConnectWallet = !!account && !walletError
-  const canBind = isSignedIn && isConnectWallet
+  const canLink = isSignedIn && isConnectWallet
 
   return (
     <>
       <Dialog.Content>
         <p>
           {locale === Lang.en
-            ? "我們會將此帳號與錢包綁定，你可以綁定新的錢包，或變更你的 Matters 帳號。"
-            : "我們會將此帳號與錢包綁定，你可以綁定新的錢包，或變更你的 Matters 帳號。"}
+            ? "你可以將錢包和你在 matters.news 上的帳戶綁定或者更換，以更好地在 matters.news 上使用 Traveloggers "
+            : "Connect a wallet to your matters.news account, or use a linked account to enhance your Traveloggers experience."}
         </p>
 
         <section className={styles.buttons}>
@@ -72,21 +72,21 @@ const IntroContent: React.FC<IntroContentProps> = ({
             <p>{error}</p>
           </Dialog.Message>
         )}
-        {bindError && (
+        {linkError && (
           <Dialog.Message>
-            <p>{bindError}</p>
+            <p>{linkError}</p>
           </Dialog.Message>
         )}
       </Dialog.Content>
 
       <Dialog.CTAButton
-        disabled={!canBind || binding}
-        onClick={() => bind({ callback: gotoCompleted })}
+        disabled={!canLink || linking}
+        onClick={() => link({ callback: gotoCompleted })}
       >
-        {binding ? (
+        {linking ? (
           <IconSpinner />
         ) : (
-          <>{locale === Lang.en ? "Bind" : "綁定帳號"}</>
+          <>{locale === Lang.en ? "Link Account" : "綁定帳號"}</>
         )}
       </Dialog.CTAButton>
     </>
