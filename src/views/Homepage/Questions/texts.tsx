@@ -68,7 +68,7 @@ const TEXTS: Record<string, any> = {
     answer5_3: "",
     question6: "How do I participate in airdrops?",
     answer6_1:
-      "Airdrops are benefits for users of Matters.news. Matters’ users who have connected an Ethereum wallet " +
+      "Airdrops are benefits for users of Matters.News. Matters’ users who have connected an Ethereum wallet " +
       "before November 11, 2021  have the opportunity to receive airdrops.",
     answer6_2:
       "The number of airdrops is limited; therefore, to ensure fairness as much as possible, the chances to receive " +
