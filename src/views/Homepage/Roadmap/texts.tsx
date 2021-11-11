@@ -52,7 +52,7 @@ const TEXTS: Record<string, any> = {
       <p>
         為感謝{" "}
         <a href="https://matters.news/" target="_blank" rel="noreferrer">
-          Matters.news
+          Matters.News
         </a>{" "}
         社區用戶支持，我們會空投 300 個 Traveloggers 給綁定以太坊錢包的 Matters
         用戶。只要在 2021/11/11 中午 12 點以前成功綁定了以太坊錢包的 Matters
@@ -143,7 +143,7 @@ const TEXTS: Record<string, any> = {
       <>
         To thank{" "}
         <a href="https://matters.news/" target="_blank" rel="noreferrer">
-          Matters.news
+          Matters.News
         </a>{" "}
         users’ support, we will airdrop 300 Traveloggers to Matters’ users who
         have connected their Ethereum wallets. Matters’ users who have connected
