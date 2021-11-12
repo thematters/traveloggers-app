@@ -1,7 +1,7 @@
 import { useWeb3React } from "@web3-react/core"
 import { ethers } from "ethers"
 import { useLocalization } from "gatsby-theme-i18n"
-import { useReducer } from "react"
+import { useReducer, useRef } from "react"
 
 import env from "@/.env.json"
 import { Lang, WalletErrorType } from "~/enums"
@@ -26,6 +26,7 @@ type LogDraft = {
   error?: string
 
   message: string
+  txHash?: string
 
   // estimate gas
   gasPrice?: ethers.BigNumber
@@ -47,16 +48,15 @@ type Logbook = {
   draft?: LogDraft
 }
 
-type OwnLogbooks = {
+type OwnNFTs = {
   loading: boolean
   error?: string
-
-  logbooks: Logbook[] // order by token id, asc
+  tokenIds: string[]
 }
 
 type ReducerState = {
   logbooks: { [tokenId: string]: Logbook }
-  ownLogbooks: OwnLogbooks
+  ownNFTs: OwnNFTs
 }
 
 type ReducerAction =
@@ -78,38 +78,38 @@ export const useLogbook = () => {
   const lang = locale as Lang
 
   const { account, library } = useWeb3React<ethers.providers.Web3Provider>()
-  const contract = new ethers.Contract(
-    env.contractAddress,
-    env.contractABI,
-    // ethers.getDefaultProvider(env.supportedChainId, { infura: env.infuraId })
-    new ethers.providers.InfuraProvider(env.supportedChainId, env.infuraId)
-  )
 
   /**
    * States
    */
   const initialState: ReducerState = {
     logbooks: {},
-    ownLogbooks: { loading: false, logbooks: [] },
+    ownNFTs: { loading: false, tokenIds: [] },
   }
+  const stateRef = useRef(initialState)
+
   const reducer = (state: ReducerState, action: ReducerAction) => {
     if (env.env === "development") {
       console.log(action)
     }
+
+    let newState = state
+
     switch (action.type) {
       case "update":
-        return {
+        newState = {
           logbooks: {
             ...state.logbooks,
             ...action.payload.logbooks,
           },
-          ownLogbooks: {
-            ...state.ownLogbooks,
-            ...action.payload.ownLogbooks,
+          ownNFTs: {
+            ...state.ownNFTs,
+            ...action.payload.ownNFTs,
           },
         }
+        break
       case "updateLogbook":
-        return {
+        newState = {
           ...state,
           logbooks: {
             ...state.logbooks,
@@ -119,8 +119,10 @@ export const useLogbook = () => {
             },
           },
         }
+        break
+
       case "updateDraft":
-        return {
+        newState = {
           ...state,
           logbooks: {
             ...state.logbooks,
@@ -133,10 +135,15 @@ export const useLogbook = () => {
             },
           },
         }
+        break
       default:
         throw new Error()
     }
+
+    stateRef.current = newState
+    return newState
   }
+
   const [state, dispatch] = useReducer(reducer, initialState)
 
   /**
@@ -149,7 +156,7 @@ export const useLogbook = () => {
       createdAt: new Date(
         (log.createdAt as ethers.BigNumber).toNumber() * 1000
       ),
-      etherscan: toEtherscanUrl(""), // TODO: get tx hash via filtering events
+      etherscan: toEtherscanUrl(""), // TODO: get tx hash from event
     }))
 
   // retrieve single logbook by a given tokenId
@@ -169,6 +176,13 @@ export const useLogbook = () => {
     })
 
     try {
+      const contract = new ethers.Contract(
+        env.contractAddress,
+        env.contractABI,
+        // ethers.getDefaultProvider(env.supportedChainId, { infura: env.infuraId })
+        new ethers.providers.InfuraProvider(env.supportedChainId, env.infuraId)
+      )
+
       // retrieve lobook and token owner from contract
       const logbook = await contract.readLogbook(tokenId)
       const tokenOwner = await contract.ownerOf(tokenId)
@@ -211,7 +225,7 @@ export const useLogbook = () => {
   }
 
   // retrieve all logbooks own by current account
-  const getOwnLogbooks = async () => {
+  const getOwnNFTs = async () => {
     if (!account) {
       return
     }
@@ -220,15 +234,18 @@ export const useLogbook = () => {
     dispatch({
       type: "update",
       payload: {
-        ownLogbooks: {
-          ...state.ownLogbooks,
-          loading: true,
-          error: "",
-        },
+        ownNFTs: { ...state.ownNFTs, loading: true, error: "" },
       },
     })
 
     try {
+      const contract = new ethers.Contract(
+        env.contractAddress,
+        env.contractABI,
+        // ethers.getDefaultProvider(env.supportedChainId, { infura: env.infuraId })
+        new ethers.providers.InfuraProvider(env.supportedChainId, env.infuraId)
+      )
+
       // retrieve token ids from OpenSea
       const tokens = await retrieveOwnerNFTs({ owner: account })
 
@@ -255,7 +272,7 @@ export const useLogbook = () => {
         }
       })
 
-      // update logbooks and ownLogbooks
+      // update logbooks and ownNFTs
       dispatch({
         type: "update",
         payload: {
@@ -263,10 +280,10 @@ export const useLogbook = () => {
             ...state.logbooks,
             ...logbooksMap,
           },
-          ownLogbooks: {
+          ownNFTs: {
             loading: false,
             error: "",
-            logbooks: tokens.map(({ token_id }) => logbooksMap[token_id]),
+            tokenIds: tokens.map(({ token_id }) => token_id),
           },
         },
       })
@@ -277,8 +294,8 @@ export const useLogbook = () => {
       dispatch({
         type: "update",
         payload: {
-          ownLogbooks: {
-            ...state.ownLogbooks,
+          ownNFTs: {
+            ...state.ownNFTs,
             loading: false,
             error: errorMsg,
           },
@@ -297,6 +314,11 @@ export const useLogbook = () => {
     }
 
     try {
+      const contract = new ethers.Contract(
+        env.contractAddress,
+        env.contractABI,
+        library
+      )
       const [gasUsed, gasPrice] = await Promise.all([
         contract
           .connect(library.getSigner())
@@ -334,11 +356,7 @@ export const useLogbook = () => {
         type: "updateDraft",
         payload: {
           tokenId,
-          draft: {
-            sending: false,
-            error: errorMsg,
-            message,
-          },
+          draft: { sending: false, error: errorMsg, message },
         },
       })
     }
@@ -350,45 +368,83 @@ export const useLogbook = () => {
       return
     }
 
-    const logbook = state.logbooks[tokenId]
-
-    if (logbook.tokenOwner !== account) {
-      // TODO: error
+    let logbook = stateRef.current.logbooks[tokenId]
+    if (!logbook) {
+      await getOwnNFTs()
+      logbook = stateRef.current.logbooks[tokenId]
     }
 
-    const gasLimit = logbook?.draft?.gasLimit
-    if (!gasLimit || logbook?.draft?.sending) {
+    // if logbook is not exists or account is not the owner
+    if (logbook.tokenOwner !== account) {
+      const errorMsg = getWalletErrorMessage({
+        type: WalletErrorType.logbookNotOwner,
+        lang,
+      })
+      dispatch({
+        type: "updateDraft",
+        payload: {
+          tokenId,
+          draft: { sending: false, error: errorMsg, message },
+        },
+      })
       return
+    }
+
+    // if logbook is locked
+    if (logbook.isLocked) {
+      const errorMsg = getWalletErrorMessage({
+        type: WalletErrorType.logbookLocked,
+        lang,
+      })
+      dispatch({
+        type: "updateDraft",
+        payload: {
+          tokenId,
+          draft: { sending: false, error: errorMsg, message },
+        },
+      })
+      return
+    }
+
+    if (logbook.draft?.sending) {
+      return
+    }
+
+    // if gasLimit is not exist
+    let gasLimit = logbook?.draft?.gasLimit
+    if (!gasLimit) {
+      await updateDraft(tokenId, message)
+      gasLimit = stateRef.current.logbooks[tokenId].draft?.gasLimit
     }
 
     dispatch({
       type: "updateDraft",
       payload: {
         tokenId,
-        draft: {
-          message,
-          sending: true,
-          error: "",
-        },
+        draft: { message, sending: true, error: "" },
       },
     })
 
     try {
-      await contract.connect(library.getSigner()).appendLog(tokenId, message, {
-        gasLimit,
-      })
+      const contract = new ethers.Contract(
+        env.contractAddress,
+        env.contractABI,
+        library
+      )
+
+      const tx = await contract
+        .connect(library.getSigner())
+        .appendLog(tokenId, message, { gasLimit })
 
       dispatch({
         type: "updateDraft",
         payload: {
           tokenId,
-          draft: {
-            sending: false,
-            error: "",
-            message,
-          },
+          draft: { sending: false, error: "", message, txHash: tx.hash },
         },
       })
+
+      await tx.wait()
 
       // refetch logbook
       await getLogbook(tokenId)
@@ -400,11 +456,7 @@ export const useLogbook = () => {
         type: "updateDraft",
         payload: {
           tokenId,
-          draft: {
-            sending: false,
-            error: errorMsg,
-            message,
-          },
+          draft: { sending: false, error: errorMsg, message },
         },
       })
     }
@@ -414,8 +466,8 @@ export const useLogbook = () => {
     getLogbook,
     logbooks: state.logbooks,
 
-    getOwnLogbooks,
-    ownLogbooks: state.ownLogbooks,
+    getOwnNFTs,
+    ownNFTs: state.ownNFTs,
 
     updateDraft,
     appendLog,

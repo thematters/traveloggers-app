@@ -47,6 +47,8 @@ const WALLET_ERROR_MESSAGES = {
     [WalletErrorType.preOrderNotStarted]: "Pre-order isn' started yet.",
     [WalletErrorType.preOrderReachLimit]: "Reach pre-order limit.",
     [WalletErrorType.preOrderInvalidUnitPrice]: "Invalid amount.",
+    [WalletErrorType.logbookNotOwner]: "This account is not the token owner.",
+    [WalletErrorType.logbookLocked]: "Logbook is locked.",
   },
   [Lang.zh]: {
     // common
@@ -63,6 +65,9 @@ const WALLET_ERROR_MESSAGES = {
     [WalletErrorType.preOrderNotStarted]: "預購尚未開始",
     [WalletErrorType.preOrderReachLimit]: "超出預購數量限制",
     [WalletErrorType.preOrderInvalidUnitPrice]: "預購金額不正確",
+    [WalletErrorType.logbookNotOwner]:
+      "此錢包非 NFT 擁有者，無權限寫入航行日誌",
+    [WalletErrorType.logbookLocked]: "你已寫過航行日誌",
   },
 }
 
