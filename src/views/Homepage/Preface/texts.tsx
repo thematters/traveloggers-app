@@ -1,7 +1,7 @@
 const TEXTS: Record<string, any> = {
   zh: {
     content1:
-      "馬特宇宙來源於社群共創。Matters Lab 成立於 2018 年，旗下開發的 matters.news 是 Web3 世界最大的去中心出版平台，" +
+      "馬特宇宙來源於社群共創。Matters Lab 成立於 2018 年，旗下開發的 Matters.News 是 Web3 世界最大的去中心出版平台，" +
       "有超過 8 萬名註冊寫作者的活躍社群。",
     content2:
       "2021 年 10 月，Matters 社群逾百人接力，共創馬特宇宙故事：" +

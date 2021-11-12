@@ -26,7 +26,7 @@ const TEXTS: Record<string, any> = {
     answer5_3: "點擊查看預購操作指南",
     question6: "如何參與空投？",
     answer6_1:
-      "空投是給 matters.news 社群的用戶福利。只要是在 2021/11/11 之前綁定了以太坊錢包的 matters.news 用戶就可參與空投。",
+      "空投是給 Matters.News 社群的用戶福利。只要是在 2021/11/11 之前綁定了以太坊錢包的 Matters.News 用戶就可參與空投。",
     answer6_2:
       "此次空投數量有限，為儘可能保證公平，獲得空投的概率會根據用戶在 2021/11/2 日以前在 Matters 社區的活躍程度有所不同，" +
       "即在Matters 社區的活躍度越高的用戶獲得空投的概率越高。活躍程度的考量有以下六項指標：用戶發表文章的被拍手次數、" +
@@ -68,7 +68,7 @@ const TEXTS: Record<string, any> = {
     answer5_3: "",
     question6: "How do I participate in airdrops?",
     answer6_1:
-      "Airdrops are benefits for users of matters.news. Matters’ users who have connected an Ethereum wallet " +
+      "Airdrops are benefits for users of Matters.News. Matters’ users who have connected an Ethereum wallet " +
       "before November 11, 2021  have the opportunity to receive airdrops.",
     answer6_2:
       "The number of airdrops is limited; therefore, to ensure fairness as much as possible, the chances to receive " +

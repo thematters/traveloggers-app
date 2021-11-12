@@ -9,8 +9,8 @@ import { ViewerContext } from "~/components"
 import { CryptoWalletSignaturePurpose, Lang, WalletErrorType } from "~/enums"
 import { getAPIErrorMessage, getWalletErrorMessage } from "~/utils"
 
-const REGISTER_AIRDROP = `
-  mutation RegisterAirdrop($input: PutWalletInput!) {
+const PUT_WALLET = `
+  mutation PutWallet($input: PutWalletInput!) {
     putWallet(input: $input) {
       id
       address
@@ -18,7 +18,13 @@ const REGISTER_AIRDROP = `
   }
 `
 
-export const useAirdrop = () => {
+const DELETE_WALLET = `
+  mutation DeleteWallet($input: DeleteWalletInput!) {
+    deleteWallet(input: $input)
+  }
+`
+
+export const useLinkAccount = () => {
   const { locale } = useLocalization()
   const lang = locale as Lang
 
@@ -29,9 +35,11 @@ export const useAirdrop = () => {
   const { viewer, getViewer } = useContext(ViewerContext)
   const connectedWalletId = viewer?.info?.cryptoWallet?.id
 
-  const [register, { loading, error: registerError }] =
-    useMutation(REGISTER_AIRDROP)
-  const registered = !!(viewer?.id && viewer?.info?.cryptoWallet?.id)
+  const [putWallet, { loading: linking, error: linkError }] =
+    useMutation(PUT_WALLET)
+  const [deleteWallet, { loading: unlinking, error: unlinkError }] =
+    useMutation(DELETE_WALLET)
+  const linked = !!(viewer?.id && viewer?.info?.cryptoWallet?.id)
 
   // TODO: created nonce from server
   const signedMessage = `matters.news wants you to sign in with your Ethereum account:
@@ -43,7 +51,7 @@ Chain ID: ${env.supportedChainId}
 Nonce: ${new Date().getTime()}
 Issued At: ${new Date().toISOString()}`
 
-  const registerAirdrop = async ({ callback }: { callback: () => void }) => {
+  const link = async ({ callback }: { callback: () => void }) => {
     if (!library || !account) {
       return
     }
@@ -68,21 +76,45 @@ Issued At: ${new Date().toISOString()}`
     }
 
     try {
-      // register airdrop
-      const result = await register({
+      const result = await putWallet({
         variables: {
           input: {
             ...(connectedWalletId ? { id: connectedWalletId } : {}),
             signature,
             signedMessage,
             address: account,
-            purpose: CryptoWalletSignaturePurpose.airdrop,
+            purpose: CryptoWalletSignaturePurpose.connect,
           },
         },
       })
 
       // refresh viewer
-      if (result.data?.putWallet?.id) {
+      if (result.data) {
+        await getViewer()
+        setError("")
+        callback()
+      }
+    } catch (err) {
+      console.log(err)
+    }
+
+    setSigning(false)
+  }
+
+  const unlink = async ({ callback }: { callback: () => void }) => {
+    if (!library || !account) {
+      return
+    }
+
+    try {
+      const result = await deleteWallet({
+        variables: {
+          input: { connectedWalletId },
+        },
+      })
+
+      // refresh viewer
+      if (result.data) {
         await getViewer()
         setError("")
         callback()
@@ -95,12 +127,14 @@ Issued At: ${new Date().toISOString()}`
   }
 
   return {
-    loading: loading || signing,
+    loading: unlinking || linking || signing,
     error,
-    registerError: registerError
-      ? getAPIErrorMessage({ error: registerError, lang })
-      : "",
-    registered,
-    registerAirdrop,
+    linkError:
+      unlinkError || linkError
+        ? getAPIErrorMessage({ error: unlinkError || linkError, lang })
+        : "",
+    linked,
+    link,
+    unlink,
   }
 }

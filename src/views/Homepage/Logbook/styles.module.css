@@ -24,6 +24,7 @@
   column-gap: var(--spacing-base);
   align-items: flex-start;
   justify-content: space-between;
+  margin-bottom: 4rem;
 
   @media (--md-up) {
     flex-direction: row;
@@ -44,22 +45,47 @@
 }
 
 .text {
+  display: grid;
+  grid-template-areas:
+    "title"
+    "description"
+    "button";
+  gap: var(--spacing-base);
+  align-items: center;
   font-size: var(--font-size-md);
   line-height: 1.875rem;
 
   & .title {
-    margin-bottom: var(--spacing-base);
+    grid-area: title;
   }
 
-  & > * + * {
-    margin-top: var(--spacing-base);
+  & .button {
+    grid-area: button;
+    width: 100%;
+  }
+
+  & .description {
+    grid-area: description;
+
+    & > p + p {
+      margin-top: var(--spacing-base);
+    }
+  }
+
+  @media (--md-up) {
+    grid-template-areas:
+      "title button"
+      "description description";
+    grid-gap: var(--spacing-x-loose) 0;
+
+    & .button {
+      align-self: start;
+      justify-self: end;
+      width: auto;
+    }
   }
 
   @media (--lg-up) {
     width: 26rem;
-
-    & .title {
-      margin-bottom: var(--spacing-loose);
-    }
   }
 }
