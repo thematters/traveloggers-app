@@ -81,7 +81,8 @@ export const useLogbook = () => {
   const contract = new ethers.Contract(
     env.contractAddress,
     env.contractABI,
-    library
+    // ethers.getDefaultProvider(env.supportedChainId, { infura: env.infuraId })
+    new ethers.providers.InfuraProvider(env.supportedChainId, env.infuraId)
   )
 
   /**
@@ -139,13 +140,15 @@ export const useLogbook = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   /**
-   * Get lobook
+   * Get logbook
    */
   const normalizedLogs = (logs: any[]): Log[] =>
     logs.map(log => ({
       sender: log.sender,
       message: log.message,
-      createdAt: new Date(log.createdAt),
+      createdAt: new Date(
+        (log.createdAt as ethers.BigNumber).toNumber() * 1000
+      ),
       etherscan: toEtherscanUrl(""), // TODO: get tx hash via filtering events
     }))
 
