@@ -1,16 +1,20 @@
 import { useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 
-import { Button, Container, Section } from "~/components"
+import {
+  // Button,
+  Container,
+  Section,
+} from "~/components"
 import { Lang } from "~/enums"
-import { useResponsive } from "~/hooks"
-import { analytics } from "~/utils"
 
+// import { useResponsive } from "~/hooks"
+// import { analytics } from "~/utils"
 import * as styles from "./styles.module.css"
 
 const Logbook = () => {
   const { locale } = useLocalization()
-  const isMediumUp = useResponsive("md-up")
+  // const isMediumUp = useResponsive("md-up")
 
   return (
     <section className={styles.logbook}>
@@ -26,6 +30,7 @@ const Logbook = () => {
                 </Section.Title>
               </section>
 
+              {/*
               <section className={styles.button}>
                 <Button
                   // disabled={!isOpenSaleActive}
@@ -40,6 +45,7 @@ const Logbook = () => {
                   {locale === Lang.en ? "View Logbooks" : "查看日誌"}
                 </Button>
               </section>
+              */}
 
               <section className={styles.description}>
                 <Section.Content>
