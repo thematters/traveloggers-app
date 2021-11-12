@@ -1,0 +1,8 @@
+.main {
+  min-height: 100vh;
+  margin: 10rem auto;
+
+  & h1 {
+    text-align: center;
+  }
+}

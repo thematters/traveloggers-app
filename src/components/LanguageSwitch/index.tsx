@@ -22,7 +22,7 @@ export const LanguageSwitch: React.FC<LanguageSwitchProps> = ({
     <LocalizedLink language={target.code} to={originalPath}>
       <section className={styles.switches}>
         <TextIcon
-          icon={<IconWorld size="md"/>}
+          icon={<IconWorld size="md" />}
           spacing="xxTight"
           weight="medium"
           size="md"

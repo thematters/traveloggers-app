@@ -1,0 +1,218 @@
+.main {
+  --color-logbooks-gold: #bf8f31;
+
+  position: relative;
+  display: grid;
+  grid-template-areas:
+    "header header header"
+    "toolheader toolheader toolheader"
+    "left content right"
+    "footer footer footer";
+  min-height: 100vh;
+  background-image: url("/images/logbook-background.jpeg");
+
+  @media (--md-up) {
+    grid-template-areas:
+      "header header header"
+      "left toolheader right"
+      "left content right"
+      "footer footer footer";
+    background-image: url("/images/logbook-background-lg.jpeg");
+  }
+
+  & .header {
+    grid-area: header;
+    width: 100%;
+    min-height: 100px;
+    background-image: url("/images/logbook-header-back.png");
+
+    @media (--md-up) {
+      min-height: 10.75rem;
+      background-image: url("/images/logbook-background-header.png");
+      background-repeat: repeat-x;
+      background-position: bottom;
+    }
+  }
+
+  & .left {
+    grid-area: left;
+    background-image: url("/images/logbook-content-left.jpeg");
+    background-repeat: repeat-y;
+    background-position: right;
+    background-size: 100% auto;
+  }
+
+  & .right {
+    grid-area: right;
+    background-image: url("/images/logbook-content-right.jpeg");
+    background-repeat: repeat-y;
+    background-position: left;
+    background-size: 100% auto;
+  }
+
+  & .content {
+    grid-area: content;
+    max-width: 300px;
+    margin: 0 auto;
+
+    @media (--md-up) {
+      max-width: 40rem;
+    }
+  }
+
+  & .footer {
+    grid-area: footer;
+    min-height: 16rem;
+    background-image: url("/images/logbook-background-footer.png");
+    background-position: top;
+  }
+
+  & .toolbarHeader {
+    grid-area: toolheader;
+  }
+}
+
+.toolbarHeader {
+  @mixin flex-center-all;
+
+  & > div {
+    @mixin flex-end-space-between;
+
+    flex-grow: 1;
+    margin-top: -4rem;
+
+    & div.side {
+      @mixin flex-center-all;
+
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+
+    & div.barTitle {
+      padding: 0 2rem;
+    }
+
+    & .boxShadow {
+      box-sizing: border-box;
+      background: #17253d;
+      border: 8px solid var(--color-logbooks-gold);
+      box-shadow: 0 1px 16px rgb(0 0 0 / 2%);
+    }
+
+    & h1 {
+      margin: 0.5rem 0;
+      font-family: var(--font-bitmap);
+      font-size: 1rem;
+      line-height: 1.5rem;
+      color: var(--color-logbooks-gold);
+
+      /* identical to box height, or 156% */
+      text-align: center;
+      letter-spacing: 2px;
+
+      @media (--md-up) {
+        font-size: 2.25rem;
+        line-height: 3.5rem;
+      }
+    }
+
+    @media (--md-up) {
+      @mixin flex-center-space-between;
+
+      max-width: 40rem;
+      margin-top: calc(-3rem);
+
+      & div.side {
+        width: 5rem;
+        height: 5rem;
+      }
+    }
+  }
+}
+
+.searchBar {
+  position: relative;
+  margin: 2rem 0;
+
+  & input {
+    width: 100%;
+    height: 3rem;
+    padding: 1rem 2.5rem;
+    color: var(--color-grey-darker);
+    caret-color: var(--color-matters-green);
+    background-color: var(--color-black);
+
+    /* border: 1px solid var(--color-grey-darker); */
+    border-radius: 1.5rem;
+    transition: all 0.2s ease-in-out 0s;
+  }
+
+  & button.search {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+  }
+
+  & button.clear {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+}
+
+.content {
+  position: relative;
+  min-height: 36rem;
+  margin-top: 2rem;
+
+  @media (--md-up) {
+    min-height: 50rem;
+  }
+
+  & .intro {
+    position: absolute;
+    right: 0;
+    bottom: -6rem;
+    left: 0;
+    max-width: 420px;
+    margin: auto;
+
+    & img {
+      width: 100%;
+    }
+  }
+}
+
+.text {
+  margin: 1rem 0;
+
+  & section {
+    margin-left: 2rem;
+  }
+
+  & h2 {
+    padding: 0.5rem 0;
+    font-size: 20px;
+    line-height: 32px;
+    text-align: center;
+
+    @media (--md-up) {
+      font-size: 36px;
+      line-height: 48px;
+    }
+  }
+
+  & p {
+    display: list-item;
+    margin-left: 1rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--color-grey-light);
+    list-style: disc outside none;
+
+    @media (--md-up) {
+      font-size: 1.375rem;
+      line-height: 2.25rem;
+    }
+  }
+}
