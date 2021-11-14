@@ -35,7 +35,7 @@ type LogDraft = {
   gasCost?: ethers.BigNumber
 }
 
-type Logbook = {
+export type Logbook = {
   loading: boolean
   error?: string
 

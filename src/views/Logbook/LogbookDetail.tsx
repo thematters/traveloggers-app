@@ -4,7 +4,7 @@ import { LogbookProvider, SEO } from "~/components"
 import Footer from "~/components/Layout/Footer"
 import Header from "~/components/Layout/Header"
 
-import * as styles from "./LogbookList.module.css"
+import * as styles from "./LogbookDetail.module.css"
 
 type PageProps = {
   id: string

@@ -149,21 +149,29 @@
 
   & button.search {
     position: absolute;
-    top: 1rem;
-    left: 1rem;
+    top: var(--spacing-base);
+    left: var(--spacing-base);
   }
 
   & button.clear {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: var(--spacing-base);
+    right: var(--spacing-base);
   }
 }
 
 .content {
+  @mixin flex-start-center;
+
   position: relative;
+  flex-flow: row wrap;
+  align-content: flex-start;
   min-height: 36rem;
-  margin-top: 2rem;
+  margin-top: var(--spacing-x-loose);
+
+  & > section {
+    flex: 0 0 100%;
+  }
 
   @media (--md-up) {
     min-height: 50rem;
@@ -184,28 +192,28 @@
 }
 
 .text {
-  margin: 1rem 0;
+  margin: var(--spacing-base) 0;
 
   & section {
-    margin-left: 2rem;
+    margin-left: var(--spacing-x-loose);
   }
 
   & h2 {
     padding: 0.5rem 0;
-    font-size: 20px;
-    line-height: 32px;
+    font-size: var(--font-size-lg);
+    line-height: 2rem;
     text-align: center;
 
     @media (--md-up) {
-      font-size: 36px;
-      line-height: 48px;
+      font-size: var(--font-size-xxxl);
+      line-height: 3rem;
     }
   }
 
   & p {
     display: list-item;
-    margin-left: 1rem;
-    font-size: 1rem;
+    margin-left: var(--spacing-base);
+    font-size: var(--font-size-md);
     line-height: 1.5rem;
     color: var(--color-grey-light);
     list-style: disc outside none;
@@ -215,4 +223,60 @@
       line-height: 2.25rem;
     }
   }
+}
+
+.listitems {
+  @mixin flex-center-start;
+
+  flex-flow: row wrap;
+  row-gap: var(--spacing-base);
+  padding: var(--spacing-base) 0;
+
+  & .listitem {
+    @mixin flex-center-start;
+
+    box-sizing: border-box;
+    flex: 0 0 100%;
+    min-height: 5rem;
+    padding: var(--spacing-base);
+
+    /* Black */
+    background: var(--color-black);
+    border: 4px solid #977229;
+
+    /* Card Shadow */
+    box-shadow: 0 1px 1rem rgb(0 0 0 / 2%);
+
+    & div.avatar {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 3rem;
+    }
+
+    & div.avatarDescription {
+      margin-left: 1rem;
+
+      & h3 {
+        font-size: var(--font-size-xm);
+        font-weight: var(--font-weight-medium);
+        line-height: var(--line-height-base);
+        white-space: nowrap;
+      }
+
+      & p {
+        margin-top: 0.75rem;
+        font-size: 0.875rem;
+        line-height: 0.875rem;
+        color: var(--color-matters-gold);
+      }
+    }
+
+    & div.avatarDetailLink {
+      margin-left: auto;
+    }
+  }
+}
+
+.rotate180 {
+  transform: rotate(180deg);
 }
