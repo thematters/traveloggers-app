@@ -51,18 +51,18 @@ const Logbook = () => {
                 <Section.Content>
                   <p>
                     {locale === Lang.en
-                      ? "Traveloggers can record their journey on NFT and pass the logbook to the next Traveloggers."
-                      : "Traveloggers 可以向 NFT 中寫下、並傳遞航行日誌。"}
+                      ? "Traveloggers can record their journey on blockchain and pass the logbook to  successive Traveloggers’ owners."
+                      : "Traveloggers 可以向區塊鏈中寫下、並傳遞航行日誌。"}
                   </p>
                   <p>
                     {locale === Lang.en
-                      ? "Each Travelogger avatar comes with a unique logbook, on which only the avatar’s owner can record their journey. When the avatar is passed on to the next owner, the next owner can review and own all the former log contents."
-                      : "每個 Traveloggers 頭像隱藏了獨一無二的航行日誌本，只有擁有者可以向其中添加紀錄。將頭像移轉給下一任擁有者時，下一任擁有者可以看到前任的日誌內容。當你獲得一個頭像時，也獲得了這個頭像歷任擁有者共同創作的航行日誌。"}
+                      ? "Each Travelogger avatar comes with a unique logbook, on which only the owner can record once. When the avatar is passed on to the next owner, the next owner can review and own all the former log contents."
+                      : "每個 Traveloggers 頭像隱藏了獨一無二的 Logbook（航行日誌本），只有擁有者可以向其中添加一次紀錄。當 Traveloggers 將頭像移轉給新的主人時，Logbook  的所有權也一併移轉。當你在擁有一個頭像時，你也擁有這個頭像的歷任擁有者所共同創作的航海日誌。"}
                   </p>
                   <p>
                     {locale === Lang.en
-                      ? "The logbook is part of Traveloggers, as well as the key to the collective memory of the Traveloggers’ owners."
-                      : "航行日誌是 Traveloggers 身份的一部分，也是Traveloggers 擁有者的集體記憶密碼。"}
+                      ? "The first version of the Logbook will be stored on the Ethereum Mainnet directly. The Logbook is part of Traveloggers, as well as the collective memory of the Traveloggers’ owner."
+                      : "第一代 Logbook 直接存放在以太坊區塊鏈的主網。它是 Traveloggers 身份的一部分，也是擁有者的集體記憶。"}
                   </p>
                 </Section.Content>
               </section>
