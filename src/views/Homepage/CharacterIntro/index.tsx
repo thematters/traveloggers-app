@@ -39,7 +39,7 @@ const CharacterIntro = () => {
               htmlTarget="_blank"
               onClick={() => analytics("click_button", { type: "opensea" })}
             >
-              View all on Opensea
+              {locale === Lang.en ? "View all on OpenSea" : "至 OpenSea 查看"}
             </Button>
           </section>
 

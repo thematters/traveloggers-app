@@ -2,6 +2,7 @@ import { useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 
 import { Container, Expandable, Section } from "~/components"
+import { Lang } from "~/enums"
 
 import * as styles from "./styles.module.css"
 import TEXTS from "./texts"
@@ -20,6 +21,14 @@ const link6 =
   "https://matters.news/@hi176/nft-%E7%99%BB%E8%A8%98%E7%A9%BA%E6%8A%95-%E5%A6%82%E4%BD%95%E7%8D%B2%E5%B" +
   "E%97-traveloggers-%E7%A9%BA%E6%8A%95-%E5%BF%AB%E4%BE%86%E7%B6%81%E5%AE%9A%E" +
   "9%8C%A2%E5%8C%85-bafyreigvypuhddpehillleaw73tzupcklixpw3raj5kfz5227p57v2rvpq"
+
+const link7En =
+  "https://support.opensea.io/hc/en-us/sections/1500000462261-Buying"
+
+const link7Zh =
+  "https://matters.news/@hi176/%E6%8C%87%E5%8D%97-traveloggers-%E5%8D%B3%E5%B0%87%E5%9C%A8-open-sea-%E4%B" +
+  "8%8A%E7%B7%9A-%E5%A6%82%E4%BD%95%E8%B3%BC%E8%B2%B7%E5%91%A2-bafyreibcpfyjxcl" +
+  "tz3ffelwkunuzocctdgczvwptlvdnudr3ijvmmrarou"
 
 const Questions = () => {
   const { locale } = useLocalization()
@@ -111,12 +120,24 @@ const Questions = () => {
             </Section.Content>
           }
         />
-        {/*
-        <Expandable {...expandableStyles}
+        <Expandable
+          {...expandableStyles}
           title={texts.question7}
-          content={(<a>{texts.answer7}</a>)}
+          content={
+            <Section.Content>
+              <p>
+                {texts.answer7_1}
+                <a
+                  href={locale === Lang.en ? link7En : link7Zh}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {texts.answer7_2}
+                </a>
+              </p>
+            </Section.Content>
+          }
         />
-        */}
         <Expandable
           {...expandableStyles}
           title={texts.question8}

@@ -1,11 +1,11 @@
 import { useLocalization } from "gatsby-theme-i18n"
-import React from "react"
+import React, { useContext } from "react"
 
 import env from "@/.env.json"
 import {
   Button,
   IconScrollDown,
-  PreOrderDialog,
+  RoadmapContext,
   Section,
   TextIcon,
 } from "~/components"
@@ -15,8 +15,10 @@ import { analytics } from "~/utils"
 import * as styles from "./styles.module.css"
 
 const Hero = () => {
+  const { isOpenSaleStarted, isOpenSaleEnded } = useContext(RoadmapContext)
   const { locale } = useLocalization()
-  const { discord } = env.socialUrls[locale as Lang]
+  const { discord, opensea } = env.socialUrls[locale as Lang]
+  const isOpenSaleActive = isOpenSaleStarted && !isOpenSaleEnded
 
   return (
     <>
@@ -44,24 +46,38 @@ const Hero = () => {
                 </section>
 
                 <section className={styles.cta}>
-                  <PreOrderDialog>
-                    {({ openDialog }) => (
-                      <Button
-                        color="primary"
-                        width="100%"
-                        height="3.5rem"
-                        spacingY="1rem"
-                        disabled={true}
-                        onClick={() => {
-                          analytics("click_button", { type: "hero_preorder" })
-                        }}
-                      >
-                        {locale === Lang.en
-                          ? "Pre-order Sold Out"
-                          : "預購已全數售罄"}
-                      </Button>
-                    )}
-                  </PreOrderDialog>
+                  {isOpenSaleActive ? (
+                    <Button
+                      color="primary"
+                      width="100%"
+                      height="3.5rem"
+                      spacingY="1rem"
+                      htmlHref={opensea}
+                      htmlTarget="_blank"
+                      onClick={() => {
+                        analytics("click_button", { type: "hero_opensea" })
+                      }}
+                    >
+                      {locale === Lang.en
+                        ? "Enter OpenSea to purchase"
+                        : "進入 OpenSea 購買"}
+                    </Button>
+                  ) : (
+                    <Button
+                      color="primary"
+                      width="100%"
+                      height="3.5rem"
+                      spacingY="1rem"
+                      disabled={true}
+                      onClick={() => {
+                        analytics("click_button", { type: "hero_preorder" })
+                      }}
+                    >
+                      {locale === Lang.en
+                        ? "Pre-order Sold Out"
+                        : "預購已全數售罄"}
+                    </Button>
+                  )}
                   <Button
                     color="primary"
                     width="100%"
