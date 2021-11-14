@@ -42,6 +42,9 @@ export enum WalletErrorType {
   preOrderNotStarted = "preOrderNotStarted",
   preOrderReachLimit = "preOrderReachLimit",
   preOrderInvalidUnitPrice = "preOrderInvalidUnitPrice",
+  logbookNotOwner = "logbookNotOwner",
+  logbookLocked = "logbookLocked",
+
   // sign message
   userRejectedSignMessage = "userRejectedSignMessage",
 }
