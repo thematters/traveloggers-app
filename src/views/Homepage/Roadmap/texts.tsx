@@ -91,7 +91,8 @@ const TEXTS: Record<string, any> = {
 
     // open sale
     event3: "OpenSea 公開發售",
-    content3: "2021/11/15 起，Traveloggers 將會在 OpenSea 公開發售。",
+    content3:
+      "2021/11/15 起，Traveloggers 將會在 OpenSea 公開發售，發售價從 0.06 ETH 起。",
     event3_1: "開始時間",
     event3_1_content: (
       <section>
@@ -174,7 +175,7 @@ const TEXTS: Record<string, any> = {
     content3: (
       <>
         Starting November 15, 2021, Traveloggers will be available for sale on
-        OpenSea.
+        OpenSea from 0.06 ETH.
       </>
     ),
     event3_1: "Open",
