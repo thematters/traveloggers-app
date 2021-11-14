@@ -29,7 +29,7 @@ const LogbookList = () => {
     <>
       <SEO />
 
-      {isMediumUp && <Header originalPath={"/logbook"} />}
+      {isMediumUp && <Header originalPath={"/logbooks"} />}
 
       <main className={styles.main}>
         <section className={styles.header}></section>
