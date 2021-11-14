@@ -4,33 +4,6 @@
   padding: var(--spacing-xxx-loose) 0;
 
   @media (--md-up) {
-    background-image: url("/images/pixel-bg-2.png");
-  }
-}
-
-.timezone {
-  font-size: var(--font-size-md-s);
-
-  @media (--md-up) {
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-medium);
-  }
-}
-
-.time {
-  @mixin flex-center-all;
-}
-
-.fade {
-  @mixin flex-center-start;
-}
-
-.line {
-  flex-shrink: 0;
-  align-self: stretch;
-  width: var(--spacing-xx-loose);
-
-  @media (--md-up) {
-    width: 5rem;
+    background-image: url("/images/pixel-bg-8.png");
   }
 }
