@@ -1,12 +1,13 @@
 import classNames from "classnames"
 import { useLocalization } from "gatsby-theme-i18n"
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 
+import env from "@/.env.json"
 import {
   IconChevonLeft,
   IconClear,
   IconSearch,
-  // IconUserAnon,
+  IconUserAnon,
   IconUserChecked,
   Section,
 } from "~/components"
@@ -14,7 +15,12 @@ import { SEO } from "~/components"
 import Footer from "~/components/Layout/Footer"
 import Header from "~/components/Layout/Header"
 import { Lang } from "~/enums"
-import { useResponsive } from "~/hooks"
+import {
+  useAccount,
+  // useLogbook,
+  useResponsive,
+} from "~/hooks"
+import { analytics } from "~/utils"
 
 import * as styles from "./LogbookList.module.css"
 
@@ -24,6 +30,15 @@ const LogbookList = () => {
   const iconSize = isMediumUp ? "xl" : "xlM"
   const searchInputRef = useRef<HTMLInputElement>(null)
   const [searchTerm, setSearchTerm] = useState("")
+
+  useEffect(() => {
+    import("firebase/app").then(({ initializeApp }) => {
+      initializeApp(env.firebase)
+      analytics("page_view")
+    })
+  }, [])
+
+  const { account } = useAccount()
 
   return (
     <>
@@ -60,7 +75,11 @@ const LogbookList = () => {
                 [styles.boxShadow]: isMediumUp,
               })}
             >
-              <IconUserChecked size={iconSize} />
+              {account ? (
+                <IconUserChecked size={iconSize} />
+              ) : (
+                <IconUserAnon size={iconSize} />
+              )}
             </div>
           </div>
         </section>
