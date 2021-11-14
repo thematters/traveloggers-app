@@ -7,6 +7,11 @@ const OPENSEA_API_BASE_URL =
 
 type OpenSeaAsset = {
   token_id: string
+  permalink: string
+  image_preview_url: string
+  owner: {
+    address: string
+  }
 }
 
 export const retrieveOwnerNFTs = async ({ owner }: { owner: string }) => {
@@ -27,8 +32,12 @@ export const retrieveOwnerNFTs = async ({ owner }: { owner: string }) => {
   return (result?.data?.assets || []) as OpenSeaAsset[]
 }
 
-export const toOpenSeaNFTUrl = (tokenId: string) => {
-  return env.env === "development"
-    ? `https://testnets.opensea.io/assets/${env.contractAddress}/${tokenId}`
-    : `https://opensea.io/assets/${env.contractAddress}/${tokenId}`
+export const retrieveNFT = async ({ tokenId }: { tokenId: string }) => {
+  const contractAddress = env.contractAddress
+
+  const url = `${OPENSEA_API_BASE_URL}/asset/${contractAddress}/${tokenId}`
+
+  const result = await fetch(url).then(res => res.json())
+
+  return result as OpenSeaAsset
 }

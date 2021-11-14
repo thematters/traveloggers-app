@@ -8,9 +8,9 @@ import { Lang, WalletErrorType } from "~/enums"
 import {
   EtherscanObject,
   getWalletErrorMessage,
+  retrieveNFT,
   retrieveOwnerNFTs,
   toEtherscanUrl,
-  toOpenSeaNFTUrl,
 } from "~/utils"
 
 type Log = {
@@ -40,11 +40,12 @@ type Logbook = {
 
   tokenId: string
   tokenOwner?: string // address
+  tokenOpenSeaURL: string
+  tokenImageURL: string
 
   isLocked: boolean
   logs: Log[]
 
-  openSeaURL: string
   draft?: LogDraft
 }
 
@@ -184,8 +185,10 @@ export const useLogbook = () => {
       )
 
       // retrieve lobook and token owner from contract
-      const logbook = await contract.readLogbook(tokenId)
-      const tokenOwner = await contract.ownerOf(tokenId)
+      const [logbook, token] = await Promise.all([
+        contract.readLogbook(tokenId),
+        retrieveNFT({ tokenId }),
+      ])
 
       dispatch({
         type: "updateLogbook",
@@ -196,12 +199,12 @@ export const useLogbook = () => {
             error: "",
 
             tokenId,
-            tokenOwner,
+            tokenOwner: token.owner.address,
+            tokenImageURL: token.image_preview_url,
+            tokenOpenSeaURL: token.permalink,
 
             isLocked: logbook.isLocked,
             logs: normalizedLogs(logbook.logs),
-
-            openSeaURL: toOpenSeaNFTUrl(tokenId),
           },
         },
       })
@@ -264,11 +267,11 @@ export const useLogbook = () => {
 
           tokenId,
           tokenOwner: account,
+          tokenImageURL: tokens[index].image_preview_url,
+          tokenOpenSeaURL: tokens[index].permalink,
 
           isLocked: logbook.isLocked,
           logs: normalizedLogs(logbook.logs),
-
-          openSeaURL: toOpenSeaNFTUrl(tokenId),
         }
       })
 
