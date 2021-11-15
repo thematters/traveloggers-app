@@ -1,6 +1,6 @@
 import React from "react"
 
-import { SEO } from "~/components"
+import { LogbookProvider, SEO } from "~/components"
 import Footer from "~/components/Layout/Footer"
 import Header from "~/components/Layout/Header"
 
@@ -11,18 +11,20 @@ type PageProps = {
   originalPath: string
 }
 
-const LogbookDetail: React.FC<PageProps> = ({ id, originalPath }) => (
-  <>
-    <SEO />
+const LogbookDetail: React.FC<PageProps> = ({ id, originalPath }) => {
+  return (
+    <LogbookProvider>
+      <SEO />
 
-    <Header originalPath={originalPath} />
-    <main className={styles.main}>
-      <h1>Logbook {id}</h1>
-      {/* <pre>{JSON.stringify(params)}</pre> */}
-    </main>
+      <Header originalPath={originalPath} />
 
-    <Footer />
-  </>
-)
+      <main className={styles.main}>
+        <h1>Logbook {id}</h1>
+      </main>
+
+      <Footer />
+    </LogbookProvider>
+  )
+}
 
 export default LogbookDetail

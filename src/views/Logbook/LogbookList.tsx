@@ -11,15 +11,11 @@ import {
   IconUserChecked,
   Section,
 } from "~/components"
-import { SEO } from "~/components"
+import { LogbookProvider, SEO } from "~/components"
 import Footer from "~/components/Layout/Footer"
 import Header from "~/components/Layout/Header"
 import { Lang } from "~/enums"
-import {
-  useAccount,
-  // useLogbook,
-  useResponsive,
-} from "~/hooks"
+import { useAccount, useResponsive } from "~/hooks"
 import { analytics } from "~/utils"
 
 import * as styles from "./LogbookList.module.css"
@@ -41,7 +37,7 @@ const LogbookList = () => {
   const { account } = useAccount()
 
   return (
-    <>
+    <LogbookProvider>
       <SEO />
 
       {isMediumUp && <Header originalPath={"/logbooks"} />}
@@ -134,7 +130,7 @@ const LogbookList = () => {
       </main>
 
       {isMediumUp && <Footer />}
-    </>
+    </LogbookProvider>
   )
 }
 
