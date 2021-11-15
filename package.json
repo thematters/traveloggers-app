@@ -1,7 +1,7 @@
 {
   "name": "traveloggers-app",
   "description": "traveloggers site",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "the matters <dev@matters.news>",
   "dependencies": {
     "@reach/alert": "^0.16.0",
@@ -54,6 +54,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-react": "^7.27.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "husky": "^7.0.4",
     "prettier": "2.4.1",
