@@ -1,6 +1,6 @@
 import React from "react"
 
-import { SEO } from "~/components"
+import { Container, LogbookEditor, SEO } from "~/components"
 import Footer from "~/components/Layout/Footer"
 import Header from "~/components/Layout/Header"
 
@@ -16,9 +16,11 @@ const LogbookDetail: React.FC<PageProps> = ({ id, originalPath }) => (
     <SEO />
 
     <Header originalPath={originalPath} />
+
     <main className={styles.main}>
-      <h1>Logbook {id}</h1>
-      {/* <pre>{JSON.stringify(params)}</pre> */}
+      <Container>
+        <LogbookEditor tokenId={id} />
+      </Container>
     </main>
 
     <Footer />

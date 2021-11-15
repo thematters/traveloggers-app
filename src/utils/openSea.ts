@@ -29,7 +29,7 @@ export const retrieveOwnerNFTs = async ({ owner }: { owner: string }) => {
 
   const result = await fetch(url).then(res => res.json())
 
-  return (result?.data?.assets || []) as OpenSeaAsset[]
+  return (result?.assets || []) as OpenSeaAsset[]
 }
 
 export const retrieveNFT = async ({ tokenId }: { tokenId: string }) => {

@@ -13,7 +13,7 @@ import {
   toEtherscanUrl,
 } from "~/utils"
 
-type Log = {
+export type Log = {
   sender: string // address
   message: string
   createdAt: Date
@@ -21,7 +21,7 @@ type Log = {
 }
 
 // local state for append a new log
-type LogDraft = {
+export type LogDraft = {
   sending: boolean
   error?: string
 
@@ -34,7 +34,7 @@ type LogDraft = {
   gasCost?: ethers.BigNumber
 }
 
-type Logbook = {
+export type Logbook = {
   loading: boolean
   error?: string
 
@@ -49,14 +49,14 @@ type Logbook = {
   draft?: LogDraft
 }
 
-type OwnNFTs = {
+export type OwnNFTs = {
   loading: boolean
   error?: string
   tokenIds: string[]
 }
 
 type ReducerState = {
-  logbooks: { [tokenId: string]: Logbook }
+  logbooks: { [tokenId: string]: Logbook | undefined }
   ownNFTs: OwnNFTs
 }
 
@@ -115,20 +115,24 @@ export const useLogbook = () => {
           logbooks: {
             ...state.logbooks,
             [action.payload.tokenId]: {
-              ...state.logbooks[action.payload.tokenId],
-              ...action.payload.logbook,
+              ...(state.logbooks[action.payload.tokenId] as Logbook),
+              ...(action.payload.logbook as Logbook),
             },
           },
         }
         break
 
       case "updateDraft":
+        console.log(
+          { prev: state.logbooks[action.payload.tokenId] },
+          state.logbooks
+        )
         newState = {
           ...state,
           logbooks: {
             ...state.logbooks,
             [action.payload.tokenId]: {
-              ...state.logbooks[action.payload.tokenId],
+              ...(state.logbooks[action.payload.tokenId] as Logbook),
               draft: {
                 ...state.logbooks[action.payload.tokenId]?.draft,
                 ...action.payload.draft,
@@ -371,14 +375,19 @@ export const useLogbook = () => {
       return
     }
 
+    dispatch({
+      type: "updateDraft",
+      payload: { tokenId, draft: { message, sending: true, error: "" } },
+    })
+
     let logbook = stateRef.current.logbooks[tokenId]
-    if (!logbook) {
+    if (!logbook || !logbook.tokenOwner) {
       await getOwnNFTs()
       logbook = stateRef.current.logbooks[tokenId]
     }
 
     // if logbook is not exists or account is not the owner
-    if (logbook.tokenOwner !== account) {
+    if (logbook?.tokenOwner !== account) {
       const errorMsg = getWalletErrorMessage({
         type: WalletErrorType.logbookNotOwner,
         lang,
@@ -417,16 +426,8 @@ export const useLogbook = () => {
     let gasLimit = logbook?.draft?.gasLimit
     if (!gasLimit) {
       await updateDraft(tokenId, message)
-      gasLimit = stateRef.current.logbooks[tokenId].draft?.gasLimit
+      gasLimit = stateRef.current.logbooks[tokenId]?.draft?.gasLimit
     }
-
-    dispatch({
-      type: "updateDraft",
-      payload: {
-        tokenId,
-        draft: { message, sending: true, error: "" },
-      },
-    })
 
     try {
       const contract = new ethers.Contract(
