@@ -208,6 +208,7 @@ export const useLogbook = () => {
           },
         },
       })
+      return [ logbook, token ]
     } catch (err) {
       console.error(err)
       const errorMsg = getWalletErrorMessage({ error: err as Error, lang })
@@ -224,6 +225,7 @@ export const useLogbook = () => {
           },
         },
       })
+      return [null, null]
     }
   }
 
