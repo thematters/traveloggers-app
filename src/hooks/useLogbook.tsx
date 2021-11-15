@@ -233,14 +233,6 @@ export const useLogbook = () => {
       return
     }
 
-    // mark as loading
-    dispatch({
-      type: "update",
-      payload: {
-        ownNFTs: { ...state.ownNFTs, loading: true, error: "" },
-      },
-    })
-
     try {
       const contract = new ethers.Contract(
         env.contractAddress,
@@ -249,8 +241,29 @@ export const useLogbook = () => {
         new ethers.providers.InfuraProvider(env.supportedChainId, env.infuraId)
       )
 
+      const numTokens = await contract.balanceOf(account)
+      console.log(`got ${numTokens} tokens for address ${account}`, {
+        numTokens,
+        account,
+      })
+      if (!(numTokens.toNumber() > 0)) {
+        return
+      }
+
+      // mark as loading
+      dispatch({
+        type: "update",
+        payload: {
+          ownNFTs: { ...state.ownNFTs, loading: true, error: "" },
+        },
+      })
+
       // retrieve token ids from OpenSea
       const tokens = await retrieveOwnerNFTs({ owner: account })
+      console.log(`got tokens from opensea for address ${account}`, {
+        account,
+        tokens,
+      })
 
       // retrieve logbooks from contract
       const logbooks = await Promise.all(
