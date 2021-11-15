@@ -1,7 +1,8 @@
 import classNames from "classnames"
+import { navigate } from "gatsby"
 import { LocalizedLink as Link, useLocalization } from "gatsby-theme-i18n"
-import debounce from "lodash.debounce"
-import React, { useContext, useEffect, useMemo, useRef, useState } from "react"
+import React, { useContext, useEffect, useRef, useState } from "react"
+import { useDebounce } from "use-debounce"
 
 import env from "@/.env.json"
 import {
@@ -75,7 +76,7 @@ const LogbookListContent = () => {
 
   const searchInputRef = useRef<HTMLInputElement>(null)
   const [searchTerm, setSearchTerm] = useState("")
-  // const [searchToken, setSearchToken] = useState(null)
+  const [debouncedTerm] = useDebounce(searchTerm, 300)
 
   const { account } = useAccount()
   const { getLogbook, logbooks, getOwnNFTs, ownNFTs } =
@@ -86,21 +87,9 @@ const LogbookListContent = () => {
     // console.log(`got nft:`, ownNFTs)
   }, [account])
 
-  const onSearchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const tokenId = event.target.value
-    setSearchTerm(tokenId)
-    getLogbook(tokenId)
-    // retrieveNFT({ tokenId }) // .then(token => setSearchToken(token))
-  }
-
-  const debouncedSearchHandler = useMemo(
-    () => debounce(onSearchHandler, 300),
-    []
-  )
-
-  // Stop the invocation of the debounced function
-  // after unmounting
-  useEffect(() => () => debouncedSearchHandler.cancel(), [])
+  useEffect(() => {
+    getLogbook(debouncedTerm)
+  }, [debouncedTerm])
 
   return (
     <section>
@@ -109,7 +98,7 @@ const LogbookListContent = () => {
           ref={searchInputRef}
           type="search"
           placeholder="Enter the number from 1-1500"
-          onChange={debouncedSearchHandler}
+          onChange={event => setSearchTerm(event.target.value)}
         />
         <button
           className={styles.search}
@@ -135,9 +124,9 @@ const LogbookListContent = () => {
         )}
       </section>
 
-      {searchTerm && logbooks[searchTerm] ? (
+      {debouncedTerm && logbooks[debouncedTerm] ? (
         <section className={styles.listitems}>
-          <LogbookListContentItem logbook={logbooks[searchTerm]} />
+          <LogbookListContentItem logbook={logbooks[debouncedTerm]} />
         </section>
       ) : ownNFTs?.tokenIds.length > 0 ? (
         <section className={styles.listitems}>
@@ -147,6 +136,7 @@ const LogbookListContent = () => {
         </section>
       ) : (
         <>
+          {/* <pre>{JSON.stringify({ searchTerm, debouncedTerm })}</pre> */}
           <section className={styles.text}>
             <Section.Title>
               {locale === Lang.en
@@ -238,7 +228,9 @@ const LogbookList = () => {
                 [styles.boxShadow]: isMediumUp,
               })}
             >
-              <IconChevonLeft size={iconSize} color="gold" />
+              <button onClick={() => navigate(-1)}>
+                <IconChevonLeft size={iconSize} color="gold" />
+              </button>
             </div>
             <div
               className={classNames({
