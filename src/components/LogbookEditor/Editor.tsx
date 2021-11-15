@@ -1,11 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
 import { useEffect, useState } from "react"
 import { useDebounce } from "use-debounce"
 
-import { Logbook, useLogbook } from "~/hooks"
+import { IconSend, IconSpinner, Logbook, LogbookContext } from "~/components"
 import { weiToEther } from "~/utils"
 
-import { IconSend, IconSpinner } from ".."
 import * as styles from "./styles.module.css"
 
 type EditorProps = {
@@ -14,7 +13,7 @@ type EditorProps = {
 
 const Editor: React.FC<EditorProps> = ({ logbook }) => {
   // const { account, balance, getAccountBalance } = useAccount()
-  const { updateDraft, appendLog } = useLogbook()
+  const { updateDraft, appendLog } = useContext(LogbookContext)
 
   const [content, setContent] = useState("")
   const [debouncedContent] = useDebounce(content, 300)

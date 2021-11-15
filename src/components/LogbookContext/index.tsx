@@ -1,7 +1,8 @@
 import { useWeb3React } from "@web3-react/core"
 import { ethers } from "ethers"
 import { useLocalization } from "gatsby-theme-i18n"
-import { useReducer, useRef } from "react"
+import React from "react"
+import { createContext, useReducer, useRef } from "react"
 
 import env from "@/.env.json"
 import { Lang, WalletErrorType } from "~/enums"
@@ -74,7 +75,24 @@ type ReducerAction =
       payload: { tokenId: string; draft: LogDraft }
     }
 
-export const useLogbook = () => {
+type Context = {
+  getLogbook: (tokenId: string) => Promise<void>
+  logbooks: { [tokenId: string]: Logbook | undefined }
+
+  getOwnNFTs: () => Promise<void>
+  ownNFTs: OwnNFTs
+
+  updateDraft: (tokenId: string, message: string) => Promise<void>
+  appendLog: (tokenId: string, message: string) => Promise<void>
+}
+
+export const LogbookContext = createContext({} as Context)
+
+export const LogbookProvider = ({
+  children,
+}: {
+  children: React.ReactNode
+}) => {
   const { locale } = useLocalization()
   const lang = locale as Lang
 
@@ -237,14 +255,6 @@ export const useLogbook = () => {
       return
     }
 
-    // mark as loading
-    dispatch({
-      type: "update",
-      payload: {
-        ownNFTs: { ...state.ownNFTs, loading: true, error: "" },
-      },
-    })
-
     try {
       const contract = new ethers.Contract(
         env.contractAddress,
@@ -253,8 +263,29 @@ export const useLogbook = () => {
         new ethers.providers.InfuraProvider(env.supportedChainId, env.infuraId)
       )
 
+      const numTokens = await contract.balanceOf(account)
+      console.log(`got ${numTokens} tokens for address ${account}`, {
+        numTokens,
+        account,
+      })
+      if (!(numTokens.toNumber() > 0)) {
+        return
+      }
+
+      // mark as loading
+      dispatch({
+        type: "update",
+        payload: {
+          ownNFTs: { ...state.ownNFTs, loading: true, error: "" },
+        },
+      })
+
       // retrieve token ids from OpenSea
       const tokens = await retrieveOwnerNFTs({ owner: account })
+      console.log(`got tokens from opensea for address ${account}`, {
+        account,
+        tokens,
+      })
 
       // retrieve logbooks from contract
       const logbooks = await Promise.all(
@@ -466,14 +497,20 @@ export const useLogbook = () => {
     }
   }
 
-  return {
-    getLogbook,
-    logbooks: state.logbooks,
+  return (
+    <LogbookContext.Provider
+      value={{
+        getLogbook,
+        logbooks: state.logbooks,
 
-    getOwnNFTs,
-    ownNFTs: state.ownNFTs,
+        getOwnNFTs,
+        ownNFTs: state.ownNFTs,
 
-    updateDraft,
-    appendLog,
-  }
+        updateDraft,
+        appendLog,
+      }}
+    >
+      {children}
+    </LogbookContext.Provider>
+  )
 }

@@ -15,6 +15,7 @@ import Preface from "~/views/Homepage/Preface"
 import Questions from "~/views/Homepage/Questions"
 import Roadmap from "~/views/Homepage/Roadmap"
 import ScrollDown from "~/views/Homepage/ScrollDown"
+import Timeline from "~/views/Homepage/Timeline"
 
 import Acts from "./Acts"
 import * as styles from "./styles.module.css"
@@ -47,11 +48,13 @@ const Homepage: React.FC<PageProps> = ({ pageContext: { originalPath } }) => {
         <Preface setStoryActive={setStoryActive} />
         <Logbook />
         <ScrollDown />
-        <Roadmap />
+        <Timeline />
         <ScrollDown />
         <CharacterIntro />
         <ScrollDown />
         <Benefits />
+        <ScrollDown />
+        <Roadmap />
         <ScrollDown />
         <Questions />
         <ScrollDown />

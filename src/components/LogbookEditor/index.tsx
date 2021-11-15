@@ -1,8 +1,8 @@
-import React, { useEffect } from "react"
+import React, { useContext, useEffect } from "react"
 
-import { useAccount, useLogbook, useStep } from "~/hooks"
+import { useAccount, useStep } from "~/hooks"
 
-import { Spinner } from ".."
+import { LogbookContext, Spinner } from ".."
 import Editor from "./Editor"
 import Hint from "./Hint"
 import * as styles from "./styles.module.css"
@@ -15,7 +15,7 @@ type Step = "hint" | "write"
 
 export const LogbookEditor: React.FC<LogbookEditorProps> = ({ tokenId }) => {
   const { account } = useAccount()
-  const { getLogbook, logbooks } = useLogbook()
+  const { logbooks, getLogbook } = useContext(LogbookContext)
 
   const defaultStep = "hint"
   const { currStep, forward } = useStep<Step>(defaultStep)
