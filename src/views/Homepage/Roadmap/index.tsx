@@ -59,7 +59,7 @@ const Roadmap = () => {
         <Item content={texts.item8} isSubtitle />
         <Item content={texts.content8} />
 
-        <Item content={texts.item9} isSubtitle />
+        <Item content={texts.item9} month={texts.future} isSubtitle />
         <Item
           content={
             <>
