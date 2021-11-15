@@ -1,7 +1,8 @@
 import { useWeb3React } from "@web3-react/core"
 import { ethers } from "ethers"
 import { useLocalization } from "gatsby-theme-i18n"
-import { useReducer, useRef } from "react"
+import React from "react"
+import { createContext, useReducer, useRef } from "react"
 
 import env from "@/.env.json"
 import { Lang, WalletErrorType } from "~/enums"
@@ -74,7 +75,24 @@ type ReducerAction =
       payload: { tokenId: string; draft: LogDraft }
     }
 
-export const useLogbook = () => {
+type Context = {
+  getLogbook: (tokenId: string) => Promise<void>
+  logbooks: { [tokenId: string]: Logbook }
+
+  getOwnNFTs: () => Promise<void>
+  ownNFTs: OwnNFTs
+
+  updateDraft: (tokenId: string, message: string) => Promise<void>
+  appendLog: (tokenId: string, message: string) => Promise<void>
+}
+
+export const LogbookContext = createContext({} as Context)
+
+export const LogbookProvider = ({
+  children,
+}: {
+  children: React.ReactNode
+}) => {
   const { locale } = useLocalization()
   const lang = locale as Lang
 
@@ -478,14 +496,20 @@ export const useLogbook = () => {
     }
   }
 
-  return {
-    getLogbook,
-    logbooks: state.logbooks,
+  return (
+    <LogbookContext.Provider
+      value={{
+        getLogbook,
+        logbooks: state.logbooks,
 
-    getOwnNFTs,
-    ownNFTs: state.ownNFTs,
+        getOwnNFTs,
+        ownNFTs: state.ownNFTs,
 
-    updateDraft,
-    appendLog,
-  }
+        updateDraft,
+        appendLog,
+      }}
+    >
+      {children}
+    </LogbookContext.Provider>
+  )
 }
