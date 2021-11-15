@@ -5,6 +5,7 @@ const TEXTS: Record<string, any> = {
     dec: "12 月",
     jan: "1 月",
     feb: "2 月",
+    future: "未來",
     item1: "預購 / 空投 / 公開發售",
     content1: "Traveloggers 預購、空投和在 OpenSea 上公開發售。",
     item2: "個人頭像",
@@ -35,6 +36,7 @@ const TEXTS: Record<string, any> = {
     dec: "Dec",
     jan: "Jan",
     feb: "Feb",
+    future: "Soon",
     item1: "Pre-order / Airdrops / Public Sale",
     content1: "Traveloggers’ pre-order, airdrop, and public sale on OpenSea.",
     item2: "Profile Picture",
@@ -48,7 +50,7 @@ const TEXTS: Record<string, any> = {
     content4:
       "Airdrop participants who do not receive airdrop will receive a POAP souvenir.",
     item5: "Transfer as A Gift",
-    content5: "Traveloggers can be directly transferred as a gift.",
+    content5_1: "Traveloggers can be directly transferred as a gift.",
     item6: "ENS Integration",
     content6:
       "The Traveloggers Web App will be stored on IPFS, and can be accessed through ENS domains.",

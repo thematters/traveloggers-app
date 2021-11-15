@@ -113,6 +113,7 @@ const TEXTS: Record<string, any> = {
       <section>
         <p>
           <b>11/19</b>
+          <span>&nbsp;UTC+8:00</span>
         </p>
       </section>
     ),
@@ -202,13 +203,11 @@ const TEXTS: Record<string, any> = {
     event3_button_closed: "Closed",
     event4: "Logbook 1.0",
     content4:
-      "Traveloggers‘ owners can record a Logbook. The first version of the Logbook will be stored on the Ethereum Mainnet directly.",
+      "Traveloggers’ owners can record a Logbook. The first version of the Logbook will be stored on the Ethereum Mainnet directly.",
     event4_1: "Launch",
     event4_1_content: (
       <section>
-        <p>
-          <b>November 19, 2021</b>
-        </p>
+        <b>November 19, 2021</b>
       </section>
     ),
     event4_button_upcoming: "Upcoming",
