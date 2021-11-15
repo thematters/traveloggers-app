@@ -179,6 +179,33 @@ const Timeline = () => {
           />
         </section>
 
+        {/* logbook */}
+        <section className={styles.time}>
+          <section className={styles.line}>
+            <Time state="upcoming" />
+          </section>
+          <Infobox
+            active={false}
+            event={texts.event4}
+            content={texts.content4}
+            stage1={{
+              name: texts.event4_1,
+              content: texts.event4_1_content,
+            }}
+            button={
+              <Button
+                disabled={true}
+                color="black"
+                width={isMediumUp ? "15rem" : "100%"}
+                spacingY="0.75rem"
+                onClick={() => analytics("click_button", { type: "logbooks" })}
+              >
+                {texts.event4_button_upcoming}
+              </Button>
+            }
+          />
+        </section>
+
         <section className={styles.fade}>
           <section className={styles.line}>
             <Time state="upcoming" fade="out" />
