@@ -105,6 +105,18 @@ const TEXTS: Record<string, any> = {
     event3_button_upcoming: "尚未開始",
     event3_button_open: "進入 OpenSea 購買",
     event3_button_closed: "已結束",
+    event4: "第一代 Logbook 上線",
+    content4:
+      "Traveloggers 的擁有者可以開啟和寫入 Logbook。第一代 Logbook 直接保存在以太坊區塊鏈主網。",
+    event4_1: "功能上線",
+    event4_1_content: (
+      <section>
+        <p>
+          <b>11/19</b>
+        </p>
+      </section>
+    ),
+    event4_button_upcoming: "尚未開始",
   },
   en: {
     title: "2021 Timeline",
@@ -188,6 +200,18 @@ const TEXTS: Record<string, any> = {
     event3_button_upcoming: "Upcoming",
     event3_button_open: "Enter OpenSea to purchase",
     event3_button_closed: "Closed",
+    event4: "Logbook 1.0",
+    content4:
+      "Traveloggers‘ owners can record a Logbook. The first version of the Logbook will be stored on the Ethereum Mainnet directly.",
+    event4_1: "Launch",
+    event4_1_content: (
+      <section>
+        <p>
+          <b>November 19, 2021</b>
+        </p>
+      </section>
+    ),
+    event4_button_upcoming: "Upcoming",
   },
 }
 

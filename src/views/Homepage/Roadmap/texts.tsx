@@ -12,7 +12,7 @@ const TEXTS: Record<string, any> = {
       "Traveloggers 擁有者可以在 Matters.News 和 Twitter 上換帶有 NFT 標識認證的個人頭像。",
     item3: "航行日誌",
     content3:
-      "Traveloggers 擁有者可以寫入航行日誌，航行日誌的所有權可以與頭像一起移轉。",
+      "Traveloggers 擁有者可以向以太坊區塊鏈主網寫入第一代航行日誌，航行日誌的所有權可以與頭像一起移轉。",
     item4: "POAP",
     content4: "未獲得空投的參與者可獲得紀念 POAP。",
     item5: "禮物贈送",
@@ -42,7 +42,8 @@ const TEXTS: Record<string, any> = {
       "Traveloggers’ owners can set the Traveloggers NFT as their Twitter and Matters.News profile picture.",
     item3: "The Logbook",
     content3:
-      "Traveloggers’ owners can write a logbook that comes with the NFT, the ownership of the logbook also can be transferred with the Traveloggers.",
+      "Traveloggers’ owners can record a logbook 1.0 on the Ethereum Mainnet directly. The ownership of the " +
+      "logbook also can be transferred with the Traveloggers.",
     item4: "POAP Souvenir",
     content4:
       "Airdrop participants who do not receive airdrop will receive a POAP souvenir.",
