@@ -52,17 +52,11 @@
 
   & .content {
     grid-area: content;
-    max-width: 300px;
-    margin: 0 auto;
-
-    @media (--md-up) {
-      max-width: 40rem;
-    }
   }
 
   & .footer {
     grid-area: footer;
-    min-height: 16rem;
+    min-height: 6rem;
     background-image: url("/images/logbook-background-footer.png");
     background-position: top;
   }
@@ -74,6 +68,10 @@
 
 .toolbarHeader {
   @mixin flex-center-all;
+
+  @media (--md-up) {
+    margin: 0 6rem;
+  }
 
   & > div {
     @mixin flex-end-space-between;
@@ -89,7 +87,7 @@
     }
 
     & div.barTitle {
-      padding: 0 2rem;
+      padding: 0 4rem;
     }
 
     & .boxShadow {
@@ -132,7 +130,7 @@
 
 .searchBar {
   position: relative;
-  margin: 2rem 0;
+  margin: 1.5rem 0;
 
   & input {
     width: 100%;
@@ -141,8 +139,7 @@
     color: var(--color-grey-darker);
     caret-color: var(--color-matters-green);
     background-color: var(--color-black);
-
-    /* border: 1px solid var(--color-grey-darker); */
+    border: 1px solid var(--color-grey-darker);
     border-radius: 1.5rem;
     transition: all 0.2s ease-in-out 0s;
   }
@@ -164,35 +161,45 @@
   @mixin flex-start-center;
 
   position: relative;
-  flex-flow: row wrap;
   align-content: flex-start;
   min-height: 36rem;
-  margin-top: var(--spacing-x-loose);
-
-  & > section {
-    flex: 0 0 100%;
-  }
 
   @media (--md-up) {
-    min-height: 50rem;
+    margin: var(--spacing-x-loose) 6rem 0 6rem;
   }
 
-  & .intro {
-    position: absolute;
-    right: 0;
-    bottom: -6rem;
-    left: 0;
-    max-width: 420px;
-    margin: auto;
+  & > section {
+    display: flex;
+    flex-flow: column nowrap;
+    align-content: flex-start;
+    align-items: stretch;
+    justify-content: flex-start;
+    max-width: 300px;
 
-    & img {
+    @media (--md-up) {
       width: 100%;
+      max-width: 40rem;
+      min-height: 46rem;
+      margin: 0 2rem;
+    }
+
+    & .intro {
+      position: absolute;
+      right: 0;
+      bottom: -6rem;
+      left: 0;
+      max-width: 420px;
+      margin: auto;
+
+      & img {
+        width: 100%;
+      }
     }
   }
 }
 
 .text {
-  margin: var(--spacing-base) 0;
+  /* margin: var(--spacing-base) 0; */
 
   & section {
     margin-left: var(--spacing-x-loose);
@@ -226,24 +233,31 @@
 }
 
 .listitems {
-  @mixin flex-center-start;
+  @mixin flex-start-center;
 
   flex-flow: row wrap;
   row-gap: var(--spacing-base);
+  width: 100%;
+  max-width: 40rem;
   padding: var(--spacing-base) 0;
 
-  & .listitem {
+  & > div {
     @mixin flex-center-start;
 
     box-sizing: border-box;
-    flex: 0 0 100%;
-    min-height: 5rem;
+    flex: 1 0 100%;
+    width: 40rem;
+    min-height: 6rem;
+    padding: 1rem;
     padding: var(--spacing-base);
 
     /* Black */
     background: var(--color-black);
+    border: 1px solid #ccc;
     border: 4px solid #977229;
+  }
 
+  & .listitem {
     /* Card Shadow */
     box-shadow: 0 1px 1rem rgb(0 0 0 / 2%);
 

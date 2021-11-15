@@ -84,8 +84,4 @@
       width: auto;
     }
   }
-
-  @media (--lg-up) {
-    width: 26rem;
-  }
 }

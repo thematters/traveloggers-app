@@ -1,6 +1,7 @@
 import classNames from "classnames"
 import { LocalizedLink as Link, useLocalization } from "gatsby-theme-i18n"
-import React, { useContext, useEffect, useRef, useState } from "react"
+import debounce from "lodash.debounce"
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react"
 
 import env from "@/.env.json"
 import {
@@ -10,6 +11,7 @@ import {
   IconSearch,
   IconUserAnon,
   IconUserChecked,
+  LinkAccountDialog,
   Section,
 } from "~/components"
 import { Logbook, LogbookContext, LogbookProvider, SEO } from "~/components"
@@ -17,7 +19,10 @@ import Footer from "~/components/Layout/Footer"
 import Header from "~/components/Layout/Header"
 import { Lang } from "~/enums"
 import { useAccount, useResponsive } from "~/hooks"
-import { analytics } from "~/utils"
+import {
+  analytics,
+  // retrieveNFT
+} from "~/utils"
 
 import * as styles from "./LogbookList.module.css"
 
@@ -29,6 +34,17 @@ const LogbookListContentItem: React.FC<ItemProps> = ({ logbook }) => {
   const isMediumUp = useResponsive("md-up")
   const iconSize = isMediumUp ? "xl" : "xlM"
 
+  // return <pre>{JSON.stringify(logbook)}</pre>
+
+  if (!logbook || logbook.loading) return <div>Loading...</div>
+
+  if (logbook.error)
+    return (
+      <div>
+        Loading #{logbook.tokenId} error: {logbook.error}
+      </div>
+    )
+
   return (
     <div className={styles.listitem}>
       <div
@@ -39,7 +55,7 @@ const LogbookListContentItem: React.FC<ItemProps> = ({ logbook }) => {
       />
       <div className={styles.avatarDescription}>
         <h3>Traveloggers #{logbook.tokenId}</h3>
-        <p>Collectors 9 / Edited {logbook.logs.length}</p>
+        <p>Collectors 9 / Edited {logbook?.logs?.length ?? 0}</p>
       </div>
       <div className={styles.avatarDetailLink}>
         <Link to={`/logbooks/${logbook.tokenId}`} language={undefined}>
@@ -57,23 +73,41 @@ const LogbookListContentItem: React.FC<ItemProps> = ({ logbook }) => {
 const LogbookListContent = () => {
   const searchInputRef = useRef<HTMLInputElement>(null)
   const [searchTerm, setSearchTerm] = useState("")
+  // const [searchToken, setSearchToken] = useState(null)
 
   const { account } = useAccount()
-  const { logbooks, getOwnNFTs, ownNFTs } = useContext(LogbookContext)
+  const { getLogbook, logbooks, getOwnNFTs, ownNFTs } =
+    useContext(LogbookContext)
 
   useEffect(() => {
     getOwnNFTs()
     // console.log(`got nft:`, ownNFTs)
   }, [account])
 
+  const onSearchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const tokenId = event.target.value
+    setSearchTerm(tokenId)
+    getLogbook(tokenId)
+    // retrieveNFT({ tokenId }) // .then(token => setSearchToken(token))
+  }
+
+  const debouncedSearchHandler = useMemo(
+    () => debounce(onSearchHandler, 300),
+    []
+  )
+
+  // Stop the invocation of the debounced function
+  // after unmounting
+  useEffect(() => () => debouncedSearchHandler.cancel(), [])
+
   return (
-    <>
+    <section>
       <section className={styles.searchBar}>
         <input
           ref={searchInputRef}
           type="search"
           placeholder="Enter the number from 1-1500"
-          onChange={event => setSearchTerm(event.target.value)}
+          onChange={debouncedSearchHandler}
         />
         <button
           className={styles.search}
@@ -99,7 +133,11 @@ const LogbookListContent = () => {
         )}
       </section>
 
-      {ownNFTs?.tokenIds.length > 0 ? (
+      {searchTerm && logbooks[searchTerm] ? (
+        <section className={styles.listitems}>
+          <LogbookListContentItem logbook={logbooks[searchTerm]} />
+        </section>
+      ) : ownNFTs?.tokenIds.length > 0 ? (
         <section className={styles.listitems}>
           {ownNFTs.tokenIds.map(id => (
             <LogbookListContentItem logbook={logbooks[id]} key={id} />
@@ -125,7 +163,7 @@ const LogbookListContent = () => {
       )}
 
       {/* <pre>{JSON.stringify({ account, logbooks, ownNFTs })}</pre> */}
-    </>
+    </section>
   )
 }
 
@@ -181,7 +219,20 @@ const LogbookList = () => {
               {account ? (
                 <IconUserChecked size={iconSize} />
               ) : (
-                <IconUserAnon size={iconSize} />
+                <LinkAccountDialog>
+                  {({ openDialog }) => (
+                    <button
+                      onClick={() => {
+                        analytics("click_button", {
+                          type: "link_account",
+                        })
+                        openDialog()
+                      }}
+                    >
+                      <IconUserAnon size={iconSize} />
+                    </button>
+                  )}
+                </LinkAccountDialog>
               )}
             </div>
           </div>
