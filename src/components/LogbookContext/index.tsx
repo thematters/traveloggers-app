@@ -77,7 +77,7 @@ type ReducerAction =
 
 type Context = {
   getLogbook: (tokenId: string) => Promise<void>
-  logbooks: { [tokenId: string]: Logbook }
+  logbooks: { [tokenId: string]: Logbook | undefined }
 
   getOwnNFTs: () => Promise<void>
   ownNFTs: OwnNFTs
