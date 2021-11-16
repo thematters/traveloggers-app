@@ -1,6 +1,7 @@
 .main {
   --color-link-gold: #c0a46b;
   --color-log-gold: #977229;
+  --color-log-grey: #b3b3b3;
   --color-log-background: #333;
   --color-logbooks-gold: #bf8f31;
 
@@ -299,6 +300,7 @@
 
   & div:nth-last-child(1) {
     flex: 0 1 28%;
+    color: var(--color-log-grey);
     text-align: right;
   }
 }
