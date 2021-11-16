@@ -1,9 +1,9 @@
 import classNames from "classnames"
 import { useLocalization } from "gatsby-theme-i18n"
-import React, { useContext } from "react"
+import React, { useContext, useEffect } from "react"
 
 import { Avatar, IconChevonLeft, Section } from "~/components"
-import { Container, LogbookContext, LogbookEditor, LogbookProvider, SEO } from "~/components"
+import { Container, LogbookContext, LogbookEditor, SEO } from "~/components"
 import Footer from "~/components/Layout/Footer"
 import Header from "~/components/Layout/Header"
 import { Lang } from "~/enums"
@@ -102,9 +102,26 @@ const LogbookDetailContent: React.FC<TokenIdProps> = ({tokenId}) => {
 
 const LogbookDetail: React.FC<PageProps> = ({ id, originalPath }) => {
   const isMediumUp  = useResponsive("md-up")
+  const { getLogbook, logbooks } = useContext(LogbookContext)
+
+  const logbook = logbooks[id]
+  useEffect(() => {
+    if (logbook) {
+      return
+    }
+    getLogbook(id)
+  }, [logbook])
+
+  // if (!account) {
+  //   return <h2>Please sign in first</h2>
+  // }
+
+  if (!logbook) {
+    return <h2>Logbook does not exist</h2>
+  }
 
   return (
-    <LogbookProvider>
+    <>
       <SEO />
 
       {isMediumUp && <Header originalPath={originalPath} />}
@@ -118,10 +135,12 @@ const LogbookDetail: React.FC<PageProps> = ({ id, originalPath }) => {
       </main>
 
       <Container>
-        <LogbookEditor tokenId={id} />
+        {/* {logbook?.loading && <Spinner />} */}
+        {logbook && <LogbookEditor logbook={logbook} />}
       </Container>
+
       {isMediumUp && <Footer />}
-    </LogbookProvider>
+    </>
   )
 }
 

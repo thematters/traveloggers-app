@@ -7,11 +7,12 @@ import { weiToEther } from "~/utils"
 
 import * as styles from "./styles.module.css"
 
-type EditorProps = {
+type TextareaProps = {
   logbook: Logbook
+  onSubmit: () => void
 }
 
-const Editor: React.FC<EditorProps> = ({ logbook }) => {
+const Textarea: React.FC<TextareaProps> = ({ logbook, onSubmit }) => {
   // const { account, balance, getAccountBalance } = useAccount()
   const { updateDraft, appendLog } = useContext(LogbookContext)
 
@@ -23,9 +24,15 @@ const Editor: React.FC<EditorProps> = ({ logbook }) => {
   const error = draft?.error
   const disabled = logbook.isLocked || draft?.sending
 
-  const onSubmit = () => {
+  const handleSubmit = () => {
     appendLog(logbook.tokenId, content)
   }
+
+  useEffect(() => {
+    if (logbook.isLocked) {
+      onSubmit()
+    }
+  }, [logbook.isLocked])
 
   useEffect(() => {
     if (!debouncedContent) {
@@ -47,17 +54,18 @@ const Editor: React.FC<EditorProps> = ({ logbook }) => {
           <p className={styles.error}>{error}</p>
         ) : gasCost ? (
           <p className={styles.hint}>
-            {content.length} characters, {weiToEther(gasCost)} ETH
+            {content.length} characters,{" "}
+            {parseFloat(weiToEther(gasCost)).toFixed(6)} ETH
           </p>
         ) : (
           <p></p>
         )}
 
         <button
-          type="button"
+          type="submit"
           className={styles.button}
-          onClick={onSubmit}
-          disabled={disabled}
+          onClick={handleSubmit}
+          disabled={disabled || !draft?.message}
         >
           {draft?.sending ? (
             <IconSpinner size="mdS" />
@@ -70,4 +78,4 @@ const Editor: React.FC<EditorProps> = ({ logbook }) => {
   )
 }
 
-export default Editor
+export default Textarea
