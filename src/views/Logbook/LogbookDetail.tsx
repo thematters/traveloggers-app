@@ -35,11 +35,56 @@ type LogListProps = {
 const LogListItem: React.FC<Log> = ({sender, message, createdAt}) => {
   // const { locale } = useLocalization()
   return (
+    <>
     <li>
-      {message} <br/>
-      <a href={toEtherscanUrl(sender).url}>来自{sender.slice(0, 13)}...的宇宙訊號</a><br/>
-      {createdAt.toISOString().slice(0, 10)}
+      <article>
+        <div>
+          {message} 
+          i want an album of songs that each sounds like a radio-friendly hit, warm and crispy, but with math-rock-like polyrhythmic drum patterns instead of a regular beat. like a funhouse version of popular music that is accessible in every way except drums. like a crumbling teeth dream
+        </div>
+        <div className={styles.flexColumn}>
+          <div className={styles.columnItem}><a href={toEtherscanUrl(sender).url}>来自{sender.slice(0, 11)}...的宇宙訊號</a></div>
+          <div className={styles.columnItem}>{createdAt.toISOString().slice(0, 10)}</div>
+        </div>
+      </article>
     </li>
+    <li>
+      <article>
+        <div>
+          {message} 
+          i want an album of songs that each sounds like a radio-friendly hit, warm and crispy, but with math-rock-like polyrhythmic drum patterns instead of a regular beat. like a funhouse version of popular music that is accessible in every way except drums. like a crumbling teeth dream
+        </div>
+        <div className={styles.flexColumn}>
+          <div className={styles.columnItem}><a href={toEtherscanUrl(sender).url}>来自{sender.slice(0, 11)}...的宇宙訊號</a></div>
+          <div className={styles.columnItem}>{createdAt.toISOString().slice(0, 10)}</div>
+        </div>
+      </article>
+    </li>
+    <li>
+      <article>
+        <div>
+          {message} 
+          i want an album of songs that each sounds like a radio-friendly hit, warm and crispy, but with math-rock-like polyrhythmic drum patterns instead of a regular beat. like a funhouse version of popular music that is accessible in every way except drums. like a crumbling teeth dream
+        </div>
+        <div className={styles.flexColumn}>
+          <div className={styles.columnItem}><a href={toEtherscanUrl(sender).url}>来自{sender.slice(0, 11)}...的宇宙訊號</a></div>
+          <div className={styles.columnItem}>{createdAt.toISOString().slice(0, 10)}</div>
+        </div>
+      </article>
+    </li>
+    <li>
+      <article>
+        <div>
+          {message} 
+          i want an album of songs that each sounds like a radio-friendly hit, warm and crispy, but with math-rock-like polyrhythmic drum patterns instead of a regular beat. like a funhouse version of popular music that is accessible in every way except drums. like a crumbling teeth dream
+        </div>
+        <div className={styles.flexColumn}>
+          <div className={styles.columnItem}><a href={toEtherscanUrl(sender).url}>来自{sender.slice(0, 11)}...的宇宙訊號</a></div>
+          <div className={styles.columnItem}>{createdAt.toISOString().slice(0, 10)}</div>
+        </div>
+      </article>
+    </li>
+    </>
   );
 }
 
@@ -138,9 +183,11 @@ const LogbookDetail: React.FC<PageProps> = ({ id, originalPath }) => {
         <section className={styles.header}></section>
         <section className={styles.left}></section>
         <section className={styles.right}></section>
+
         <Container>
           <LogbookDetailContent tokenId={id} />
         </Container>
+        
         <section className={styles.footer}></section>
       </main>
 
