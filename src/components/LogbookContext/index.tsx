@@ -221,7 +221,7 @@ export const LogbookProvider = ({
             error: "",
 
             tokenId,
-            tokenOwner: token.owner.address,
+            tokenOwner: ethers.utils.getAddress(token.owner.address),
             tokenImageURL: token.image_preview_url,
             tokenOpenSeaURL: token.permalink,
 

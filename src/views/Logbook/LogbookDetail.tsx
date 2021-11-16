@@ -1,6 +1,6 @@
-import React from "react"
+import React, { useContext, useEffect } from "react"
 
-import { Container, LogbookEditor, LogbookProvider, SEO } from "~/components"
+import { Container, LogbookContext, LogbookEditor, SEO } from "~/components"
 import Footer from "~/components/Layout/Footer"
 import Header from "~/components/Layout/Header"
 
@@ -12,8 +12,26 @@ type PageProps = {
 }
 
 const LogbookDetail: React.FC<PageProps> = ({ id, originalPath }) => {
+  const { getLogbook, logbooks } = useContext(LogbookContext)
+
+  const logbook = logbooks[id]
+  useEffect(() => {
+    if (logbook) {
+      return
+    }
+    getLogbook(id)
+  }, [logbook])
+
+  // if (!account) {
+  //   return <h2>Please sign in first</h2>
+  // }
+
+  if (!logbook) {
+    return <h2>Logbook does not exist</h2>
+  }
+
   return (
-    <LogbookProvider>
+    <>
       <SEO />
 
       <Header originalPath={originalPath} />
@@ -22,12 +40,13 @@ const LogbookDetail: React.FC<PageProps> = ({ id, originalPath }) => {
         <h1 style={{ textAlign: "center" }}>Logbook {id}</h1>
 
         <Container>
-          <LogbookEditor tokenId={id} />
+          {/* {logbook?.loading && <Spinner />} */}
+          {logbook && <LogbookEditor logbook={logbook} />}
         </Container>
       </main>
 
       <Footer />
-    </LogbookProvider>
+    </>
   )
 }
 
