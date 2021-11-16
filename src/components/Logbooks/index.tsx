@@ -34,15 +34,13 @@ export const LogbooksContainer: React.FC<ContainerProps> = ({
       {isMediumUp && <Header originalPath={"/logbooks"} />}
 
       <main className={styles.main}>
-        <section className={styles.header}></section>
-        <section className={styles.left}></section>
-        <section className={styles.right}></section>
+        <section className={styles.header} />
+        <section className={styles.left} />
+        <section className={styles.right} />
         <section className={styles.toolbarHeader}>{headerBar}</section>
         <section className={styles.content}>{children}</section>
-        <section className={styles.footer}></section>
+        <section className={styles.footer}>{isMediumUp && <Footer />}</section>
       </main>
-
-      {isMediumUp && <Footer />}
     </LogbookProvider>
   )
 }
