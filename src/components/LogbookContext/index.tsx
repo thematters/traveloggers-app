@@ -57,7 +57,7 @@ export type OwnNFTs = {
 }
 
 type ReducerState = {
-  logbooks: { [tokenId: string]: Logbook | undefined }
+  logbooks: { [tokenId: string]: Logbook }
   ownNFTs: OwnNFTs
 }
 
@@ -77,7 +77,7 @@ type ReducerAction =
 
 type Context = {
   getLogbook: (tokenId: string) => Promise<void>
-  logbooks: { [tokenId: string]: Logbook | undefined }
+  logbooks: { [tokenId: string]: Logbook }
 
   getOwnNFTs: () => Promise<void>
   ownNFTs: OwnNFTs
