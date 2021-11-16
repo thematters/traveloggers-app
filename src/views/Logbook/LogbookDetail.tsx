@@ -68,18 +68,23 @@ const LogbookDetailContent: React.FC<TokenIdProps> = ({tokenId}) => {
         <div>
           <div
             className={classNames({
-              [styles.side]: !isMediumUp,
+              [styles.side]: true,
               [styles.boxShadow]: isMediumUp,
             })}
           >
-            <IconChevonLeft size={iconSize} />
+            <IconChevonLeft size={iconSize} color="gold" />
           </div>
-          <div className={styles.boxShadow}>
-            <h1>{locale === Lang.en ? `Transition:${logs?.length}` : `Transaction:${logs?.length}`}</h1>
+          <div
+              className={classNames({
+                [styles.barTitle]: true,
+                [styles.boxShadow]: true,
+              })}
+            >
+            <h1 style={{fontSize: "1rem"}}>{locale === Lang.en ? `Transition:${logs?.length}` : `Transaction:${logs?.length}`}</h1>
           </div>
           <div
             className={classNames({
-              [styles.side]: !isMediumUp,
+              [styles.side]: true,
               [styles.boxShadow]: isMediumUp,
             })}
           >
@@ -94,7 +99,6 @@ const LogbookDetailContent: React.FC<TokenIdProps> = ({tokenId}) => {
             {logs && <LogList logs={logs} />}
           </Section.Content>
         </section>
-
       </section>
     </>
   )
@@ -130,7 +134,9 @@ const LogbookDetail: React.FC<PageProps> = ({ id, originalPath }) => {
         <section className={styles.header}></section>
         <section className={styles.left}></section>
         <section className={styles.right}></section>
-        <LogbookDetailContent tokenId={id} />
+        <Container>
+          <LogbookDetailContent tokenId={id} />
+        </Container>
         <section className={styles.footer}></section>
       </main>
 
