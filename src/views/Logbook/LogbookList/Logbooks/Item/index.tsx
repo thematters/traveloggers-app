@@ -1,6 +1,7 @@
 import { LocalizedLink as Link, useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 
+import env from "@/.env.json"
 import { IconArrowRight, Logbook } from "~/components"
 import { Lang } from "~/enums"
 import { useAccount } from "~/hooks"
@@ -8,13 +9,18 @@ import { maskAddress } from "~/utils"
 
 import * as styles from "./styles.module.css"
 
+const ETHERSCAN_BASE_URL =
+  env.env === "development"
+    ? "https://rinkeby.etherscan.io"
+    : "https://etherscan.io"
+
 const Item = ({ logbook }: { logbook: Logbook }) => {
   const { locale } = useLocalization()
   const { account } = useAccount()
 
   return (
-    <Link to={`/logbooks/${logbook.tokenId}`} language={locale}>
-      <section className={styles.item}>
+    <section className={styles.item}>
+      <Link to={`/logbooks/${logbook.tokenId}`} language={locale}>
         <section className={styles.content}>
           <section className={styles.left}>
             <section className={styles.avatar}>
@@ -33,14 +39,21 @@ const Item = ({ logbook }: { logbook: Logbook }) => {
 
           <IconArrowRight size="lg" />
         </section>
+      </Link>
 
-        {logbook.tokenOwner !== account && (
-          <span className={styles.owner}>
-            Owner: {maskAddress(logbook.tokenOwner as string, 20)}
-          </span>
-        )}
-      </section>
-    </Link>
+      {logbook.tokenOwner !== account && (
+        <div className={styles.owner}>
+          <a
+            href={`${ETHERSCAN_BASE_URL}/address/${logbook.tokenOwner}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {locale === Lang.en ? "Owner" : "擁有者"}:{" "}
+            {maskAddress(logbook.tokenOwner as string, 25)}
+          </a>
+        </div>
+      )}
+    </section>
   )
 }
 
