@@ -58,7 +58,7 @@ export type OwnNFTs = {
 }
 
 type ReducerState = {
-  logbooks: { [tokenId: string]: Logbook | undefined }
+  logbooks: { [tokenId: string]: Logbook }
   ownNFTs: OwnNFTs
 }
 
