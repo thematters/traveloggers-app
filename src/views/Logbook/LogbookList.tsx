@@ -8,6 +8,7 @@ import {
   IconSearch,
   // IconUserAnon,
   IconUserChecked,
+  LogbookProvider,
   Section,
 } from "~/components"
 import { SEO } from "~/components"
@@ -26,7 +27,7 @@ const LogbookList = () => {
   const [searchTerm, setSearchTerm] = useState("")
 
   return (
-    <>
+    <LogbookProvider>
       <SEO />
 
       {isMediumUp && <Header originalPath={"/logbook"} />}
@@ -115,7 +116,7 @@ const LogbookList = () => {
       </main>
 
       {isMediumUp && <Footer />}
-    </>
+    </LogbookProvider>
   )
 }
 
