@@ -1,0 +1,92 @@
+.container {
+  position: relative;
+}
+
+.layerBook {
+  position: absolute;
+  top: 49px;
+  right: 0;
+  left: 0;
+  z-index: 0;
+
+  @media (--md-up) {
+    top: 16px;
+  }
+
+  & img {
+    display: block;
+    width: 351px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  & .hint {
+    position: absolute;
+    right: 0;
+    bottom: 100%;
+    left: 0;
+    padding-bottom: var(--spacing-x-tight);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--font-size-xs);
+    color: #54fcf5;
+    text-align: center;
+    text-shadow: 0 0 2px #54fcf5;
+  }
+}
+
+.layerPaper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  opacity: 100%;
+  transition: opacity ease-in-out 0.2s;
+
+  &.hide {
+    z-index: 0;
+    opacity: 0%;
+  }
+
+  & img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.layerPen {
+  position: absolute;
+  right: 0;
+  bottom: 100%;
+  left: 0;
+  z-index: 3;
+  opacity: 100%;
+  transition: opacity ease-in-out 0.2s;
+
+  &.hide {
+    z-index: 0;
+    opacity: 0%;
+  }
+
+  & .close {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    padding-bottom: var(--spacing-xx-tight);
+
+    & img {
+      width: 47px;
+      height: 47px;
+    }
+  }
+
+  & .pen {
+    position: absolute;
+    right: 0;
+    bottom: 100%;
+    width: 85px;
+    height: 113px;
+    margin-bottom: calc(var(--spacing-loose) * -1);
+  }
+}

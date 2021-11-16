@@ -14,7 +14,7 @@ import {
   toEtherscanUrl,
 } from "~/utils"
 
-type Log = {
+export type Log = {
   sender: string // address
   message: string
   createdAt: Date
@@ -22,8 +22,9 @@ type Log = {
 }
 
 // local state for append a new log
-type LogDraft = {
+export type LogDraft = {
   sending: boolean
+  sent?: boolean
   error?: string
 
   message: string
@@ -50,7 +51,7 @@ export type Logbook = {
   draft?: LogDraft
 }
 
-type OwnNFTs = {
+export type OwnNFTs = {
   loading: boolean
   error?: string
   tokenIds: string[]
@@ -77,7 +78,7 @@ type ReducerAction =
 
 type Context = {
   getLogbook: (tokenId: string) => Promise<void>
-  logbooks: { [tokenId: string]: Logbook }
+  logbooks: { [tokenId: string]: Logbook | undefined }
 
   getOwnNFTs: () => Promise<void>
   ownNFTs: OwnNFTs
@@ -133,20 +134,24 @@ export const LogbookProvider = ({
           logbooks: {
             ...state.logbooks,
             [action.payload.tokenId]: {
-              ...state.logbooks[action.payload.tokenId],
-              ...action.payload.logbook,
+              ...(state.logbooks[action.payload.tokenId] as Logbook),
+              ...(action.payload.logbook as Logbook),
             },
           },
         }
         break
 
       case "updateDraft":
+        console.log(
+          { prev: state.logbooks[action.payload.tokenId] },
+          state.logbooks
+        )
         newState = {
           ...state,
           logbooks: {
             ...state.logbooks,
             [action.payload.tokenId]: {
-              ...state.logbooks[action.payload.tokenId],
+              ...(state.logbooks[action.payload.tokenId] as Logbook),
               draft: {
                 ...state.logbooks[action.payload.tokenId]?.draft,
                 ...action.payload.draft,
@@ -217,7 +222,7 @@ export const LogbookProvider = ({
             error: "",
 
             tokenId,
-            tokenOwner: token.owner.address,
+            tokenOwner: ethers.utils.getAddress(token.owner.address),
             tokenImageURL: token.image_preview_url,
             tokenOpenSeaURL: token.permalink,
 
@@ -402,14 +407,19 @@ export const LogbookProvider = ({
       return
     }
 
+    dispatch({
+      type: "updateDraft",
+      payload: { tokenId, draft: { message, sending: true, error: "" } },
+    })
+
     let logbook = stateRef.current.logbooks[tokenId]
-    if (!logbook) {
+    if (!logbook || !logbook.tokenOwner) {
       await getOwnNFTs()
       logbook = stateRef.current.logbooks[tokenId]
     }
 
     // if logbook is not exists or account is not the owner
-    if (logbook.tokenOwner !== account) {
+    if (logbook?.tokenOwner !== account) {
       const errorMsg = getWalletErrorMessage({
         type: WalletErrorType.logbookNotOwner,
         lang,
@@ -448,16 +458,8 @@ export const LogbookProvider = ({
     let gasLimit = logbook?.draft?.gasLimit
     if (!gasLimit) {
       await updateDraft(tokenId, message)
-      gasLimit = stateRef.current.logbooks[tokenId].draft?.gasLimit
+      gasLimit = stateRef.current.logbooks[tokenId]?.draft?.gasLimit
     }
-
-    dispatch({
-      type: "updateDraft",
-      payload: {
-        tokenId,
-        draft: { message, sending: true, error: "" },
-      },
-    })
 
     try {
       const contract = new ethers.Contract(
@@ -470,18 +472,24 @@ export const LogbookProvider = ({
         .connect(library.getSigner())
         .appendLog(tokenId, message, { gasLimit })
 
-      dispatch({
-        type: "updateDraft",
-        payload: {
-          tokenId,
-          draft: { sending: false, error: "", message, txHash: tx.hash },
-        },
-      })
-
       await tx.wait()
 
       // refetch logbook
       await getLogbook(tokenId)
+
+      dispatch({
+        type: "updateDraft",
+        payload: {
+          tokenId,
+          draft: {
+            sending: false,
+            sent: true,
+            error: "",
+            message,
+            txHash: tx.hash,
+          },
+        },
+      })
     } catch (err) {
       console.error(err)
       const errorMsg = getWalletErrorMessage({ error: err as Error, lang })

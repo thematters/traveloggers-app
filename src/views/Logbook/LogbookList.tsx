@@ -27,7 +27,7 @@ import {
 import * as styles from "./LogbookList.module.css"
 
 type ItemProps = {
-  logbook: Logbook
+  logbook?: Logbook
 }
 
 const LogbookListContentItem: React.FC<ItemProps> = ({ logbook }) => {
@@ -50,15 +50,15 @@ const LogbookListContentItem: React.FC<ItemProps> = ({ logbook }) => {
       <div
         className={styles.avatar}
         style={{
-          backgroundImage: `url("${logbook.tokenImageURL}")`,
+          backgroundImage: `url("${logbook?.tokenImageURL}")`,
         }}
       />
       <div className={styles.avatarDescription}>
-        <h3>Traveloggers #{logbook.tokenId}</h3>
-        <p>Collectors 9 / Edited {logbook?.logs?.length ?? 0}</p>
+        <h3>Traveloggers #{logbook?.tokenId}</h3>
+        <p>Collectors 9 / Edited {logbook?.logs.length}</p>
       </div>
       <div className={styles.avatarDetailLink}>
-        <Link to={`/logbooks/${logbook.tokenId}`} language={undefined}>
+        <Link to={`/logbooks/${logbook?.tokenId}`} language={undefined}>
           <IconChevonLeft
             size={iconSize}
             color="white"
@@ -149,7 +149,9 @@ const LogbookListContent = () => {
         <>
           <section className={styles.text}>
             <Section.Title>
-              {locale === Lang.en ? "Record in your Logbook" : "寫下你的航行日誌"}
+              {locale === Lang.en
+                ? "Record in your Logbook"
+                : "寫下你的航行日誌"}
             </Section.Title>
             <Section.Content>
               <p>
