@@ -24,6 +24,7 @@ export type Log = {
 // local state for append a new log
 export type LogDraft = {
   sending: boolean
+  sent?: boolean
   error?: string
 
   message: string
@@ -471,18 +472,24 @@ export const LogbookProvider = ({
         .connect(library.getSigner())
         .appendLog(tokenId, message, { gasLimit })
 
-      dispatch({
-        type: "updateDraft",
-        payload: {
-          tokenId,
-          draft: { sending: false, error: "", message, txHash: tx.hash },
-        },
-      })
-
       await tx.wait()
 
       // refetch logbook
       await getLogbook(tokenId)
+
+      dispatch({
+        type: "updateDraft",
+        payload: {
+          tokenId,
+          draft: {
+            sending: false,
+            sent: true,
+            error: "",
+            message,
+            txHash: tx.hash,
+          },
+        },
+      })
     } catch (err) {
       console.error(err)
       const errorMsg = getWalletErrorMessage({ error: err as Error, lang })

@@ -66,7 +66,7 @@ export const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
     ])
   }, [])
 
-  if (logbook.isLocked) {
+  if (!logbook.draft?.sent && logbook.isLocked) {
     return (
       <section className={styles.container}>
         <section
@@ -75,7 +75,7 @@ export const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
             [styles.locked]: true,
           })}
         >
-          <img className={styles.book} src="/images/logbook/book.png" />
+          <img className={styles.book} src="/images/logbook/book-locked.png" />
         </section>
       </section>
     )

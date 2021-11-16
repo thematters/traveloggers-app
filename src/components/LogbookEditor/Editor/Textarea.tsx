@@ -29,10 +29,10 @@ const Textarea: React.FC<TextareaProps> = ({ logbook, onSubmit }) => {
   }
 
   useEffect(() => {
-    if (logbook.isLocked) {
+    if (logbook.draft?.sent) {
       onSubmit()
     }
-  }, [logbook.isLocked])
+  }, [])
 
   useEffect(() => {
     if (!debouncedContent) {
