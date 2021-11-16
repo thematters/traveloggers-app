@@ -1,14 +1,15 @@
 import classNames from "classnames"
-import { useLocalization } from "gatsby-theme-i18n"
+// import { useLocalization } from "gatsby-theme-i18n"
 import React, { useContext, useEffect } from "react"
 
+import env from "@/.env.json"
 import { Avatar, IconChevonLeft, Section } from "~/components"
 import { Container, LogbookContext, LogbookEditor, SEO } from "~/components"
 import Footer from "~/components/Layout/Footer"
 import Header from "~/components/Layout/Header"
-import { Lang } from "~/enums"
+// import { Lang } from "~/enums"
 import { useResponsive } from "~/hooks"
-import { toEtherscanUrl } from "~/utils"
+import { analytics, toEtherscanUrl } from "~/utils"
 
 import * as styles from "./LogbookDetail.module.css"
 
@@ -56,7 +57,7 @@ const LogList: React.FC<LogListProps> = ({logs}) => {
 const LogbookDetailContent: React.FC<TokenIdProps> = ({tokenId}) => {
 
   const isMediumUp  = useResponsive("md-up")
-  const { locale } = useLocalization()
+  // const { locale } = useLocalization()
   const iconSize = isMediumUp ? "xxl": "xl"
   const { logbooks } = useContext(LogbookContext)
   const logbook = logbooks[tokenId]
@@ -80,7 +81,7 @@ const LogbookDetailContent: React.FC<TokenIdProps> = ({tokenId}) => {
                 [styles.boxShadow]: true,
               })}
             >
-            <h1 style={{fontSize: "1rem"}}>{locale === Lang.en ? `Transition:${logs?.length}` : `Transaction:${logs?.length}`}</h1>
+            <h1>{`Transition: ${logs? logs.length: '..'}`}</h1>
           </div>
           <div
             className={classNames({
@@ -108,6 +109,13 @@ const LogbookDetail: React.FC<PageProps> = ({ id, originalPath }) => {
   const isMediumUp  = useResponsive("md-up")
   const { getLogbook, logbooks } = useContext(LogbookContext)
 
+  useEffect(() => {
+    import("firebase/app").then(({ initializeApp }) => {
+      initializeApp(env.firebase)
+      analytics("page_view")
+    })
+  }, [])
+
   const logbook = logbooks[id]
   useEffect(() => {
     if (logbook) {
@@ -115,10 +123,6 @@ const LogbookDetail: React.FC<PageProps> = ({ id, originalPath }) => {
     }
     getLogbook(id)
   }, [logbook])
-
-  // if (!account) {
-  //   return <h2>Please sign in first</h2>
-  // }
 
   if (!logbook) {
     return <h2>Logbook does not exist</h2>
