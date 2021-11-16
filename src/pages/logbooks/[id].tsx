@@ -9,7 +9,7 @@ type PageProps = {
 
 const LogbookDetailPage: React.FC<PageProps> = ({ params }) => (
   <LogbookProvider>
-    <LogbookDetail id={params.id} originalPath={`/logbook/${params.id}`} />
+    <LogbookDetail id={params.id} originalPath={`/logbooks/${params.id}`} />
   </LogbookProvider>
 )
 
