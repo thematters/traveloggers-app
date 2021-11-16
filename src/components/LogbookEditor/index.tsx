@@ -2,7 +2,7 @@ import classNames from "classnames"
 import React, { useEffect } from "react"
 
 import { Logbook } from "~/components"
-import { useStep } from "~/hooks"
+import { useResponsive, useStep } from "~/hooks"
 import { preloadImages, sleep } from "~/utils"
 
 import Editor, { EditorStep } from "./Editor"
@@ -37,6 +37,8 @@ const defaultStep = {
 }
 
 export const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
+  const isMediumUp = useResponsive("md-up")
+
   const { currStep: stepBook, forward: forwardBook } = useStep<BookStep>(
     defaultStep.book
   )
@@ -52,14 +54,15 @@ export const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
 
   useEffect(() => {
     preloadImages([
+      "/images/logbook/book-openable.gif",
       "/images/logbook/book-opening.gif",
       "/images/logbook/book-closing.gif",
       "/images/logbook/pen.gif",
       "/images/logbook/close.gif",
-      "/images/logbook/book.gif",
-      "/images/logbook/key.gif",
       "/images/logbook/paper-drenching.gif",
       "/images/logbook/paper-folding.gif",
+      "/images/logbook/paper-drenching-desktop.gif",
+      "/images/logbook/paper-folding-desktop.gif",
     ])
   }, [])
 
@@ -96,8 +99,7 @@ export const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
             }}
           >
             <p className={styles.hint}>Click key to Write</p>
-            <img className={styles.key} src="/images/logbook/key.gif" />
-            <img className={styles.book} src="/images/logbook/book.png" />
+            <img src="/images/logbook/book-openable.gif" />
           </div>
         )}
         {stepBook === BookStep.opening && (
@@ -135,7 +137,11 @@ export const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
       >
         {stepPaper === PaperStep.drenching && (
           <GifPlayer
-            src="/images/logbook/paper-drenching.gif"
+            src={
+              isMediumUp
+                ? "/images/logbook/paper-drenching-desktop.gif"
+                : "/images/logbook/paper-drenching.gif"
+            }
             duration={1800}
             onEnd={async () => {
               forwardPaper(PaperStep.folding)
@@ -146,7 +152,11 @@ export const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
         )}
         {stepPaper === PaperStep.folding && (
           <GifPlayer
-            src="/images/logbook/paper-folding.gif"
+            src={
+              isMediumUp
+                ? "/images/logbook/paper-folding-desktop.gif"
+                : "/images/logbook/paper-folding.gif"
+            }
             duration={3800}
             onEnd={() => {
               forwardPaper(PaperStep.hide)
