@@ -4,7 +4,7 @@ import React, { useContext, useEffect } from "react"
 
 import env from "@/.env.json"
 import { Avatar, IconChevonLeft, Section } from "~/components"
-import { Container, LogbookContext, LogbookEditor, SEO } from "~/components"
+import { Container, Logbook, LogbookContext, LogbookEditor, SEO } from "~/components"
 import Footer from "~/components/Layout/Footer"
 import Header from "~/components/Layout/Header"
 // import { Lang } from "~/enums"
@@ -18,8 +18,8 @@ type PageProps = {
   originalPath: string
 }
 
-type TokenIdProps = {
-  tokenId: string
+type LogbookDetailContentProps = {
+  logbook: Logbook
 }
 
 type Log = {
@@ -99,13 +99,11 @@ const LogList: React.FC<LogListProps> = ({logs}) => {
   );
 }
 
-const LogbookDetailContent: React.FC<TokenIdProps> = ({tokenId}) => {
+const LogbookDetailContent: React.FC<LogbookDetailContentProps> = ({logbook}) => {
 
   const isMediumUp  = useResponsive("md-up")
   // const { locale } = useLocalization()
   const iconSize = isMediumUp ? "xxl": "xl"
-  const { logbooks } = useContext(LogbookContext)
-  const logbook = logbooks[tokenId]
   const logs = logbook?.logs
 
   return (
@@ -185,7 +183,7 @@ const LogbookDetail: React.FC<PageProps> = ({ id, originalPath }) => {
         <section className={styles.right}></section>
 
         <Container>
-          <LogbookDetailContent tokenId={id} />
+          <LogbookDetailContent logbook={logbook} />
         </Container>
         
         <section className={styles.footer}></section>
