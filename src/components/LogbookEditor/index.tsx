@@ -2,12 +2,13 @@ import classNames from "classnames"
 import React, { useEffect } from "react"
 
 import { Logbook } from "~/components"
-import { useResponsive, useStep } from "~/hooks"
+import { useAccount, useResponsive, useStep } from "~/hooks"
 import { preloadImages, sleep } from "~/utils"
 
 import Editor, { EditorStep } from "./Editor"
 import GifPlayer from "./GifPlayer"
 import * as styles from "./styles.module.css"
+import VisitorDialog from "./VisitorDialog"
 
 type LogbookEditorProps = {
   logbook: Logbook
@@ -36,8 +37,18 @@ const defaultStep = {
   paper: PaperStep.hide,
 }
 
+const ClickToWrite = ({ onClick }: { onClick: () => void }) => {
+  return (
+    <div aria-role="button" aria-label="Open the logbook" onClick={onClick}>
+      <p className={styles.hint}>Click key to Write</p>
+      <img src="/images/logbook/book-openable.gif" />
+    </div>
+  )
+}
+
 export const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
   const isMediumUp = useResponsive("md-up")
+  const { account } = useAccount()
 
   const { currStep: stepBook, forward: forwardBook } = useStep<BookStep>(
     defaultStep.book
@@ -66,6 +77,23 @@ export const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
     ])
   }, [])
 
+  if (logbook.tokenOwner !== account) {
+    return (
+      <section className={styles.container}>
+        <section
+          className={classNames({
+            [styles.layerBook]: true,
+            [styles[stepBook]]: true,
+          })}
+        >
+          <VisitorDialog>
+            {({ openDialog }) => <ClickToWrite onClick={openDialog} />}
+          </VisitorDialog>
+        </section>
+      </section>
+    )
+  }
+
   if (!logbook.draft?.sent && logbook.isLocked) {
     return (
       <section className={styles.container}>
@@ -91,16 +119,7 @@ export const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
         })}
       >
         {stepBook === BookStep.openable && (
-          <div
-            aria-role="button"
-            aria-label="Open the logbook"
-            onClick={() => {
-              forwardBook(BookStep.opening)
-            }}
-          >
-            <p className={styles.hint}>Click key to Write</p>
-            <img src="/images/logbook/book-openable.gif" />
-          </div>
+          <ClickToWrite onClick={() => forwardBook(BookStep.opening)} />
         )}
         {stepBook === BookStep.opening && (
           <GifPlayer
