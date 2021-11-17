@@ -93,6 +93,10 @@
 
 .headerBar {
   flex-shrink: 0;
+
+  @media (--md-h-down) {
+    margin-top: 2rem;
+  }
 }
 
 .content {

@@ -13,7 +13,7 @@
 
   /* ... and (--md-h-up) */
   @media (--md-up) and (min-height: 800px) {
-    bottom: 120px;
+    bottom: 100px;
   }
 
   @media (--md-h-up) {
