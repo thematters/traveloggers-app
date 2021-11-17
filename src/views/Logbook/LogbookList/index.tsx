@@ -23,7 +23,7 @@ const LogbookList = () => {
 
   const onSearch = (tokenId: string) => {
     setSearchTokenId(tokenId)
-    if(tokenId) getLogbook(tokenId)
+    if (tokenId) getLogbook(tokenId)
   }
 
   const searchLogbook = logbooks[searchTokenId]

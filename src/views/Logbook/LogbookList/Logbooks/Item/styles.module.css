@@ -1,8 +1,20 @@
 .item {
-  @mixin flex-center-space-between;
+  @mixin flex-center-all;
 
+  flex-flow: column nowrap;
+  align-items: stretch;
   padding: var(--spacing-base);
   border: 4px solid #977229;
+}
+
+.content {
+  @mixin flex-center-space-between;
+}
+
+.owner {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .left {
