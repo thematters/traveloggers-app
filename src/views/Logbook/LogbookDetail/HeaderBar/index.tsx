@@ -1,8 +1,9 @@
-import classNames from "classnames"
+import { useLocalization } from "gatsby-theme-i18n"
+import { LocalizedLink as Link } from "gatsby-theme-i18n"
 import React, { useContext } from "react"
 
-import { Avatar, IconChevonLeft, LogbookContext } from "~/components"
-import { useResponsive } from "~/hooks"
+import { IconChevonLeft, LogbookContext } from "~/components"
+import { Lang } from "~/enums"
 
 import * as styles from "./styles.module.css"
 
@@ -11,44 +12,34 @@ type HeaderBarProps = {
 }
 
 const HeaderBar: React.FC<HeaderBarProps> = ({ tokenId }) => {
-  const isMediumUp = useResponsive("md-up")
-  const iconSize = isMediumUp ? "xxl" : "xl"
+  const { locale } = useLocalization()
 
   const { logbooks } = useContext(LogbookContext)
+
   const logbook = logbooks[tokenId]
 
   return (
-    <section className={styles.toolbarHeader}>
-      <div>
-        <div
-          className={classNames({
-            [styles.side]: true,
-            [styles.boxShadow]: isMediumUp,
-          })}
-        >
-          <IconChevonLeft size={iconSize} color="gold" />
-        </div>
-        <div
-          className={classNames({
-            [styles.barTitle]: true,
-            [styles.boxShadow]: true,
-          })}
-        >
-          <h1>{`Transition: ${
-            logbook?.logs ? logbook.logs.length : "..."
-          }`}</h1>
-        </div>
-        <div
-          className={classNames({
-            [styles.side]: true,
-            [styles.boxShadow]: isMediumUp,
-          })}
-        >
+    <section className={styles.headerBar}>
+      <section className={styles.left}>
+        <Link to="/logbooks" language={locale}>
+          <IconChevonLeft color="gold" />
+        </Link>
+      </section>
+
+      <section className={styles.title}>
+        <h1>
+          {locale === Lang.en ? "Transition: " : "Transition: "}
+          {logbook?.loading ? "..." : (logbook?.logs || []).length}
+        </h1>
+      </section>
+
+      <section className={styles.right}>
+        {styles.avatar && (
           <a href={logbook?.tokenOpenSeaURL} target="_blank" rel="noreferrer">
-            <Avatar src={logbook?.tokenImageURL} size={iconSize} />
+            <img className={styles.avatar} src={logbook?.tokenImageURL} />
           </a>
-        </div>
-      </div>
+        )}
+      </section>
     </section>
   )
 }

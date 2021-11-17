@@ -12,6 +12,6 @@
   }
 
   & > * + * {
-    margin-top: var(--spacing-loose);
+    margin-top: var(--spacing-loose) !important;
   }
 }

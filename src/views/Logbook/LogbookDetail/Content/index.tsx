@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext } from "react"
 
-import { LogbookContext, LogbookEditor, Spinner } from "~/components"
+import { LogbookContext, Spinner } from "~/components"
 
 import LogList from "../LogList"
 import * as styles from "./styles.module.css"
@@ -10,15 +10,9 @@ type ContentProps = {
 }
 
 const Content: React.FC<ContentProps> = ({ tokenId }) => {
-  const { getLogbook, logbooks } = useContext(LogbookContext)
+  const { logbooks } = useContext(LogbookContext)
 
   const logbook = logbooks[tokenId]
-  useEffect(() => {
-    if (logbook) {
-      return
-    }
-    getLogbook(tokenId)
-  }, [logbook])
 
   if (logbook?.loading) {
     return (
@@ -45,17 +39,9 @@ const Content: React.FC<ContentProps> = ({ tokenId }) => {
   }
 
   return (
-    <>
-      <section className={styles.content}>
-        <LogList logs={logbook.logs} />
-      </section>
-
-      {logbook && (
-        <section className={styles.editor}>
-          <LogbookEditor logbook={logbook} />
-        </section>
-      )}
-    </>
+    <section className={styles.content}>
+      <LogList logs={logbook.logs} />
+    </section>
   )
 }
 

@@ -46,7 +46,7 @@ const ClickToWrite = ({ onClick }: { onClick: () => void }) => {
   )
 }
 
-export const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
+const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
   const isMediumUp = useResponsive("md-up")
   const { account } = useAccount()
 
@@ -77,67 +77,63 @@ export const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
     ])
   }, [])
 
-  if (logbook.tokenOwner !== account) {
-    return (
-      <section className={styles.container}>
+  if (!logbook.tokenOwner) {
+    return null
+  }
+
+  const isLocked = !logbook.draft?.sent && logbook.isLocked
+  const isVisitor = logbook.tokenOwner !== account
+
+  return (
+    <section className={styles.container}>
+      {/* Layer: Book */}
+      {isVisitor ? (
+        <section className={styles.container}>
+          <section
+            className={classNames({
+              [styles.layerBook]: true,
+              [styles[stepBook]]: true,
+            })}
+          >
+            <VisitorDialog>
+              {({ openDialog }) => <ClickToWrite onClick={openDialog} />}
+            </VisitorDialog>
+          </section>
+        </section>
+      ) : isLocked ? (
+        <section className={styles.container}>
+          <section className={styles.layerBook}>
+            <img src="/images/logbook/book-locked.png" />
+          </section>
+        </section>
+      ) : (
         <section
           className={classNames({
             [styles.layerBook]: true,
             [styles[stepBook]]: true,
           })}
         >
-          <VisitorDialog>
-            {({ openDialog }) => <ClickToWrite onClick={openDialog} />}
-          </VisitorDialog>
-        </section>
-      </section>
-    )
-  }
-
-  if (!logbook.draft?.sent && logbook.isLocked) {
-    return (
-      <section className={styles.container}>
-        <section
-          className={classNames({
-            [styles.layerBook]: true,
-            [styles.locked]: true,
-          })}
-        >
-          <img className={styles.book} src="/images/logbook/book-locked.png" />
-        </section>
-      </section>
-    )
-  }
-
-  return (
-    <section className={styles.container}>
-      {/* Layer: Book */}
-      <section
-        className={classNames({
-          [styles.layerBook]: true,
-          [styles[stepBook]]: true,
-        })}
-      >
-        {stepBook === BookStep.openable && (
-          <ClickToWrite onClick={() => forwardBook(BookStep.opening)} />
-        )}
-        {stepBook === BookStep.opening && (
-          <GifPlayer
-            src="/images/logbook/book-opening.gif"
-            duration={2200}
-            onEnd={() => {
-              forwardEditor(EditorStep.hint)
-              forwardPen(PenStep.show)
-            }}
-          />
-        )}
-        {/* {stepBook === BookStep.reversing && (
+          {stepBook === BookStep.openable && (
+            <ClickToWrite onClick={() => forwardBook(BookStep.opening)} />
+          )}
+          {stepBook === BookStep.opening && (
+            <GifPlayer
+              src="/images/logbook/book-opening.gif"
+              duration={2200}
+              onEnd={() => {
+                forwardEditor(EditorStep.hint)
+                forwardPen(PenStep.show)
+              }}
+            />
+          )}
+          {/* {stepBook === BookStep.reversing && (
           <GifPlayer src="/images/logbook/book-closing.gif" />
         )} */}
-        {stepBook === BookStep.closing && (
-          <GifPlayer src="/images/logbook/book-closing.gif" />
-        )}
-      </section>
+          {stepBook === BookStep.closing && (
+            <GifPlayer src="/images/logbook/book-closing.gif" />
+          )}
+        </section>
+      )}
 
       {/* Layer: Editor */}
       <Editor
@@ -211,3 +207,5 @@ export const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
     </section>
   )
 }
+
+export default LogbookEditor

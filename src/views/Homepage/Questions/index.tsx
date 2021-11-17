@@ -147,6 +147,26 @@ const Questions = () => {
             </Section.Content>
           }
         />
+        <Expandable
+          {...expandableStyles}
+          title={texts.question9}
+          content={
+            <Section.Content>
+              <p>{texts.answer9_1}</p>
+              <p>{texts.answer9_2}</p>
+              <p>{texts.answer9_3}</p>
+            </Section.Content>
+          }
+        />
+        <Expandable
+          {...expandableStyles}
+          title={texts.question10}
+          content={
+            <Section.Content>
+              <p>{texts.answer10_1}</p>
+            </Section.Content>
+          }
+        />
       </Container>
     </section>
   )

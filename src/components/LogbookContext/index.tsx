@@ -265,10 +265,7 @@ export const LogbookProvider = ({
       )
 
       const numTokens = await contract.balanceOf(account)
-      console.log(`got ${numTokens} tokens for address ${account}`, {
-        numTokens,
-        account,
-      })
+
       if (!(numTokens.toNumber() > 0)) {
         return
       }
@@ -283,10 +280,6 @@ export const LogbookProvider = ({
 
       // retrieve token ids from OpenSea
       const tokens = await retrieveOwnerNFTs({ owner: account })
-      console.log(`got tokens from opensea for address ${account}`, {
-        account,
-        tokens,
-      })
 
       // retrieve logbooks from contract
       const logbooks = await Promise.all(
@@ -474,6 +467,18 @@ export const LogbookProvider = ({
 
       await tx.wait()
 
+      dispatch({
+        type: "updateDraft",
+        payload: {
+          tokenId,
+          draft: {
+            sending: true,
+            message,
+            txHash: tx.hash,
+          },
+        },
+      })
+
       // refetch logbook
       await getLogbook(tokenId)
 
@@ -486,7 +491,6 @@ export const LogbookProvider = ({
             sent: true,
             error: "",
             message,
-            txHash: tx.hash,
           },
         },
       })

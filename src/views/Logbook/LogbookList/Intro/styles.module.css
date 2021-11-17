@@ -1,0 +1,34 @@
+.text {
+  /* margin: var(--spacing-base) 0; */
+
+  & > section {
+    margin-left: var(--spacing-x-loose);
+  }
+
+  & h2 {
+    padding: 0.5rem 0;
+    font-size: var(--font-size-lg);
+    line-height: 2rem;
+    text-align: center;
+
+    @media (--md-up) {
+      font-size: var(--font-size-xxxl);
+      line-height: 3rem;
+    }
+  }
+
+  & p {
+    display: list-item;
+
+    /* margin-left: var(--spacing-base); */
+    font-size: var(--font-size-md);
+    line-height: 1.5rem;
+    color: var(--color-grey-light);
+    list-style: disc;
+
+    @media (--md-up) {
+      font-size: 1.375rem;
+      line-height: 2.25rem;
+    }
+  }
+}
