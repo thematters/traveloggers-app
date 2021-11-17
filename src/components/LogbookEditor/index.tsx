@@ -72,10 +72,9 @@ export const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
         <section
           className={classNames({
             [styles.layerBook]: true,
-            [styles.locked]: true,
           })}
         >
-          <img className={styles.book} src="/images/logbook/book-locked.png" />
+          <img src="/images/logbook/book-locked.png" />
         </section>
       </section>
     )

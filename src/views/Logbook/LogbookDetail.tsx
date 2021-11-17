@@ -8,7 +8,7 @@ import {
   Logbook,
   LogbookContext,
   LogbookEditor,
-  LogbooksContainer,
+  LogbookLayout,
 } from "~/components"
 // import { Lang } from "~/enums"
 import { useResponsive } from "~/hooks"
@@ -131,12 +131,12 @@ const LogbookDetail: React.FC<PageProps> = ({ id, originalPath }) => {
   )
 
   return (
-    <LogbooksContainer headerBar={<HeaderBar />}>
+    <LogbookLayout header={<HeaderBar />}>
       <LogbookDetailContent logbook={logbook} />
 
       {/* {logbook?.loading && <Spinner />} */}
       {logbook && <LogbookEditor logbook={logbook} />}
-    </LogbooksContainer>
+    </LogbookLayout>
   )
 }
 
