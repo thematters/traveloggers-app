@@ -6,9 +6,9 @@ import { Dialog } from "~/components"
 import { Lang } from "~/enums"
 import { useDialogSwitch, useStep } from "~/hooks"
 
+import ConnectWalletContent from "../ConnectWalletContent"
 import CompletedContent from "./CompletedContent"
 import ConfirmContent from "./ConfirmContent"
-import ConnectWalletContent from "./ConnectWalletContent"
 import IntroContent from "./IntroContent"
 
 type PreOrderDialogProps = {

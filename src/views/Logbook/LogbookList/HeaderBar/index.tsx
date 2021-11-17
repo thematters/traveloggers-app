@@ -16,8 +16,7 @@ import * as styles from "./styles.module.css"
 
 const HeaderBar: React.FC = () => {
   const { locale } = useLocalization()
-
-  const { account } = useAccount()
+  const { account, deactivate } = useAccount()
 
   return (
     <header className={styles.headerBar}>
@@ -38,9 +37,16 @@ const HeaderBar: React.FC = () => {
           {({ openDialog }) => (
             <button
               onClick={() => {
-                analytics("click_button", {
-                  type: "link_account",
-                })
+                if (account) {
+                  analytics("click_button", {
+                    type: "logbooks_change_wallet",
+                  })
+                  deactivate()
+                } else {
+                  analytics("click_button", {
+                    type: "logbooks_connect_wallet",
+                  })
+                }
                 openDialog()
               }}
             >

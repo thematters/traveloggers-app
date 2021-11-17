@@ -46,6 +46,8 @@ interface ClickButtonProp {
     | "logbooks" // Button link to logbook page
     | "logbooks_search" // Button click to search in the logbooks page
     | "logbooks_clear" // Button click to clear search term in the logbooks page
+    | "logbooks_connect_wallet" // Button click to connect wallet in the logbooks page
+    | "logbooks_change_wallet" // Button click to change wallet in the logbooks page
     | "opensea" // Button link to opensea page
     | "expand_faq" // click expand icon on FAQ page
   state?: number | string // current step in storyline, or current language for language switching

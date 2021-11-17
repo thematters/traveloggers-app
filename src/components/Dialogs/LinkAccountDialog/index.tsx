@@ -5,7 +5,7 @@ import { Dialog } from "~/components"
 import { Lang } from "~/enums"
 import { useDialogSwitch, useStep } from "~/hooks"
 
-import ConnectWalletContent from "../AirdropDialog/ConnectWalletContent"
+import ConnectWalletContent from "../ConnectWalletContent"
 import CompletedContent from "./CompletedContent"
 import IntroContent from "./IntroContent"
 
@@ -65,7 +65,12 @@ export const LinkAccountDialog: React.FC<LinkAccountDialogProps> = ({
           />
         )}
         {isConnectWallet && (
-          <ConnectWalletContent prevStep={() => forward("intro")} />
+          <ConnectWalletContent
+            prevStep={() => {
+              if (defaultStep === "intro") forward(defaultStep)
+              else closeDialog()
+            }}
+          />
         )}
         {isCompleted && <CompletedContent closeDialog={closeDialog} />}
       </Dialog>
