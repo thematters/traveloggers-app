@@ -16,9 +16,13 @@
 
   & img {
     display: block;
-    width: 351px;
+    width: 251px;
     height: auto;
     margin: 0 auto;
+
+    @media (--md-h-up) {
+      width: 351px;
+    }
   }
 }
 

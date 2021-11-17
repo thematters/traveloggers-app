@@ -5,3 +5,5 @@
 @custom-media --md-down (max-width: 1023px);
 @custom-media --lg-up (min-width: 1280px);
 @custom-media --lg-down (max-width: 1279px);
+@custom-media --md-h-up (min-height: 800px);
+@custom-media --md-h-down (max-height: 799px);
