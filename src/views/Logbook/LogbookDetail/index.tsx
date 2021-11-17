@@ -1,11 +1,9 @@
-import React, { useEffect } from "react"
+import React from "react"
 
-import env from "@/.env.json"
 import { LogbooksContainer } from "~/components/Logbooks"
-import { analytics } from "~/utils"
 
 import Content from "./Content"
-import HeaderBar from "./Header"
+import HeaderBar from "./HeaderBar"
 
 type PageProps = {
   id: string
@@ -13,13 +11,6 @@ type PageProps = {
 }
 
 const LogbookDetail: React.FC<PageProps> = ({ id, originalPath }) => {
-  useEffect(() => {
-    import("firebase/app").then(({ initializeApp }) => {
-      initializeApp(env.firebase)
-      analytics("page_view")
-    })
-  }, [])
-
   return (
     <LogbooksContainer headerBar={<HeaderBar tokenId={id} />}>
       <Content tokenId={id} />

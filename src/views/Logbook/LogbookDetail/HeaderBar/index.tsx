@@ -34,7 +34,9 @@ const HeaderBar: React.FC<HeaderBarProps> = ({ tokenId }) => {
             [styles.boxShadow]: true,
           })}
         >
-          <h1>{`Transition: ${logbook?.logs ? logbook.logs.length : ".."}`}</h1>
+          <h1>{`Transition: ${
+            logbook?.logs ? logbook.logs.length : "..."
+          }`}</h1>
         </div>
         <div
           className={classNames({

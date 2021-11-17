@@ -14,7 +14,7 @@ type TextareaProps = {
 
 const Textarea: React.FC<TextareaProps> = ({ logbook, onSubmit }) => {
   // const { account, balance, getAccountBalance } = useAccount()
-  const { updateDraft, appendLog } = useContext(LogbookContext)
+  const { updateDraft, appendLog, logbooks } = useContext(LogbookContext)
 
   const [content, setContent] = useState("")
   const [debouncedContent] = useDebounce(content, 300)
@@ -23,6 +23,8 @@ const Textarea: React.FC<TextareaProps> = ({ logbook, onSubmit }) => {
   const gasCost = draft?.gasCost
   const error = draft?.error
   const disabled = logbook.isLocked || draft?.sending
+
+  console.log({ draft, logbook, logbooks, logbook2: logbooks[logbook.tokenId] })
 
   const handleSubmit = () => {
     appendLog(logbook.tokenId, content)

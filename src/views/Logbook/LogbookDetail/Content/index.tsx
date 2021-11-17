@@ -5,10 +5,13 @@ import { LogbookContext, LogbookEditor, Spinner } from "~/components"
 import LogList from "../LogList"
 import * as styles from "./styles.module.css"
 
-const Content = ({ tokenId }: { tokenId: string }) => {
+type ContentProps = {
+  tokenId: string
+}
+
+const Content: React.FC<ContentProps> = ({ tokenId }) => {
   const { getLogbook, logbooks } = useContext(LogbookContext)
 
-  // retrieve logbook if not exists
   const logbook = logbooks[tokenId]
   useEffect(() => {
     if (logbook) {
@@ -42,13 +45,17 @@ const Content = ({ tokenId }: { tokenId: string }) => {
   }
 
   return (
-    <section className={styles.content}>
-      <LogList logs={logbook.logs} />
-
-      <section className={styles.editor}>
-        <LogbookEditor logbook={logbook} />
+    <>
+      <section className={styles.content}>
+        <LogList logs={logbook.logs} />
       </section>
-    </section>
+
+      {logbook && (
+        <section className={styles.editor}>
+          <LogbookEditor logbook={logbook} />
+        </section>
+      )}
+    </>
   )
 }
 
