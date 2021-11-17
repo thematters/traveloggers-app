@@ -1,0 +1,30 @@
+.list {
+  & > * + * {
+    margin-top: var(--spacing-base);
+  }
+}
+
+.log {
+  padding: var(--spacing-base);
+  font-size: var(--font-size-md-s);
+  line-height: 1.5rem;
+  white-space: pre-wrap;
+  border: 4px solid #977229;
+  box-shadow: 0 1px 16px rgb(0 0 0 / 2%);
+
+  & footer {
+    @mixin flex-center-space-between;
+
+    margin-top: var(--spacing-tight);
+    font-size: var(--font-size-sm);
+    line-height: 1rem;
+
+    & .sender {
+      color: var(--color-matters-gold);
+    }
+
+    & time {
+      color: var(--color-grey);
+    }
+  }
+}

@@ -128,3 +128,15 @@ export const toEtherscanUrl = (hash: string): EtherscanObject => {
     maskedHash,
   }
 }
+
+export const toEtherscanAddressUrl = (address: string) => {
+  const etherscanDomain =
+    env.supportedChainId === 4 ? "rinkeby.etherscan.io" : "etherscan.io"
+  const maskedAddress = maskAddress(address)
+
+  return {
+    url: `https://${etherscanDomain}/address/${address}`,
+    address,
+    maskedAddress,
+  }
+}

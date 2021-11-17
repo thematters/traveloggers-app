@@ -1,0 +1,17 @@
+.content {
+  text-align: center;
+
+  & img {
+    margin-top: var(--spacing-loose);
+  }
+}
+
+.buttons {
+  & > *:first-child {
+    padding-bottom: 0;
+  }
+
+  & > * + * {
+    margin-top: var(--spacing-loose) !important;
+  }
+}

@@ -1,0 +1,15 @@
+.editor {
+  position: fixed;
+  right: 0;
+  bottom: 16px;
+  left: 0;
+  max-width: 40rem;
+  padding: 0 var(--spacing-base);
+  margin: 0 auto;
+  text-align: center;
+
+  @media (--md-up) {
+    bottom: 49px;
+    padding: 0;
+  }
+}

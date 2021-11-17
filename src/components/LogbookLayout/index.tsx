@@ -1,8 +1,7 @@
 import React, { useEffect } from "react"
 
 import env from "@/.env.json"
-import { LogbookProvider, SEO } from "~/components"
-import Footer from "~/components/Layout/Footer"
+import { Container, SEO } from "~/components"
 import Header from "~/components/Layout/Header"
 import { useResponsive } from "~/hooks"
 import { analytics } from "~/utils"
@@ -10,12 +9,14 @@ import { analytics } from "~/utils"
 import * as styles from "./styles.module.css"
 
 export interface ContainerProps {
-  headerBar: React.ReactNode
+  header: React.ReactNode
+  footer?: React.ReactNode
   children: React.ReactNode
 }
 
-export const LogbooksContainer: React.FC<ContainerProps> = ({
-  headerBar,
+export const LogbookLayout: React.FC<ContainerProps> = ({
+  header,
+  footer,
   children,
 }) => {
   const isMediumUp = useResponsive("md-up")
@@ -28,19 +29,26 @@ export const LogbooksContainer: React.FC<ContainerProps> = ({
   }, [])
 
   return (
-    <LogbookProvider>
+    <>
       <SEO />
 
       {isMediumUp && <Header originalPath={"/logbooks"} />}
 
       <main className={styles.main}>
-        <section className={styles.header} />
-        <section className={styles.left} />
-        <section className={styles.right} />
-        <section className={styles.toolbarHeader}>{headerBar}</section>
-        <section className={styles.content}>{children}</section>
-        <section className={styles.footer}>{isMediumUp && <Footer />}</section>
+        <div className={styles.outer}>
+          <Container>
+            <div className={styles.container}>
+              <div className={styles.inner}>
+                <header className={styles.header}>{header}</header>
+                <section className={styles.content}>{children}</section>
+                {footer}
+              </div>
+            </div>
+          </Container>
+        </div>
       </main>
-    </LogbookProvider>
+
+      {/* {isMediumUp && <Footer />} */}
+    </>
   )
 }

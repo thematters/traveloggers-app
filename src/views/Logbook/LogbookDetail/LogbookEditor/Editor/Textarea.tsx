@@ -1,9 +1,11 @@
+import { useLocalization } from "gatsby-theme-i18n"
 import React, { useContext } from "react"
 import { useEffect, useState } from "react"
 import { useDebounce } from "use-debounce"
 
 import { IconSend, IconSpinner, Logbook, LogbookContext } from "~/components"
-import { weiToEther } from "~/utils"
+import { Lang } from "~/enums"
+import { toEtherscanUrl, weiToEther } from "~/utils"
 
 import * as styles from "./styles.module.css"
 
@@ -13,7 +15,7 @@ type TextareaProps = {
 }
 
 const Textarea: React.FC<TextareaProps> = ({ logbook, onSubmit }) => {
-  // const { account, balance, getAccountBalance } = useAccount()
+  const { locale } = useLocalization()
   const { updateDraft, appendLog } = useContext(LogbookContext)
 
   const [content, setContent] = useState("")
@@ -32,7 +34,7 @@ const Textarea: React.FC<TextareaProps> = ({ logbook, onSubmit }) => {
     if (logbook.draft?.sent) {
       onSubmit()
     }
-  }, [])
+  }, [logbook.draft?.sent])
 
   useEffect(() => {
     if (!debouncedContent) {
@@ -52,6 +54,20 @@ const Textarea: React.FC<TextareaProps> = ({ logbook, onSubmit }) => {
       <footer className={styles.footer}>
         {error ? (
           <p className={styles.error}>{error}</p>
+        ) : draft?.txHash ? (
+          <p className={styles.info}>
+            {locale === Lang.en ? "Confirming transaction (" : "交易確認中（"}
+            <a
+              href={toEtherscanUrl(draft.txHash).url}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {locale === Lang.en
+                ? "View on Etherscan"
+                : "在 Ethertscan 上查看"}
+            </a>
+            {locale === Lang.en ? ")" : "）"}
+          </p>
         ) : gasCost ? (
           <p className={styles.hint}>
             {content.length} characters,{" "}

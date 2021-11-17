@@ -8,4 +8,6 @@
   --spacing-x-loose: 2rem; /* 32px */
   --spacing-xx-loose: 2.5rem; /* 40px */
   --spacing-xxx-loose: 4rem; /* 64px */
+  --logbook-vertical-spacing: 12rem;
+  --logbook-vertical-spacing-lg: 20rem;
 }
