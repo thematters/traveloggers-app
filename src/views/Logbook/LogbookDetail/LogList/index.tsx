@@ -26,7 +26,7 @@ const LogItem = ({ log }: { log: Log }) => {
           rel="noreferrer"
         >
           {locale === Lang.en
-            ? `Singal from ${maskedAddress}`
+            ? `A singal from ${maskedAddress}`
             : `來自 ${maskedAddress} 的宇宙訊號`}
         </a>
         <time>{toRelativeDateTime(log.createdAt, locale as Lang)}</time>
