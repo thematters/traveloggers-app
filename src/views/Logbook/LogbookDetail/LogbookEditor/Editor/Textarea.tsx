@@ -31,10 +31,10 @@ const Textarea: React.FC<TextareaProps> = ({ logbook, onSubmit }) => {
   }
 
   useEffect(() => {
-    if (logbook.draft?.sent) {
+    if (draft?.sent) {
       onSubmit()
     }
-  }, [logbook.draft?.sent])
+  }, [draft?.sent])
 
   useEffect(() => {
     if (!debouncedContent) {
@@ -46,7 +46,9 @@ const Textarea: React.FC<TextareaProps> = ({ logbook, onSubmit }) => {
   return (
     <section className={styles.content}>
       <textarea
-        placeholder="Leave a message..."
+        placeholder={
+          locale === Lang.en ? "Leave a message..." : "寫下日誌內容…"
+        }
         onChange={e => setContent(e.target.value)}
         disabled={disabled}
       />

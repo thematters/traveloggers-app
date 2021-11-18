@@ -34,10 +34,12 @@ const Editor: React.FC<EditorProps> = ({
       })}
     >
       <div className={styles.container}>
-        {step === "hint" && (
+        {step === EditorStep.hint && (
           <Hint nextStep={() => forwardEditor(EditorStep.write)} />
         )}
-        {step === "write" && <Textarea logbook={logbook} onSubmit={onSubmit} />}
+        {step === EditorStep.write && (
+          <Textarea logbook={logbook} onSubmit={onSubmit} />
+        )}
       </div>
     </section>
   )

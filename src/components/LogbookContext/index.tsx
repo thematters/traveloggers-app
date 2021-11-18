@@ -142,10 +142,6 @@ export const LogbookProvider = ({
         break
 
       case "updateDraft":
-        console.log(
-          { prev: state.logbooks[action.payload.tokenId] },
-          state.logbooks
-        )
         newState = {
           ...state,
           logbooks: {
@@ -443,10 +439,6 @@ export const LogbookProvider = ({
       return
     }
 
-    if (logbook.draft?.sending) {
-      return
-    }
-
     // if gasLimit is not exist
     let gasLimit = logbook?.draft?.gasLimit
     if (!gasLimit) {
@@ -465,8 +457,6 @@ export const LogbookProvider = ({
         .connect(library.getSigner())
         .appendLog(tokenId, message, { gasLimit })
 
-      await tx.wait()
-
       dispatch({
         type: "updateDraft",
         payload: {
@@ -478,6 +468,8 @@ export const LogbookProvider = ({
           },
         },
       })
+
+      await tx.wait()
 
       // refetch logbook
       await getLogbook(tokenId)
