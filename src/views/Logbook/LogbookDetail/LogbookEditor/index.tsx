@@ -95,7 +95,7 @@ const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
               [styles[stepBook]]: true,
             })}
           >
-            <VisitorDialog>
+            <VisitorDialog logbook={logbook}>
               {({ openDialog }) => <ClickToWrite onClick={openDialog} />}
             </VisitorDialog>
           </section>
