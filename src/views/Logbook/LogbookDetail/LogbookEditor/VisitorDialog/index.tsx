@@ -26,7 +26,7 @@ const VisitorDialog: React.FC<VisitorDialogProps> = ({ logbook, children }) => {
         <Dialog.Header
           title={
             <span>
-              {locale === Lang.en ? "Join writing" : "Start writing now"}
+              {locale === Lang.en ? "一起加入創作" : "Start writing now"}
             </span>
           }
           closeDialog={closeDialog}
@@ -51,14 +51,14 @@ const VisitorDialog: React.FC<VisitorDialogProps> = ({ logbook, children }) => {
           >
             {locale === Lang.en
               ? "Check out this Avatar"
-              : "Check out this Avatar"}
+              : "查看此 Travelogger "}
           </Dialog.CTAButton>
           <Dialog.CTAButton
             color="blackLight"
             htmlHref={env.socialUrls.en.opensea}
             htmlTarget="_blank"
           >
-            {locale === Lang.en ? "去 OpenSea 看看" : "View on OpenSea"}
+            {locale === Lang.en ? "View on OpenSea" : "去 OpenSea 看看"}
           </Dialog.CTAButton>
         </section>
       </Dialog>
