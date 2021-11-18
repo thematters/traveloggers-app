@@ -26,7 +26,7 @@ const VisitorDialog: React.FC<VisitorDialogProps> = ({ logbook, children }) => {
         <Dialog.Header
           title={
             <span>
-              {locale === Lang.en ? "一起加入創作" : "Start writing now"}
+              {locale === Lang.en ? "Start writing now" : "一起加入創作"}
             </span>
           }
           closeDialog={closeDialog}
