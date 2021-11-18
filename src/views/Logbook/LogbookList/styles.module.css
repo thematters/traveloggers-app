@@ -13,7 +13,9 @@
 
   @media (--md-up) {
     bottom: 120px;
+  }
 
+  @media (min-height: 1080px) {
     & img {
       width: 288px;
       height: 288px;

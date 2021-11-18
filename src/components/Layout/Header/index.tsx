@@ -137,7 +137,7 @@ const Header: React.FC<HeaderProps> = ({ originalPath }) => {
             </div>
           )}
 
-          <div>
+          <div className={styles.logbookBtn}>
             <Button
               color="primary"
               height="2.125rem"

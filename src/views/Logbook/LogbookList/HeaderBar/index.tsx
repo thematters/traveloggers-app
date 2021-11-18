@@ -9,29 +9,28 @@ import {
   LinkAccountDialog,
 } from "~/components"
 import { Lang } from "~/enums"
-import { useAccount, useResponsive } from "~/hooks"
+import { useAccount } from "~/hooks"
 import { analytics } from "~/utils"
 
 import * as styles from "./styles.module.css"
 
-const HeaderBar = () => {
+const HeaderBar: React.FC = () => {
   const { locale } = useLocalization()
-
-  const isMediumUp = useResponsive("md-up")
-  const iconSize = isMediumUp ? "xl" : "lg"
 
   const { account } = useAccount()
 
   return (
-    <section className={styles.headerBar}>
+    <header className={styles.headerBar}>
       <section className={styles.left}>
         <Link to="/" language={locale}>
-          <IconChevonLeft size={iconSize} color="gold" />
+          <IconChevonLeft color="gold" />
         </Link>
       </section>
 
       <section className={styles.title}>
-        <h1>{locale === Lang.en ? "LOGBOOK" : "航行日誌"}</h1>
+        <h1 className={locale === Lang.en ? "" : styles.zh}>
+          {locale === Lang.en ? "LOGBOOK" : "航行日誌"}
+        </h1>
       </section>
 
       <section className={styles.right}>
@@ -45,16 +44,12 @@ const HeaderBar = () => {
                 openDialog()
               }}
             >
-              {account ? (
-                <IconUserChecked size={iconSize} />
-              ) : (
-                <IconUserAnon size={iconSize} />
-              )}
+              {account ? <IconUserChecked /> : <IconUserAnon />}
             </button>
           )}
         </LinkAccountDialog>
       </section>
-    </section>
+    </header>
   )
 }
 
