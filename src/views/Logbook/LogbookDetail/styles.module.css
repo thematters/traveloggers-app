@@ -10,7 +10,7 @@
   text-align: center;
 
   @media (--md-up) {
-    bottom: 49px;
+    bottom: 160px;
     padding: 0;
   }
 }

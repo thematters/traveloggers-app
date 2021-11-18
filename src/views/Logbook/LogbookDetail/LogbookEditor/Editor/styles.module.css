@@ -66,6 +66,10 @@
   & textarea {
     line-height: inherit;
     resize: none;
+
+    &:disabled {
+      opacity: 50%;
+    }
   }
 }
 
