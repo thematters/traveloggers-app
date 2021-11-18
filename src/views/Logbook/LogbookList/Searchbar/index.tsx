@@ -27,7 +27,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 
   useEffect(() => {
     if (debouncedTerm === "") {
-      onSearch(debouncedTerm)
+      // onSearch(debouncedTerm)
       return
     }
 

@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 
 import env from "@/.env.json"
 import { Container, SEO } from "~/components"
+import Footer from "~/components/Layout/Footer"
 import Header from "~/components/Layout/Header"
 import { useResponsive } from "~/hooks"
 import { analytics } from "~/utils"
@@ -41,14 +42,13 @@ export const LogbookLayout: React.FC<ContainerProps> = ({
               <div className={styles.inner}>
                 <header className={styles.header}>{header}</header>
                 <section className={styles.content}>{children}</section>
-                {footer}
               </div>
             </div>
           </Container>
+          {footer}
         </div>
+        {isMediumUp && <Footer />}
       </main>
-
-      {/* {isMediumUp && <Footer />} */}
     </>
   )
 }

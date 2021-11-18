@@ -1,9 +1,13 @@
 .welcome {
-  position: fixed;
+  position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: -5rem;
   left: 0;
   text-align: center;
+
+  @media (--md-up) {
+    bottom: -12rem;
+  }
 
   & img {
     width: 200px;

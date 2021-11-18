@@ -42,7 +42,8 @@ const TEXTS: Record<string, any> = {
     answer9_2:
       "第一代 Logbook 直接保存在以太坊區塊鏈，因此在寫入日誌時，需要繳交給以太坊礦工費（Gas Fee）。在寫入日誌前，" +
       "你可以看到當時的 Gas Fee 以及與字數相對應的費用估算。",
-    answer9_3: "Traveloggers 的開發團隊會提供部分 Gas Fee 補助，支持前 100 名 Logbook 的使用者。同時，繼續尋找費用更低的合適空間，開拓第二代 Logbook。",
+    answer9_3:
+      "Traveloggers 的開發團隊會提供部分 Gas Fee 補助，支持前 100 名 Logbook 的使用者。同時，繼續尋找費用更低的合適空間，開拓第二代 Logbook。",
     question10: " 什麼是 Gas Fee？為什麼有 Gas Fee？",
     answer10_1:
       "Gas Fee 指的是在區塊鏈上發起一筆交易時，需要負擔的手續費。Gas Fee 是支付給礦工的手續費，當你在以太坊區塊鏈上進行轉賬時，" +
@@ -94,7 +95,8 @@ const TEXTS: Record<string, any> = {
     question8: "How do I sell my Traveloggers?",
     answer8: "You can sell your Traveloggers through OpenSea.",
     question9: "How do I use the Logbook?",
-    answer9_1: "The owners of Traveloggers have the rights to own and access the Logbook.",
+    answer9_1:
+      "The owners of Traveloggers have the rights to own and access the Logbook.",
     answer9_2:
       "The Logbook 1.0 is directly stored on the Ethereum Mainnet, and users need to pay the Ethereum network gas fee. " +
       "Before you write in the logbook, there will be a step of confirming the fee calculated by the wallet. The ETH gas fee " +

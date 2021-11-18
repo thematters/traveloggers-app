@@ -28,6 +28,7 @@ const LogbookList = () => {
 
   const searchLogbook = logbooks[searchTokenId]
   const ownLogbooks = ownNFTs.tokenIds
+    // .filter(tokenId => tokenId in logbooks)
     .map(tokenId => logbooks[tokenId])
     .filter(l => !!l)
 
@@ -49,7 +50,11 @@ const LogbookList = () => {
     )
   }
 
-  if (ownNFTs.loading || searchLogbook?.loading) {
+  if (searchLogbook?.error) {
+    console.error("searching error:", searchLogbook?.error)
+  }
+
+  if (ownNFTs.loading || searchLogbook?.loading || searchLogbook?.error) {
     return (
       <LogbookLayout header={<HeaderBar />}>
         <section>
