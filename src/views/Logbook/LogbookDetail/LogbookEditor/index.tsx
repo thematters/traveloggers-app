@@ -1,6 +1,6 @@
 import classNames from "classnames"
 import { useLocalization } from "gatsby-theme-i18n"
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 
 import { Logbook } from "~/components"
 import { Lang } from "~/enums"
@@ -19,7 +19,7 @@ type LogbookEditorProps = {
 enum BookStep {
   openable = "openable",
   opening = "opening",
-  // reversing = "reversing",
+  reversing = "reversing",
   closing = "closing",
 }
 enum PenStep {
@@ -39,22 +39,10 @@ const defaultStep = {
   paper: PaperStep.hide,
 }
 
-const ClickToWrite = ({ onClick }: { onClick: () => void }) => {
-  const { locale } = useLocalization()
-
-  return (
-    <div aria-role="button" aria-label="Open the logbook" onClick={onClick}>
-      <p className={styles.hint}>
-        {locale === Lang.en ? "Click to write" : "點擊開始寫字"}
-      </p>
-      <img src="/images/logbook/book-openable.gif" />
-    </div>
-  )
-}
-
 const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
   const isMediumUp = useResponsive("md-up")
   const { account } = useAccount()
+  const { locale } = useLocalization()
 
   const { currStep: stepBook, forward: forwardBook } = useStep<BookStep>(
     defaultStep.book
@@ -69,19 +57,23 @@ const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
     defaultStep.paper
   )
 
+  const [reversedAt, setReversedAt] = useState(Date.now())
+  const reversed = () => setReversedAt(Date.now())
+
   useEffect(() => {
     preloadImages([
-      "/images/logbook/book-openable.gif",
-      "/images/logbook/book-opening.gif",
-      "/images/logbook/book-closing.gif",
-      "/images/logbook/pen.gif",
-      "/images/logbook/close.gif",
-      "/images/logbook/paper-drenching.gif",
-      "/images/logbook/paper-folding.gif",
-      "/images/logbook/paper-drenching-desktop.gif",
-      "/images/logbook/paper-folding-desktop.gif",
+      `/images/logbook/book-openable.gif?t=${reversedAt}`,
+      `/images/logbook/book-opening.gif?t=${reversedAt}`,
+      `/images/logbook/book-closing.gif?t=${reversedAt}`,
+      `/images/logbook/book-reversing.gif?t=${reversedAt}`,
+      `/images/logbook/pen.gif?t=${reversedAt}`,
+      `/images/logbook/close.gif?t=${reversedAt}`,
+      `/images/logbook/paper-drenching.gif?t=${reversedAt}`,
+      `/images/logbook/paper-folding.gif?t=${reversedAt}`,
+      `/images/logbook/paper-drenching-desktop.gif?t=${reversedAt}`,
+      `/images/logbook/paper-folding-desktop.gif?t=${reversedAt}`,
     ])
-  }, [])
+  }, [reversedAt])
 
   if (!logbook.tokenOwner) {
     return null
@@ -89,6 +81,15 @@ const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
 
   const isLocked = !logbook.draft?.sent && logbook.isLocked
   const isVisitor = logbook.tokenOwner !== account
+
+  const ClickToWrite = ({ onClick }: { onClick: () => void }) => {
+    return (
+      <div aria-role="button" aria-label="Open the logbook" onClick={onClick}>
+        {locale === Lang.en ? "Click to write" : "點擊開始寫字"}
+        <img src={`/images/logbook/book-openable.gif?t=${reversedAt}`} />
+      </div>
+    )
+  }
 
   return (
     <section className={styles.container}>
@@ -124,7 +125,7 @@ const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
           )}
           {stepBook === BookStep.opening && (
             <GifPlayer
-              src="/images/logbook/book-opening.gif"
+              src={`/images/logbook/book-opening.gif?t=${reversedAt}`}
               duration={2200}
               onEnd={() => {
                 forwardEditor(EditorStep.hint)
@@ -132,11 +133,15 @@ const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
               }}
             />
           )}
-          {/* {stepBook === BookStep.reversing && (
-          <GifPlayer src="/images/logbook/book-closing.gif" />
-        )} */}
+          {stepBook === BookStep.reversing && (
+            <GifPlayer
+              src={`/images/logbook/book-reversing.gif?t=${reversedAt}`}
+            />
+          )}
           {stepBook === BookStep.closing && (
-            <GifPlayer src="/images/logbook/book-closing.gif" />
+            <GifPlayer
+              src={`/images/logbook/book-closing.gif?t=${reversedAt}`}
+            />
           )}
         </section>
       )}
@@ -160,8 +165,8 @@ const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
           <GifPlayer
             src={
               isMediumUp
-                ? "/images/logbook/paper-drenching-desktop.gif"
-                : "/images/logbook/paper-drenching.gif"
+                ? `/images/logbook/paper-drenching-desktop.gif?t=${reversedAt}`
+                : `/images/logbook/paper-drenching.gif?t=${reversedAt}`
             }
             duration={1800}
             onEnd={async () => {
@@ -175,8 +180,8 @@ const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
           <GifPlayer
             src={
               isMediumUp
-                ? "/images/logbook/paper-folding-desktop.gif"
-                : "/images/logbook/paper-folding.gif"
+                ? `/images/logbook/paper-folding-desktop.gif?t=${reversedAt}`
+                : `/images/logbook/paper-folding.gif?t=${reversedAt}`
             }
             duration={3800}
             onEnd={() => {
@@ -200,15 +205,18 @@ const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
             forwardEditor(EditorStep.hide)
             forwardPen(PenStep.hide)
             await sleep(200)
-            // forwardBook(BookStep.reversing)
-            forwardBook(BookStep.closing)
-            // await sleep(2200)
-            // forwardBook(BookStep.openable)
+            forwardBook(BookStep.reversing)
+            await sleep(2800)
+            forwardBook(BookStep.openable)
+            reversed()
           }}
         >
           <img src="/images/logbook/close.png" />
         </button>
-        <img className={styles.pen} src="/images/logbook/pen.gif" />
+        <img
+          className={styles.pen}
+          src={`/images/logbook/pen.gif?t=${reversedAt}`}
+        />
       </section>
     </section>
   )
