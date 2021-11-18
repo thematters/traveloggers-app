@@ -50,7 +50,9 @@ export const LogbookLayout: React.FC<ContainerProps> = ({
             <div className={styles.container}>
               <div className={styles.inner}>
                 <header className={styles.header}>{header}</header>
-                <section className={styles.content}>{children}</section>
+                <section className={styles.content}>
+                  <section>{children}</section>
+                </section>
               </div>
             </div>
           </Container>
