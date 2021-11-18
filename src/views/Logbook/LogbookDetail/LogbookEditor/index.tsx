@@ -128,6 +128,9 @@ const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
               src={`/images/logbook/book-opening.gif?t=${reversedAt}`}
               duration={2200}
               onEnd={() => {
+                if (logbook.draft?.sent) {
+                  return
+                }
                 forwardEditor(EditorStep.hint)
                 forwardPen(PenStep.show)
               }}
