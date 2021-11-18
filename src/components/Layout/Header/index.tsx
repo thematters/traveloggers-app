@@ -136,6 +136,18 @@ const Header: React.FC<HeaderProps> = ({ originalPath }) => {
               </LinkAccountDialog>
             </div>
           )}
+
+          <div>
+            <Button
+              color="primary"
+              height="2.125rem"
+              spacingX="1.25rem"
+              spacingY=".5rem"
+              to="/logbooks"
+            >
+              {locale === Lang.en ? "Logbooks" : "航行日誌"}
+            </Button>
+          </div>
         </section>
       </header>
     </>
