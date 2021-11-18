@@ -80,7 +80,6 @@
   height: 100%;
   padding: var(--spacing-base);
   overflow-y: auto;
-  scrollbar-color: var(--color-logbook-gold-light);
 
   & > section {
     margin: 0 auto;
