@@ -9,13 +9,15 @@ import ConnectWalletContent from "../AirdropDialog/ConnectWalletContent"
 import CompletedContent from "./CompletedContent"
 import IntroContent from "./IntroContent"
 
+type Step = "intro" | "connect-wallet" | "completed"
+
 type LinkAccountDialogProps = {
+  defaultStep?: Step
   children: ({ openDialog }: { openDialog: () => void }) => React.ReactNode
 }
 
-type Step = "intro" | "connect-wallet" | "completed"
-
 export const LinkAccountDialog: React.FC<LinkAccountDialogProps> = ({
+  defaultStep = "intro",
   children,
 }) => {
   const { locale } = useLocalization()
@@ -26,7 +28,7 @@ export const LinkAccountDialog: React.FC<LinkAccountDialogProps> = ({
     closeDialog,
   } = useDialogSwitch(false)
 
-  const defaultStep = "intro"
+  // const defaultStep = "intro"
   const { currStep, forward } = useStep<Step>(defaultStep)
 
   const openDialog = () => {

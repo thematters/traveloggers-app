@@ -35,7 +35,7 @@ const HeaderBar = () => {
       </section>
 
       <section className={styles.right}>
-        <LinkAccountDialog>
+        <LinkAccountDialog defaultStep="connect-wallet">
           {({ openDialog }) => (
             <button
               onClick={() => {
