@@ -20,20 +20,20 @@
     height: auto;
     margin: 0 auto;
   }
+}
 
-  & .hint {
-    position: absolute;
-    right: 0;
-    bottom: 100%;
-    left: 0;
-    padding-bottom: var(--spacing-x-tight);
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-semibold);
-    line-height: var(--font-size-xs);
-    color: #54fcf5;
-    text-align: center;
-    text-shadow: 0 0 2px #54fcf5;
-  }
+.clickToWrite {
+  position: absolute;
+  right: 0;
+  bottom: 100%;
+  left: 0;
+  padding-bottom: var(--spacing-x-tight);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--font-size-xs);
+  color: #54fcf5;
+  text-align: center;
+  text-shadow: 0 0 2px #54fcf5;
 }
 
 .layerPaper {

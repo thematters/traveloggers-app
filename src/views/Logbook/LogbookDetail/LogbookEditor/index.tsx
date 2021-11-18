@@ -85,7 +85,9 @@ const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
   const ClickToWrite = ({ onClick }: { onClick: () => void }) => {
     return (
       <div aria-role="button" aria-label="Open the logbook" onClick={onClick}>
-        {locale === Lang.en ? "Click to write" : "點擊開始寫字"}
+        <p className={styles.clickToWrite}>
+          {locale === Lang.en ? "Click to write" : "點擊開始寫字"}
+        </p>
         <img src={`/images/logbook/book-openable.gif?t=${reversedAt}`} />
       </div>
     )
