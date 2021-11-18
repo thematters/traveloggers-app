@@ -19,30 +19,32 @@ const Item = ({ logbook }: { logbook: Logbook }) => {
   const { account } = useAccount()
 
   return (
-    <section className={styles.item}>
-      <Link to={`/logbooks/${logbook.tokenId}`} language={locale}>
-        <section className={styles.content}>
-          <section className={styles.left}>
-            <section className={styles.avatar}>
-              <img src={logbook.tokenImageURL} />
-            </section>
-
-            <section>
-              <h4 className={styles.name}>Traveloggers #{logbook.tokenId}</h4>
-              <p className={styles.info}>
-                {locale === Lang.en
-                  ? `${logbook.logs.length} entries`
-                  : `${logbook.logs.length} 次寫入記錄`}
-              </p>
-            </section>
+    <Link
+      className={styles.item}
+      to={`/logbooks/${logbook.tokenId}`}
+      language={locale}
+    >
+      <section className={styles.content}>
+        <section className={styles.left}>
+          <section className={styles.avatar}>
+            <img src={logbook.tokenImageURL} />
           </section>
 
-          <IconArrowRight size="lg" />
+          <section>
+            <h4 className={styles.name}>Traveloggers #{logbook.tokenId}</h4>
+            <p className={styles.info}>
+              {locale === Lang.en
+                ? `${logbook.logs.length} entries`
+                : `${logbook.logs.length} 次寫入記錄`}
+            </p>
+          </section>
         </section>
-      </Link>
+
+        <IconArrowRight size="lg" />
+      </section>
 
       {logbook.tokenOwner !== account && (
-        <div className={styles.owner}>
+        <footer className={styles.owner}>
           <a
             href={`${ETHERSCAN_BASE_URL}/address/${logbook.tokenOwner}`}
             target="_blank"
@@ -51,9 +53,9 @@ const Item = ({ logbook }: { logbook: Logbook }) => {
             {locale === Lang.en ? "Owner" : "擁有者"}:{" "}
             {maskAddress(logbook.tokenOwner as string, 25)}
           </a>
-        </div>
+        </footer>
       )}
-    </section>
+    </Link>
   )
 }
 

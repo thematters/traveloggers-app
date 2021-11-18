@@ -1,3 +1,4 @@
+import classNames from "classnames"
 import React, { useEffect } from "react"
 
 import env from "@/.env.json"
@@ -13,14 +14,17 @@ export interface ContainerProps {
   header: React.ReactNode
   footer?: React.ReactNode
   children: React.ReactNode
+  page?: "listWelcome" | "detail"
 }
 
 export const LogbookLayout: React.FC<ContainerProps> = ({
   header,
   footer,
+  page,
   children,
 }) => {
   const isMediumUp = useResponsive("md-up")
+  const isLargeUp = useResponsive("lg-up")
 
   useEffect(() => {
     import("firebase/app").then(({ initializeApp }) => {
@@ -35,7 +39,12 @@ export const LogbookLayout: React.FC<ContainerProps> = ({
 
       {isMediumUp && <Header originalPath={"/logbooks"} />}
 
-      <main className={styles.main}>
+      <main
+        className={classNames({
+          [styles.main]: true,
+          ...(page ? { [styles[page]]: !!page } : {}),
+        })}
+      >
         <div className={styles.outer}>
           <Container>
             <div className={styles.container}>
@@ -47,7 +56,12 @@ export const LogbookLayout: React.FC<ContainerProps> = ({
           </Container>
           {footer}
         </div>
-        {isMediumUp && <Footer />}
+
+        {isLargeUp && (
+          <section className={styles.footer}>
+            <Footer />
+          </section>
+        )}
       </main>
     </>
   )

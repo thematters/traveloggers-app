@@ -26,6 +26,7 @@ const LogbookDetail: React.FC<PageProps> = ({ id: tokenId, originalPath }) => {
   return (
     <LogbookLayout
       header={<HeaderBar tokenId={tokenId} />}
+      page="detail"
       footer={
         logbook ? (
           <section className={styles.editor}>

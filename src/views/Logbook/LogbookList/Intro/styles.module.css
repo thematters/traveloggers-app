@@ -1,6 +1,4 @@
 .text {
-  /* margin: var(--spacing-base) 0; */
-
   & > section {
     margin-left: var(--spacing-x-loose);
   }
