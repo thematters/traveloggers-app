@@ -6,16 +6,22 @@
 .main {
   position: relative;
   display: flex;
-  flex-flow: column nowrap;
-  align-items: stretch;
+  align-items: center;
+  height: 100vh;
+  max-height: 100vh;
   background-image: url("/images/logbook/outer-bg.jpg");
-  background-repeat: repeat-y;
+}
+
+.footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .outer {
   position: relative;
   width: 100%;
-  margin: 5rem 0;
   border-top: 4px solid var(--color-logbook-gold-light);
   border-bottom: 4px solid var(--color-logbook-gold-light);
   box-shadow: 0 -4px 0 0 var(--color-logbook-gold-dark);
@@ -26,9 +32,6 @@
     width: 100%;
     content: "";
     border-top: 4px solid var(--color-logbook-gold-dark);
-  }
-  @media (--md-up) {
-    margin: 10rem 0;
   }
 }
 
@@ -52,12 +55,10 @@
   position: relative;
   max-width: 40rem;
   height: calc(100vh - var(--logbook-vertical-spacing));
-  min-height: 40rem;
   margin: 0 auto;
 
   @media (--md-up) {
     height: calc(100vh - var(--logbook-vertical-spacing-lg));
-    min-height: 50rem;
   }
 }
 
@@ -77,8 +78,34 @@
   height: 100%;
   padding: var(--spacing-base);
   overflow-y: auto;
+  scrollbar-color: var(--color-logbook-gold-light);
 
   @media (--md-up) {
     padding: 4rem 0 var(--spacing-base);
+  }
+}
+
+/* pages */
+.main.listWelcome {
+  & .content {
+    height: calc(100% - 150px);
+  }
+
+  @media (--md-up) {
+    & .content {
+      height: calc(100% - 288px);
+    }
+  }
+}
+
+.main.detail {
+  & .content {
+    height: calc(100% - 100px);
+  }
+
+  @media (--md-up) {
+    & .content {
+      height: calc(100% - 150px);
+    }
   }
 }

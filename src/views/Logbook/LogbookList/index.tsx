@@ -35,6 +35,7 @@ const LogbookList = () => {
   if (!account && !searchTokenId) {
     return (
       <LogbookLayout
+        page="listWelcome"
         header={<HeaderBar />}
         footer={
           <footer className={styles.welcome}>
