@@ -1,7 +1,9 @@
 import classNames from "classnames"
+import { useLocalization } from "gatsby-theme-i18n"
 import React, { useEffect } from "react"
 
 import { Logbook } from "~/components"
+import { Lang } from "~/enums"
 import { useAccount, useResponsive, useStep } from "~/hooks"
 import { preloadImages, sleep } from "~/utils"
 
@@ -38,9 +40,13 @@ const defaultStep = {
 }
 
 const ClickToWrite = ({ onClick }: { onClick: () => void }) => {
+  const { locale } = useLocalization()
+
   return (
     <div aria-role="button" aria-label="Open the logbook" onClick={onClick}>
-      <p className={styles.hint}>Click key to Write</p>
+      <p className={styles.hint}>
+        {locale === Lang.en ? "Click to write" : "點擊開始寫字"}
+      </p>
       <img src="/images/logbook/book-openable.gif" />
     </div>
   )

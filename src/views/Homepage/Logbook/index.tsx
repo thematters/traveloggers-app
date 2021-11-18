@@ -51,7 +51,7 @@ const Logbook = () => {
                   <p>
                     {locale === Lang.en
                       ? "Each Travelogger avatar comes with a unique logbook, on which only the owner can record once. When the avatar is passed on to the next owner, the next owner can review and own all the former log contents."
-                      : "每個 Traveloggers 頭像隱藏了獨一無二的 Logbook（航行日誌本），只有擁有者可以向其中添加一次紀錄。當 Traveloggers 將頭像移轉給新的主人時，Logbook  的所有權也一併移轉。當你在擁有一個頭像時，你也擁有這個頭像的歷任擁有者所共同創作的航海日誌。"}
+                      : "每個 Traveloggers 頭像隱藏了獨一無二的 Logbook（航行日誌本），只有擁有者可以向其中添加一次紀錄。當 Traveloggers 將頭像移轉給新的主人時，Logbook 的所有權也一併移轉。當你在擁有一個頭像時，你也擁有這個頭像的歷任擁有者所共同創作的航海日誌。"}
                   </p>
                   <p>
                     {locale === Lang.en

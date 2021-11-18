@@ -25,7 +25,9 @@ const VisitorDialog: React.FC<VisitorDialogProps> = ({ logbook, children }) => {
       <Dialog isOpen={show} onDismiss={closeDialog}>
         <Dialog.Header
           title={
-            <span>{locale === Lang.en ? "Join writing" : "Join writing"}</span>
+            <span>
+              {locale === Lang.en ? "Join writing" : "Start writing now"}
+            </span>
           }
           closeDialog={closeDialog}
         />
@@ -34,8 +36,8 @@ const VisitorDialog: React.FC<VisitorDialogProps> = ({ logbook, children }) => {
           <div className={styles.content}>
             <p>
               {locale === Lang.en
-                ? "The owner of the Avatar can unlock all the text in the Logbook. This avatar now is not available to be traded. Explore other avatars on OpenSea!"
-                : "The owner of the Avatar can unlock all the text in the Logbook. This avatar now is not available to be traded. Explore other avatars on OpenSea!"}
+                ? "The owner of Traveloggers also owns the Logbook, which has the collective memory of all previous Logbook owners. Now, you can choose to collect or sell it."
+                : "Traveloggers 的擁有者，也擁有日誌本。日誌本裡，有歷任主人共同留下的箴言。現在，你可以選擇繼續收藏它，或者賣掉它。"}
             </p>
             <img src="/images/logbook/buy-to-write.png" />
           </div>
@@ -56,9 +58,7 @@ const VisitorDialog: React.FC<VisitorDialogProps> = ({ logbook, children }) => {
             htmlHref={env.socialUrls.en.opensea}
             htmlTarget="_blank"
           >
-            {locale === Lang.en
-              ? "View all Traveloggers"
-              : "View all Traveloggers"}
+            {locale === Lang.en ? "去 OpenSea 看看" : "View on OpenSea"}
           </Dialog.CTAButton>
         </section>
       </Dialog>
