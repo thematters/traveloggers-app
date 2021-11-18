@@ -37,16 +37,14 @@ const LogbookList = () => {
       <LogbookLayout
         page="listWelcome"
         header={<HeaderBar />}
+        headerBar={<SearchBar onSearch={onSearch} />}
         footer={
           <footer className={styles.welcome}>
             <img src="/images/logbook/welcome.png" />
           </footer>
         }
       >
-        <section>
-          <SearchBar onSearch={onSearch} />
-          <Intro />
-        </section>
+        <Intro />
       </LogbookLayout>
     )
   }
@@ -57,27 +55,29 @@ const LogbookList = () => {
 
   if (ownNFTs.loading || searchLogbook?.loading || searchLogbook?.error) {
     return (
-      <LogbookLayout header={<HeaderBar />}>
-        <section>
-          <SearchBar onSearch={onSearch} />
-          <Spinner />
-        </section>
+      <LogbookLayout
+        page="list"
+        header={<HeaderBar />}
+        headerBar={<SearchBar onSearch={onSearch} />}
+      >
+        <Spinner />
       </LogbookLayout>
     )
   }
 
   return (
-    <LogbookLayout header={<HeaderBar />}>
-      <section>
-        <SearchBar onSearch={onSearch} />
-        <Logbooks
-          logbooks={
-            searchTokenId && searchLogbook
-              ? [searchLogbook]
-              : (ownLogbooks as Logbook[])
-          }
-        />
-      </section>
+    <LogbookLayout
+      page="list"
+      header={<HeaderBar />}
+      headerBar={<SearchBar onSearch={onSearch} />}
+    >
+      <Logbooks
+        logbooks={
+          searchTokenId && searchLogbook
+            ? [searchLogbook]
+            : (ownLogbooks as Logbook[])
+        }
+      />
     </LogbookLayout>
   )
 }

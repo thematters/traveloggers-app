@@ -13,13 +13,15 @@ import * as styles from "./styles.module.css"
 export interface ContainerProps {
   header: React.ReactNode
   footer?: React.ReactNode
+  headerBar?: React.ReactNode
   children: React.ReactNode
-  page?: "listWelcome" | "detail"
+  page?: "listWelcome" | "list" | "detail"
 }
 
 export const LogbookLayout: React.FC<ContainerProps> = ({
   header,
   footer,
+  headerBar,
   page,
   children,
 }) => {
@@ -50,8 +52,9 @@ export const LogbookLayout: React.FC<ContainerProps> = ({
             <div className={styles.container}>
               <div className={styles.inner}>
                 <header className={styles.header}>{header}</header>
-                <section className={styles.content}>
-                  <section>{children}</section>
+                <section className={styles.contentWrapper}>
+                  <section className={styles.headerBar}>{headerBar}</section>
+                  <section className={styles.content}>{children}</section>
                 </section>
               </div>
             </div>
