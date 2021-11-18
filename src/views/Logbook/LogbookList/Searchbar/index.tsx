@@ -49,7 +49,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         max={MAX_TOKEN_ID}
         placeholder={
           locale === Lang.en
-            ? "Enter the number from 1-1500"
+            ? "Enter Traveloggers' ID number (from 1-1500)"
             : "輸入 Traveloggers ID (1 至 1500)"
         }
         onChange={event => setSearchTerm(event.target.value)}

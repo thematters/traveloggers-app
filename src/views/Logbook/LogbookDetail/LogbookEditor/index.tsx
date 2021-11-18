@@ -1,7 +1,9 @@
 import classNames from "classnames"
+import { useLocalization } from "gatsby-theme-i18n"
 import React, { useEffect, useState } from "react"
 
 import { Logbook } from "~/components"
+import { Lang } from "~/enums"
 import { useAccount, useResponsive, useStep } from "~/hooks"
 import { preloadImages, sleep } from "~/utils"
 
@@ -40,6 +42,7 @@ const defaultStep = {
 const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
   const isMediumUp = useResponsive("md-up")
   const { account } = useAccount()
+  const { locale } = useLocalization()
 
   const { currStep: stepBook, forward: forwardBook } = useStep<BookStep>(
     defaultStep.book
@@ -82,7 +85,7 @@ const LogbookEditor: React.FC<LogbookEditorProps> = ({ logbook }) => {
   const ClickToWrite = ({ onClick }: { onClick: () => void }) => {
     return (
       <div aria-role="button" aria-label="Open the logbook" onClick={onClick}>
-        <p className={styles.hint}>Click key to Write</p>
+        {locale === Lang.en ? "Click to write" : "點擊開始寫字"}
         <img src={`/images/logbook/book-openable.gif?t=${reversedAt}`} />
       </div>
     )
