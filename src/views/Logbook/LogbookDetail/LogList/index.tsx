@@ -25,7 +25,9 @@ const LogItem = ({ log }: { log: Log }) => {
           target="_blank"
           rel="noreferrer"
         >
-          來自 {maskedAddress} 的宇宙訊號
+          {locale === Lang.en
+            ? `Singal from ${maskedAddress}`
+            : `來自 ${maskedAddress} 的宇宙訊號`}
         </a>
         <time>{toRelativeDateTime(log.createdAt, locale as Lang)}</time>
       </footer>
