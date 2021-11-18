@@ -12,16 +12,31 @@
   width: 100%;
   border-top: 4px solid var(--color-logbook-gold-light);
   border-bottom: 4px solid var(--color-logbook-gold-light);
+  box-shadow: 0 -4px 0 0 var(--color-logbook-gold-dark);
 
-  /* &::before {
-      border-top: 4px solid var(--color-logbook-gold-light);
-  } */
+  &::before {
+    position: absolute;
+    bottom: -8px;
+    width: 100%;
+    content: "";
+    border-top: 4px solid var(--color-logbook-gold-dark);
+  }
 }
 
 .container {
+  position: relative;
   background-image: url("/images/logbook/inner-bg.jpg");
   border-right: 4px solid var(--color-logbook-gold-light);
   border-left: 4px solid var(--color-logbook-gold-light);
+  box-shadow: -4px 0 0 0 var(--color-logbook-gold-dark);
+
+  &::before {
+    position: absolute;
+    right: -8px;
+    height: 100%;
+    content: "";
+    border-right: 4px solid var(--color-logbook-gold-dark);
+  }
 }
 
 .inner {

@@ -2,17 +2,18 @@ import { useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 
 import env from "@/.env.json"
-import { Dialog } from "~/components"
+import { Dialog, Logbook } from "~/components"
 import { Lang } from "~/enums"
 import { useDialogSwitch } from "~/hooks"
 
 import * as styles from "./styles.module.css"
 
 type VisitorDialogProps = {
+  logbook: Logbook
   children: ({ openDialog }: { openDialog: () => void }) => React.ReactNode
 }
 
-const VisitorDialog: React.FC<VisitorDialogProps> = ({ children }) => {
+const VisitorDialog: React.FC<VisitorDialogProps> = ({ logbook, children }) => {
   const { locale } = useLocalization()
 
   const { show, openDialog, closeDialog } = useDialogSwitch(false)
@@ -43,7 +44,7 @@ const VisitorDialog: React.FC<VisitorDialogProps> = ({ children }) => {
         <section className={styles.buttons}>
           <Dialog.CTAButton
             color="primary"
-            htmlHref={env.socialUrls.en.opensea} // TODO
+            htmlHref={logbook.tokenOpenSeaURL}
             htmlTarget="_blank"
           >
             {locale === Lang.en
