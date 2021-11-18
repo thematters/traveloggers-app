@@ -15,13 +15,18 @@ const Hint: React.FC<HintProps> = ({ nextStep }) => {
   return (
     <section className={styles.content}>
       <section>
-        <h3>{locale === Lang.en ? "Hint" : "Hint"}</h3>
+        <h3>{locale === Lang.en ? "Hint" : "提醒"}</h3>
 
         <ul>
-          <li>Each owner can only write once during the possession period. </li>
           <li>
-            It will be on the chain after it is sent and cannot be modified or
-            deleted.
+            {locale === Lang.en
+              ? "Owners of Traveloggers can only write in the Logbook once."
+              : "擁有者在持有 Traveloggers 期間只能寫入一次紀錄"}
+          </li>
+          <li>
+            {locale === Lang.en
+              ? "Your Logbook will be published on the Ethereum blockchain, and cannot be edited or deleted once published."
+              : "Logbook 的內容會被發布在以太坊區塊鏈。內容一旦發布，將不能被修改和刪除。"}
           </li>
         </ul>
       </section>
@@ -29,7 +34,7 @@ const Hint: React.FC<HintProps> = ({ nextStep }) => {
       <footer className={styles.footer}>
         <p></p>
         <button type="button" className={styles.button} onClick={nextStep}>
-          Start
+          {locale === Lang.en ? "Start" : "開始"}
         </button>
       </footer>
     </section>

@@ -28,3 +28,13 @@
     }
   }
 }
+
+.empty {
+  padding-top: var(--spacing-loose);
+  font-size: var(--font-size-md-s);
+  line-height: 1.5rem;
+
+  @media (--md-up) {
+    font-size: var(--font-size-lg);
+  }
+}

@@ -25,7 +25,9 @@ const LogItem = ({ log }: { log: Log }) => {
           target="_blank"
           rel="noreferrer"
         >
-          來自 {maskedAddress} 的宇宙訊號
+          {locale === Lang.en
+            ? `Singal from ${maskedAddress}`
+            : `來自 ${maskedAddress} 的宇宙訊號`}
         </a>
         <time>{toRelativeDateTime(log.createdAt, locale as Lang)}</time>
       </footer>
@@ -34,6 +36,18 @@ const LogItem = ({ log }: { log: Log }) => {
 }
 
 const LogList: React.FC<LogListProps> = ({ logs }) => {
+  const { locale } = useLocalization()
+
+  if (logs && logs.length === 0) {
+    return (
+      <p className={styles.empty}>
+        {locale === Lang.en
+          ? "No entries yet. Be the first one to create logbook !"
+          : "目前還沒有日誌寫入，成為第一個寫入的主人吧！"}
+      </p>
+    )
+  }
+
   return (
     <ul className={styles.list}>
       {logs.map(log => (

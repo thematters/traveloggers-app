@@ -72,7 +72,8 @@ const Textarea: React.FC<TextareaProps> = ({ logbook, onSubmit }) => {
           </p>
         ) : gasCost ? (
           <p className={styles.hint}>
-            {content.length} characters,{" "}
+            {content.length}{" "}
+            {locale === Lang.en ? "characters, about" : "個字，約"}{" "}
             {parseFloat(weiToEther(gasCost)).toFixed(6)} ETH
           </p>
         ) : (
