@@ -1,0 +1,35 @@
+.welcome {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  text-align: center;
+
+  & img {
+    width: 200px;
+    height: 200px;
+  }
+
+  /* ... and (--md-h-up) */
+  @media (--md-up) and (min-height: 800px) {
+    bottom: 100px;
+  }
+
+  @media (--md-h-up) {
+    & img {
+      width: 288px;
+      height: 288px;
+    }
+  }
+}
+
+.card {
+  padding: var(--spacing-base) 0;
+  font-size: var(--font-size-md-s);
+  line-height: 1.5rem;
+
+  & > * + * {
+    margin-top: var(--spacing-loose);
+  }
+}

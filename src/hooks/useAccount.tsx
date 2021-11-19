@@ -5,7 +5,12 @@ import { useEffect, useState } from "react"
 import { maskAddress } from "~/utils"
 
 export const useAccount = () => {
-  const { library, account } = useWeb3React<ethers.providers.Web3Provider>()
+  const {
+    library,
+    account,
+    deactivate,
+    // error,
+  } = useWeb3React<ethers.providers.Web3Provider>()
 
   const maskedAddress = account ? maskAddress(account) : ""
 
@@ -23,5 +28,5 @@ export const useAccount = () => {
     getAccountBalance()
   }, [account, !!library])
 
-  return { account, maskedAddress, balance, getAccountBalance }
+  return { account, deactivate, maskedAddress, balance, getAccountBalance }
 }

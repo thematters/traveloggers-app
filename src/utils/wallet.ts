@@ -107,8 +107,10 @@ export const weiToGWei = (wei: ethers.BigNumber) => {
   return ethers.utils.formatUnits(wei, "gwei")
 }
 
-export const maskAddress = (address: string) => {
-  return `${address.substring(0, 6)}...${address.substring(address.length - 4)}`
+export const maskAddress = (address: string, prefixLen: number = 6) => {
+  return `${address.substring(0, prefixLen)}...${address.substring(
+    address.length - 4
+  )}`
 }
 
 export type EtherscanObject = {
@@ -126,5 +128,17 @@ export const toEtherscanUrl = (hash: string): EtherscanObject => {
     url: `https://${etherscanDomain}/tx/${hash}`,
     hash,
     maskedHash,
+  }
+}
+
+export const toEtherscanAddressUrl = (address: string) => {
+  const etherscanDomain =
+    env.supportedChainId === 4 ? "rinkeby.etherscan.io" : "etherscan.io"
+  const maskedAddress = maskAddress(address)
+
+  return {
+    url: `https://${etherscanDomain}/address/${address}`,
+    address,
+    maskedAddress,
   }
 }

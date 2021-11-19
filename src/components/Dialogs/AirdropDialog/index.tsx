@@ -5,8 +5,8 @@ import { Dialog } from "~/components"
 import { Lang } from "~/enums"
 import { useDialogSwitch, useStep } from "~/hooks"
 
+import ConnectWalletContent from "../ConnectWalletContent"
 import CompletedContent from "./CompletedContent"
-import ConnectWalletContent from "./ConnectWalletContent"
 import IntroContent from "./IntroContent"
 
 type AirdriopDialogProps = {

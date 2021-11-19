@@ -51,8 +51,6 @@ const SIGN_OUT_VIEWER = `
 
 export const ViewerContext = createContext({} as Context)
 
-export const ViewerConsumer = ViewerContext.Consumer
-
 export const ViewerProvider = ({ children }: { children: React.ReactNode }) => {
   const [polling, setPolling] = useState(false)
   const [logout] = useMutation(SIGN_OUT_VIEWER)

@@ -49,3 +49,11 @@
     }
   }
 }
+
+.logbookBtn {
+  display: none;
+
+  @media (--sm-up) {
+    display: initial;
+  }
+}

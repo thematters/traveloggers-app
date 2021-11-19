@@ -194,13 +194,12 @@ const Timeline = () => {
             }}
             button={
               <Button
-                disabled={true}
-                color="black"
+                color="primary"
                 width={isMediumUp ? "15rem" : "100%"}
                 spacingY="0.75rem"
                 onClick={() => analytics("click_button", { type: "logbooks" })}
               >
-                {texts.event4_button_upcoming}
+                {texts.event4_button_open}
               </Button>
             }
           />

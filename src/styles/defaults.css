@@ -36,6 +36,10 @@ button {
   }
 }
 
+[aria-role="button"] {
+  cursor: pointer;
+}
+
 a {
   &:link,
   &:visited {

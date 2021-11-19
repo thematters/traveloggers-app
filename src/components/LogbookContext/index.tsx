@@ -1,7 +1,8 @@
 import { useWeb3React } from "@web3-react/core"
 import { ethers } from "ethers"
 import { useLocalization } from "gatsby-theme-i18n"
-import { useReducer, useRef } from "react"
+import React from "react"
+import { createContext, useReducer, useRef } from "react"
 
 import env from "@/.env.json"
 import { Lang, WalletErrorType } from "~/enums"
@@ -13,7 +14,7 @@ import {
   toEtherscanUrl,
 } from "~/utils"
 
-type Log = {
+export type Log = {
   sender: string // address
   message: string
   createdAt: Date
@@ -21,8 +22,9 @@ type Log = {
 }
 
 // local state for append a new log
-type LogDraft = {
+export type LogDraft = {
   sending: boolean
+  sent?: boolean
   error?: string
 
   message: string
@@ -34,7 +36,7 @@ type LogDraft = {
   gasCost?: ethers.BigNumber
 }
 
-type Logbook = {
+export type Logbook = {
   loading: boolean
   error?: string
 
@@ -49,7 +51,7 @@ type Logbook = {
   draft?: LogDraft
 }
 
-type OwnNFTs = {
+export type OwnNFTs = {
   loading: boolean
   error?: string
   tokenIds: string[]
@@ -74,7 +76,24 @@ type ReducerAction =
       payload: { tokenId: string; draft: LogDraft }
     }
 
-export const useLogbook = () => {
+type Context = {
+  getLogbook: (tokenId: string) => Promise<void>
+  logbooks: { [tokenId: string]: Logbook | undefined }
+
+  getOwnNFTs: () => Promise<void>
+  ownNFTs: OwnNFTs
+
+  updateDraft: (tokenId: string, message: string) => Promise<void>
+  appendLog: (tokenId: string, message: string) => Promise<void>
+}
+
+export const LogbookContext = createContext({} as Context)
+
+export const LogbookProvider = ({
+  children,
+}: {
+  children: React.ReactNode
+}) => {
   const { locale } = useLocalization()
   const lang = locale as Lang
 
@@ -115,8 +134,8 @@ export const useLogbook = () => {
           logbooks: {
             ...state.logbooks,
             [action.payload.tokenId]: {
-              ...state.logbooks[action.payload.tokenId],
-              ...action.payload.logbook,
+              ...(state.logbooks[action.payload.tokenId] as Logbook),
+              ...(action.payload.logbook as Logbook),
             },
           },
         }
@@ -128,7 +147,7 @@ export const useLogbook = () => {
           logbooks: {
             ...state.logbooks,
             [action.payload.tokenId]: {
-              ...state.logbooks[action.payload.tokenId],
+              ...(state.logbooks[action.payload.tokenId] as Logbook),
               draft: {
                 ...state.logbooks[action.payload.tokenId]?.draft,
                 ...action.payload.draft,
@@ -199,7 +218,7 @@ export const useLogbook = () => {
             error: "",
 
             tokenId,
-            tokenOwner: token.owner.address,
+            tokenOwner: ethers.utils.getAddress(token.owner.address),
             tokenImageURL: token.image_preview_url,
             tokenOpenSeaURL: token.permalink,
 
@@ -233,14 +252,6 @@ export const useLogbook = () => {
       return
     }
 
-    // mark as loading
-    dispatch({
-      type: "update",
-      payload: {
-        ownNFTs: { ...state.ownNFTs, loading: true, error: "" },
-      },
-    })
-
     try {
       const contract = new ethers.Contract(
         env.contractAddress,
@@ -248,6 +259,20 @@ export const useLogbook = () => {
         // ethers.getDefaultProvider(env.supportedChainId, { infura: env.infuraId })
         new ethers.providers.InfuraProvider(env.supportedChainId, env.infuraId)
       )
+
+      const numTokens = await contract.balanceOf(account)
+
+      if (!(numTokens.toNumber() > 0)) {
+        return
+      }
+
+      // mark as loading
+      dispatch({
+        type: "update",
+        payload: {
+          ownNFTs: { ...state.ownNFTs, loading: true, error: "" },
+        },
+      })
 
       // retrieve token ids from OpenSea
       const tokens = await retrieveOwnerNFTs({ owner: account })
@@ -371,14 +396,19 @@ export const useLogbook = () => {
       return
     }
 
+    dispatch({
+      type: "updateDraft",
+      payload: { tokenId, draft: { message, sending: true, error: "" } },
+    })
+
     let logbook = stateRef.current.logbooks[tokenId]
-    if (!logbook) {
+    if (!logbook || !logbook.tokenOwner) {
       await getOwnNFTs()
       logbook = stateRef.current.logbooks[tokenId]
     }
 
     // if logbook is not exists or account is not the owner
-    if (logbook.tokenOwner !== account) {
+    if (logbook?.tokenOwner !== account) {
       const errorMsg = getWalletErrorMessage({
         type: WalletErrorType.logbookNotOwner,
         lang,
@@ -409,24 +439,12 @@ export const useLogbook = () => {
       return
     }
 
-    if (logbook.draft?.sending) {
-      return
-    }
-
     // if gasLimit is not exist
     let gasLimit = logbook?.draft?.gasLimit
     if (!gasLimit) {
       await updateDraft(tokenId, message)
-      gasLimit = stateRef.current.logbooks[tokenId].draft?.gasLimit
+      gasLimit = stateRef.current.logbooks[tokenId]?.draft?.gasLimit
     }
-
-    dispatch({
-      type: "updateDraft",
-      payload: {
-        tokenId,
-        draft: { message, sending: true, error: "" },
-      },
-    })
 
     try {
       const contract = new ethers.Contract(
@@ -443,7 +461,11 @@ export const useLogbook = () => {
         type: "updateDraft",
         payload: {
           tokenId,
-          draft: { sending: false, error: "", message, txHash: tx.hash },
+          draft: {
+            sending: true,
+            message,
+            txHash: tx.hash,
+          },
         },
       })
 
@@ -451,6 +473,19 @@ export const useLogbook = () => {
 
       // refetch logbook
       await getLogbook(tokenId)
+
+      dispatch({
+        type: "updateDraft",
+        payload: {
+          tokenId,
+          draft: {
+            sending: false,
+            sent: true,
+            error: "",
+            message,
+          },
+        },
+      })
     } catch (err) {
       console.error(err)
       const errorMsg = getWalletErrorMessage({ error: err as Error, lang })
@@ -465,14 +500,20 @@ export const useLogbook = () => {
     }
   }
 
-  return {
-    getLogbook,
-    logbooks: state.logbooks,
+  return (
+    <LogbookContext.Provider
+      value={{
+        getLogbook,
+        logbooks: state.logbooks,
 
-    getOwnNFTs,
-    ownNFTs: state.ownNFTs,
+        getOwnNFTs,
+        ownNFTs: state.ownNFTs,
 
-    updateDraft,
-    appendLog,
-  }
+        updateDraft,
+        appendLog,
+      }}
+    >
+      {children}
+    </LogbookContext.Provider>
+  )
 }
