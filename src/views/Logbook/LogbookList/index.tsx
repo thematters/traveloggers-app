@@ -1,7 +1,10 @@
+import { useLocalization } from "gatsby-theme-i18n"
 import React, { useContext, useEffect, useState } from "react"
 
-import { Logbook, LogbookLayout, Spinner } from "~/components"
+import env from "@/.env.json"
+import { Button, Logbook, LogbookLayout, Spinner } from "~/components"
 import { LogbookContext } from "~/components"
+import { Lang } from "~/enums"
 import { useAccount } from "~/hooks"
 
 import HeaderBar from "./HeaderBar"
@@ -11,6 +14,7 @@ import SearchBar from "./Searchbar"
 import * as styles from "./styles.module.css"
 
 const LogbookList = () => {
+  const { locale } = useLocalization()
   const { account } = useAccount()
   const { getOwnNFTs, logbooks, ownNFTs, getLogbook } =
     useContext(LogbookContext)
@@ -61,6 +65,35 @@ const LogbookList = () => {
         headerBar={<SearchBar onSearch={onSearch} />}
       >
         <Spinner />
+      </LogbookLayout>
+    )
+  }
+
+  if (account && !searchTokenId && ownLogbooks && ownLogbooks.length <= 0) {
+    return (
+      <LogbookLayout
+        page="list"
+        header={<HeaderBar />}
+        headerBar={<SearchBar onSearch={onSearch} />}
+      >
+        <section className={styles.card}>
+          <p>
+            {locale === Lang.en
+              ? "You don't have any Traveloggers yet. Let’s collect one to start writing."
+              : "尚未擁有任何 Traveloggers，收藏一個並開始創作。"}
+          </p>
+
+          <Button
+            color="primary"
+            width="100%"
+            height="3rem"
+            spacingY=".75rem"
+            htmlHref={env.socialUrls.en.opensea}
+            htmlTarget="_blank"
+          >
+            {locale === Lang.en ? "View on OpenSea" : "去 OpenSea 看看"}
+          </Button>
+        </section>
       </LogbookLayout>
     )
   }
