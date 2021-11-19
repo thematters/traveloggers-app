@@ -11,11 +11,12 @@
     height: 200px;
   }
 
-  @media (--md-up) {
+  /* ... and (--md-h-up) */
+  @media (--md-up) and (min-height: 800px) {
     bottom: 120px;
   }
 
-  @media (min-height: 1080px) {
+  @media (--md-h-up) {
     & img {
       width: 288px;
       height: 288px;

@@ -9,7 +9,8 @@
   margin: 0 auto;
   text-align: center;
 
-  @media (--md-up) {
+  /* ... and (--md-h-up) */
+  @media (--md-up) and (min-height: 800px) {
     bottom: 160px;
     padding: 0;
   }
