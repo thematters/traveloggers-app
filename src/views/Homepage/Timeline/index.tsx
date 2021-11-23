@@ -182,7 +182,7 @@ const Timeline = () => {
         {/* logbook */}
         <section className={styles.time}>
           <section className={styles.line}>
-            <Time state="upcoming" />
+            <Time state="open" />
           </section>
           <Infobox
             active={false}
@@ -197,6 +197,7 @@ const Timeline = () => {
                 color="primary"
                 width={isMediumUp ? "15rem" : "100%"}
                 spacingY="0.75rem"
+                to="/logbooks"
                 onClick={() => analytics("click_button", { type: "logbooks" })}
               >
                 {texts.event4_button_open}
