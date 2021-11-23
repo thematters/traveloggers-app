@@ -30,6 +30,15 @@ const link7Zh =
   "8%8A%E7%B7%9A-%E5%A6%82%E4%BD%95%E8%B3%BC%E8%B2%B7%E5%91%A2-bafyreibcpfyjxcl" +
   "tz3ffelwkunuzocctdgczvwptlvdnudr3ijvmmrarou"
 
+const link9Zh =
+  "https://matters.news/@Matterslab/%E8%88%AA%E8%A1%8C%E6%97%A5%E8%AA%8C-logbook-%E4%BD%BF%E7%94%A8%E6%8C%87" +
+  "%E5%8D%97-%E5%A6%82%E4%BD%95%E5%9C%A8%E4%BD%A0%E7%9A%84-traveloggers-%E5%AF%AB%E4%B8%8B%E6%96%87%E5%AD%97%E8" +
+  "%A8%8A%E6%81%AF-bafyreig7dh6oa7uqki57kmjyd2miwjj4jcer6jo6txsmeqf7pav54yvpwu"
+
+const link9En =
+  "https://matters.news/@Matterslab/guideline-for-traveloggers-how-to-use-your-logbook-bafyreigbzmnmjoqsgtiok" +
+  "nmtcu4nosmk3uwdn7sm4j2zcxcvaypabqvg2m"
+
 const Questions = () => {
   const { locale } = useLocalization()
   const texts = TEXTS[locale]
@@ -155,6 +164,15 @@ const Questions = () => {
               <p>{texts.answer9_1}</p>
               <p>{texts.answer9_2}</p>
               <p>{texts.answer9_3}</p>
+              <p>
+                <a
+                  href={locale === Lang.en ? link9En : link9Zh}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {texts.answer9_4}
+                </a>
+              </p>
             </Section.Content>
           }
         />
