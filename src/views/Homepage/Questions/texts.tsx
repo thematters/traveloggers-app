@@ -44,6 +44,7 @@ const TEXTS: Record<string, any> = {
       "你可以看到當時的 Gas Fee 以及與字數相對應的費用估算。",
     answer9_3:
       "Traveloggers 的開發團隊會提供部分 Gas Fee 補助，支持前 100 名 Logbook 的使用者。同時，繼續尋找費用更低的合適空間，開拓第二代 Logbook。",
+    answer9_4: "點擊查看如何使用航行日誌",
     question10: " 什麼是 Gas Fee？為什麼有 Gas Fee？",
     answer10_1:
       "Gas Fee 指的是在區塊鏈上發起一筆交易時，需要負擔的手續費。Gas Fee 是支付給礦工的手續費，當你在以太坊區塊鏈上進行轉賬時，" +
@@ -104,6 +105,7 @@ const TEXTS: Record<string, any> = {
     answer9_3:
       "The Traveloggers team will provide part of gas fee subsidy to support logbook writing. Meanwhile, we will continue " +
       "to search for better solutions with lower gas fees and to develop Logbook 2.0.",
+    answer9_4: "Click here for logbook instructions",
     question10: "What are gas fees? What are gas fees necessary?",
     answer10_1:
       "Gas fees are the handling fees required when a transaction is initiated on the blockchain to compensate miners. " +
