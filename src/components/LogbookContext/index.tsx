@@ -354,9 +354,6 @@ export const LogbookProvider = ({
         library.getGasPrice(),
       ])
 
-      // add buffer
-      const maxGasUsed = gasUsed.mul(3).div(2) // +33%
-
       dispatch({
         type: "updateDraft",
         payload: {
@@ -368,8 +365,8 @@ export const LogbookProvider = ({
             message,
 
             gasPrice,
-            gasLimit: maxGasUsed,
-            gasCost: gasPrice.mul(maxGasUsed),
+            gasLimit: gasUsed,
+            gasCost: gasPrice.mul(gasUsed),
           },
         },
       })
