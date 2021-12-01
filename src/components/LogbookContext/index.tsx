@@ -9,7 +9,9 @@ import { Lang, WalletErrorType } from "~/enums"
 import {
   EtherscanObject,
   getWalletErrorMessage,
+  OpenSeaAsset,
   retrieveNFT,
+  retrieveNFTs,
   retrieveOwnerNFTs,
   toEtherscanUrl,
 } from "~/utils"
@@ -77,10 +79,11 @@ type ReducerAction =
     }
 
 type Context = {
+  getRecentLogbooks: (limit?: number) => Promise<void>
   getLogbook: (tokenId: string) => Promise<void>
   logbooks: { [tokenId: string]: Logbook | undefined }
 
-  getOwnNFTs: () => Promise<void>
+  getOwnNFTs: (owner?: string | null | undefined) => Promise<void>
   ownNFTs: OwnNFTs
 
   updateDraft: (tokenId: string, message: string) => Promise<void>
@@ -246,9 +249,117 @@ export const LogbookProvider = ({
     }
   }
 
-  // retrieve all logbooks own by current account
-  const getOwnNFTs = async () => {
-    if (!account) {
+  // get recent logbooks at most limit? number
+  const getRecentLogbooks = async (limit: number = 10) => {
+    // console.log("getRecentLogbooks:", { limit })
+
+    try {
+      const provider = new ethers.providers.InfuraProvider(
+        env.supportedChainId,
+        env.infuraId
+      )
+      const contract = new ethers.Contract(
+        env.contractAddress,
+        env.contractABI,
+        // ethers.getDefaultProvider(env.supportedChainId, { infura: env.infuraId })
+        provider
+      )
+
+      // const events = await contract.queryFilter("LogbookNewLog")
+      const events = await contract.queryFilter(contract.filters.LogbookNewLog())
+
+      /* provider.getLogs({
+        address: env.contractAddress, // '0x8515ba8ef2cf2f2ba44b26ff20337d7a2bc5e6d8',
+
+        // signature of 'event LogbookNewLog(uint256,uint256,address)'
+        topics: contract.interface.encodeFilterTopics("LogbookNewLog", []), [
+          // "0x041be98575cc32bd3a49c705e9d0b525e3e43e2cde3e3fc3900688462c128e2e",
+          // ethers.utils.id('LogbookNewLog(uint256,uint256,address)'),
+          contract.interface.getEventTopic('LogbookNewLog'),
+        ],
+        // or another contract.filters.LogbookNewLog() could be used here, but returning the object without fromBlock/toBlock
+
+        fromBlock: -100000, // TODO: the beginning block number for Rinkeby and Mainnet
+        toBlock: "latest",
+      }) */
+
+      events.reverse() // from latest to earliest
+
+      console.log("get AppendLog events:", events)
+
+      // a set of tokenId in string
+      const tokenIds: Set<string> = new Set()
+      for (const [idx, event] of events.entries()) {
+        const logEntry = contract.interface.parseLog(event)
+        const {
+          args: { tokenId },
+        } = logEntry
+        console.log(
+          `logEntry ${idx}:`,
+          `${logEntry.eventFragment.name}`,
+          logEntry.args,
+          tokenId.toString()
+        )
+
+        // the events carry only the tokenId, index and senders, not the logbook content
+        if (tokenIds.size < limit)
+          tokenIds.add(logEntry.args.tokenId.toString())
+      }
+
+      const assets = new Map(
+        (await retrieveNFTs(tokenIds)).map(asset => [asset.token_id, asset])
+      )
+      // console.log(`reading tokenIds: ${tokenIds}:`, assets)
+
+      const logbooksMap: { [tokenId: string]: Logbook } = {}
+
+      // retrieve logbooks from contract
+      const logbooks = new Map(
+        await Promise.all(
+          Array.from(tokenIds).map(async token_id =>
+            Promise.all([token_id, contract.readLogbook(token_id)])
+          )
+        )
+      )
+      console.log(`reading logbooks for ${tokenIds}`, logbooks)
+
+      logbooks.forEach((logbook, tokenId) => {
+        // const tokenId = logbook.tokenId
+        const asset = assets.get(tokenId) as OpenSeaAsset
+        // console.log(`tokenId: ${tokenId}`, logbook, asset)
+
+        logbooksMap[tokenId] = {
+          loading: false,
+          // error: "",
+
+          tokenId,
+          tokenOwner: asset.owner.address,
+          tokenImageURL: asset.image_preview_url,
+          tokenOpenSeaURL: asset.permalink,
+
+          isLocked: logbook.isLocked,
+          logs: normalizedLogs(logbook.logs),
+        }
+      })
+
+      dispatch({
+        type: "update",
+        payload: {
+          logbooks: {
+            ...state.logbooks,
+            ...logbooksMap,
+            // loading: false,
+          },
+        },
+      })
+    } catch (err) {
+      console.error("getRecentLogbooks ERROR:", err)
+    }
+  }
+
+  // retrieve all logbooks own by the given owner, default to current account
+  const getOwnNFTs = async (owner: string | null | undefined = account) => {
+    if (!owner) {
       return
     }
 
@@ -260,7 +371,7 @@ export const LogbookProvider = ({
         new ethers.providers.InfuraProvider(env.supportedChainId, env.infuraId)
       )
 
-      const numTokens = await contract.balanceOf(account)
+      const numTokens = await contract.balanceOf(owner)
 
       if (!(numTokens.toNumber() > 0)) {
         return
@@ -275,7 +386,7 @@ export const LogbookProvider = ({
       })
 
       // retrieve token ids from OpenSea
-      const tokens = await retrieveOwnerNFTs({ owner: account })
+      const tokens = await retrieveOwnerNFTs({ owner })
 
       // retrieve logbooks from contract
       const logbooks = await Promise.all(
@@ -291,7 +402,7 @@ export const LogbookProvider = ({
           error: "",
 
           tokenId,
-          tokenOwner: account,
+          tokenOwner: owner,
           tokenImageURL: tokens[index].image_preview_url,
           tokenOpenSeaURL: tokens[index].permalink,
 
@@ -503,6 +614,7 @@ export const LogbookProvider = ({
   return (
     <LogbookContext.Provider
       value={{
+        getRecentLogbooks,
         getLogbook,
         logbooks: state.logbooks,
 
