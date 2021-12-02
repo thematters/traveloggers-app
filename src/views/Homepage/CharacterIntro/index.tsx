@@ -1,4 +1,3 @@
-import classNames from "classnames"
 import { useLocalization } from "gatsby-theme-i18n"
 import React, { useContext } from "react"
 
@@ -8,7 +7,9 @@ import { Lang } from "~/enums"
 import { useResponsive } from "~/hooks"
 import { analytics } from "~/utils"
 
-import * as styles from "./styles.module.css"
+import * as styles from "./index.module.css"
+import Selector from "./selector"
+import TEXTS from "./texts"
 
 const CharacterIntro = () => {
   const { locale } = useLocalization()
@@ -18,15 +19,14 @@ const CharacterIntro = () => {
   const isOpenSaleActive = isOpenSaleStarted && !isOpenSaleEnded
 
   const { opensea } = env.socialUrls[locale as Lang]
+  const texts = TEXTS[locale]
 
   return (
     <section>
       <Container>
         <section className={styles.intro}>
           <section className={styles.title}>
-            <Section.Title>
-              {locale === Lang.en ? "Introducing Characters" : "人物介紹"}
-            </Section.Title>
+            <Section.Title>{texts.title}</Section.Title>
           </section>
 
           <section className={styles.button}>
@@ -39,70 +39,66 @@ const CharacterIntro = () => {
               htmlTarget="_blank"
               onClick={() => analytics("click_button", { type: "opensea" })}
             >
-              {locale === Lang.en ? "View all on OpenSea" : "至 OpenSea 查看"}
+              {texts.toOpensea}
             </Button>
           </section>
 
           <section className={styles.description}>
             <Section.Content>
-              <p>
-                {locale === Lang.en
-                  ? `Traveloggers have six basic characters, namely, Gena, Lesya, Sasha, Valya, Yury, and Zhenya. 1500 avatars were generated based on the combination of different accessories: value position, philosophical standpoint, way of thinking, creative habits, personality, etc. Each Traveloggers is unique with its own creator attributes.`
-                  : `Traveloggers 有 6 個基礎人物，分別是  Gena、Lesya、Sasha、Valya、Yury、Zhenya。我們根據創作者的價值取向、哲學主張、思考方式、創作個性等維度，提取關鍵元素組合，創造了 1500 個 Traveloggers 的化身，每一個都獨一無二。`}
-              </p>
+              <p>{texts.intro}</p>
             </Section.Content>
           </section>
         </section>
 
-        <section className={styles.images}>
-          <section className={styles.avatar}>
-            <div>
-              <img src="/images/char1.gif" />
-              <p>
-                {locale === Lang.en
-                  ? "1 Character + 2 Accessories: Birth of Traveloggers"
-                  : "一個人物＋兩個配件：Traveloggers 的誕生"}
-              </p>
-            </div>
-          </section>
-          <section className={classNames(styles.avatar, styles.empty)}>
-            <div></div>
-          </section>
+        <section className={styles.base}>
           <section className={styles.avatar}>
             <div>
               <img src="/images/char2.png" />
-              <p>{locale === Lang.en ? "Sasha" : "Sasha 薩沙"}</p>
+              <p>{texts.sasha}</p>
             </div>
           </section>
+
           <section className={styles.avatar}>
             <div>
               <img src="/images/char3.png" />
-              <p>{locale === Lang.en ? "Valya" : "Valya 瓦拉"}</p>
+              <p>{texts.valya}</p>
             </div>
           </section>
           <section className={styles.avatar}>
             <div>
               <img src="/images/char4.png" />
-              <p>{locale === Lang.en ? "Zhenya" : "Zhenya 振亞"}</p>
+              <p>{texts.zhenya}</p>
             </div>
           </section>
           <section className={styles.avatar}>
             <div>
               <img src="/images/char5.png" />
-              <p>{locale === Lang.en ? "Gena" : "Gena 根那"}</p>
+              <p>{texts.gena}</p>
             </div>
           </section>
           <section className={styles.avatar}>
             <div>
               <img src="/images/char6.png" />
-              <p>{locale === Lang.en ? "Lesya" : "Lesya 列峽"}</p>
+              <p>{texts.lesya}</p>
             </div>
           </section>
           <section className={styles.avatar}>
             <div>
               <img src="/images/char7.png" />
-              <p>{locale === Lang.en ? "Yury" : "Yury 尤里"}</p>
+              <p>{texts.yury}</p>
             </div>
+          </section>
+        </section>
+
+        <section className={styles.gallery}>
+          <section className={styles.item}>
+            <div>
+              <img src="/images/char1.gif" />
+              <p>{texts.example}</p>
+            </div>
+          </section>
+          <section className={styles.item}>
+            <Selector />
           </section>
         </section>
       </Container>

@@ -50,3 +50,7 @@ export enum WalletErrorType {
 }
 
 export const PRE_ORDER_MIN_QUANTITY = 1
+
+export const Z_INDEX = {
+  DROP_DOWN: 9,
+}
