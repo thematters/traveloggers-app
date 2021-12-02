@@ -1,47 +1,43 @@
 import { useLocalization } from "gatsby-theme-i18n"
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect } from "react"
 
 import env from "@/.env.json"
-import { Button, Logbook, LogbookLayout, Spinner } from "~/components"
-import { LogbookContext } from "~/components"
+import {
+  Button,
+  Logbook,
+  LogbookContext,
+  LogbookLayout,
+  Spinner,
+} from "~/components"
 import { Lang } from "~/enums"
 import { useAccount } from "~/hooks"
 
 import HeaderBar from "./HeaderBar"
 import Intro from "./Intro"
 import Logbooks from "./Logbooks"
-import SearchBar from "./Searchbar"
 import * as styles from "./styles.module.css"
 
 const LogbookList = () => {
   const { locale } = useLocalization()
   const { account } = useAccount()
-  const { getOwnNFTs, logbooks, ownNFTs, getLogbook } =
-    useContext(LogbookContext)
-
-  const [searchTokenId, setSearchTokenId] = useState("")
+  const { getOwnNFTs, logbooks, ownNFTs } = useContext(LogbookContext)
 
   useEffect(() => {
     getOwnNFTs()
   }, [account])
 
-  const onSearch = (tokenId: string) => {
-    setSearchTokenId(tokenId)
-    if (tokenId) getLogbook(tokenId)
-  }
-
-  const searchLogbook = logbooks[searchTokenId]
+  // const searchLogbook = logbooks[searchTokenId]
   const ownLogbooks = ownNFTs.tokenIds
     // .filter(tokenId => tokenId in logbooks)
     .map(tokenId => logbooks[tokenId])
     .filter(l => !!l)
 
-  if (!account && !searchTokenId) {
+  if (!account) {
     return (
       <LogbookLayout
         page="listWelcome"
         header={<HeaderBar />}
-        headerBar={<SearchBar onSearch={onSearch} />}
+        // headerBar={<SearchBar onSearch={onSearch} />}
         footer={
           <footer className={styles.welcome}>
             <img src="/images/logbook/welcome.png" />
@@ -53,28 +49,24 @@ const LogbookList = () => {
     )
   }
 
-  if (searchLogbook?.error) {
-    console.error("searching error:", searchLogbook?.error)
-  }
-
-  if (ownNFTs.loading || searchLogbook?.loading || searchLogbook?.error) {
+  if (ownNFTs.loading) {
     return (
       <LogbookLayout
         page="list"
         header={<HeaderBar />}
-        headerBar={<SearchBar onSearch={onSearch} />}
+        // headerBar={<SearchBar onSearch={onSearch} />}
       >
         <Spinner />
       </LogbookLayout>
     )
   }
 
-  if (account && !searchTokenId && ownLogbooks && ownLogbooks.length <= 0) {
+  if (account && ownLogbooks && ownLogbooks.length <= 0) {
     return (
       <LogbookLayout
         page="list"
         header={<HeaderBar />}
-        headerBar={<SearchBar onSearch={onSearch} />}
+        // headerBar={<SearchBar onSearch={onSearch} />}
       >
         <section className={styles.card}>
           <p>
@@ -102,13 +94,12 @@ const LogbookList = () => {
     <LogbookLayout
       page="list"
       header={<HeaderBar />}
-      headerBar={<SearchBar onSearch={onSearch} />}
+      // headerBar={<SearchBar onSearch={onSearch} />}
     >
       <Logbooks
         logbooks={
-          searchTokenId && searchLogbook
-            ? [searchLogbook]
-            : (ownLogbooks as Logbook[])
+          // searchTokenId && searchLogbook ? [searchLogbook] :
+          ownLogbooks as Logbook[]
         }
       />
     </LogbookLayout>
