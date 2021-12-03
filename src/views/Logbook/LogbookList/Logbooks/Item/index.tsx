@@ -4,7 +4,7 @@ import React from "react"
 // import env from "@/.env.json"
 import { IconArrowRight, IconLogbook, Logbook } from "~/components"
 import { Lang } from "~/enums"
-import { useAccount } from "~/hooks"
+// import { useAccount } from "~/hooks"
 import { maskAddress } from "~/utils"
 
 import * as styles from "./styles.module.css"
@@ -14,9 +14,14 @@ import * as styles from "./styles.module.css"
     ? "https://rinkeby.etherscan.io"
     : "https://etherscan.io" */
 
-const Item = ({ logbook }: { logbook: Logbook }) => {
+interface Props {
+  logbook: Logbook
+  skipShowOwnerIfOwnedBy: string
+}
+
+const Item: React.FC<Props> = ({ logbook, skipShowOwnerIfOwnedBy }) => {
   const { locale } = useLocalization()
-  const { account } = useAccount()
+  // const { account } = useAccount()
 
   return (
     <section className={styles.item}>
@@ -50,7 +55,7 @@ const Item = ({ logbook }: { logbook: Logbook }) => {
         </section>
       </Link>
 
-      {logbook.tokenOwner !== account && (
+      {logbook.tokenOwner !== skipShowOwnerIfOwnedBy && (
         <footer className={styles.owner}>
           <Link
             to={`/owner/${logbook.tokenOwner}`}

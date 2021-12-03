@@ -76,9 +76,10 @@ const LogbooksMuseum = () => {
             logbooks={
               searchTokenId && searchLogbook ? [searchLogbook] : recentLogbooks
             }
+            skipShowOwnerIfOwnedBy={"invalid-owner"} // just show all owners
           />
 
-          <pre>{JSON.stringify({ searchLogbook })}</pre>
+          {/* <pre>{JSON.stringify({ searchLogbook })}</pre> */}
         </>
       )}
     </LogbookLayout>
