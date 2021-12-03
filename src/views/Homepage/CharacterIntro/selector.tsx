@@ -102,7 +102,7 @@ const Selector = () => {
   const texts = TEXTS[locale]
 
   return (
-    <section>
+    <>
       <DropdownDialog
         dropdown={{
           content: <Options click={setValue} inDropdown />,
@@ -119,54 +119,52 @@ const Selector = () => {
       </DropdownDialog>
 
       <section className={styles.category}>
-        <section className={styles.scroll}>
-          {value === "value" && (
-            <>
-              {range(1, 13).map(item => (
-                <Character
-                  key={item}
-                  src={`/images/characters/char1-${item}.png`}
-                  name={texts[`char1_${item}_desc`]}
-                />
-              ))}
-            </>
-          )}
-          {value === "perspective" && (
-            <>
-              {range(1, 12).map(item => (
-                <Character
-                  key={item}
-                  src={`/images/characters/char2-${item}.png`}
-                  name={texts[`char2_${item}_desc`]}
-                />
-              ))}
-            </>
-          )}
-          {value === "thinking" && (
-            <>
-              {range(1, 12).map(item => (
-                <Character
-                  key={item}
-                  src={`/images/characters/char3-${item}.png`}
-                  name={texts[`char3_${item}_desc`]}
-                />
-              ))}
-            </>
-          )}
-          {value === "personality" && (
-            <>
-              {range(1, 9).map(item => (
-                <Character
-                  key={item}
-                  src={`/images/characters/char4-${item}.png`}
-                  name={texts[`char4_${item}_desc`]}
-                />
-              ))}
-            </>
-          )}
-        </section>
+        {value === "value" && (
+          <>
+            {range(1, 13).map(item => (
+              <Character
+                key={item}
+                src={`/images/characters/char1-${item}.png`}
+                name={texts[`char1_${item}_desc`]}
+              />
+            ))}
+          </>
+        )}
+        {value === "perspective" && (
+          <>
+            {range(1, 12).map(item => (
+              <Character
+                key={item}
+                src={`/images/characters/char2-${item}.png`}
+                name={texts[`char2_${item}_desc`]}
+              />
+            ))}
+          </>
+        )}
+        {value === "thinking" && (
+          <>
+            {range(1, 12).map(item => (
+              <Character
+                key={item}
+                src={`/images/characters/char3-${item}.png`}
+                name={texts[`char3_${item}_desc`]}
+              />
+            ))}
+          </>
+        )}
+        {value === "personality" && (
+          <>
+            {range(1, 9).map(item => (
+              <Character
+                key={item}
+                src={`/images/characters/char4-${item}.png`}
+                name={texts[`char4_${item}_desc`]}
+              />
+            ))}
+          </>
+        )}
       </section>
-    </section>
+    </>
   )
 }
 
