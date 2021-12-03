@@ -59,9 +59,16 @@ export type OwnNFTs = {
   tokenIds: string[]
 }
 
+export type RecentLogbooks = {
+  loading: boolean
+  error?: string
+  tokenIds: string[]
+}
+
 type ReducerState = {
   logbooks: { [tokenId: string]: Logbook }
   ownNFTs: OwnNFTs
+  recentLogbooks: RecentLogbooks
 }
 
 type ReducerAction =
@@ -82,6 +89,7 @@ type Context = {
   getRecentLogbooks: (limit?: number) => Promise<void>
   getLogbook: (tokenId: string) => Promise<void>
   logbooks: { [tokenId: string]: Logbook | undefined }
+  recentLogbooks: RecentLogbooks
 
   getOwnNFTs: (owner?: string | null | undefined) => Promise<void>
   ownNFTs: OwnNFTs
@@ -108,6 +116,7 @@ export const LogbookProvider = ({
   const initialState: ReducerState = {
     logbooks: {},
     ownNFTs: { loading: false, tokenIds: [] },
+    recentLogbooks: { loading: false, tokenIds: [] },
   }
   const stateRef = useRef(initialState)
 
@@ -128,6 +137,10 @@ export const LogbookProvider = ({
           ownNFTs: {
             ...state.ownNFTs,
             ...action.payload.ownNFTs,
+          },
+          recentLogbooks: {
+            ...state.recentLogbooks,
+            ...action.payload.recentLogbooks,
           },
         }
         break
@@ -265,8 +278,18 @@ export const LogbookProvider = ({
         provider
       )
 
+      // mark as loading
+      dispatch({
+        type: "update",
+        payload: {
+          recentLogbooks: { ...state.recentLogbooks, loading: true, error: "" },
+        },
+      })
+
       // const events = await contract.queryFilter("LogbookNewLog")
-      const events = await contract.queryFilter(contract.filters.LogbookNewLog())
+      const events = await contract.queryFilter(
+        contract.filters.LogbookNewLog()
+      )
 
       /* provider.getLogs({
         address: env.contractAddress, // '0x8515ba8ef2cf2f2ba44b26ff20337d7a2bc5e6d8',
@@ -350,10 +373,28 @@ export const LogbookProvider = ({
             ...logbooksMap,
             // loading: false,
           },
+          recentLogbooks: {
+            loading: false,
+            error: "",
+            tokenIds: Array.from(tokenIds),
+          },
         },
       })
     } catch (err) {
       console.error("getRecentLogbooks ERROR:", err)
+
+      const errorMsg = getWalletErrorMessage({ error: err as Error, lang })
+
+      dispatch({
+        type: "update",
+        payload: {
+          recentLogbooks: {
+            ...state.recentLogbooks,
+            loading: false,
+            error: errorMsg,
+          },
+        },
+      })
     }
   }
 
@@ -617,6 +658,7 @@ export const LogbookProvider = ({
         getRecentLogbooks,
         getLogbook,
         logbooks: state.logbooks,
+        recentLogbooks: state.recentLogbooks,
 
         getOwnNFTs,
         ownNFTs: state.ownNFTs,

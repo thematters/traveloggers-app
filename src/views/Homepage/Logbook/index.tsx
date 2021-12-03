@@ -6,6 +6,7 @@ import { Lang } from "~/enums"
 import { useResponsive } from "~/hooks"
 import { analytics } from "~/utils"
 
+import RecentLogbooks from "./RecentLogbooks"
 import * as styles from "./styles.module.css"
 
 const Logbook = () => {
@@ -62,6 +63,8 @@ const Logbook = () => {
               </section>
             </section>
           </section>
+
+          <RecentLogbooks />
         </Container>
       </div>
     </section>

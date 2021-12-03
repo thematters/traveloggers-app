@@ -1,0 +1,30 @@
+.slides {
+  position: relative;
+  padding: var(--spacing-base);
+  margin: -3rem 0 4rem;
+  overflow: hidden;
+
+  @media (--md-up) {
+    margin: 4rem 0;
+  }
+
+  & ul {
+    display: flex;
+    margin-right: calc(var(--spacing-base) * -1);
+
+    & li {
+      position: relative;
+      flex-shrink: 0;
+      width: 279px;
+      padding: var(--spacing-base);
+      margin: 0;
+      margin-right: var(--spacing-loose);
+      border: 1px solid var(--color-grey-darker);
+      border-radius: 20px;
+
+      @media (--md-up) {
+        width: 343px;
+      }
+    }
+  }
+}
