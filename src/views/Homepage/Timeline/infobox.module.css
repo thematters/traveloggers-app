@@ -108,6 +108,11 @@
       color: var(--color-matters-green);
     }
 
+    @media (--xs-down) {
+      padding: var(--spacing-base) var(--spacing-x-tight);
+      font-size: var(--font-size-sm);
+    }
+
     @media (--md-up) {
       & .event {
         font-size: var(--font-size-md);
