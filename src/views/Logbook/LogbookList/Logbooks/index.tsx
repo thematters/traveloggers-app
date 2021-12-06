@@ -7,18 +7,14 @@ import * as styles from "./styles.module.css"
 
 interface Props {
   logbooks: Logbook[]
-  skipShowOwnerIfOwnedBy: string
 }
 
-const Logbooks: React.FC<Props> = ({ logbooks, skipShowOwnerIfOwnedBy }) => {
+const Logbooks: React.FC<Props> = ({ logbooks }) => {
   return (
     <ul className={styles.list}>
       {logbooks.map(logbook => (
         <li key={logbook.tokenId}>
-          <LogbookItem
-            logbook={logbook}
-            skipShowOwnerIfOwnedBy={skipShowOwnerIfOwnedBy}
-          />
+          <LogbookItem logbook={logbook} />
         </li>
       ))}
     </ul>
