@@ -101,7 +101,6 @@ const LogbookList = () => {
           // searchTokenId && searchLogbook ? [searchLogbook] :
           ownLogbooks as Logbook[]
         }
-        skipShowOwnerIfOwnedBy={account}
       />
     </LogbookLayout>
   )
