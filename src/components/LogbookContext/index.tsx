@@ -295,7 +295,6 @@ export const LogbookProvider = ({
       )
 
       events.reverse() // from latest to earliest
-
       console.log("get AppendLog events:", events)
 
       // a set of tokenId in string
