@@ -27,7 +27,7 @@ const HeaderBar: React.FC<HeaderBarProps> = ({ tokenId }) => {
       </section>
 
       <section className={styles.title}>
-        <h1 className={locale === Lang.en ? "" : styles.zh}>
+        <h1>
           {locale === Lang.en ? "Entries: " : "寫入紀錄次數： "}
           {logbook?.loading ? "..." : (logbook?.logs || []).length}
         </h1>
