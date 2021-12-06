@@ -271,6 +271,7 @@ export const LogbookProvider = ({
         env.supportedChainId,
         env.infuraId
       )
+
       const contract = new ethers.Contract(
         env.contractAddress,
         env.contractABI,
@@ -289,24 +290,9 @@ export const LogbookProvider = ({
       // const events = await contract.queryFilter("LogbookNewLog")
       const events = await contract.queryFilter(
         contract.filters.LogbookNewLog(),
-        -100000,
+        env.contractBlockNo,
         "latest"
       )
-
-      /* provider.getLogs({
-        address: env.contractAddress, // '0x8515ba8ef2cf2f2ba44b26ff20337d7a2bc5e6d8',
-
-        // signature of 'event LogbookNewLog(uint256,uint256,address)'
-        topics: contract.interface.encodeFilterTopics("LogbookNewLog", []), [
-          // "0x041be98575cc32bd3a49c705e9d0b525e3e43e2cde3e3fc3900688462c128e2e",
-          // ethers.utils.id('LogbookNewLog(uint256,uint256,address)'),
-          contract.interface.getEventTopic('LogbookNewLog'),
-        ],
-        // or another contract.filters.LogbookNewLog() could be used here, but returning the object without fromBlock/toBlock
-
-        fromBlock: -100000, // TODO: the beginning block number for Rinkeby and Mainnet
-        toBlock: "latest",
-      }) */
 
       events.reverse() // from latest to earliest
 
