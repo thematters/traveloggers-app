@@ -197,7 +197,7 @@ const Timeline = () => {
                 color="primary"
                 width={isMediumUp ? "15rem" : "100%"}
                 spacingY="0.75rem"
-                to="/logbooks"
+                to="/logbooks/museum"
                 onClick={() => analytics("click_button", { type: "logbooks" })}
               >
                 {texts.event4_button_open}
