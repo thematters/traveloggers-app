@@ -16,9 +16,10 @@ import * as styles from "./styles.module.css"
 
 interface Props {
   title?: string
+  rightButtonLink?: string
 }
 
-const HeaderBar: React.FC<Props> = ({ title }) => {
+const HeaderBar: React.FC<Props> = ({ title, rightButtonLink }) => {
   const { locale } = useLocalization()
   const { account, deactivate } = useAccount()
 
@@ -37,27 +38,33 @@ const HeaderBar: React.FC<Props> = ({ title }) => {
       </section>
 
       <section className={styles.right}>
-        <LinkAccountDialog defaultStep="connect-wallet">
-          {({ openDialog }) => (
-            <button
-              onClick={() => {
-                if (account) {
-                  analytics("click_button", {
-                    type: "logbooks_change_wallet",
-                  })
-                  deactivate()
-                } else {
-                  analytics("click_button", {
-                    type: "logbooks_connect_wallet",
-                  })
-                }
-                openDialog()
-              }}
-            >
-              {account ? <IconUserChecked /> : <IconUserAnon />}
-            </button>
-          )}
-        </LinkAccountDialog>
+        {rightButtonLink ? (
+          <Link to={rightButtonLink} language={locale}>
+            <IconUserAnon />
+          </Link>
+        ) : (
+          <LinkAccountDialog defaultStep="connect-wallet">
+            {({ openDialog }) => (
+              <button
+                onClick={() => {
+                  if (account) {
+                    analytics("click_button", {
+                      type: "logbooks_change_wallet",
+                    })
+                    deactivate()
+                  } else {
+                    analytics("click_button", {
+                      type: "logbooks_connect_wallet",
+                    })
+                  }
+                  openDialog()
+                }}
+              >
+                {account ? <IconUserChecked /> : <IconUserAnon />}
+              </button>
+            )}
+          </LinkAccountDialog>
+        )}
       </section>
     </header>
   )

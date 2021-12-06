@@ -41,7 +41,7 @@ const LogbooksMuseum = () => {
   return (
     <LogbookLayout
       page="list"
-      header={<HeaderBar title="Museum" />}
+      header={<HeaderBar title="Museum" rightButtonLink="/logbooks" />}
       headerBar={
         <>
           <ExplorerButton

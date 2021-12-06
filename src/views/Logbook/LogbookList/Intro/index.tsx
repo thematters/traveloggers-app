@@ -1,7 +1,7 @@
 import { useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 
-import { Button, LinkAccountDialog,Section } from "~/components"
+import { Button, LinkAccountDialog, Section } from "~/components"
 import { Lang } from "~/enums"
 import { useResponsive } from "~/hooks"
 import { analytics } from "~/utils"
