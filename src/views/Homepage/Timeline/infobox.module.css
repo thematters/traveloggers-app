@@ -69,9 +69,17 @@
       margin-top: var(--spacing-base);
     }
 
+    & a {
+      width: 100%;
+    }
+
     @media (--md-up) {
       & > * {
         margin-top: var(--spacing-loose);
+      }
+
+      & a {
+        width: auto;
       }
     }
   }
