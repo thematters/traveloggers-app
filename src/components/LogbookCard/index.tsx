@@ -25,18 +25,21 @@ export const LogbookCard = ({ logbook }: { logbook: Logbook }) => {
           </section>
 
           <section>
-            <h4 className={styles.name}>
+            <h4 className={styles.name}>Logbook #{logbook.tokenId}</h4>
+            <p className={styles.info}>
               {locale === Lang.en
                 ? `${logCount} entries`
                 : `累積 ${logCount} 篇`}
-            </h4>
-            <p className={styles.info}>
-              {locale === Lang.en
-                ? `transferred ${logCount + 1} times`
-                : `日誌傳遞過 ${logCount + 1} 次`}
             </p>
           </section>
         </section>
+      </section>
+
+      <section className={styles.owner}>
+        <p>
+          {locale === Lang.en ? `Owner: ` : `擁有者：`}
+          {logbook.tokenOwner}
+        </p>
       </section>
     </Link>
   )
