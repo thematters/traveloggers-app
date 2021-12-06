@@ -288,7 +288,9 @@ export const LogbookProvider = ({
 
       // const events = await contract.queryFilter("LogbookNewLog")
       const events = await contract.queryFilter(
-        contract.filters.LogbookNewLog()
+        contract.filters.LogbookNewLog(),
+        -100000,
+        "latest"
       )
 
       /* provider.getLogs({

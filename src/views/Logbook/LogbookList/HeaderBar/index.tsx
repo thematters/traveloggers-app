@@ -14,7 +14,11 @@ import { analytics } from "~/utils"
 
 import * as styles from "./styles.module.css"
 
-const HeaderBar: React.FC = () => {
+interface Props {
+  title?: string
+}
+
+const HeaderBar: React.FC<Props> = ({ title }) => {
   const { locale } = useLocalization()
   const { account, deactivate } = useAccount()
 
@@ -28,7 +32,7 @@ const HeaderBar: React.FC = () => {
 
       <section className={styles.title}>
         <h1 className={locale === Lang.en ? "" : styles.zh}>
-          {locale === Lang.en ? "LOGBOOK" : "航行日誌"}
+          {title || (locale === Lang.en ? "LOGBOOK" : "航行日誌")}
         </h1>
       </section>
 
