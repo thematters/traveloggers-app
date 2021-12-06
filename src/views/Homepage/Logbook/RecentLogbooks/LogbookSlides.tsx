@@ -1,7 +1,7 @@
 import useEmblaCarousel from "embla-carousel-react"
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 
-import { Logbook, LogbookCard } from "~/components"
+import { IconChevonLeftLight, Logbook, LogbookCard } from "~/components"
 
 import * as styles from "./styles.module.css"
 
@@ -15,6 +15,14 @@ const LogbookSlides = ({ logbooks }: { logbooks: Logbook[] }) => {
     loop: false,
     containScroll: "trimSnaps",
   })
+  const scrollLeft = useCallback(
+    () => emblaApi && emblaApi.scrollPrev(),
+    [emblaApi]
+  )
+  const scrollRight = useCallback(
+    () => emblaApi && emblaApi.scrollNext(),
+    [emblaApi]
+  )
 
   const onCaptureClick = (event: any) => {
     if (scrolling) {
@@ -40,18 +48,35 @@ const LogbookSlides = ({ logbooks }: { logbooks: Logbook[] }) => {
   }, [emblaApi])
 
   return (
-    <section
-      className={styles.slides}
-      ref={emblaRef}
-      onClickCapture={onCaptureClick}
-    >
-      <ul>
-        {logbooks.map(logbook => (
-          <li key={logbook.tokenId}>
-            <LogbookCard logbook={logbook} />
-          </li>
-        ))}
-      </ul>
+    <section className={styles.container}>
+      <section
+        className={styles.slides}
+        ref={emblaRef}
+        onClickCapture={onCaptureClick}
+      >
+        <ul>
+          {logbooks.map(logbook => (
+            <li key={logbook.tokenId}>
+              <LogbookCard logbook={logbook} />
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <button
+        className={styles.scrollLeftBtn}
+        type="button"
+        onClick={scrollLeft}
+      >
+        <IconChevonLeftLight color="white" size="lg" />
+      </button>
+      <button
+        className={styles.scrollRightBtn}
+        type="button"
+        onClick={scrollRight}
+      >
+        <IconChevonLeftLight color="white" size="lg" />
+      </button>
     </section>
   )
 }
