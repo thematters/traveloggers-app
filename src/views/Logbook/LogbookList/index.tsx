@@ -101,6 +101,7 @@ const LogbookList = () => {
           // searchTokenId && searchLogbook ? [searchLogbook] :
           ownLogbooks as Logbook[]
         }
+        showOwner={false}
       />
     </LogbookLayout>
   )

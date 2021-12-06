@@ -57,7 +57,7 @@ const LogbookSlides = ({ logbooks }: { logbooks: Logbook[] }) => {
         <ul>
           {logbooks.map(logbook => (
             <li key={logbook.tokenId}>
-              <LogbookCard logbook={logbook} />
+              <LogbookCard logbook={logbook} showOwner />
             </li>
           ))}
         </ul>

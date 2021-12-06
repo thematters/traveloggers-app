@@ -6,7 +6,12 @@ import { Lang } from "~/enums"
 
 import * as styles from "./styles.module.css"
 
-export const LogbookCard = ({ logbook }: { logbook: Logbook }) => {
+type LogbookCardProps = {
+  logbook: Logbook
+  showOwner: boolean
+}
+
+export const LogbookCard = ({ logbook, showOwner }: LogbookCardProps) => {
   const { locale } = useLocalization()
 
   const logCount = logbook.logs.length
@@ -35,12 +40,14 @@ export const LogbookCard = ({ logbook }: { logbook: Logbook }) => {
         </section>
       </section>
 
-      <section className={styles.owner}>
-        <p>
-          {locale === Lang.en ? `Owner: ` : `擁有者：`}
-          {logbook.tokenOwner}
-        </p>
-      </section>
+      {showOwner && (
+        <section className={styles.owner}>
+          <p>
+            {locale === Lang.en ? `Owner: ` : `擁有者：`}
+            {logbook.tokenOwner}
+          </p>
+        </section>
+      )}
     </Link>
   )
 }
