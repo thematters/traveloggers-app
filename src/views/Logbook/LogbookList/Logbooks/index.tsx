@@ -7,14 +7,15 @@ import * as styles from "./styles.module.css"
 
 interface Props {
   logbooks: Logbook[]
+  showOwner: boolean
 }
 
-const Logbooks: React.FC<Props> = ({ logbooks }) => {
+const Logbooks: React.FC<Props> = ({ logbooks, showOwner }) => {
   return (
     <ul className={styles.list}>
       {logbooks.map(logbook => (
         <li key={logbook.tokenId}>
-          <LogbookItem logbook={logbook} />
+          <LogbookItem logbook={logbook} showOwner={showOwner} />
         </li>
       ))}
     </ul>

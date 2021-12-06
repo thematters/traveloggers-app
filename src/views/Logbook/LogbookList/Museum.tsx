@@ -76,6 +76,7 @@ const LogbooksMuseum = () => {
             logbooks={
               searchTokenId && searchLogbook ? [searchLogbook] : recentLogbooks
             }
+            showOwner
           />
         </>
       )}

@@ -45,7 +45,7 @@ const LogbooksByOwner: React.FC<PageProps> = ({ owner, originalPath }) => {
       // headerBar={<SearchBar onSearch={onSearch} />}
       headerBar={<TitleBar owner={owner} />}
     >
-      <Logbooks logbooks={ownLogbooks as Logbook[]} />
+      <Logbooks logbooks={ownLogbooks as Logbook[]} showOwner={false} />
     </LogbookLayout>
   )
 }
