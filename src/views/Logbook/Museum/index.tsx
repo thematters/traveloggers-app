@@ -9,24 +9,9 @@ import Explorer from "./Explorer"
 import ExplorerButton from "./ExplorerButton"
 import * as styles from "./styles.module.css"
 
-const byMostRecent = (a: Logbook, b: Logbook) => {
-  if (
-    !(
-      Array.isArray(a?.logs) &&
-      a.logs.length > 0 &&
-      Array.isArray(b?.logs) &&
-      b.logs.length > 0
-    )
-  )
-    return NaN
-
-  const t1 = a.logs[a.logs.length - 1].createdAt,
-    t2 = b.logs[b.logs.length - 1].createdAt
-  return t2 < t1 ? -1 : t2 > t1 ? 1 : t2 >= t1 ? 0 : NaN
-}
-
 const LogbooksMuseum = () => {
-  const { logbooks, getLogbook, getRecentLogbooks } = useContext(LogbookContext)
+  const { logbooks, recentLogbooks, getLogbook, getRecentLogbooks } =
+    useContext(LogbookContext)
 
   const [searchTokenId, setSearchTokenId] = useState("")
 
@@ -40,21 +25,19 @@ const LogbooksMuseum = () => {
   }, [])
 
   const searchLogbook = logbooks[searchTokenId]
-  const recentLogbooks = (Object.values(logbooks) as Logbook[])
-    .filter(
-      logbook =>
-        logbook &&
-        !logbook.loading &&
-        !logbook.error &&
-        logbook?.logs.length > 0
-    )
-    .sort(byMostRecent)
 
   if (searchLogbook?.error) {
     console.error("searching error:", searchLogbook?.error)
   }
 
   const [exploring, setExploring] = useState(false)
+
+  const selectedLogbooks =
+    searchTokenId && searchLogbook
+      ? [searchLogbook]
+      : (recentLogbooks.tokenIds.map(tokenId => logbooks[tokenId]) as Logbook[])
+
+  const isLoading = searchLogbook?.loading || recentLogbooks.loading
 
   return (
     <LogbookLayout
@@ -70,24 +53,24 @@ const LogbooksMuseum = () => {
         </>
       }
     >
-      {exploring && searchLogbook ? <Explorer logbook={searchLogbook} /> : null}
+      {isLoading && <Spinner />}
 
-      {!exploring && (
+      {!isLoading &&
+        exploring &&
+        (searchTokenId ? (
+          <Explorer logbook={selectedLogbooks[0]} />
+        ) : (
+          <Explorer.Recent
+            logbooks={selectedLogbooks}
+            onTap={l => setSearchTokenId(l.tokenId)}
+          />
+        ))}
+
+      {!isLoading && !exploring && (
         <section className={exploring ? styles.exploring : ""}>
           {exploring && <SearchBar onSearch={onSearch} />}
 
-          {searchLogbook?.loading || searchLogbook?.error ? (
-            <Spinner />
-          ) : (
-            <Logbooks
-              logbooks={
-                searchTokenId && searchLogbook
-                  ? [searchLogbook]
-                  : recentLogbooks
-              }
-              showOwner
-            />
-          )}
+          <Logbooks logbooks={selectedLogbooks} showOwner />
         </section>
       )}
     </LogbookLayout>

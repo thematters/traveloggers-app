@@ -8,6 +8,7 @@ import { Logbook, LogbookContext } from "~/components"
 import { Lang } from "~/enums"
 import { maskAddress, toEtherscanAddressUrl } from "~/utils"
 
+import RecentExplorer from "./Recent"
 import * as styles from "./styles.module.css"
 
 cySpread(cytoscape)
@@ -16,7 +17,9 @@ type ExplorerProps = {
   logbook: Logbook
 }
 
-const Explorer: React.FC<ExplorerProps> = ({ logbook }) => {
+const Explorer: React.FC<ExplorerProps> & { Recent: typeof RecentExplorer } = ({
+  logbook,
+}) => {
   const { locale } = useLocalization()
   const { getOwnersBalance } = useContext(LogbookContext)
 
@@ -61,6 +64,7 @@ const Explorer: React.FC<ExplorerProps> = ({ logbook }) => {
         .css({
           width: 76,
           height: 76,
+          "background-color": "#333333",
           "background-fit": "cover",
           "background-image": logbook.tokenImageURL,
           "border-color": "#fff",
@@ -144,6 +148,10 @@ const Explorer: React.FC<ExplorerProps> = ({ logbook }) => {
   }
 
   useEffect(() => {
+    if (!logbook) {
+      return
+    }
+
     initGraph()
 
     return () => {
@@ -151,7 +159,13 @@ const Explorer: React.FC<ExplorerProps> = ({ logbook }) => {
     }
   }, [logbook.tokenId])
 
+  if (!logbook) {
+    return null
+  }
+
   return <section ref={explorerRef} className={styles.explorer}></section>
 }
+
+Explorer.Recent = RecentExplorer
 
 export default Explorer
