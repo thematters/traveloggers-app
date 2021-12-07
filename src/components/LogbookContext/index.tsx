@@ -96,6 +96,10 @@ type Context = {
 
   updateDraft: (tokenId: string, message: string) => Promise<void>
   appendLog: (tokenId: string, message: string) => Promise<void>
+
+  getOwnersBalance: (
+    addresses: string[]
+  ) => Promise<{ [address: string]: number }>
 }
 
 export const LogbookContext = createContext({} as Context)
@@ -639,6 +643,27 @@ export const LogbookProvider = ({
     }
   }
 
+  const getOwnersBalance = async (addresses: string[]) => {
+    const contract = new ethers.Contract(
+      env.contractAddress,
+      env.contractABI,
+      // ethers.getDefaultProvider(env.supportedChainId, { infura: env.infuraId })
+      new ethers.providers.InfuraProvider(env.supportedChainId, env.infuraId)
+    )
+
+    const balances = await Promise.all(
+      addresses.map(address => contract.balanceOf(address))
+    )
+
+    const balanceMap: { [address: string]: number } = {}
+
+    addresses.forEach((address, index) => {
+      balanceMap[address] = balances[index].toNumber()
+    })
+
+    return balanceMap
+  }
+
   return (
     <LogbookContext.Provider
       value={{
@@ -652,6 +677,8 @@ export const LogbookProvider = ({
 
         updateDraft,
         appendLog,
+
+        getOwnersBalance,
       }}
     >
       {children}

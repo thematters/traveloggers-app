@@ -2,10 +2,12 @@ import React, { useContext, useEffect, useState } from "react"
 
 import { Logbook, LogbookContext, LogbookLayout, Spinner } from "~/components"
 
+import HeaderBar from "../LogbookList/HeaderBar"
+import Logbooks from "../LogbookList/Logbooks"
+import SearchBar from "../LogbookList/Searchbar"
+import Explorer from "./Explorer"
 import ExplorerButton from "./ExplorerButton"
-import HeaderBar from "./HeaderBar"
-import Logbooks from "./Logbooks"
-import SearchBar from "./Searchbar"
+import * as styles from "./styles.module.css"
 
 const byMostRecent = (a: Logbook, b: Logbook) => {
   if (
@@ -68,17 +70,25 @@ const LogbooksMuseum = () => {
         </>
       }
     >
-      {searchLogbook?.loading || searchLogbook?.error ? (
-        <Spinner />
-      ) : (
-        <>
-          <Logbooks
-            logbooks={
-              searchTokenId && searchLogbook ? [searchLogbook] : recentLogbooks
-            }
-            showOwner
-          />
-        </>
+      {exploring && searchLogbook ? <Explorer logbook={searchLogbook} /> : null}
+
+      {!exploring && (
+        <section className={exploring ? styles.exploring : ""}>
+          {exploring && <SearchBar onSearch={onSearch} />}
+
+          {searchLogbook?.loading || searchLogbook?.error ? (
+            <Spinner />
+          ) : (
+            <Logbooks
+              logbooks={
+                searchTokenId && searchLogbook
+                  ? [searchLogbook]
+                  : recentLogbooks
+              }
+              showOwner
+            />
+          )}
+        </section>
       )}
     </LogbookLayout>
   )
