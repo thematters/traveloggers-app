@@ -7,7 +7,6 @@ import Logbooks from "../LogbookList/Logbooks"
 import SearchBar from "../LogbookList/Searchbar"
 import Explorer from "./Explorer"
 import ExplorerButton from "./ExplorerButton"
-import * as styles from "./styles.module.css"
 
 const LogbooksMuseum = () => {
   const { logbooks, recentLogbooks, getLogbook, getRecentLogbooks } =
@@ -67,7 +66,7 @@ const LogbooksMuseum = () => {
         ))}
 
       {!isLoading && !exploring && (
-        <section className={exploring ? styles.exploring : ""}>
+        <section>
           {exploring && <SearchBar onSearch={onSearch} />}
 
           <Logbooks logbooks={selectedLogbooks} showOwner />
