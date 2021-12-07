@@ -43,6 +43,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   return (
     <section className={styles.searchBar}>
       <input
+        id="search-bar"
         ref={searchInputRef}
         type="number"
         min={MIN_TOKEN_ID}

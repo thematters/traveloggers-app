@@ -1,11 +1,11 @@
 import React from "react"
 
 import { LogbookProvider } from "~/components"
-import LogbookListMuseum from "~/views/Logbook/LogbookList/Museum"
+import LogbookMuseum from "~/views/Logbook/Museum"
 
 const LogbookListPage = () => (
   <LogbookProvider>
-    <LogbookListMuseum />
+    <LogbookMuseum />
   </LogbookProvider>
 )
 

@@ -1,5 +1,5 @@
+import { navigate } from "gatsby"
 import { useLocalization } from "gatsby-theme-i18n"
-import { LocalizedLink as Link } from "gatsby-theme-i18n"
 import React, { useContext } from "react"
 
 import { IconChevonLeft, LogbookContext } from "~/components"
@@ -21,9 +21,9 @@ const HeaderBar: React.FC<HeaderBarProps> = ({ tokenId }) => {
   return (
     <section className={styles.headerBar}>
       <section className={styles.left}>
-        <Link to="/logbooks" language={locale}>
+        <button onClick={() => navigate(-1)} type="button">
           <IconChevonLeft color="gold" />
-        </Link>
+        </button>
       </section>
 
       <section className={styles.title}>
