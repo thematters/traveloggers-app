@@ -8,7 +8,14 @@ export type ButtonSize = string
 
 export type ButtonSpacing = string
 
-type ButtonColor = "primary" | "black" | "blackLight" | "transparent" | "teal"
+type ButtonColor =
+  | "primary"
+  | "black"
+  | "blackLight"
+  | "transparent"
+  | "teal"
+  | "golden"
+  | "greyBack"
 
 export type ButtonProps = {
   color?: ButtonColor
