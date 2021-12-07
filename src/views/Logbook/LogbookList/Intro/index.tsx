@@ -62,7 +62,7 @@ const Intro = () => {
                 openDialog()
               }}
             >
-              {locale === Lang.en ? "Login" : "登錄"}
+              {locale === Lang.en ? "Connect Wallet" : "連接錢包"}
             </Button>
           )}
         </LinkAccountDialog>
@@ -73,7 +73,7 @@ const Intro = () => {
           spacingY="0.75rem"
           to="/logbooks/museum"
         >
-          Logbook Museum
+          {locale === Lang.en ? "Logbook Museum" : "航行日誌收藏館"}
         </Button>
       </section>
     </section>
