@@ -1,8 +1,10 @@
 import cytoscape from "cytoscape"
+import { useLocalization } from "gatsby-theme-i18n"
 import React, { useEffect, useRef, useState } from "react"
 const cySpread = require("cytoscape-spread")
 
 import { Logbook } from "~/components"
+import { Lang } from "~/enums"
 import { dom } from "~/utils"
 
 import * as styles from "./styles.module.css"
@@ -21,6 +23,8 @@ type RecentExplorerProps = {
 }
 
 const RecentExplorer: React.FC<RecentExplorerProps> = ({ logbooks, onTap }) => {
+  const { locale } = useLocalization()
+
   const explorerRef = useRef(null)
   const [cy, setCy] = useState<cytoscape.Core>()
 
@@ -186,7 +190,16 @@ const RecentExplorer: React.FC<RecentExplorerProps> = ({ logbooks, onTap }) => {
     }
   }, [])
 
-  return <section ref={explorerRef} className={styles.explorer}></section>
+  return (
+    <>
+      <p className={styles.hint}>
+        {locale === Lang.en
+          ? "Click the planets or search the number"
+          : "點擊星球或輸入數字"}
+      </p>
+      <section ref={explorerRef} className={styles.explorer}></section>
+    </>
+  )
 }
 
 export default RecentExplorer
