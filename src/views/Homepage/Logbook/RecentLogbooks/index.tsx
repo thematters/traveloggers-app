@@ -9,6 +9,10 @@ const RecentLogbooks = () => {
     useContext(LogbookContext)
 
   useEffect(() => {
+    if (!recentLogbooks.tokenIds || recentLogbooks.tokenIds.length > 0) {
+      return
+    }
+
     getRecentLogbooks(5)
   }, [])
 

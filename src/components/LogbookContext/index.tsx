@@ -85,6 +85,11 @@ type ReducerAction =
       payload: { tokenId: string; draft: LogDraft }
     }
 
+export enum MuseumMode {
+  graph = "graph",
+  list = "list",
+}
+
 type Context = {
   getRecentLogbooks: (limit?: number) => Promise<void>
   getLogbook: (tokenId: string) => Promise<void>
@@ -100,6 +105,9 @@ type Context = {
   getOwnersBalance: (
     addresses: string[]
   ) => Promise<{ [address: string]: number }>
+
+  museumMode: MuseumMode
+  toggleMuseumMode: () => void
 }
 
 export const LogbookContext = createContext({} as Context)
@@ -185,6 +193,14 @@ export const LogbookProvider = ({
   }
 
   const [state, dispatch] = useReducer(reducer, initialState)
+
+  const [museumMode, setMuseumMode] = React.useState<MuseumMode>(
+    MuseumMode.list
+  )
+  const toggleMuseumMode = () =>
+    setMuseumMode(
+      museumMode === MuseumMode.list ? MuseumMode.graph : MuseumMode.list
+    )
 
   /**
    * Get logbook
@@ -679,6 +695,9 @@ export const LogbookProvider = ({
         appendLog,
 
         getOwnersBalance,
+
+        museumMode,
+        toggleMuseumMode,
       }}
     >
       {children}

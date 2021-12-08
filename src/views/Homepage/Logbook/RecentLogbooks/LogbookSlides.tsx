@@ -67,6 +67,7 @@ const LogbookSlides = ({ logbooks }: { logbooks: Logbook[] }) => {
         className={styles.scrollLeftBtn}
         type="button"
         onClick={scrollLeft}
+        disabled={!emblaApi?.canScrollPrev()}
       >
         <IconChevonLeftLight color="white" size="lg" />
       </button>
@@ -74,6 +75,7 @@ const LogbookSlides = ({ logbooks }: { logbooks: Logbook[] }) => {
         className={styles.scrollRightBtn}
         type="button"
         onClick={scrollRight}
+        disabled={!emblaApi?.canScrollNext()}
       >
         <IconChevonLeftLight color="white" size="lg" />
       </button>
