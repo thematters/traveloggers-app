@@ -10,8 +10,9 @@ import {
   Spinner,
 } from "~/components"
 import { Lang } from "~/enums"
-import { useAccount } from "~/hooks"
+import { useAccount, useResponsive } from "~/hooks"
 
+import TitleBar from "../LogbooksByOwner/TitleBar"
 import HeaderBar from "./HeaderBar"
 import Intro from "./Intro"
 import Logbooks from "./Logbooks"
@@ -21,14 +22,13 @@ const LogbookList = () => {
   const { locale } = useLocalization()
   const { account } = useAccount()
   const { getOwnNFTs, logbooks, ownNFTs } = useContext(LogbookContext)
+  const isMediumUp = useResponsive("md-up")
 
   useEffect(() => {
     getOwnNFTs()
   }, [account])
 
-  // const searchLogbook = logbooks[searchTokenId]
   const ownLogbooks = ownNFTs.tokenIds
-    // .filter(tokenId => tokenId in logbooks)
     .map(tokenId => logbooks[tokenId])
     .filter(l => !!l)
 
@@ -51,11 +51,7 @@ const LogbookList = () => {
 
   if (ownNFTs.loading) {
     return (
-      <LogbookLayout
-        page="list"
-        header={<HeaderBar />}
-        // headerBar={<SearchBar onSearch={onSearch} />}
-      >
+      <LogbookLayout page="list" header={<HeaderBar />}>
         <Spinner />
       </LogbookLayout>
     )
@@ -63,11 +59,7 @@ const LogbookList = () => {
 
   if (account && ownLogbooks && ownLogbooks.length <= 0) {
     return (
-      <LogbookLayout
-        page="list"
-        header={<HeaderBar />}
-        // headerBar={<SearchBar onSearch={onSearch} />}
-      >
+      <LogbookLayout page="list" header={<HeaderBar />}>
         <section className={styles.card}>
           <p>
             {locale === Lang.en
@@ -94,15 +86,20 @@ const LogbookList = () => {
     <LogbookLayout
       page="list"
       header={<HeaderBar />}
-      // headerBar={<SearchBar onSearch={onSearch} />}
+      headerBar={<TitleBar owner={account} />}
     >
-      <Logbooks
-        logbooks={
-          // searchTokenId && searchLogbook ? [searchLogbook] :
-          ownLogbooks as Logbook[]
-        }
-        showOwner={false}
-      />
+      <Logbooks logbooks={ownLogbooks as Logbook[]} showOwner={false} />
+
+      <section className={styles.footerBtn}>
+        <Button
+          color="golden"
+          width={isMediumUp ? "12.5rem" : "100%"}
+          spacingY="0.75rem"
+          to="/logbooks/museum"
+        >
+          {locale === Lang.en ? "Logbook Museum" : "航行日誌收藏館"}
+        </Button>
+      </section>
     </LogbookLayout>
   )
 }
