@@ -1,17 +1,13 @@
 import classNames from "classnames"
 import { LocalizedLink as Link, useLocalization } from "gatsby-theme-i18n"
-import jump from "jump.js"
-import React, { useContext, useState } from "react"
+import React, { useState } from "react"
 import { Waypoint } from "react-waypoint"
 
 import {
-  AirdriopDialog,
   Button,
   IconLogo,
   LanguageSwitch,
   LinkAccountDialog,
-  PreOrderDialog,
-  RoadmapContext,
   TextIcon,
 } from "~/components"
 import { Lang } from "~/enums"
@@ -40,13 +36,6 @@ const Header: React.FC<HeaderProps> = ({ originalPath }) => {
     setActive(currentPosition === "above")
   }
 
-  const { isAirdropStarted, isAirdropEnded } = useContext(RoadmapContext)
-  const isAirdropActive = isAirdropStarted && !isAirdropEnded
-
-  const scrollToRoadmap = () => {
-    jump("#roadmap", { offset: -100 })
-  }
-
   return (
     <>
       <Waypoint onPositionChange={handlePositionChange} />
@@ -67,75 +56,25 @@ const Header: React.FC<HeaderProps> = ({ originalPath }) => {
 
           <Socials />
 
-          {!isAirdropEnded && (
-            <div>
-              <PreOrderDialog>
-                {({ openDialog }) => (
-                  <Button
-                    color="primary"
-                    spacingX="1.25rem"
-                    spacingY=".5rem"
-                    onClick={() => {
-                      analytics("click_button", {
-                        type: "pre_order",
-                      })
-                      scrollToRoadmap()
-                    }}
-                  >
-                    {locale === Lang.en ? "Pre-order" : "預購"}
-                  </Button>
-                )}
-              </PreOrderDialog>
-            </div>
-          )}
-
-          {!isAirdropEnded && (
-            <div>
-              <AirdriopDialog>
-                {({ openDialog }) => (
-                  <Button
-                    color="primary"
-                    spacingX="1.25rem"
-                    spacingY=".5rem"
-                    onClick={() => {
-                      analytics("click_button", {
-                        type: "air_drop",
-                      })
-                      if (isAirdropActive) {
-                        openDialog()
-                      } else {
-                        scrollToRoadmap()
-                      }
-                    }}
-                  >
-                    {locale === Lang.en ? "Airdrop" : "空投"}
-                  </Button>
-                )}
-              </AirdriopDialog>
-            </div>
-          )}
-
-          {isAirdropEnded && (
-            <div>
-              <LinkAccountDialog>
-                {({ openDialog }) => (
-                  <Button
-                    color="primary"
-                    spacingX="1.25rem"
-                    spacingY=".5rem"
-                    onClick={() => {
-                      analytics("click_button", {
-                        type: "link_account",
-                      })
-                      openDialog()
-                    }}
-                  >
-                    {locale === Lang.en ? "Link Account" : "綁定帳號"}
-                  </Button>
-                )}
-              </LinkAccountDialog>
-            </div>
-          )}
+          <div>
+            <LinkAccountDialog>
+              {({ openDialog }) => (
+                <Button
+                  color="primary"
+                  spacingX="1.25rem"
+                  spacingY=".5rem"
+                  onClick={() => {
+                    analytics("click_button", {
+                      type: "link_account",
+                    })
+                    openDialog()
+                  }}
+                >
+                  {locale === Lang.en ? "Link Account" : "綁定帳號"}
+                </Button>
+              )}
+            </LinkAccountDialog>
+          </div>
 
           <div className={styles.logbookBtn}>
             <Button

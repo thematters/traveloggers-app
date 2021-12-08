@@ -2,7 +2,7 @@ import classNames from "classnames"
 import React, { useEffect, useState } from "react"
 
 import env from "@/.env.json"
-import { LogbookProvider, SEO } from "~/components"
+import { SEO } from "~/components"
 import Footer from "~/components/Layout/Footer"
 import Header from "~/components/Layout/Header"
 import { analytics } from "~/utils"
@@ -37,7 +37,7 @@ const Homepage: React.FC<PageProps> = ({ pageContext: { originalPath } }) => {
   }, [])
 
   return (
-    <LogbookProvider>
+    <>
       <SEO />
 
       <Header originalPath={originalPath} />
@@ -62,7 +62,7 @@ const Homepage: React.FC<PageProps> = ({ pageContext: { originalPath } }) => {
       </main>
 
       {!storyActive && <Footer />}
-    </LogbookProvider>
+    </>
   )
 }
 

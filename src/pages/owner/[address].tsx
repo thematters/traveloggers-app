@@ -1,6 +1,5 @@
 import React from "react"
 
-import { LogbookProvider } from "~/components"
 import LogbookListByOwner from "~/views/Logbook/LogbooksByOwner"
 
 type PageProps = {
@@ -8,12 +7,10 @@ type PageProps = {
 }
 
 const LogbookOwnerPage: React.FC<PageProps> = ({ params }) => (
-  <LogbookProvider>
-    <LogbookListByOwner
-      owner={params.address}
-      originalPath={`/owner/${params.adddress}`}
-    />
-  </LogbookProvider>
+  <LogbookListByOwner
+    owner={params.address}
+    originalPath={`/owner/${params.adddress}`}
+  />
 )
 
 export default LogbookOwnerPage
