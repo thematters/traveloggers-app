@@ -24,6 +24,7 @@
       width: 279px;
       margin: 0;
       margin-right: var(--spacing-loose);
+      background: var(--color-black-darkest);
       border: 1px solid var(--color-grey-darker);
       border-radius: 20px;
 

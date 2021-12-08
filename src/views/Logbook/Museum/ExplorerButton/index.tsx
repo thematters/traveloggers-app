@@ -4,7 +4,6 @@ import React from "react"
 
 import { TextIcon } from "~/components"
 import { Lang } from "~/enums"
-import { useResponsive } from "~/hooks"
 
 import * as styles from "./styles.module.css"
 
@@ -15,7 +14,6 @@ interface Props {
 
 const ExplorerButton: React.FC<Props> = ({ exploring, onClick }) => {
   const { locale } = useLocalization()
-  const isSmallUp = useResponsive("sm-up")
 
   return (
     <button
@@ -34,8 +32,6 @@ const ExplorerButton: React.FC<Props> = ({ exploring, onClick }) => {
           <span>
             {locale === Lang.zh
               ? "想在宇宙遨遊？切換探索模式！"
-              : isSmallUp
-              ? "Turn on Explore Mode to explore Matterverse!"
               : "Turn on Explore Mode"}
           </span>
         )}
