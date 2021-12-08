@@ -1,6 +1,12 @@
 import React, { useContext, useEffect, useState } from "react"
 
-import { Logbook, LogbookContext, LogbookLayout, Spinner } from "~/components"
+import {
+  Logbook,
+  LogbookContext,
+  LogbookLayout,
+  MuseumMode,
+  Spinner,
+} from "~/components"
 
 import HeaderBar from "../LogbookList/HeaderBar"
 import Logbooks from "../LogbookList/Logbooks"
@@ -9,8 +15,14 @@ import Explorer from "./Explorer"
 import ExplorerButton from "./ExplorerButton"
 
 const LogbooksMuseum = () => {
-  const { logbooks, recentLogbooks, getLogbook, getRecentLogbooks } =
-    useContext(LogbookContext)
+  const {
+    logbooks,
+    recentLogbooks,
+    getLogbook,
+    getRecentLogbooks,
+    museumMode,
+    toggleMuseumMode,
+  } = useContext(LogbookContext)
 
   const [searchTokenId, setSearchTokenId] = useState("")
 
@@ -20,6 +32,10 @@ const LogbooksMuseum = () => {
   }
 
   useEffect(() => {
+    if (!recentLogbooks.tokenIds || recentLogbooks.tokenIds.length > 0) {
+      return
+    }
+
     getRecentLogbooks()
   }, [])
 
@@ -29,14 +45,13 @@ const LogbooksMuseum = () => {
     console.error("searching error:", searchLogbook?.error)
   }
 
-  const [exploring, setExploring] = useState(false)
-
   const selectedLogbooks =
     searchTokenId && searchLogbook
       ? [searchLogbook]
       : (recentLogbooks.tokenIds.map(tokenId => logbooks[tokenId]) as Logbook[])
 
   const isLoading = searchLogbook?.loading || recentLogbooks.loading
+  const isExploring = museumMode === MuseumMode.graph
 
   return (
     <LogbookLayout
@@ -44,10 +59,7 @@ const LogbooksMuseum = () => {
       header={<HeaderBar title="Museum" rightButtonLink="/logbooks" />}
       headerBar={
         <>
-          <ExplorerButton
-            exploring={exploring}
-            onClick={() => setExploring(!exploring)}
-          />
+          <ExplorerButton exploring={isExploring} onClick={toggleMuseumMode} />
           <SearchBar onSearch={onSearch} />
         </>
       }
@@ -55,7 +67,7 @@ const LogbooksMuseum = () => {
       {isLoading && <Spinner />}
 
       {!isLoading &&
-        exploring &&
+        isExploring &&
         (searchTokenId ? (
           <Explorer logbook={selectedLogbooks[0]} />
         ) : (
@@ -65,9 +77,9 @@ const LogbooksMuseum = () => {
           />
         ))}
 
-      {!isLoading && !exploring && (
+      {!isLoading && !isExploring && (
         <section>
-          {exploring && <SearchBar onSearch={onSearch} />}
+          {isExploring && <SearchBar onSearch={onSearch} />}
 
           <Logbooks logbooks={selectedLogbooks} showOwner />
         </section>
