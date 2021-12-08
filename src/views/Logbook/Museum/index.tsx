@@ -1,3 +1,4 @@
+import { useLocalization } from "gatsby-theme-i18n"
 import React, { useContext, useEffect, useState } from "react"
 
 import {
@@ -7,6 +8,7 @@ import {
   MuseumMode,
   Spinner,
 } from "~/components"
+import { Lang } from "~/enums"
 
 import HeaderBar from "../LogbookList/HeaderBar"
 import Logbooks from "../LogbookList/Logbooks"
@@ -15,6 +17,7 @@ import Explorer from "./Explorer"
 import ExplorerButton from "./ExplorerButton"
 
 const LogbooksMuseum = () => {
+  const { locale } = useLocalization()
   const {
     logbooks,
     recentLogbooks,
@@ -56,7 +59,12 @@ const LogbooksMuseum = () => {
   return (
     <LogbookLayout
       page="list"
-      header={<HeaderBar title="Museum" rightButtonLink="/logbooks" />}
+      header={
+        <HeaderBar
+          title={locale === Lang.en ? "Museum" : "航行日誌收藏館"}
+          rightButtonLink="/logbooks"
+        />
+      }
       headerBar={
         <>
           <ExplorerButton exploring={isExploring} onClick={toggleMuseumMode} />

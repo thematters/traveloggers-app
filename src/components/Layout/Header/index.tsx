@@ -84,7 +84,7 @@ const Header: React.FC<HeaderProps> = ({ originalPath }) => {
               spacingY=".5rem"
               to="/logbooks"
             >
-              {locale === Lang.en ? "Logbooks" : "航行日誌"}
+              {locale === Lang.en ? "My Logbooks" : "我的航行日誌"}
             </Button>
           </div>
         </section>

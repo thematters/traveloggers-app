@@ -1,5 +1,7 @@
+import { useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 
+import { Lang } from "~/enums"
 import { useAccount } from "~/hooks"
 import { maskAddress } from "~/utils"
 
@@ -11,6 +13,7 @@ type PageProps = {
 
 const TitleBar: React.FC<PageProps> = ({ owner }) => {
   const { account } = useAccount()
+  const { locale } = useLocalization()
 
   const isSameAccount =
     owner && account && owner.toLowerCase() === account.toLowerCase()
@@ -20,8 +23,14 @@ const TitleBar: React.FC<PageProps> = ({ owner }) => {
       <h2 className={styles.title}>
         <hr />
         <span>
-          {isSameAccount ? "My" : `${owner ? maskAddress(owner) : ""}'s`}&nbsp;
-          Collection
+          {locale === Lang.en
+            ? isSameAccount
+              ? "My "
+              : `${owner ? maskAddress(owner) : ""}'s `
+            : isSameAccount
+            ? "我的"
+            : `${owner ? maskAddress(owner) : ""} 的`}
+          {locale === Lang.en ? "Collection" : "收藏"}
         </span>
         <hr />
       </h2>
