@@ -19,8 +19,10 @@ const TitleBar: React.FC<PageProps> = ({ owner }) => {
     <section>
       <h2 className={styles.title}>
         <hr />
-        {isSameAccount ? "My" : `${owner ? maskAddress(owner) : ""}'s`}&nbsp;
-        Collection
+        <span>
+          {isSameAccount ? "My" : `${owner ? maskAddress(owner) : ""}'s`}&nbsp;
+          Collection
+        </span>
         <hr />
       </h2>
     </section>
