@@ -141,6 +141,22 @@
 }
 
 .main.list {
+  @media (--md-down) {
+    align-items: flex-end;
+
+    & .outer {
+      border-bottom: none;
+
+      &::before {
+        bottom: 0;
+      }
+    }
+
+    & .inner {
+      height: calc(100vh - var(--logbook-vertical-spacing) / 2);
+    }
+  }
+
   @media (--md-up) {
     & .contentWrapper {
       padding-top: 4rem;
