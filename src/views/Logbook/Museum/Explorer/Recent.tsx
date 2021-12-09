@@ -5,7 +5,6 @@ const cySpread = require("cytoscape-spread")
 
 import { Logbook } from "~/components"
 import { Lang } from "~/enums"
-import { dom } from "~/utils"
 
 import * as styles from "./styles.module.css"
 
@@ -31,16 +30,11 @@ const RecentExplorer: React.FC<RecentExplorerProps> = ({ logbooks, onTap }) => {
   const onTapNode = (evt: any) => {
     const node = evt.target
     const id = parseInt(node.data("id").split("-")[1])
-    const $searchBar = dom.$("#search-bar")
 
-    if (node.data("id").includes("star") || !$searchBar) {
+    if (node.data("id").includes("star")) {
       return
     }
 
-    const logbook = logbooks[id]
-
-    // @ts-ignore
-    $searchBar.value = logbook.tokenId
     onTap(logbooks[id])
   }
 
