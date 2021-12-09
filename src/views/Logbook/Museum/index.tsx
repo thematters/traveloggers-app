@@ -9,6 +9,7 @@ import {
   Spinner,
 } from "~/components"
 import { Lang } from "~/enums"
+import { dom } from "~/utils"
 
 import HeaderBar from "../LogbookList/HeaderBar"
 import Logbooks from "../LogbookList/Logbooks"
@@ -56,6 +57,19 @@ const LogbooksMuseum = () => {
   const isLoading = searchLogbook?.loading || recentLogbooks.loading
   const isExploring = museumMode === MuseumMode.graph
 
+  const onTapGraphNode = (l: Logbook) => {
+    const $searchBar = dom.$("#search-bar")
+
+    if (!$searchBar) return
+
+    // @ts-ignore
+    $searchBar.value = l.tokenId
+    // https://github.com/facebook/react/issues/11488#issuecomment-884790146
+    // @ts-ignore
+    $searchBar._valueTracker?.setValue("")
+    $searchBar.dispatchEvent(new Event("input", { bubbles: true }))
+  }
+
   return (
     <LogbookLayout
       page="list"
@@ -79,10 +93,7 @@ const LogbooksMuseum = () => {
         (searchTokenId ? (
           <Explorer logbook={selectedLogbooks[0]} />
         ) : (
-          <Explorer.Recent
-            logbooks={selectedLogbooks}
-            onTap={l => setSearchTokenId(l.tokenId)}
-          />
+          <Explorer.Recent logbooks={selectedLogbooks} onTap={onTapGraphNode} />
         ))}
 
       {!isLoading && !isExploring && (
