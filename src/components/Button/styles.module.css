@@ -84,3 +84,11 @@
   color: var(--color-matters-green);
   background: transparent;
 }
+
+.golden {
+  background: var(--color-logbook-gold-lighter);
+}
+
+.greyBack {
+  background: var(--color-black);
+}

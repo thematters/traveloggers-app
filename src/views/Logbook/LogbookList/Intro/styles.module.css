@@ -1,3 +1,10 @@
+.container {
+  @mixin flex-center-all;
+
+  flex-flow: column nowrap;
+  align-items: stretch;
+}
+
 .text {
   & > section {
     margin-left: var(--spacing-x-loose);
@@ -28,5 +35,19 @@
       font-size: 1.375rem;
       line-height: 2.25rem;
     }
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
+  align-items: stretch;
+  margin-top: 1rem;
+
+  @media (--md-up) {
+    @mixin flex-center-all;
+
+    flex-flow: row nowrap;
   }
 }

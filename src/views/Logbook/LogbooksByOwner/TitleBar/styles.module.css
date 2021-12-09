@@ -1,0 +1,23 @@
+.title {
+  display: flex;
+  margin: 0 0 var(--spacing-base);
+  font-size: var(--font-size-xm);
+
+  & span {
+    flex-shrink: 0;
+  }
+
+  & hr {
+    display: inline-block;
+    flex-grow: 1;
+    margin: var(--spacing-base);
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

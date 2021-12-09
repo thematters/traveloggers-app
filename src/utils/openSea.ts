@@ -5,7 +5,7 @@ const OPENSEA_API_BASE_URL =
     ? "https://rinkeby-api.opensea.io/api/v1"
     : "https://api.opensea.io/api/v1"
 
-type OpenSeaAsset = {
+export type OpenSeaAsset = {
   token_id: string
   permalink: string
   image_preview_url: string
@@ -40,4 +40,20 @@ export const retrieveNFT = async ({ tokenId }: { tokenId: string }) => {
   const result = await fetch(url).then(res => res.json())
 
   return result as OpenSeaAsset
+}
+
+export const retrieveNFTs = async (tokenIds: Iterable<string>) => {
+  const contractAddress = env.contractAddress
+
+  const searchParams = new URLSearchParams({
+    asset_contract_address: contractAddress,
+    order_direction: "desc",
+  })
+  for (const id of tokenIds) searchParams.append("token_ids", id)
+
+  const url = `${OPENSEA_API_BASE_URL}/assets?${searchParams.toString()}`
+
+  const result = await fetch(url).then(res => res.json())
+
+  return (result?.assets || []) as OpenSeaAsset[]
 }

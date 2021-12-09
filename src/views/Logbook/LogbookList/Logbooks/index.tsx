@@ -5,12 +5,17 @@ import { Logbook } from "~/components"
 import LogbookItem from "./Item"
 import * as styles from "./styles.module.css"
 
-const Logbooks = ({ logbooks }: { logbooks: Logbook[] }) => {
+interface Props {
+  logbooks: Logbook[]
+  showOwner: boolean
+}
+
+const Logbooks: React.FC<Props> = ({ logbooks, showOwner }) => {
   return (
     <ul className={styles.list}>
       {logbooks.map(logbook => (
         <li key={logbook.tokenId}>
-          <LogbookItem logbook={logbook} />
+          <LogbookItem logbook={logbook} showOwner={showOwner} />
         </li>
       ))}
     </ul>

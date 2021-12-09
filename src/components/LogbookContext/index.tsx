@@ -9,7 +9,9 @@ import { Lang, WalletErrorType } from "~/enums"
 import {
   EtherscanObject,
   getWalletErrorMessage,
+  OpenSeaAsset,
   retrieveNFT,
+  retrieveNFTs,
   retrieveOwnerNFTs,
   toEtherscanUrl,
 } from "~/utils"
@@ -57,9 +59,16 @@ export type OwnNFTs = {
   tokenIds: string[]
 }
 
+export type RecentLogbooks = {
+  loading: boolean
+  error?: string
+  tokenIds: string[]
+}
+
 type ReducerState = {
   logbooks: { [tokenId: string]: Logbook }
   ownNFTs: OwnNFTs
+  recentLogbooks: RecentLogbooks
 }
 
 type ReducerAction =
@@ -76,15 +85,29 @@ type ReducerAction =
       payload: { tokenId: string; draft: LogDraft }
     }
 
+export enum MuseumMode {
+  graph = "graph",
+  list = "list",
+}
+
 type Context = {
+  getRecentLogbooks: (limit?: number) => Promise<void>
   getLogbook: (tokenId: string) => Promise<void>
   logbooks: { [tokenId: string]: Logbook | undefined }
+  recentLogbooks: RecentLogbooks
 
-  getOwnNFTs: () => Promise<void>
+  getOwnNFTs: (owner?: string | null | undefined) => Promise<void>
   ownNFTs: OwnNFTs
 
   updateDraft: (tokenId: string, message: string) => Promise<void>
   appendLog: (tokenId: string, message: string) => Promise<void>
+
+  getOwnersBalance: (
+    addresses: string[]
+  ) => Promise<{ [address: string]: number }>
+
+  museumMode: MuseumMode
+  toggleMuseumMode: () => void
 }
 
 export const LogbookContext = createContext({} as Context)
@@ -105,6 +128,7 @@ export const LogbookProvider = ({
   const initialState: ReducerState = {
     logbooks: {},
     ownNFTs: { loading: false, tokenIds: [] },
+    recentLogbooks: { loading: false, tokenIds: [] },
   }
   const stateRef = useRef(initialState)
 
@@ -125,6 +149,10 @@ export const LogbookProvider = ({
           ownNFTs: {
             ...state.ownNFTs,
             ...action.payload.ownNFTs,
+          },
+          recentLogbooks: {
+            ...state.recentLogbooks,
+            ...action.payload.recentLogbooks,
           },
         }
         break
@@ -165,6 +193,14 @@ export const LogbookProvider = ({
   }
 
   const [state, dispatch] = useReducer(reducer, initialState)
+
+  const [museumMode, setMuseumMode] = React.useState<MuseumMode>(
+    MuseumMode.list
+  )
+  const toggleMuseumMode = () =>
+    setMuseumMode(
+      museumMode === MuseumMode.list ? MuseumMode.graph : MuseumMode.list
+    )
 
   /**
    * Get logbook
@@ -246,9 +282,132 @@ export const LogbookProvider = ({
     }
   }
 
-  // retrieve all logbooks own by current account
-  const getOwnNFTs = async () => {
-    if (!account) {
+  // get recent logbooks at most limit? number
+  const getRecentLogbooks = async (limit: number = 10) => {
+    // console.log("getRecentLogbooks:", { limit })
+
+    try {
+      const provider = new ethers.providers.InfuraProvider(
+        env.supportedChainId,
+        env.infuraId
+      )
+
+      const contract = new ethers.Contract(
+        env.contractAddress,
+        env.contractABI,
+        // ethers.getDefaultProvider(env.supportedChainId, { infura: env.infuraId })
+        provider
+      )
+
+      // mark as loading
+      dispatch({
+        type: "update",
+        payload: {
+          recentLogbooks: { ...state.recentLogbooks, loading: true, error: "" },
+        },
+      })
+
+      // const events = await contract.queryFilter("LogbookNewLog")
+      const events = await contract.queryFilter(
+        contract.filters.LogbookNewLog(),
+        env.contractBlockNo,
+        "latest"
+      )
+
+      events.reverse() // from latest to earliest
+      console.log("get AppendLog events:", events)
+
+      // a set of tokenId in string
+      const tokenIds: Set<string> = new Set()
+      for (const [idx, event] of events.entries()) {
+        const logEntry = contract.interface.parseLog(event)
+        const {
+          args: { tokenId },
+        } = logEntry
+        console.log(
+          `logEntry ${idx}:`,
+          `${logEntry.eventFragment.name}`,
+          logEntry.args,
+          tokenId.toString()
+        )
+
+        // the events carry only the tokenId, index and senders, not the logbook content
+        if (tokenIds.size < limit)
+          tokenIds.add(logEntry.args.tokenId.toString())
+      }
+
+      const assets = new Map(
+        (await retrieveNFTs(tokenIds)).map(asset => [asset.token_id, asset])
+      )
+      // console.log(`reading tokenIds: ${tokenIds}:`, assets)
+
+      const logbooksMap: { [tokenId: string]: Logbook } = {}
+
+      // retrieve logbooks from contract
+      const logbooks = new Map(
+        await Promise.all(
+          Array.from(tokenIds).map(async token_id =>
+            Promise.all([token_id, contract.readLogbook(token_id)])
+          )
+        )
+      )
+      console.log(`reading logbooks for ${tokenIds}`, logbooks)
+
+      logbooks.forEach((logbook, tokenId) => {
+        // const tokenId = logbook.tokenId
+        const asset = assets.get(tokenId) as OpenSeaAsset
+        // console.log(`tokenId: ${tokenId}`, logbook, asset)
+
+        logbooksMap[tokenId] = {
+          loading: false,
+          // error: "",
+
+          tokenId,
+          tokenOwner: asset.owner.address,
+          tokenImageURL: asset.image_preview_url,
+          tokenOpenSeaURL: asset.permalink,
+
+          isLocked: logbook.isLocked,
+          logs: normalizedLogs(logbook.logs),
+        }
+      })
+
+      dispatch({
+        type: "update",
+        payload: {
+          logbooks: {
+            ...state.logbooks,
+            ...logbooksMap,
+            // loading: false,
+          },
+          recentLogbooks: {
+            loading: false,
+            error: "",
+            tokenIds: Array.from(tokenIds),
+          },
+        },
+      })
+    } catch (err) {
+      console.error("getRecentLogbooks ERROR:", err)
+
+      const errorMsg = getWalletErrorMessage({ error: err as Error, lang })
+
+      dispatch({
+        type: "update",
+        payload: {
+          recentLogbooks: {
+            ...state.recentLogbooks,
+            loading: false,
+            error: errorMsg,
+          },
+        },
+      })
+    }
+  }
+
+  // retrieve all logbooks own by the given owner, default to current account
+  const getOwnNFTs = async (owner: string | null | undefined = account) => {
+    if (!owner) {
       return
     }
 
@@ -260,7 +419,7 @@ export const LogbookProvider = ({
         new ethers.providers.InfuraProvider(env.supportedChainId, env.infuraId)
       )
 
-      const numTokens = await contract.balanceOf(account)
+      const numTokens = await contract.balanceOf(owner)
 
       if (!(numTokens.toNumber() > 0)) {
         return
@@ -275,7 +434,7 @@ export const LogbookProvider = ({
       })
 
       // retrieve token ids from OpenSea
-      const tokens = await retrieveOwnerNFTs({ owner: account })
+      const tokens = await retrieveOwnerNFTs({ owner })
 
       // retrieve logbooks from contract
       const logbooks = await Promise.all(
@@ -291,7 +450,7 @@ export const LogbookProvider = ({
           error: "",
 
           tokenId,
-          tokenOwner: account,
+          tokenOwner: owner,
           tokenImageURL: tokens[index].image_preview_url,
           tokenOpenSeaURL: tokens[index].permalink,
 
@@ -500,17 +659,45 @@ export const LogbookProvider = ({
     }
   }
 
+  const getOwnersBalance = async (addresses: string[]) => {
+    const contract = new ethers.Contract(
+      env.contractAddress,
+      env.contractABI,
+      // ethers.getDefaultProvider(env.supportedChainId, { infura: env.infuraId })
+      new ethers.providers.InfuraProvider(env.supportedChainId, env.infuraId)
+    )
+
+    const balances = await Promise.all(
+      addresses.map(address => contract.balanceOf(address))
+    )
+
+    const balanceMap: { [address: string]: number } = {}
+
+    addresses.forEach((address, index) => {
+      balanceMap[address] = balances[index].toNumber()
+    })
+
+    return balanceMap
+  }
+
   return (
     <LogbookContext.Provider
       value={{
+        getRecentLogbooks,
         getLogbook,
         logbooks: state.logbooks,
+        recentLogbooks: state.recentLogbooks,
 
         getOwnNFTs,
         ownNFTs: state.ownNFTs,
 
         updateDraft,
         appendLog,
+
+        getOwnersBalance,
+
+        museumMode,
+        toggleMuseumMode,
       }}
     >
       {children}

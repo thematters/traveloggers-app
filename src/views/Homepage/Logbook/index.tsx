@@ -6,6 +6,7 @@ import { Lang } from "~/enums"
 import { useResponsive } from "~/hooks"
 import { analytics } from "~/utils"
 
+import RecentLogbooks from "./RecentLogbooks"
 import * as styles from "./styles.module.css"
 
 const Logbook = () => {
@@ -32,12 +33,12 @@ const Logbook = () => {
                   color="primary"
                   width={isMediumUp ? "12.5rem" : "100%"}
                   spacingY="0.75rem"
-                  to="/logbooks"
+                  to="/logbooks/museum"
                   onClick={() =>
                     analytics("click_button", { type: "logbooks" })
                   }
                 >
-                  {locale === Lang.en ? "View Logbooks" : "查看日誌"}
+                  {locale === Lang.en ? "Logbook Museum" : "航行日誌收藏館"}
                 </Button>
               </section>
 
@@ -62,6 +63,8 @@ const Logbook = () => {
               </section>
             </section>
           </section>
+
+          <RecentLogbooks />
         </Container>
       </div>
     </section>

@@ -1,6 +1,5 @@
 import React from "react"
 
-import { LogbookProvider } from "~/components"
 import LogbookDetail from "~/views/Logbook/LogbookDetail"
 
 type PageProps = {
@@ -8,9 +7,7 @@ type PageProps = {
 }
 
 const LogbookDetailPage: React.FC<PageProps> = ({ params }) => (
-  <LogbookProvider>
-    <LogbookDetail id={params.id} originalPath={`/logbooks/${params.id}`} />
-  </LogbookProvider>
+  <LogbookDetail id={params.id} originalPath={`/logbooks/${params.id}`} />
 )
 
 export default LogbookDetailPage

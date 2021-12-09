@@ -118,7 +118,7 @@ const TEXTS: Record<string, any> = {
       </section>
     ),
     event4_button_upcoming: "尚未開始",
-    event4_button_open: "查看日誌",
+    event4_button_open: "進入航行日誌收藏館",
   },
   en: {
     title: "2021 Timeline",
@@ -212,7 +212,7 @@ const TEXTS: Record<string, any> = {
       </section>
     ),
     event4_button_upcoming: "Upcoming",
-    event4_button_open: "View Logbooks",
+    event4_button_open: "Enter Logbook museum",
   },
 }
 
