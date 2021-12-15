@@ -35,6 +35,7 @@ export enum WalletErrorType {
   unsupportedChainId = "unsupportedChainId",
   userRejectedRequest = "userRejectedRequest",
   unknown = "unknown",
+  invalidAddress = "invalidAddress",
   // contract
   failedToEstimateGas = "failedToEstimateGas",
   failedToSendTx = "failedToSendTx",

@@ -10,7 +10,7 @@ import {
   Spinner,
 } from "~/components"
 import { Lang } from "~/enums"
-import { useAccount, useResponsive } from "~/hooks"
+import { useAccount } from "~/hooks"
 
 import TitleBar from "../LogbooksByOwner/TitleBar"
 import HeaderBar from "./HeaderBar"
@@ -22,7 +22,6 @@ const LogbookList = () => {
   const { locale } = useLocalization()
   const { account } = useAccount()
   const { getOwnNFTs, logbooks, ownNFTs } = useContext(LogbookContext)
-  const isMediumUp = useResponsive("md-up")
 
   useEffect(() => {
     getOwnNFTs()
@@ -93,7 +92,7 @@ const LogbookList = () => {
       <section className={styles.footerBtn}>
         <Button
           color="golden"
-          width={isMediumUp ? "12.5rem" : "100%"}
+          width="100%"
           spacingY="0.75rem"
           to="/logbooks/museum"
         >
