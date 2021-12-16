@@ -58,7 +58,7 @@ const LogbookList = () => {
 
   if (account && ownLogbooks && ownLogbooks.length <= 0) {
     return (
-      <LogbookLayout page="list" header={<HeaderBar />}>
+      <LogbookLayout page="list" header={<HeaderBar />} headerBarSpacing="sm">
         <section className={styles.card}>
           <p>
             {locale === Lang.en
@@ -86,6 +86,7 @@ const LogbookList = () => {
       page="list"
       header={<HeaderBar />}
       headerBar={<TitleBar owner={account} />}
+      headerBarSpacing="sm"
     >
       <Logbooks logbooks={ownLogbooks as Logbook[]} showOwner={false} />
 

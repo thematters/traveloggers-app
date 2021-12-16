@@ -14,6 +14,7 @@ export interface ContainerProps {
   header: React.ReactNode
   footer?: React.ReactNode
   headerBar?: React.ReactNode
+  headerBarSpacing?: "sm"
   children: React.ReactNode
   page?: "listWelcome" | "list" | "detail"
 }
@@ -22,6 +23,7 @@ export const LogbookLayout: React.FC<ContainerProps> = ({
   header,
   footer,
   headerBar,
+  headerBarSpacing,
   page,
   children,
 }) => {
@@ -34,6 +36,11 @@ export const LogbookLayout: React.FC<ContainerProps> = ({
       analytics("page_view")
     })
   }, [])
+
+  const headerBarClass = classNames({
+    [styles.headerBar]: true,
+    [styles[`${headerBarSpacing}`]]: !!headerBarSpacing,
+  })
 
   return (
     <>
@@ -53,7 +60,7 @@ export const LogbookLayout: React.FC<ContainerProps> = ({
               <div className={styles.inner}>
                 <header className={styles.header}>{header}</header>
                 <section className={styles.contentWrapper}>
-                  <section className={styles.headerBar}>{headerBar}</section>
+                  <section className={headerBarClass}>{headerBar}</section>
                   <section className={styles.content}>{children}</section>
                 </section>
               </div>

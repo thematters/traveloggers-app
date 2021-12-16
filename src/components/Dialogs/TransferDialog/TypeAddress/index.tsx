@@ -46,8 +46,8 @@ const TypeAddress: React.FC<TypeAddressProps> = ({ tokenId, onConfirm }) => {
       <Dialog.Content>
         <label htmlFor="address" className={styles.label}>
           {locale === Lang.en
-            ? "Wallet address or ENS name"
-            : "以太坊地址或 ENS 名稱"}
+            ? "Enter Ethereum wallet address or ENS name"
+            : "輸入以太坊錢包地址或者是 ENS 名稱"}
         </label>
 
         <input
@@ -113,7 +113,7 @@ const TypeAddress: React.FC<TypeAddressProps> = ({ tokenId, onConfirm }) => {
         {transferring ? (
           <IconSpinner />
         ) : (
-          <>{locale === Lang.en ? "Send" : "發送"}</>
+          <>{locale === Lang.en ? "Transfer" : "送出"}</>
         )}
       </Dialog.CTAButton>
     </>
