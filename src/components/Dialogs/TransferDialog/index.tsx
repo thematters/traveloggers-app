@@ -53,11 +53,15 @@ export const TransferDialog: React.FC<TransferDialogProps> = ({
             isCompleted ? (
               <span>
                 {locale === Lang.en
-                  ? "Avatar sent successfully"
-                  : "Avatar sent successfully"}
+                  ? "Travelogger transferred successfully"
+                  : "Traveloggers 已送出"}
               </span>
             ) : (
-              <span>{locale === Lang.en ? "Send Avatar" : "Send Avatar"}</span>
+              <span>
+                {locale === Lang.en
+                  ? "Transfer Travelogger"
+                  : "贈送 Traveloggers"}
+              </span>
             )
           }
           closeDialog={closeDialog}

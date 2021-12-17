@@ -29,8 +29,8 @@ const CompletedContent: React.FC<CompletedContentProps> = ({
       <Dialog.Content>
         <p className={styles.content}>
           {locale === Lang.en
-            ? "Now your friends will receive gifts in their list, and they're available to read the contents of Logbook."
-            : "Now your friends will receive gifts in their list, and they're available to read the contents of Logbook."}
+            ? "Your friend can view Travelogger in their collection, and access or edit the Logbook."
+            : "接收方將會在 TA 的收藏列表中看到你贈送的 Traveloggers。TA 可以閱讀你所寫下的日誌，並且繼續添增日誌內容。"}
         </p>
 
         <p className={styles.content}>

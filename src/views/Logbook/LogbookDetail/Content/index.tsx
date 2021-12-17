@@ -58,7 +58,9 @@ const Content: React.FC<ContentProps> = ({ tokenId }) => {
                 spacingY="0.75rem"
                 onClick={openDialog}
               >
-                {locale === Lang.en ? "Send" : "發送"}
+                {locale === Lang.en
+                  ? "Transfer Travelogger"
+                  : "贈送 Travelogger"}
               </Button>
             )}
           </TransferDialog>
