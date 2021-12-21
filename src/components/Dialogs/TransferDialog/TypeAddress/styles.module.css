@@ -1,0 +1,27 @@
+.label {
+  font-size: var(--font-size-md);
+  line-height: 1rem;
+  color: var(--color-grey-light);
+}
+
+.input {
+  padding: var(--spacing-base);
+  margin: var(--spacing-base) 0 var(--spacing-loose);
+  font-size: var(--font-size-md);
+  line-height: 1rem;
+  background: #1b1b1b;
+  border-radius: var(--spacing-x-tight);
+
+  &::placeholder {
+    color: var(--color-grey-darker);
+    opacity: 100%; /* Firefox */
+  }
+
+  &:-webkit-autofill::first-line {
+    font-size: var(--font-size-md);
+  }
+}
+
+.link {
+  text-decoration: underline !important;
+}

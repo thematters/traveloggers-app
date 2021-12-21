@@ -1,6 +1,9 @@
+import { useLocalization } from "gatsby-theme-i18n"
 import React, { useContext } from "react"
 
-import { LogbookContext, Spinner } from "~/components"
+import { Button, LogbookContext, Spinner, TransferDialog } from "~/components"
+import { Lang } from "~/enums"
+import { useAccount } from "~/hooks"
 
 import LogList from "../LogList"
 import * as styles from "./styles.module.css"
@@ -11,8 +14,11 @@ type ContentProps = {
 
 const Content: React.FC<ContentProps> = ({ tokenId }) => {
   const { logbooks } = useContext(LogbookContext)
+  const { account } = useAccount()
+  const { locale } = useLocalization()
 
   const logbook = logbooks[tokenId]
+  const isOwner = logbook?.tokenOwner === account
 
   if (logbook?.loading) {
     return (
@@ -41,6 +47,25 @@ const Content: React.FC<ContentProps> = ({ tokenId }) => {
   return (
     <section className={styles.content}>
       <LogList logs={logbook.logs} />
+
+      {isOwner && (
+        <section className={styles.footerBtn}>
+          <TransferDialog tokenId={logbook.tokenId}>
+            {({ openDialog }) => (
+              <Button
+                color="golden"
+                width="100%"
+                spacingY="0.75rem"
+                onClick={openDialog}
+              >
+                {locale === Lang.en
+                  ? "Transfer Travelogger"
+                  : "贈送 Travelogger"}
+              </Button>
+            )}
+          </TransferDialog>
+        </section>
+      )}
     </section>
   )
 }

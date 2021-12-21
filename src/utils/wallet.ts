@@ -36,6 +36,7 @@ const WALLET_ERROR_MESSAGES = {
       "Please authorize this website to access your Ethereum account.",
     [WalletErrorType.unknown]:
       "An unknown error occurred, please make sure your wallet and network are in working.",
+    [WalletErrorType.invalidAddress]: "Invalid address or ENS name",
     // sign message
     [WalletErrorType.userRejectedSignMessage]:
       "Please sign the message to complete the operation.",
@@ -56,6 +57,7 @@ const WALLET_ERROR_MESSAGES = {
     [WalletErrorType.unsupportedChainId]: `請先切換網絡到 ${chainName}`,
     [WalletErrorType.userRejectedRequest]: "請先授權本網站獲取你的以太坊地址",
     [WalletErrorType.unknown]: "發生未知錯誤，請確保你的錢包和網絡正常",
+    [WalletErrorType.invalidAddress]: "請輸入正確的以太坊地址或 ENS 名稱",
     // sign message
     [WalletErrorType.userRejectedSignMessage]: "請簽署以完成操作",
     // contract

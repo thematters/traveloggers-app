@@ -10,7 +10,7 @@ import {
   Spinner,
 } from "~/components"
 import { Lang } from "~/enums"
-import { useAccount, useResponsive } from "~/hooks"
+import { useAccount } from "~/hooks"
 
 import TitleBar from "../LogbooksByOwner/TitleBar"
 import HeaderBar from "./HeaderBar"
@@ -22,7 +22,6 @@ const LogbookList = () => {
   const { locale } = useLocalization()
   const { account } = useAccount()
   const { getOwnNFTs, logbooks, ownNFTs } = useContext(LogbookContext)
-  const isMediumUp = useResponsive("md-up")
 
   useEffect(() => {
     getOwnNFTs()
@@ -59,7 +58,7 @@ const LogbookList = () => {
 
   if (account && ownLogbooks && ownLogbooks.length <= 0) {
     return (
-      <LogbookLayout page="list" header={<HeaderBar />}>
+      <LogbookLayout page="list" header={<HeaderBar />} headerBarSpacing="sm">
         <section className={styles.card}>
           <p>
             {locale === Lang.en
@@ -87,13 +86,14 @@ const LogbookList = () => {
       page="list"
       header={<HeaderBar />}
       headerBar={<TitleBar owner={account} />}
+      headerBarSpacing="sm"
     >
       <Logbooks logbooks={ownLogbooks as Logbook[]} showOwner={false} />
 
       <section className={styles.footerBtn}>
         <Button
           color="golden"
-          width={isMediumUp ? "12.5rem" : "100%"}
+          width="100%"
           spacingY="0.75rem"
           to="/logbooks/museum"
         >
