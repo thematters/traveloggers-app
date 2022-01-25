@@ -26,7 +26,7 @@ const IntroContent: React.FC<IntroContentProps> = ({
       </Dialog.Content>
 
       <Dialog.CTAButton
-        htmlHref="https://matters.news/login"
+        htmlHref="https://matters.news/me/settings"
         htmlTarget="_blank"
       >
         {locale === Lang.en
