@@ -1,9 +1,0 @@
-.switches {
-  padding: var(--spacing-xxx-tight) var(--spacing-x-tight);
-  font-size: 0;
-  color: var(--color-grey);
-
-  @media (--md-up) {
-    color: var(--color-white);
-  }
-}

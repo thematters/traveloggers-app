@@ -1,9 +1,0 @@
-.roadmap {
-  @mixin pixel-bg;
-
-  padding: var(--spacing-xxx-loose) 0;
-
-  @media (--md-up) {
-    background-image: url("/images/pixel-bg-8.png");
-  }
-}

@@ -1,9 +1,0 @@
-.subtitle {
-  font-size: var(--font-size-md-s);
-  font-weight: var(--font-weight-semibold);
-
-  @media (--md-up) {
-    font-size: var(--font-size-lg);
-    line-height: 1.5rem;
-  }
-}

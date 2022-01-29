@@ -1,7 +1,0 @@
-.buttons {
-  margin-top: var(--spacing-loose);
-
-  & > * + * {
-    margin-top: var(--spacing-loose);
-  }
-}
