@@ -39,6 +39,8 @@ const link9En =
   "https://matters.news/@Matterslab/guideline-for-traveloggers-how-to-use-your-logbook-bafyreigbzmnmjoqsgtiok" +
   "nmtcu4nosmk3uwdn7sm4j2zcxcvaypabqvg2m"
 
+const link9Logbook2 = ""
+
 const Questions = () => {
   const { locale } = useLocalization()
   const texts = TEXTS[locale]
@@ -161,6 +163,13 @@ const Questions = () => {
           title={texts.question9}
           content={
             <Section.Content>
+              <p>
+                {texts.answer9_5}
+                <a href={link9Logbook2} target="_blank" rel="noreferrer">
+                  {texts.answer9_6}
+                </a>
+              </p>
+              <br />
               <p>{texts.answer9_1}</p>
               <p>{texts.answer9_2}</p>
               <p>{texts.answer9_3}</p>

@@ -43,9 +43,12 @@ const TEXTS: Record<string, any> = {
       "第一代 Logbook 直接保存在以太坊區塊鏈，因此在寫入日誌時，需要繳交給以太坊礦工費（Gas Fee）。在寫入日誌前，" +
       "你可以看到當時的 Gas Fee 以及與字數相對應的費用估算。",
     answer9_3:
-      "Traveloggers 的開發團隊會提供部分 Gas Fee 補助，支持前 100 名 Logbook 的使用者。同時，繼續尋找費用更低的合適空間，開拓第二代 Logbook。",
+      "Traveloggers 的開發團隊會提供部分 Gas Fee 補助，支持前 100 名 Logbook 的使用者。",
     answer9_4: "點擊查看如何使用航行日誌",
-    question10: " 什麼是 Gas Fee？為什麼有 Gas Fee？",
+    answer9_5:
+      "🎉 第二代航行日誌已經於 Polygon 主網上線，如果你是 Traveloggers 擁有者請",
+    answer9_6: "前往領取。",
+    question10: "什麼是 Gas Fee？為什麼有 Gas Fee？",
     answer10_1:
       "Gas Fee 指的是在區塊鏈上發起一筆交易時，需要負擔的手續費。Gas Fee 是支付給礦工的手續費，當你在以太坊區塊鏈上進行轉賬時，" +
       "礦工要把你的交易打包並放上區塊鏈，才能使交易完成，在這過程中會消耗區塊鏈的運算資源，所以要支付費用。",
@@ -103,9 +106,11 @@ const TEXTS: Record<string, any> = {
       "Before you write in the logbook, there will be a step of confirming the fee calculated by the wallet. The ETH gas fee " +
       "constant fluctuates, and you can see the most real time ETH gas fee there.",
     answer9_3:
-      "The Traveloggers team will provide part of gas fee subsidy to support logbook writing. Meanwhile, we will continue " +
-      "to search for better solutions with lower gas fees and to develop Logbook 2.0.",
-    answer9_4: "Click here for logbook instructions",
+      "The Traveloggers team will provide part of gas fee subsidy to support logbook writing.",
+    answer9_4: "Click here for logbook 1.0 instructions",
+    answer9_5:
+      "🎉 Logbook 2.0 has just launched on Polygon Mainnet. If you are Traveloggers’ owner, let's ",
+    answer9_6: "go to claim.",
     question10: "What are gas fees? What are gas fees necessary?",
     answer10_1:
       "Gas fees are the handling fees required when a transaction is initiated on the blockchain to compensate miners. " +
