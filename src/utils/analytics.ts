@@ -26,6 +26,7 @@ interface ClickButtonProp {
     | "hero_preorder" // pre order from hero page
     | "hero_discord" // join discord from hero page
     | "hero_opensea" // enter opensea from hero page
+    | "hero_logbook2" // enter logbook 2 from hero section
     | "connect_wallet" // connect wallet button in pre order dialog
     | "metamask" // choose metamask in connect wallet dialog
     | "wallet_connect" // choose wallet connect in connect wallet dialog

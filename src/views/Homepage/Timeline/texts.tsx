@@ -2,7 +2,7 @@ import React from "react"
 
 const TEXTS: Record<string, any> = {
   zh: {
-    title: "2021 計畫時程",
+    title: "2021 - 2022 計畫時程",
 
     // pre-order
     event1: "預購",
@@ -119,9 +119,23 @@ const TEXTS: Record<string, any> = {
     ),
     event4_button_upcoming: "尚未開始",
     event4_button_open: "進入航行日誌收藏館",
+    event5: "第二代 Logbook 上線",
+    content5:
+      "Traveloggers 的擁有者可以領取 Logbook 2.0。第二代 Logbook 直接保存在 Polygon 主網。",
+    event5_1: "功能上線",
+    event5_1_content: (
+      <section>
+        <p>
+          <b>03/21</b>
+          <span>&nbsp;UTC+8:00</span>
+        </p>
+      </section>
+    ),
+    event5_button_upcoming: "尚未開始",
+    event5_button_open: "進入航行日誌 2.0 收藏館",
   },
   en: {
-    title: "2021 Timeline",
+    title: "2021 - 2022 Timeline",
 
     // pre-order
     event1: "Pre-orders",
@@ -213,6 +227,17 @@ const TEXTS: Record<string, any> = {
     ),
     event4_button_upcoming: "Upcoming",
     event4_button_open: "Enter Logbook museum",
+    event5: "Logbook 2.0",
+    content5:
+      "Traveloggers’ owner can claim a Logbook 2.0. The newest version of the Logbook will be stored on the Polygon Mainnet.",
+    event5_1: "Launch",
+    event5_1_content: (
+      <section>
+        <b>March 21, 2022</b>
+      </section>
+    ),
+    event5_button_upcoming: "Upcoming",
+    event5_button_open: "Enter Logbook 2.0 library",
   },
 }
 

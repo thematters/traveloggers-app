@@ -50,7 +50,7 @@ const Roadmap = () => {
           }
         />
 
-        <Item content={texts.item6} month={texts.feb} isSubtitle />
+        <Item content={texts.item6} month={texts.mar} isSubtitle />
         <Item content={texts.content6} />
 
         <Item content={texts.item7} isSubtitle />
