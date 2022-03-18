@@ -11,6 +11,7 @@ import * as styles from "./styles.module.css"
 const Hero = () => {
   const { locale } = useLocalization()
   const { discord, opensea } = env.socialUrls[locale as Lang]
+  const logbookUrl = env.logbookUrl
 
   return (
     <>
@@ -43,7 +44,7 @@ const Hero = () => {
                     width="100%"
                     height="3.5rem"
                     spacingY="1rem"
-                    htmlHref=""
+                    htmlHref={logbookUrl}
                     htmlTarget="_blank"
                     onClick={() => {
                       analytics("click_button", { type: "hero_logbook2" })
