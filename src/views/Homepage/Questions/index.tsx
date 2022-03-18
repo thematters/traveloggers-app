@@ -1,6 +1,7 @@
 import { useLocalization } from "gatsby-theme-i18n"
 import React from "react"
 
+import env from "@/.env.json"
 import { Container, Expandable, Section } from "~/components"
 import { Lang } from "~/enums"
 
@@ -39,11 +40,10 @@ const link9En =
   "https://matters.news/@Matterslab/guideline-for-traveloggers-how-to-use-your-logbook-bafyreigbzmnmjoqsgtiok" +
   "nmtcu4nosmk3uwdn7sm4j2zcxcvaypabqvg2m"
 
-const link9Logbook2 = ""
-
 const Questions = () => {
   const { locale } = useLocalization()
   const texts = TEXTS[locale]
+  const logbookUrl = env.logbookUrl
 
   const expandableStyles = {
     customStyles: { paddingTop: "1rem" },
@@ -165,7 +165,7 @@ const Questions = () => {
             <Section.Content>
               <p>
                 {texts.answer9_5}
-                <a href={link9Logbook2} target="_blank" rel="noreferrer">
+                <a href={logbookUrl} target="_blank" rel="noreferrer">
                   {texts.answer9_6}
                 </a>
               </p>

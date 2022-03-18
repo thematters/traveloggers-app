@@ -52,6 +52,7 @@ const Timeline = () => {
   const texts = TEXTS[locale]
 
   const { opensea } = env.socialUrls[locale as Lang]
+  const logbookUrl = env.logbookUrl
 
   return (
     <section className={styles.timeline} id="timeline">
@@ -224,7 +225,8 @@ const Timeline = () => {
                 color="primary"
                 width={isMediumUp ? "15rem" : "100%"}
                 spacingY="0.75rem"
-                to=""
+                htmlHref={logbookUrl + "library"}
+                htmlTarget="_blank"
                 onClick={() => analytics("click_button", { type: "logbooks" })}
               >
                 {texts.event5_button_open}
