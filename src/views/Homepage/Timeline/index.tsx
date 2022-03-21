@@ -52,6 +52,7 @@ const Timeline = () => {
   const texts = TEXTS[locale]
 
   const { opensea } = env.socialUrls[locale as Lang]
+  const logbookUrl = env.logbookUrl
 
   return (
     <section className={styles.timeline} id="timeline">
@@ -149,7 +150,7 @@ const Timeline = () => {
         {/* open sale */}
         <section className={styles.time}>
           <section className={styles.line}>
-            <Time state={openSaleState} />
+            <Time state="closed" />
           </section>
           <Infobox
             active={isOpenSaleActive}
@@ -182,10 +183,10 @@ const Timeline = () => {
         {/* logbook */}
         <section className={styles.time}>
           <section className={styles.line}>
-            <Time state="open" />
+            <Time state="closed" />
           </section>
           <Infobox
-            active={false}
+            active={true}
             event={texts.event4}
             content={texts.content4}
             stage1={{
@@ -201,6 +202,34 @@ const Timeline = () => {
                 onClick={() => analytics("click_button", { type: "logbooks" })}
               >
                 {texts.event4_button_open}
+              </Button>
+            }
+          />
+        </section>
+
+        {/* logbook 2 */}
+        <section className={styles.time}>
+          <section className={styles.line}>
+            <Time state="open" />
+          </section>
+          <Infobox
+            active={true}
+            event={texts.event5}
+            content={texts.content5}
+            stage1={{
+              name: texts.event5_1,
+              content: texts.event5_1_content,
+            }}
+            button={
+              <Button
+                color="primary"
+                width={isMediumUp ? "15rem" : "100%"}
+                spacingY="0.75rem"
+                htmlHref={logbookUrl + "library"}
+                htmlTarget="_blank"
+                onClick={() => analytics("click_button", { type: "logbooks" })}
+              >
+                {texts.event5_button_open}
               </Button>
             }
           />

@@ -50,16 +50,16 @@ const Roadmap = () => {
           }
         />
 
-        <Item content={texts.item6} month={texts.feb} isSubtitle />
+        <Item content={texts.item6} month={texts.mar} isSubtitle />
         <Item content={texts.content6} />
 
-        <Item content={texts.item7} isSubtitle />
+        <Item content={texts.item7} month={texts.future} isSubtitle />
         <Item content={texts.content7} />
 
         <Item content={texts.item8} isSubtitle />
         <Item content={texts.content8} />
 
-        <Item content={texts.item9} month={texts.future} isSubtitle />
+        <Item content={texts.item9} isSubtitle />
         <Item
           content={
             <>

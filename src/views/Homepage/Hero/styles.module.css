@@ -58,12 +58,17 @@
 .cta {
   @mixin flex-center-all;
 
-  column-gap: var(--spacing-loose);
+  flex-direction: column;
   margin: var(--spacing-xx-loose) auto 0;
 
-  & > button {
-    flex-grow: 1;
-    opacity: 100%;
+  & > a {
+    margin-top: var(--spacing-base);
+  }
+
+  @media (--md-up) {
+    & > a {
+      margin-top: var(--spacing-loose);
+    }
   }
 }
 
