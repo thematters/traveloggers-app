@@ -48,6 +48,8 @@ const TEXTS: Record<string, any> = {
     answer9_5:
       "🎉 第二代航行日誌已經於 Polygon 主網上線，如果你是 Traveloggers 擁有者請",
     answer9_6: "前往領取。",
+    answer9_7: "查看",
+    answer9_8: " 第二代航行日誌指南",
     question10: "什麼是 Gas Fee？為什麼有 Gas Fee？",
     answer10_1:
       "Gas Fee 指的是在區塊鏈上發起一筆交易時，需要負擔的手續費。Gas Fee 是支付給礦工的手續費，當你在以太坊區塊鏈上進行轉賬時，" +
@@ -111,6 +113,8 @@ const TEXTS: Record<string, any> = {
     answer9_5:
       "🎉 Logbook 2.0 has just launched on Polygon Mainnet. If you are Traveloggers’ owner, let's ",
     answer9_6: "go to claim.",
+    answer9_7: "Here’s",
+    answer9_8: " the guide to use logbook 2.0.",
     question10: "What are gas fees? What are gas fees necessary?",
     answer10_1:
       "Gas fees are the handling fees required when a transaction is initiated on the blockchain to compensate miners. " +
