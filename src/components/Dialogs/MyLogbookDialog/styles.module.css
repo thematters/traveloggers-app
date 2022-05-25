@@ -1,5 +1,9 @@
-.buttons {
-  margin: 24px 0 0;
+.text {
+  margin: 0 0 24px;
+}
+
+.text p a {
+  color: var(--color-matters-green);
 }
 
 a.btn {

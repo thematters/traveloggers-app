@@ -38,19 +38,21 @@ export const MyLogbookDialog: React.FC<MyLogbookDialogProps> = ({
           closeDialog={closeDialog}
         />
         <Dialog.Content>
-          <p>
-            {locale === Lang.en
-              ? "Logbook 2.0 has just launched. If you are owner of Traveloggers, let’s go claim one from the new "
-              : "第二代航行日誌已經上線，如果你是 Treveloggers 擁有者，請前往新的  "}
-            <a href="https://logbook.matters.news/" target="_blank" rel="noreferrer">
-              {locale === Lang.en ? "Logbook page" : "Logbook 頁面"}
-            </a>
-            {locale === Lang.en ? "." : "領取。"}
-          </p>
+          <div className={styles.text}>
+            <p>
+              {locale === Lang.en
+                ? "Logbook 2.0 has just launched. If you are owner of Traveloggers, let’s go claim one from the new "
+                : "第二代航行日誌已經上線，如果你是 Treveloggers 擁有者，請前往新的  "}
+              <a href="https://logbook.matters.news/" target="_blank" rel="noreferrer">
+                {locale === Lang.en ? "Logbook page" : "Logbook 頁面"}
+              </a>
+              {locale === Lang.en ? "." : " 領取。"}
+            </p>
+          </div>
           <div className={styles.buttons}>
             <a
               className={styles.btn}
-              href="https://logbook.matters.news/"
+              href="https://logbook.matters.news/bookcase/"
               target="_blank"
               rel="noreferrer"
             >
