@@ -1,0 +1,39 @@
+.buttons {
+  margin: 24px 0 0;
+}
+
+a.btn {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  padding: 16px 48px 16px 16px;
+  margin: 0 0 24px;
+  background-color: var(--color-black-light);
+  background-image: url("/images/icon-arrow-right.svg");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+  border-radius: 20px;
+}
+
+a.btn:hover {
+  background-color: var(--color-grey-darkest);
+}
+
+i.icon {
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin: 0 8px 0 0;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}
+
+i.logbook1 {
+  background-image: url("/images/icon-logbook1.svg");
+}
+
+i.logbook2 {
+  background-image: url("/images/icon-logbook2.svg");
+}

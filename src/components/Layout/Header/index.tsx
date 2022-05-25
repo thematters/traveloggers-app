@@ -8,6 +8,7 @@ import {
   IconLogo,
   LanguageSwitch,
   LinkAccountDialog,
+  MyLogbookDialog,
   TextIcon,
 } from "~/components"
 import { Lang } from "~/enums"
@@ -76,7 +77,7 @@ const Header: React.FC<HeaderProps> = ({ originalPath }) => {
             </LinkAccountDialog>
           </div>
 
-          <div className={styles.logbookBtn}>
+          {/* <div className={styles.logbookBtn}>
             <Button
               color="primary"
               height="2.125rem"
@@ -86,6 +87,26 @@ const Header: React.FC<HeaderProps> = ({ originalPath }) => {
             >
               {locale === Lang.en ? "My Logbooks" : "我的航行日誌"}
             </Button>
+          </div> */}
+
+          <div>
+            <MyLogbookDialog>
+              {({ openDialog }) => (
+                <Button
+                  color="primary"
+                  spacingX="1.25rem"
+                  spacingY=".5rem"
+                  onClick={() => {
+                    analytics("click_button", {
+                      type: "link_account",
+                    })
+                    openDialog()
+                  }}
+                >
+                  {locale === Lang.en ? "My Logbooks" : "我的航行日誌"}
+                </Button>
+              )}
+            </MyLogbookDialog>
           </div>
         </section>
       </header>
