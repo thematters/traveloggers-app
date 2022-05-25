@@ -19,8 +19,16 @@ import * as styles from "./styles.module.css"
 const Socials: React.FC = () => {
   const { locale } = useLocalization()
 
-  const { matters, logbook, opensea, instagram, facebook, twitter, discord, telegram } =
-    env.socialUrls[locale as Lang]
+  const {
+    matters,
+    logbook,
+    opensea,
+    instagram,
+    facebook,
+    twitter,
+    discord,
+    telegram,
+  } = env.socialUrls[locale as Lang]
 
   return (
     <>
@@ -123,10 +131,12 @@ const Socials: React.FC = () => {
           <a
             href={logbook}
             target="_blank"
-            onClick={() => analytics("click_button", { type: "footer_logbook" })}
+            onClick={() =>
+              analytics("click_button", { type: "footer_logbook" })
+            }
             rel="noreferrer"
           >
-           Logbook
+            Logbook
           </a>
         )}
 
