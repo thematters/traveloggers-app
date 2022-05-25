@@ -2,6 +2,10 @@
   margin: 24px 0 0;
 }
 
+.text a {
+  color: var(--color-matters-green);
+}
+
 a.btn {
   display: flex;
   flex-flow: row wrap;
