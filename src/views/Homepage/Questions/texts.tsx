@@ -50,8 +50,8 @@ const TEXTS: Record<string, any> = {
     answer9_6: "前往領取。",
     question10: "每個 Traveloggers 都附帶一本 Logbook 2.0 嗎？",
     answer10_1:
-      "是的，每個 Traveloggers 都附帶一本在 Polygon 鏈上發行的Logbook 2.0。" +
-      "由於 Logbook 2.0 是本可轉讓的NFT，但只能鑄造一次，因此若前任 Traveloggers 主人已認領或轉讓" +
+      "是的，每個 Traveloggers 都附帶一本在 Polygon 鏈上發行的 Logbook 2.0。" +
+      "由於 Logbook 2.0 是本可轉讓的 NFT，但只能鑄造一次，因此若前任 Traveloggers 主人已認領或轉讓" +
       "，你將無法擁有一本新的 Logbook 2.0。",
     answer10_2:
       "要檢查 Traveloggers 的 Web3 航行日誌 Logbook2.0 是否已被認領，你可以到 ",
