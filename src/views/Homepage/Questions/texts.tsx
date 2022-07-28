@@ -48,8 +48,18 @@ const TEXTS: Record<string, any> = {
     answer9_5:
       "🎉 第二代航行日誌已經於 Polygon 主網上線，如果你是 Traveloggers 擁有者請",
     answer9_6: "前往領取。",
-    question10: "什麼是 Gas Fee？為什麼有 Gas Fee？",
+    question10: "每個 Traveloggers 都附帶一本 Logbook 2.0 嗎？",
     answer10_1:
+      "是的，每個 Traveloggers 都附帶一本在 Polygon 鏈上發行的 Logbook 2.0。" +
+      "由於 Logbook 2.0 是本可轉讓的 NFT，但只能鑄造一次，因此若前任 Traveloggers 主人已認領或轉讓" +
+      "，你將無法擁有一本新的 Logbook 2.0。",
+    answer10_2:
+      "要檢查 Traveloggers 的 Web3 航行日誌 Logbook2.0 是否已被認領，你可以到 ",
+    answer10_3: "Polyscan",
+    answer10_4: " 上，搜索欄中輸入 Traveloggers 的序號以確認。",
+    answer10_5: "當然，最簡單的方法是直接從 Opensea 官方購買 Traveloggers：",
+    question11: "什麼是 Gas Fee？為什麼有 Gas Fee？",
+    answer11_1:
       "Gas Fee 指的是在區塊鏈上發起一筆交易時，需要負擔的手續費。Gas Fee 是支付給礦工的手續費，當你在以太坊區塊鏈上進行轉賬時，" +
       "礦工要把你的交易打包並放上區塊鏈，才能使交易完成，在這過程中會消耗區塊鏈的運算資源，所以要支付費用。",
   },
@@ -111,8 +121,21 @@ const TEXTS: Record<string, any> = {
     answer9_5:
       "🎉 Logbook 2.0 has just launched on Polygon Mainnet. If you are Traveloggers’ owner, let's ",
     answer9_6: "go to claim.",
-    question10: "What are gas fees? What are gas fees necessary?",
+    question10: "Does every Traveloggers come with a Logbook 2.0?",
     answer10_1:
+      "Yes, every Traveloggers comes with a Logbook issued on the Polygon. " +
+      "However, since Logbook is a transferable NFT that could be only minted once, " +
+      "if the previous owner has claimed or transferred it, you will not be able to have " +
+      "a new Logbook to write on.",
+    answer10_2:
+      "To check if the Traveloggers’ Logbook has been claimed, check on ",
+    answer10_3: "Polyscan",
+    answer10_4:
+      " by entering the Traveloggers number in the search bar to ensure the transactions.",
+    answer10_5:
+      "Of course, the easiest way is to buy Traveloggers from official on Opensea: ",
+    question11: "What are gas fees? What are gas fees necessary?",
+    answer11_1:
       "Gas fees are the handling fees required when a transaction is initiated on the blockchain to compensate miners. " +
       "When you transfer money on the Ethereum blockchain, miners need to add your transaction on the blockchain to complete the " +
       "transaction. Gas fees are paid for the computing energy required to process and validate transactions on the Ethereum blockchain.",
