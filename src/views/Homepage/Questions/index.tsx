@@ -40,6 +40,11 @@ const link9En =
   "https://matters.news/@Matterslab/guideline-for-traveloggers-how-to-use-your-logbook-bafyreigbzmnmjoqsgtiok" +
   "nmtcu4nosmk3uwdn7sm4j2zcxcvaypabqvg2m"
 
+const linkPolyscan =
+  "https://polygonscan.com/token/0xcdf8d568ec808de5fcbb35849b5bafb5d444d4c0"
+
+const linkOpensea = "https://opensea.io/Traveloggers"
+
 const Questions = () => {
   const { locale } = useLocalization()
   const texts = TEXTS[locale]
@@ -191,6 +196,28 @@ const Questions = () => {
           content={
             <Section.Content>
               <p>{texts.answer10_1}</p>
+              <p>
+                {texts.answer10_2}
+                <a href={linkPolyscan} target="_blank" rel="noreferrer">
+                  {texts.answer10_3}
+                </a>
+                {texts.answer10_4}
+              </p>
+              <p>{texts.answer10_5}</p>
+              <p>
+                <a href={linkOpensea} target="_blank" rel="noreferrer">
+                  https://opensea.io/Traveloggers
+                </a>
+              </p>
+            </Section.Content>
+          }
+        />
+        <Expandable
+          {...expandableStyles}
+          title={texts.question11}
+          content={
+            <Section.Content>
+              <p>{texts.answer11_1}</p>
             </Section.Content>
           }
         />
