@@ -1,7 +1,7 @@
 {
   "name": "traveloggers-app",
   "description": "traveloggers site",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "author": "the matters <dev@matters.news>",
   "dependencies": {
     "@reach/alert": "^0.16.0",
