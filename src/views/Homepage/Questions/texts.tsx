@@ -48,6 +48,8 @@ const TEXTS: Record<string, any> = {
     answer9_5:
       "🎉 第二代航行日誌已經於 Polygon 主網上線，如果你是 Traveloggers 擁有者請",
     answer9_6: "前往領取。",
+    answer9_7: "查看",
+    answer9_8: " 第二代航行日誌指南",
     question10: "每個 Traveloggers 都附帶一本 Logbook 2.0 嗎？",
     answer10_1:
       "是的，每個 Traveloggers 都附帶一本在 Polygon 鏈上發行的 Logbook 2.0。" +
@@ -121,6 +123,8 @@ const TEXTS: Record<string, any> = {
     answer9_5:
       "🎉 Logbook 2.0 has just launched on Polygon Mainnet. If you are Traveloggers’ owner, let's ",
     answer9_6: "go to claim.",
+    answer9_7: "Here’s",
+    answer9_8: " the guide to use logbook 2.0.",
     question10: "Does every Traveloggers come with a Logbook 2.0?",
     answer10_1:
       "Yes, every Traveloggers comes with a Logbook issued on the Polygon. " +

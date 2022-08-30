@@ -40,6 +40,10 @@ const link9En =
   "https://matters.news/@Matterslab/guideline-for-traveloggers-how-to-use-your-logbook-bafyreigbzmnmjoqsgtiok" +
   "nmtcu4nosmk3uwdn7sm4j2zcxcvaypabqvg2m"
 
+const linkGuide2 =
+  "https://matters.news/@Matterslab/259760-a-guide-to-logbook-2-0-how-to-use-logbook-bafyreih5uquigwdzha5xlwg" +
+  "5e76kn7bqekgx274u7jyhoxe3bhynyho2he"
+
 const linkPolyscan =
   "https://polygonscan.com/token/0xcdf8d568ec808de5fcbb35849b5bafb5d444d4c0"
 
@@ -172,6 +176,12 @@ const Questions = () => {
                 {texts.answer9_5}
                 <a href={logbookUrl} target="_blank" rel="noreferrer">
                   {texts.answer9_6}
+                </a>
+              </p>
+              <p>
+                {texts.answer9_7}
+                <a href={linkGuide2} target="_blank" rel="noreferrer">
+                  {texts.answer9_8}
                 </a>
               </p>
               <br />
