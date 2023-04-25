@@ -180,7 +180,11 @@ const Questions = () => {
               </p>
               <p>
                 {texts.answer9_7}
-                <a href={linkGuide2} target="_blank" rel="noreferrer">
+                <a
+                  href="https://matters.town/@Matterslab/a-guide-to-logbook-2-0-how-to-use-logbook-bafyreih5uquigwdzha5xlwg5e76kn7bqekgx274u7jyhoxe3bhynyho2he"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   {texts.answer9_8}
                 </a>
               </p>

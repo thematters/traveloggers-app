@@ -42,6 +42,7 @@ interface ClickButtonProp {
     | "footer_dis" // Discord link on footer
     | "footer_tg" // Telegram link on footer
     | "footer_os" // Opensea link on footer
+    | "footer_logbook" // Logbook link on footer
     | "header_dis" // Discord link on header
     | "header_tt" // Twitter link on header
     | "logbooks" // Button link to logbook page
