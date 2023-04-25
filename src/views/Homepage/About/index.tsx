@@ -29,7 +29,7 @@ const About = () => {
                 color="primary"
                 width={isMediumUp ? "11rem" : "100%"}
                 spacingY="0.75rem"
-                htmlHref="https://matters.news/about"
+                htmlHref="https://matters.town/about"
                 htmlTarget="_blank"
                 onClick={() =>
                   analytics("click_button", { type: "more_about" })

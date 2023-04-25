@@ -11,7 +11,7 @@ const TEXTS: Record<string, any> = {
     content1: "Traveloggers 預購、空投和在 OpenSea 上公開發售。",
     item2: "個人頭像",
     content2:
-      "Traveloggers 擁有者可以在 Matters.News 和 Twitter 上換帶有 NFT 標識認證的個人頭像。",
+      "Traveloggers 擁有者可以在 Matters.Town 和 Twitter 上換帶有 NFT 標識認證的個人頭像。",
     item3: "航行日誌",
     content3:
       "Traveloggers 擁有者可以向以太坊區塊鏈主網寫入第一代航行日誌，航行日誌的所有權可以與頭像一起移轉。",
@@ -19,7 +19,7 @@ const TEXTS: Record<string, any> = {
     content4: "未獲得空投的參與者可獲得紀念 POAP。",
     item5: "禮物贈送",
     content5_1: "Traveloggers 擁有者可在 ",
-    content5_2: "https://traveloggers.matters.news/ ",
+    content5_2: "https://traveloggers.matters.town/ ",
     content5_3: "直接贈送。",
     item6: "第二代航行日誌",
     content6: "Traveloggers 擁有者可以領取並向 Polygon 主網寫入第二代航行日誌",
@@ -45,7 +45,7 @@ const TEXTS: Record<string, any> = {
     content1: "Traveloggers’ pre-order, airdrop, and public sale on OpenSea.",
     item2: "Profile Picture",
     content2:
-      "Traveloggers’ owners can set the Traveloggers NFT as their Twitter and Matters.News profile picture.",
+      "Traveloggers’ owners can set the Traveloggers NFT as their Twitter and Matters.Town profile picture.",
     item3: "The Logbook",
     content3:
       "Traveloggers’ owners can record a logbook 1.0 on the Ethereum Mainnet directly. The ownership of the " +

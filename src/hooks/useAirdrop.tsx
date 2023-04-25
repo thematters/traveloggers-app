@@ -34,10 +34,10 @@ export const useAirdrop = () => {
   const registered = !!(viewer?.id && viewer?.info?.cryptoWallet?.id)
 
   // TODO: created nonce from server
-  const signedMessage = `matters.news wants you to sign in with your Ethereum account:
+  const signedMessage = `https://matters.town wants you to sign in with your Ethereum account:
 ${account}
 
-URI: https://matters.news
+URI: https://matters.town
 Version: 1
 Chain ID: ${env.supportedChainId}
 Nonce: ${new Date().getTime()}
